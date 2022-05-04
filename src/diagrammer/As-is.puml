@@ -1,6 +1,21 @@
 @startuml
+|Kunde|
+start
+:Går ind på hjemmesiden;
 |Website|
-Start
+:Have og fritid;
+:Byg selv produkt;
+:Carport;
+:Vælg carport type;
+:Carport efter egne mål;
+if (Carport tag) then (Rejsning)
+  :Forespørgsel;
+else (Fladt tag)
+  :Forespørgsel;
+endif
+|Fog|
+:Udarbejder tilbud;
+|Website|
 :Sender forespørgsel;
 |Fog|
 :Modtager forespørgsel;

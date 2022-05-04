@@ -20,5 +20,29 @@ else (Standard Carport)
 endif
 |Fog|
 :Udarbejder tilbud;
+|Fog|
+|Website|
+:Sender forespørgsel;
+|Kunde|
+|Fog|
+:Modtager email med forespørgsel;
+:Går ind på hjemmesiden;
+|Website|
+:Tjekker forespørgsel;
+|Fog|
+:Dialog med kunde;
+|Website|
+:Godkender forespørgsel;
+|Kunde|
+:Kunde modtager tegning og tilbud;
+:Betaling;
+|Website|
+if (Autogenerer stykliste) then
+|Fog|
+  :Modtager stykliste;
+  stop
+else
+|Kunde|
+  :Modtager stykliste;
 stop
 @enduml
