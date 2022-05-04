@@ -15,6 +15,5 @@ else (Fladt tag)
 endif
 |Fog|
 :Udarbejder tilbud;
-|Kunde|
 stop
 @enduml
