@@ -1,0 +1,24 @@
+@startuml
+|Kunde|
+start
+:Går ind på hjemmesiden;
+|Website|
+:Have og fritid;
+:Byg selv produkt;
+if (Carport) then (Egne mål)
+  if (Carport tag) then (Rejsning)
+    :Forespørgsel;
+  else (Fladt tag)
+    :Forespørgsel;
+  endif
+else (Standard Carport)
+ if (Carport tag) then (Rejsning)
+   :Forespørgsel;
+ else (Fladt tag)
+   :Forespørgsel;
+ endif
+endif
+|Fog|
+:Udarbejder tilbud;
+stop
+@enduml
