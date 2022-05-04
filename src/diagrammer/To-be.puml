@@ -1,5 +1,5 @@
 @startuml
-|Kunde|
+|#CCFFFF|Kunde|
 start
 :Går ind på hjemmesiden;
 |Website|
@@ -18,7 +18,7 @@ else (Standard Carport)
    :Forespørgsel;
  endif
 endif
-|Fog|
+|#009966|Fog|
 :Udarbejder tilbud;
 |Fog|
 |Website|
@@ -38,11 +38,11 @@ endif
 :Betaling;
 |Website|
 if (Autogenerer stykliste) then
-|Fog|
+|Kunde|
   :Modtager stykliste;
   stop
 else
-|Kunde|
+|Fog|
   :Modtager stykliste;
 stop
 @enduml

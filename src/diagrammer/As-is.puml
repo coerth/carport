@@ -1,8 +1,8 @@
 @startuml
-|Kunde|
+|#FFFCCC|Kunde|
 start
 :Går ind på hjemmesiden;
-|Website|
+|#0099CC|Website|
 :Have og fritid;
 :Byg selv produkt;
 :Carport;
@@ -13,7 +13,7 @@ if (Carport tag) then (Rejsning)
 else (Fladt tag)
   :Forespørgsel;
 endif
-|Fog|
+|#006633|Fog|
 :Udarbejder tilbud;
 |Website|
 :Sender forespørgsel;
@@ -30,5 +30,7 @@ endif
 :Betaling;
 |Fog|
 :Leverer stykliste;
+|Kunde|
+:Modtager stykliste;
 stop
 @enduml
