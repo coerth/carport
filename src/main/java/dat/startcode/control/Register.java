@@ -3,6 +3,8 @@ package dat.startcode.control;
 import dat.startcode.model.config.ApplicationStart;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
+import dat.startcode.model.services.AccountFacade;
+import dat.startcode.model.services.CustomerFacade;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +30,7 @@ public class Register extends Command{
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        /*UserFacade.createAccount();*/
+        CustomerFacade.createCustomer(name,address,city,zip,mobile,email,password,connectionPool);
 
         return "index";
 
