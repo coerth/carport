@@ -1,8 +1,6 @@
 package dat.startcode.model.services;
 
 import dat.startcode.model.entities.Account;
-import dat.startcode.model.entities.Customer;
-import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.AccountMapper;
 import dat.startcode.model.persistence.ConnectionPool;

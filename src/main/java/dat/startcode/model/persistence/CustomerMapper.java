@@ -20,8 +20,7 @@ public class CustomerMapper implements ICustomerMapper
     @Override
     public Customer createCustomer(String name, String address, String city, int zip, int mobile, String email, String password) throws DatabaseException
     {
-        AccountMapper accountMapper = new AccountMapper(connectionPool);
-
+        AccountMapper accountMapper = null;
 
         int accountId = accountMapper.createAccount(email, password, 2);
 
