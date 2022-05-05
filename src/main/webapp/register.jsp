@@ -11,7 +11,8 @@
     <title>Registrering</title>
 </head>
 <body>
-<form action="fc/Register">
+<form action="fc/register" method="post">
+    <input type="hidden" name="command" value="register"/>
     <label for="name">Navn:</label><br>
     <input type="text" id="name" name="name" placeholder="Skriv dit navn"><br>
     <label for="adr">Adresse:</label><br>

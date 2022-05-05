@@ -1,5 +1,6 @@
 package dat.startcode.control;
 
+import dat.startcode.model.config.ApplicationStart;
 import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
@@ -14,7 +15,7 @@ public class Register extends Command{
  private ConnectionPool connectionPool;
 
     public Register() {
-        this.connectionPool = connectionPool;
+        this.connectionPool = ApplicationStart.getConnectionPool();
     }
 
     @Override
@@ -31,11 +32,8 @@ public class Register extends Command{
 
         /*UserFacade.createAccount();*/
 
-        return "index.jsp";
+        return "index";
 
     }
-
-
-
 
 }
