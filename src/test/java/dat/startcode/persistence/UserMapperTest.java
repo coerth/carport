@@ -3,7 +3,6 @@ package dat.startcode.persistence;
 import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
-import dat.startcode.model.persistence.UserMapper;
 import dat.startcode.model.services.UserFacade;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
