@@ -25,7 +25,7 @@ public class Login extends Command
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
         HttpSession session = request.getSession();
-        session.setAttribute("user", null); // adding empty user object to session scope
+        session.setAttribute("account", null); // adding empty user object to session scope
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
