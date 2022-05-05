@@ -1,16 +1,15 @@
 package dat.startcode.control;
 
 import dat.startcode.model.config.ApplicationStart;
-import dat.startcode.model.entities.User;
+import dat.startcode.model.entities.Account;
 import dat.startcode.model.exceptions.DatabaseException;
-import dat.startcode.model.services.UserFacade;
+import dat.startcode.model.services.AccountFacade;
 import dat.startcode.model.persistence.ConnectionPool;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class Login extends Command
 {
@@ -26,12 +25,14 @@ public class Login extends Command
     {
         HttpSession session = request.getSession();
         session.setAttribute("account", null); // adding empty user object to session scope
-        String username = request.getParameter("username");
+
+        String email = request.getParameter("email");
+
         String password = request.getParameter("password");
 
-        User user = UserFacade.login(username, password, connectionPool);
+        Account account = AccountFacade.login(email, password, connectionPool);
         session = request.getSession();
-        session.setAttribute("user", user); // adding user object to session scope
+        session.setAttribute("account", account); // adding user object to session scope
         return "index";
     }
 }
