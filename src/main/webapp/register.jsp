@@ -20,7 +20,7 @@
     <label for="city">By:</label><br>
     <input type="text" id="city" name="city" placeholder="By"><br><br>
     <label for="zip">Postnummer:</label><br>
-    <input type="number" min="4" max="4" id="zip" name="zip" placeholder="Postnummer"><br><br>
+    <input type="text" max="9999" id="zip" name="zip" placeholder="Postnummer"><br><br>
     <label for="mobile">Mobil:</label><br>
     <input type="text" id="mobile" name="mobile" placeholder="Mobil"><br><br>
     <label for="email">Email:</label><br>
