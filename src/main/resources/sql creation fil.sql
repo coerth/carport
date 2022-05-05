@@ -155,6 +155,27 @@ VALUES
 (1, '2022-02-20 00:00:00'),
 (2, '2022-04-11 08:50:27');
 
+-- -----------------------------------------------------
+-- Table `carport`.`description`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `carport`.`description` ;
+
+CREATE TABLE IF NOT EXISTS `carport`.`description` (
+  `description_id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`description_id`))
+ENGINE = InnoDB;
+
+INSERT INTO `carport`.`description`
+(`description`)
+VALUES
+('understernbrædder til for & bag ende'),
+('løsholter til skur gavle'),
+('Skruer til tagplader'),
+('understernbrædder til for & bag ende'),
+('løsholter til skur gavle'),
+('Skruer til tagplader');
+
 
 -- -----------------------------------------------------
 -- Table `carport`.`orderline`
@@ -165,11 +186,12 @@ CREATE TABLE IF NOT EXISTS `carport`.`orderline` (
   `orderline_id` INT NOT NULL AUTO_INCREMENT,
   `material_id` INT NOT NULL,
   `quantity` INT NOT NULL,
-  `description` VARCHAR(45) NOT NULL,
+  `description_id` INT NOT NULL,
   `order_id` INT NOT NULL,
   PRIMARY KEY (`orderline_id`),
   INDEX `fk_orderline_material1_idx` (`material_id` ASC) VISIBLE,
   INDEX `fk_orderline_order1_idx` (`order_id` ASC) VISIBLE,
+  INDEX `fk_orderline_description1_idx` (`description_id` ASC) VISIBLE,
   CONSTRAINT `fk_orderline_material1`
     FOREIGN KEY (`material_id`)
     REFERENCES `carport`.`material` (`material_id`)
@@ -179,21 +201,26 @@ CREATE TABLE IF NOT EXISTS `carport`.`orderline` (
     FOREIGN KEY (`order_id`)
     REFERENCES `carport`.`order` (`order_id`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_orderline_description1`
+    FOREIGN KEY (`description_id`)
+    REFERENCES `carport`.`description` (`description_id`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 INSERT INTO `carport`.`orderline`
 (`material_id`,
 `quantity`,
-`description`,
+`description_id`,
 `order_id`)
 VALUES
-(1, 20, 'understernbrædder til for & bag ende', 1),
-(2, 5, 'løsholter til skur gavle',1),
-(3, 2, 'Skruer til tagplader', 1),
-(1, 10, 'understernbrædder til for & bag ende', 2),
-(2, 2, 'løsholter til skur gavle',2),
-(3, 1, 'Skruer til tagplader', 2);
+(1, 20, 1, 1),
+(2, 5, 2, 1),
+(3, 2, 3, 1),
+(1, 10, 4, 2),
+(2, 2, 5, 2),
+(3, 1, 6, 2);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
