@@ -16,7 +16,7 @@ public class AccountFacade {
         return accountMapper.login(email, password);
     }
 
-    public static Account createAccount(String email, String password, int role, ConnectionPool connectionPool) throws DatabaseException
+    public static int createAccount(String email, String password, int role, ConnectionPool connectionPool) throws DatabaseException
     {
         AccountMapper accountMapper = new AccountMapper(connectionPool);
         return accountMapper.createAccount(email, password, role);

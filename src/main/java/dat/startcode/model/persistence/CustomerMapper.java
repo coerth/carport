@@ -18,8 +18,13 @@ public class CustomerMapper implements ICustomerMapper
     }
 
     @Override
-    public Customer createCustomer(String name, String address, String city, int zip, int mobile, int accountId) throws DatabaseException
+    public Customer createCustomer(String name, String address, String city, int zip, int mobile, String email, String password) throws DatabaseException
     {
+        AccountMapper accountMapper = new AccountMapper(connectionPool);
+
+
+        int accountId = accountMapper.createAccount(email, password, 2);
+
         Logger.getLogger("web").log(Level.INFO, "");
         Customer customer;
         String sql = "insert into customer (name, address, city, zip, mobile, account_id) values (?,?,?,?,?,?)";
@@ -36,7 +41,7 @@ public class CustomerMapper implements ICustomerMapper
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
-                    customer = new Customer(name, address, city, zip, mobile, accountId);
+                    customer = new Customer(email, password, 2, name, address, city, zip, mobile, accountId);
                 } else
                 {
                     throw new DatabaseException("The customer with name = " + name + " could not be inserted into the database");

@@ -54,21 +54,26 @@ public class AccountMapper implements IAccountMapper{
 
 
     @Override
-    public Account createAccount(String email, String password, int role) throws DatabaseException {
+    public int createAccount(String email, String password, int role) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
-        Account account;
+
+        int accountId = 0;
+
         String sql = "insert into account (email, password, role) values (?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
+            try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS))
             {
                 ps.setString(1, email);
                 ps.setString(2, password);
                 ps.setInt(3, 2);
+                ResultSet rs = ps.getGeneratedKeys();
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1)
                 {
-                    account = new Account(email, password, role);
+                    rs.next();
+                    accountId = rs.getInt(1);
+
                 } else
                 {
                     throw new DatabaseException("Kunne ikke oprette account med følgende email: " + email);
@@ -79,7 +84,7 @@ public class AccountMapper implements IAccountMapper{
         {
             throw new DatabaseException(ex, "Could not insert account into database");
         }
-        return account;
+        return accountId;
     }
 
     @Override

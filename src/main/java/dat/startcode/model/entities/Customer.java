@@ -1,6 +1,6 @@
 package dat.startcode.model.entities;
 
-public class Customer {
+public class Customer extends Account {
 
     String name;
     String address;
@@ -9,7 +9,8 @@ public class Customer {
     int mobile;
     int accountId;
 
-    public Customer(String name, String address, String city, int zip, int mobile, int accountId) {
+    public Customer(String email, String password, int role, String name, String address, String city, int zip, int mobile, int accountId) {
+        super(email, password, role);
         this.name = name;
         this.address = address;
         this.city = city;
@@ -17,6 +18,7 @@ public class Customer {
         this.mobile = mobile;
         this.accountId = accountId;
     }
+
 
     public String getName() {
         return name;

@@ -15,7 +15,7 @@ import java.sql.Statement;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserMapperTest
+class AccountMapperTest
 {
     private final static String USER = "root";
     private final static String PASSWORD = System.getenv("dbpassword");
@@ -79,7 +79,7 @@ class UserMapperTest
     @Test
     void createAccount() throws DatabaseException
     {
-        Account newAccount = AccountFacade.createAccount("jill", "1234", 2, connectionPool);
+        int newAccount = AccountFacade.createAccount("jill", "1234", 2, connectionPool);
         Account logInAccount = AccountFacade.login("jill","1234", connectionPool);
         Account expectedAccount = new Account("jill", "1234", 2);
         assertEquals(expectedAccount, newAccount);
