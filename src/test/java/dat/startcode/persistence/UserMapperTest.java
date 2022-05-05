@@ -1,9 +1,10 @@
 package dat.startcode.persistence;
 
-import dat.startcode.model.entities.User;
+import dat.startcode.model.entities.Account;
+
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
-import dat.startcode.model.services.UserFacade;
+import dat.startcode.model.services.AccountFacade;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,31 +59,31 @@ class UserMapperTest
     @Test
     void login() throws DatabaseException
     {
-        User expectedUser = new User("user","1234","user");
-        User actualUser = UserFacade.login("user","1234", connectionPool);
-        assertEquals(expectedUser, actualUser);
+        Account expectedAccount = new Account("a@a.dk","1234",2);
+        Account actualAccount = AccountFacade.login("a@a.dk","1234", connectionPool);
+        assertEquals(expectedAccount, actualAccount);
     }
 
     @Test
     void invalidPasswordLogin() throws DatabaseException
     {
-        assertThrows(DatabaseException.class, () -> UserFacade.login("user","123", connectionPool));
+        assertThrows(DatabaseException.class, () -> AccountFacade.login("a@a.dk","123", connectionPool));
     }
 
     @Test
-    void invalidUserNameLogin() throws DatabaseException
+    void invalidAccountNameLogin() throws DatabaseException
     {
-        assertThrows(DatabaseException.class, () -> UserFacade.login("bob","1234", connectionPool));
+        assertThrows(DatabaseException.class, () -> AccountFacade.login("bob","1234", connectionPool));
     }
 
     @Test
-    void createUser() throws DatabaseException
+    void createAccount() throws DatabaseException
     {
-        User newUser = UserFacade.createUser("jill", "1234", "user", connectionPool);
-        User logInUser = UserFacade.login("jill","1234", connectionPool);
-        User expectedUser = new User("jill", "1234", "user");
-        assertEquals(expectedUser, newUser);
-        assertEquals(expectedUser, logInUser);
+        Account newAccount = AccountFacade.createAccount("jill", "1234", 2, connectionPool);
+        Account logInAccount = AccountFacade.login("jill","1234", connectionPool);
+        Account expectedAccount = new Account("jill", "1234", 2);
+        assertEquals(expectedAccount, newAccount);
+        assertEquals(expectedAccount, logInAccount);
 
     }
 }

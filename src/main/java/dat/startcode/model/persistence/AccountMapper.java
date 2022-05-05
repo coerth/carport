@@ -1,6 +1,7 @@
 package dat.startcode.model.persistence;
 
 import dat.startcode.model.entities.Account;
+import dat.startcode.model.entities.User;
 import dat.startcode.model.exceptions.DatabaseException;
 
 import java.sql.Connection;
@@ -18,6 +19,39 @@ public class AccountMapper implements IAccountMapper{
     {
         this.connectionPool = connectionPool;
     }
+
+    @Override
+    public Account login(String email, String password) throws DatabaseException {
+
+            Logger.getLogger("web").log(Level.INFO, "");
+
+            Account account = null;
+
+            String sql = "SELECT * FROM account WHERE email = ? AND password = ?";
+
+            try (Connection connection = connectionPool.getConnection())
+            {
+                try (PreparedStatement ps = connection.prepareStatement(sql))
+                {
+                    ps.setString(1, email);
+                    ps.setString(2, password);
+                    ResultSet rs = ps.executeQuery();
+                    if (rs.next())
+                    {
+                        int role = rs.getInt("role");
+                        account = new Account(email, password, role);
+                    } else
+                    {
+                        throw new DatabaseException("Wrong username or password");
+                    }
+                }
+            } catch (SQLException ex)
+            {
+                throw new DatabaseException(ex, "Error logging in. Something went wrong with the database");
+            }
+            return account;
+        }
+
 
     @Override
     public Account createAccount(String email, String password, int role) throws DatabaseException {
