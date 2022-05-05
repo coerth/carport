@@ -20,4 +20,5 @@ public class UserFacade
         UserMapper userMapper = new UserMapper(connectionPool);
         return userMapper.createUser(username, password, role);
     }
+
 }
