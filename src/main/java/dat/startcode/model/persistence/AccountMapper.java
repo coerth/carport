@@ -67,12 +67,13 @@ public class AccountMapper implements IAccountMapper{
                 ps.setString(1, email);
                 ps.setString(2, password);
                 ps.setInt(3, 2);
-                ResultSet rs = ps.getGeneratedKeys();
                 int rowsAffected = ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
                 if (rowsAffected == 1)
                 {
                     rs.next();
                     accountId = rs.getInt(1);
+                    System.out.println(accountId);
 
                 } else
                 {
@@ -82,7 +83,8 @@ public class AccountMapper implements IAccountMapper{
         }
         catch (SQLException ex)
         {
-            throw new DatabaseException(ex, "Could not insert account into database");
+            System.out.println(ex);
+            //throw new DatabaseException(ex, "Could not insert account into database");
         }
         return accountId;
     }

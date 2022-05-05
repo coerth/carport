@@ -9,6 +9,7 @@ import dat.startcode.model.services.CustomerFacade;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.sql.SQLException;
 
 public class Register extends Command{
 
@@ -30,7 +31,14 @@ public class Register extends Command{
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        CustomerFacade.createCustomer(name,address,city,zip,mobile,email,password,connectionPool);
+        try{
+            CustomerFacade.createCustomer(name,address,city,zip,mobile,email,password,connectionPool);
+        }
+        catch (DatabaseException e)
+        {
+            System.out.println(e);
+        }
+
 
         return "index";
 
