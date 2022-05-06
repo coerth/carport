@@ -24,7 +24,24 @@ public class MaterialMapper implements IMaterialMapper
 
         String sql = "SELECT * FROM carport.material_view";
 
-        try(ConnectionPool connectionPool = conn)
+        try(Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                  int materialId = rs.getInt("material_id");
+                  int typeId = rs.getInt("type_id");
+                  String materialName = rs.getString("material_name");
+                  int price = rs.getInt("price");
+                  String unit = rs.getString("unit");
+                  int macLength = rs.getInt("max_length");
+                  String typeName = rs.getString("mt_name");
+                  Material newMaterial = new Material()
+
+
+
+                }
+            }
+        }
 
         return null;
     }
