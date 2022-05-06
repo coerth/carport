@@ -25,7 +25,7 @@ public class CustomCarportMapper implements ICustomCarportMapper {
             Connection connection = connectionPool.getConnection();
 
             {
-                String sql = "select * from custom_carport";
+                String sql = "select * from carport_request";
                 try (PreparedStatement ps = connection.prepareStatement(sql)) {
                     ResultSet rs = ps.executeQuery();
                     while (rs.next()) {
