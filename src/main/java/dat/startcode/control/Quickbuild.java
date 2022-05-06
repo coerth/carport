@@ -1,6 +1,7 @@
 package dat.startcode.control;
 
 import dat.startcode.model.config.ApplicationStart;
+import dat.startcode.model.entities.Carport;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.services.AccountFacade;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Quickbuild extends Command{
 
@@ -24,7 +26,7 @@ public class Quickbuild extends Command{
 
         HttpSession session = request.getSession();
 
-
+        ArrayList<Carport> carportArrayList = new ArrayList<>();
 
         return "index";
 
