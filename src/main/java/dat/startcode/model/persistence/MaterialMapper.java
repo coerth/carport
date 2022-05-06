@@ -43,10 +43,6 @@ public class MaterialMapper implements IMaterialMapper
                     int maxLength = rs.getInt("max_length");
                     String mtName = rs.getString("mt_name");
                     int typeID = rs.getInt("type_id");
-                    String mtName = rs.getString("mt_name");
-
-                    if(maxLength == null)
-
 
                     material = new Material(materialID, name, price, unit, maxLength, typeID, mtName);
 
@@ -56,8 +52,7 @@ public class MaterialMapper implements IMaterialMapper
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return orderArrayList;
-        return null;
+        return material;
     }
 
     @Override
