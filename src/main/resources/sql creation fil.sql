@@ -243,3 +243,14 @@ VIEW `material_view` AS
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+CREATE DATABASE  IF NOT EXISTS `carport_test` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `carport_test`;
+CREATE TABLE carport_test.account LIKE carport.account;
+CREATE TABLE carport_test.customer LIKE carport.customer;
+CREATE TABLE carport_test.material_type LIKE carport.material_type;
+CREATE TABLE carport_test.material LIKE carport.material;
+CREATE TABLE carport_test.order LIKE carport.order;
+CREATE TABLE carport_test.description LIKE carport.description;
+CREATE TABLE carport_test.orderline LIKE carport.orderline;

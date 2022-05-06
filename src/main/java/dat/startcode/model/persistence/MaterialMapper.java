@@ -1,6 +1,7 @@
 package dat.startcode.model.persistence;
 
 import dat.startcode.model.entities.Material;
+import dat.startcode.model.exceptions.DatabaseException;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -33,18 +34,20 @@ public class MaterialMapper implements IMaterialMapper
                   String materialName = rs.getString("material_name");
                   int price = rs.getInt("price");
                   String unit = rs.getString("unit");
-                  int macLength = rs.getInt("max_length");
+                  int maxLength = rs.getInt("max_length");
                   String typeName = rs.getString("mt_name");
-                  Material newMaterial = new Material()
-
-
+                  Material newMaterial = new Material(materialId, materialName, price, unit, maxLength, typeId, typeName);
+                  materialList.add(newMaterial);
 
                 }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
-        return null;
+        return materialList;
     }
+
 
     @Override
     public Material getSpecificMaterial(int materialID)
