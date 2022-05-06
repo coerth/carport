@@ -26,22 +26,29 @@ public class MaterialMapper implements IMaterialMapper
     public Material getSpecificMaterial(int materialID)
     {
         String sql = "Select * FROM `material_view` WHERE material_id = ?";
+        Material material = null;
 
 
         try (Connection connection = connectionPool.getConnection()) {
 
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1, customerID);
+                ps.setInt(1, materialID);
 
                 ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-                    int orderID = rs.getInt("order_id");
-                    Timestamp time = rs.getTimestamp("date");
-                    LocalDateTime localDateTime = time.toLocalDateTime();
-                    String customerName = rs.getString("name");
-                    ArrayList<Orderline> orderlineArrayList = getAllOrderlines(orderID);
-                    Order newOrder = new Order(orderID, customerName, localDateTime, orderlineArrayList);
-                    orderArrayList.add(newOrder);
+                if (rs.next())
+                {
+                    String name = rs.getString("material_name");
+                    int price = rs.getInt("price");
+                    String unit = rs.getString("unit");
+                    int maxLength = rs.getInt("max_length");
+                    String mtName = rs.getString("mt_name");
+                    int typeID = rs.getInt("type_id");
+                    String mtName = rs.getString("mt_name");
+
+                    if(maxLength == null)
+
+
+                    material = new Material(materialID, name, price, unit, maxLength, typeID, mtName);
 
                 }
             }

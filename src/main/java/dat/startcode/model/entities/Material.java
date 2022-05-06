@@ -8,26 +8,26 @@ public class Material
    private String unit;
    private int maxLength;
    private int typeId;
-   private int materialType;
+   private String typeName;
 
 
-    public Material(int materialId, String name, int price, String unit, int maxLength, int typeId, int materialType) {
+    public Material(int materialId, String name, int price, String unit, int maxLength, int typeId, String typeName) {
         this.materialId = materialId;
         this.name = name;
         this.price = price;
         this.unit = unit;
         this.maxLength = maxLength;
         this.typeId = typeId;
-        this.materialType = materialType;
+        this.typeName = typeName;
     }
 
-    public Material(int materialId, String name, int price, String unit, int typeId, int materialType) {
+    public Material(int materialId, String name, int price, String unit, int typeId, String typeName) {
         this.materialId = materialId;
         this.name = name;
         this.price = price;
         this.unit = unit;
         this.typeId = typeId;
-        this.materialType = materialType;
+        this.typeName = typeName;
     }
 
     public int getMaterialId() {
@@ -54,7 +54,7 @@ public class Material
         return typeId;
     }
 
-    public int getMaterialType() {
-        return materialType;
+    public String getTypeName() {
+        return typeName;
     }
 }
