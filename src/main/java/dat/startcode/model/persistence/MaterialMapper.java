@@ -7,6 +7,12 @@ import java.util.ArrayList;
 public class MaterialMapper implements IMaterialMapper{
     @Override
     public ArrayList<Material> getAllMaterials() {
+
+        ArrayList<Material> materialList = new ArrayList<>();
+
+        String sql = "SELECT * FROM carport.material_view";
+
+        try(ConnectionPool connectionPool = conn)
         return null;
     }
 
