@@ -19,7 +19,7 @@ class AccountMapperTest
 {
     private final static String USER = "root";
     private final static String PASSWORD = System.getenv("dbpassword");
-    private final static String URL = "jdbc:mysql://localhost:3306/startcode_test?serverTimezone=CET&allowPublicKeyRetrieval=true&useSSL=false";
+    private final static String URL = "jdbc:mysql://localhost:3306/carport_test?serverTimezone=CET&allowPublicKeyRetrieval=true&useSSL=false";
 
     private static ConnectionPool connectionPool;
 

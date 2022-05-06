@@ -1,6 +1,7 @@
 package dat.startcode.model.persistence;
 
 import dat.startcode.model.entities.Material;
+import dat.startcode.model.exceptions.DatabaseException;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -17,10 +18,36 @@ public class MaterialMapper implements IMaterialMapper
     }
 
     @Override
-    public ArrayList<Material> getAllMaterials()
-    {
-        return null;
+
+    public ArrayList<Material> getAllMaterials() {
+
+        ArrayList<Material> materialList = new ArrayList<>();
+
+        String sql = "SELECT * FROM carport.material_view";
+
+        try(Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                  int materialId = rs.getInt("material_id");
+                  int typeId = rs.getInt("type_id");
+                  String materialName = rs.getString("material_name");
+                  int price = rs.getInt("price");
+                  String unit = rs.getString("unit");
+                  int maxLength = rs.getInt("max_length");
+                  String typeName = rs.getString("mt_name");
+                  Material newMaterial = new Material(materialId, materialName, price, unit, maxLength, typeId, typeName);
+                  materialList.add(newMaterial);
+
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return materialList;
     }
+
 
     @Override
     public Material getSpecificMaterial(int materialID)
