@@ -31,7 +31,7 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about">About</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc">Page 2</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc">Page 3</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/quickbuild.jsp">quickbuild</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/register.jsp">Registrer</a>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
