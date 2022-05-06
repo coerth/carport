@@ -222,6 +222,23 @@ VALUES
 (2, 2, 5, 2),
 (3, 1, 6, 2);
 
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `material_view` AS
+    SELECT 
+        `m`.`material_id` AS `material_id`,
+        `m`.`type_id` AS `type_id`,
+        `m`.`name` AS `material_name`,
+        `m`.`price` AS `price`,
+        `m`.`unit` AS `unit`,
+        `m`.`max_length` AS `max_length`,
+        `mt`.`name` AS `mt_name`
+    FROM
+        (`material` `m`
+        JOIN `material_type` `mt` ON ((`m`.`type_id` = `mt`.`type_id`)));
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
