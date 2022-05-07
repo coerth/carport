@@ -25,10 +25,6 @@
                     href="login.jsp">Login</a></p>
         </c:if>
 
-        <c:forEach items="${applicationScope.materialArrayList}" var="item">
-            ${item}
-        </c:forEach>
-
     </jsp:body>
 
 </t:pagetemplate>
