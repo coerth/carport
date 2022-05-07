@@ -9,6 +9,7 @@ public interface IMaterialMapper
 
     public ArrayList<Material> getAllMaterials();
     public Material getSpecificMaterial(int materialId);
+    public Material createNewMaterial(Material material);
     public Material updateMaterial(Material material);
     public boolean deleteMaterial(int materialId);
 

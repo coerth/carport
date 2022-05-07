@@ -88,6 +88,36 @@ public class MaterialMapper implements IMaterialMapper {
     }
 
     @Override
+    public Material createNewMaterial(Material material) {
+
+        Material newMaterial = null;
+
+        String sql = "INSERT INTO `material` (`material_id`, `name`, `price`, `unit`, `length`, `type_id`, `width`, `height`) VALUES (?,?,?,?,?,?,?,?)";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setInt(1, material.getMaterialId());
+                ps.setString(2, material.getName());
+                ps.setInt(3, material.getPrice());
+                ps.setString(4, material.getUnit());
+                ps.setInt(5, material.getLength());
+                ps.setInt(6, material.getTypeId());
+                ps.setInt(7, material.getWidth());
+                ps.setInt(8, material.getHeight());
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1) {
+                    newMaterial = new Material(material.getMaterialId(), material.getName(), material.getPrice(), material.getUnit(), material.getLength(), material.getLength(), material.getWidth(), material.getHeight());
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return newMaterial;
+    }
+
+        @Override
     public Material updateMaterial(Material material)
     {
         Material newMaterial = null;

@@ -34,9 +34,9 @@ class AccountMapperTest
         try (Connection testConnection = connectionPool.getConnection()) {
             try (Statement stmt = testConnection.createStatement() ) {
                 // Remove all rows from all tables
-                stmt.execute("delete from user");
+                stmt.execute("delete from account");
                 // Indsæt et par brugere
-                stmt.execute("insert into user (username, password, role) " +
+                stmt.execute("insert into account (email, password, role) " +
                         "values ('user','1234','user'),('admin','1234','admin'), ('ben','1234','user')");
             }
         } catch (SQLException throwables) {
