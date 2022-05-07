@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @WebServlet( name = "FrontController", urlPatterns = { "/fc/*" } )
-public class FrontController extends HttpServlet {
+public class  FrontController extends HttpServlet {
 
     protected void processRequest( HttpServletRequest request, HttpServletResponse response )
             throws ServletException, IOException

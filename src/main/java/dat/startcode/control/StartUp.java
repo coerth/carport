@@ -1,39 +1,37 @@
 package dat.startcode.control;
 
 import dat.startcode.model.config.ApplicationStart;
-import dat.startcode.model.entities.Account;
+import dat.startcode.model.entities.Material;
 import dat.startcode.model.exceptions.DatabaseException;
-import dat.startcode.model.services.AccountFacade;
 import dat.startcode.model.persistence.ConnectionPool;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
-
-public class Login extends Command
+public class StartUp extends Command
 {
+
     private ConnectionPool connectionPool;
 
-    public Login()
+    public StartUp()
     {
-
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
+
         HttpSession session = request.getSession();
-        session.setAttribute("account", null); // adding empty user object to session scope
+        ArrayList<Material> materialArrayList = new ArrayList<>();
 
-        String email = request.getParameter("email");
+        MaterialFacade materialFacade = new MaterialFacade();
+        materialArrayList = materialFacade.getAllMaterials();
 
-        String password = request.getParameter("password");
+        session.getServletContext().setAttribute("materialArrayList", materialArrayList);
 
-        Account account = AccountFacade.login(email, password, connectionPool);
-        session = request.getSession();
-        session.setAttribute("account", account); // adding user object to session scope
         return "index";
     }
 }

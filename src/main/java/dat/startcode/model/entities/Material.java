@@ -80,4 +80,19 @@ public class Material
     public int getHeight() {
         return height;
     }
+
+    @Override
+    public String toString() {
+        return "Material{" +
+                "materialId=" + materialId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", unit='" + unit + '\'' +
+                ", length=" + length +
+                ", width=" + width +
+                ", height=" + height +
+                ", typeId=" + typeId +
+                ", typeName='" + typeName + '\'' +
+                '}';
+    }
 }
