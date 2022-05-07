@@ -18,6 +18,11 @@ public class MaterialFacade {
         return materialMapper.getSpecificMaterial(materialID);
     }
 
+    public static Material createNewMaterial(String name, int price, String unit, int length, int typeId, int width, int height, ConnectionPool connectionPool){
+        MaterialMapper materialMapper = new MaterialMapper(connectionPool);
+        return  materialMapper.createNewMaterial(name, price, unit, length, typeId, width, height);
+    }
+
     public static Material updateMaterial(Material material, ConnectionPool connectionPool){
         MaterialMapper materialMapper = new MaterialMapper(connectionPool);
         return materialMapper.updateMaterial(material);

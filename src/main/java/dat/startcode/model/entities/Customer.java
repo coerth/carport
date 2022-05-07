@@ -2,13 +2,13 @@ package dat.startcode.model.entities;
 
 public class Customer extends Account {
 
-    int customerId;
-    String name;
-    String address;
-    String city;
-    int zip;
-    int mobile;
-    int accountId;
+    private int customerId;
+    private String name;
+    private String address;
+    private String city;
+    private int zip;
+    private int mobile;
+    private int accountId;
 
     public Customer(String email, String password, int role, int customerId, String name, String address, String city, int zip, int mobile, int accountId) {
         super(email, password, role);
