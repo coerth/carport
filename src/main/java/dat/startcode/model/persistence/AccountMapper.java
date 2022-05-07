@@ -61,7 +61,7 @@ public class AccountMapper implements IAccountMapper{
         String sql = "insert into account (email, password, role) values (?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
-            try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS))
+            try (PreparedStatement ps = connection.prepareStatement(sql))
             {
                 ps.setString(1, email);
                 ps.setString(2, password);
