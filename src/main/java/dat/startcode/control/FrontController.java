@@ -5,20 +5,36 @@
  */
 package dat.startcode.control;
 
+import dat.startcode.model.config.ApplicationStart;
+import dat.startcode.model.entities.Material;
 import dat.startcode.model.exceptions.DatabaseException;
+import dat.startcode.model.services.MaterialFacade;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @WebServlet( name = "FrontController", urlPatterns = { "/fc/*" } )
 public class  FrontController extends HttpServlet {
+
+
+    public void init()
+    {
+
+        ArrayList<Material> materialArrayList;
+        materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
+        System.out.println(materialArrayList);
+
+        getServletContext().setAttribute("materialArrayList", materialArrayList);
+    }
 
     protected void processRequest( HttpServletRequest request, HttpServletResponse response )
             throws ServletException, IOException
