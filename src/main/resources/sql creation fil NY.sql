@@ -117,7 +117,7 @@ INSERT INTO `carport`.`material`
 (`name`,
 `price`,
 `unit`,
-`max_length`,
+`length`,
 `type_id`,
 `width`,
 `height`)
@@ -237,7 +237,9 @@ VIEW `material_view` AS
         `m`.`name` AS `material_name`,
         `m`.`price` AS `price`,
         `m`.`unit` AS `unit`,
-        `m`.`max_length` AS `max_length`,
+        `m`.`length` AS `length`,
+         `m`.`width` AS `width`,
+          `m`.`height` AS `height`,
         `mt`.`name` AS `mt_name`
     FROM
         (`material` `m`
