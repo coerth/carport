@@ -1,12 +1,11 @@
 package dat.startcode.model.persistence;
 
-import dat.startcode.model.entities.Carport;
+import dat.startcode.model.entities.CarportRequest;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 
 public interface ICustomCarportMapper {
-    ArrayList<Carport> getAll = new ArrayList<>();
+    ArrayList<CarportRequest> getAll = new ArrayList<>();
 
 
 

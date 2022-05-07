@@ -1,6 +1,6 @@
 package dat.startcode.model.entities;
 
-public class Carport {
+public class CarportRequest {
 
     int width;
     int length;
@@ -67,7 +67,7 @@ public class Carport {
         this.roofIncline = roofIncline;
     }
 
-    public Carport(int width, int length, String roofType, boolean shedOrNoShed, int shedWidth, int shedLength, int roofIncline) {
+    public CarportRequest(int width, int length, String roofType, boolean shedOrNoShed, int shedWidth, int shedLength, int roofIncline) {
         this.width = width;
         this.length = length;
         this.roofType = roofType;
@@ -77,11 +77,10 @@ public class Carport {
         this.roofIncline = roofIncline;
     }
 
-    public Carport(int width, int length, String roofType, boolean shedOrNoShed, int shedWidth, int shedLength) {
+    public CarportRequest(int width, int length, String roofType, int shedWidth, int shedLength) {
         this.width = width;
         this.length = length;
         this.roofType = roofType;
-        this.shedOrNoShed = shedOrNoShed;
         this.shedWidth = shedWidth;
         this.shedLength = shedLength;
     }

@@ -1,6 +1,7 @@
 package dat.startcode.model.persistence;
 
-import dat.startcode.model.entities.Carport;
+import dat.startcode.model.entities.CarportRequest;
+import dat.startcode.model.exceptions.DatabaseException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,30 @@ import java.util.ArrayList;
 public class CustomCarportMapper implements ICustomCarportMapper {
 
     ConnectionPool connectionPool;
+
+    public CustomCarportMapper(ConnectionPool connectionPool) {
+        this.connectionPool = connectionPool;
+    }
+
+    public CarportRequest createCarportRequest(int width, int length, String roofType, int shedWidth, int shedLength ) throws DatabaseException, SQLException {
+
+        CarportRequest carportRequest = null;
+
+        String sql  =  "INSERT INTO carport_request (width, length, rooftype, shedWidth, shedLength) values (?,?, ?, ?, ?)";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+                ps.setInt(1,width);
+                ps.setInt(2,length);
+                ps.setString(3, roofType);
+                ps.setInt(4,shedWidth);
+                ps.setInt(5,shedLength);
+
+                carportRequest = new CarportRequest(width,length,roofType,shedWidth,shedLength);
+            }
+        }return carportRequest;
+    }
+
 
 
     public ArrayList<Integer> getWidths() throws SQLException {
@@ -34,7 +59,7 @@ public class CustomCarportMapper implements ICustomCarportMapper {
                         int shedWidth = rs.getInt("shed_width");
                         int shedLength = rs.getInt("shed_length");
 
-                        Carport newCarport = new Carport(width,9,"high",true,99,99);
+                        CarportRequest newCarportRequest = new CarportRequest(width,9,"high",99,99);
 
                         widthArrayList.add(width);
                     }
