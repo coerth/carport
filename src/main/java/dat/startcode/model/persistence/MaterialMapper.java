@@ -34,9 +34,11 @@ public class MaterialMapper implements IMaterialMapper
                   String materialName = rs.getString("material_name");
                   int price = rs.getInt("price");
                   String unit = rs.getString("unit");
-                  int maxLength = rs.getInt("max_length");
+                  int length = rs.getInt("length");
+                  int width = rs.getInt("width");
+                  int height = rs.getInt("height");
                   String typeName = rs.getString("mt_name");
-                  Material newMaterial = new Material(materialId, materialName, price, unit, maxLength, typeId, typeName);
+                  Material newMaterial = new Material(materialId, materialName, price, unit, length, width, height, typeId, typeName);
                   materialList.add(newMaterial);
 
                 }
