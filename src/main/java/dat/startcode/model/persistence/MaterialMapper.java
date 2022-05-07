@@ -9,8 +9,7 @@ import java.util.ArrayList;
 
 
 
-public class MaterialMapper implements IMaterialMapper
-{
+public class MaterialMapper implements IMaterialMapper {
     ConnectionPool connectionPool;
 
     public MaterialMapper(ConnectionPool connectionPool) {
@@ -25,21 +24,21 @@ public class MaterialMapper implements IMaterialMapper
 
         String sql = "SELECT * FROM carport.material_view";
 
-        try(Connection connection = connectionPool.getConnection()){
-            try(PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
-                while(rs.next()){
-                  int materialId = rs.getInt("material_id");
-                  int typeId = rs.getInt("type_id");
-                  String materialName = rs.getString("material_name");
-                  int price = rs.getInt("price");
-                  String unit = rs.getString("unit");
-                  int length = rs.getInt("length");
-                  int width = rs.getInt("width");
-                  int height = rs.getInt("height");
-                  String typeName = rs.getString("mt_name");
-                  Material newMaterial = new Material(materialId, materialName, price, unit, length, width, height, typeId, typeName);
-                  materialList.add(newMaterial);
+                while (rs.next()) {
+                    int materialId = rs.getInt("material_id");
+                    int typeId = rs.getInt("type_id");
+                    String materialName = rs.getString("material_name");
+                    int price = rs.getInt("price");
+                    String unit = rs.getString("unit");
+                    int length = rs.getInt("length");
+                    int width = rs.getInt("width");
+                    int height = rs.getInt("height");
+                    String typeName = rs.getString("mt_name");
+                    Material newMaterial = new Material(materialId, materialName, price, unit, length, width, height, typeId, typeName);
+                    materialList.add(newMaterial);
 
                 }
             }
@@ -58,9 +57,11 @@ public class MaterialMapper implements IMaterialMapper
         Material material = null;
 
 
-        try (Connection connection = connectionPool.getConnection()) {
+        try (Connection connection = connectionPool.getConnection())
+        {
 
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
                 ps.setInt(1, materialID);
 
                 ResultSet rs = ps.executeQuery();
@@ -87,9 +88,35 @@ public class MaterialMapper implements IMaterialMapper
     }
 
     @Override
-    public boolean updatePrice(int materialId) {
+    public boolean updatePrice(Material material)
+    {
+        String sql = "UPDATE `carport`.`material` SET `price` = ?, WHERE `material_id` = ?";
+
+        try (Connection connection = connectionPool.getConnection())
+        {
+
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, material.getPrice());
+                ps.setInt(2, material.getMaterialId());
+
+                int rowsAffected = ps.executeUpdate();
+
+                if (rowsAffected == 1)
+                {
+                    return true;
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
+
+
+
 
     @Override
     public boolean updateName(Material material) {
@@ -115,7 +142,30 @@ public class MaterialMapper implements IMaterialMapper
     }
 
     @Override
-    public boolean updateLength(int materialId) {
+    public boolean updateLength(Material material)
+    {
+        String sql = "UPDATE `carport`.`material` SET `length` = ?, WHERE `material_id` = ?";
+
+        try (Connection connection = connectionPool.getConnection())
+        {
+
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, price);
+                ps.setInt(2, materialId);
+
+                int rowsAffected = ps.executeUpdate();
+
+                if (rowsAffected == 1)
+                {
+                    return true;
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
 
