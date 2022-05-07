@@ -1,7 +1,6 @@
 package dat.startcode.model.persistence;
 
 import dat.startcode.model.entities.Carport;
-import dat.startcode.model.exceptions.DatabaseException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,38 +13,40 @@ public class CustomCarportMapper implements ICustomCarportMapper {
     ConnectionPool connectionPool;
 
 
-    public ArrayList<Carport> getAll() throws DatabaseException, SQLException {
+    public ArrayList<Integer> getWidths() throws SQLException {
 
-        ArrayList<Carport> carportArrayList = new ArrayList<>();
+        ArrayList<Integer> widthArrayList = new ArrayList<>();
 
-        Carport carport = null;
 
         try {
 
             Connection connection = connectionPool.getConnection();
 
             {
-                String sql = "select * from carport_request";
+                String sql = "SELECT width FROM carport.carport_request;";
                 try (PreparedStatement ps = connection.prepareStatement(sql)) {
                     ResultSet rs = ps.executeQuery();
                     while (rs.next()) {
+
                         int width = rs.getInt("width");
                         int length = rs.getInt("length");
                         String roofType = rs.getString("roof");
                         int shedWidth = rs.getInt("shed_width");
+                        int shedLength = rs.getInt("shed_length");
 
+                        Carport newCarport = new Carport(width,9,"high",true,99,99);
 
-                        carportArrayList.add(new Carport(width, length, roofType, false, 100, 200));
+                        widthArrayList.add(width);
                     }
                 }
             }
         } catch(
-                SQLException throwables)
+                SQLException e)
 
         {
-            throwables.printStackTrace();
+            e.printStackTrace();
         }
-        return carportArrayList;
+        return widthArrayList;
     }
 }
 

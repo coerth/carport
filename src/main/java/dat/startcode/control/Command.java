@@ -17,6 +17,7 @@ abstract class Command
         commands.put("logout", new Logout());
         commands.put("about", new About());
         commands.put("register", new Register());
+        commands.put("quickbuild", new Quickbuild());
     }
 
     static Command from( HttpServletRequest request ) {
@@ -27,7 +28,7 @@ abstract class Command
         return commands.getOrDefault(commandName, new UnknownCommand() );   // unknowncommand er default.
     }
 
-    abstract String execute( HttpServletRequest request, HttpServletResponse response ) 
+    abstract String execute( HttpServletRequest request, HttpServletResponse response )
             throws DatabaseException;
 
 }
