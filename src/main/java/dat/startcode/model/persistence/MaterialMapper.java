@@ -88,7 +88,7 @@ public class MaterialMapper implements IMaterialMapper {
     }
 
     @Override
-    public boolean updatePrice(int materialId, int price)
+    public boolean updatePrice(Material material)
     {
         String sql = "UPDATE `carport`.`material` SET `price` = ?, WHERE `material_id` = ?";
 
@@ -97,8 +97,8 @@ public class MaterialMapper implements IMaterialMapper {
 
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
-                ps.setInt(1, price);
-                ps.setInt(2, materialId);
+                ps.setInt(1, material.getPrice());
+                ps.setInt(2, material.getMaterialId());
 
                 int rowsAffected = ps.executeUpdate();
 
@@ -124,7 +124,30 @@ public class MaterialMapper implements IMaterialMapper {
     }
 
     @Override
-    public boolean updateLength(int materialId) {
+    public boolean updateLength(Material material)
+    {
+        String sql = "UPDATE `carport`.`material` SET `length` = ?, WHERE `material_id` = ?";
+
+        try (Connection connection = connectionPool.getConnection())
+        {
+
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, price);
+                ps.setInt(2, materialId);
+
+                int rowsAffected = ps.executeUpdate();
+
+                if (rowsAffected == 1)
+                {
+                    return true;
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
 
