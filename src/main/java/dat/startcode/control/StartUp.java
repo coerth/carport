@@ -26,7 +26,7 @@ public class StartUp extends Command
     {
 
         HttpSession session = request.getSession();
-        ArrayList<Material> materialArrayList = new ArrayList<>();
+        ArrayList<Material> materialArrayList;
 
         MaterialFacade materialFacade = new MaterialFacade();
         materialArrayList = materialFacade.getAllMaterials(connectionPool);
