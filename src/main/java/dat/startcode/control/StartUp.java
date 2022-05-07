@@ -4,6 +4,7 @@ import dat.startcode.model.config.ApplicationStart;
 import dat.startcode.model.entities.Material;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
+import dat.startcode.model.services.MaterialFacade;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +29,7 @@ public class StartUp extends Command
         ArrayList<Material> materialArrayList = new ArrayList<>();
 
         MaterialFacade materialFacade = new MaterialFacade();
-        materialArrayList = materialFacade.getAllMaterials();
+        materialArrayList = materialFacade.getAllMaterials(connectionPool);
 
         session.getServletContext().setAttribute("materialArrayList", materialArrayList);
 
