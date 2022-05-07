@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `carport`.`material` (
   `name` VARCHAR(45) NOT NULL,
   `price` INT NOT NULL,
   `unit` VARCHAR(45) NOT NULL,
-  `max_length` INT NULL,
+  `length` INT NULL,
   `type_id` INT NOT NULL,
   `width` VARCHAR(45) NULL,
   `height` VARCHAR(45) NULL,
@@ -226,7 +226,35 @@ VALUES
 (2, 2, 5, 2),
 (3, 1, 6, 2);
 
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `material_view` AS
+    SELECT 
+        `m`.`material_id` AS `material_id`,
+        `m`.`type_id` AS `type_id`,
+        `m`.`name` AS `material_name`,
+        `m`.`price` AS `price`,
+        `m`.`unit` AS `unit`,
+        `m`.`max_length` AS `max_length`,
+        `mt`.`name` AS `mt_name`
+    FROM
+        (`material` `m`
+        JOIN `material_type` `mt` ON ((`m`.`type_id` = `mt`.`type_id`)));
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+CREATE DATABASE  IF NOT EXISTS `carport_test` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `carport_test`;
+CREATE TABLE carport_test.account LIKE carport.account;
+CREATE TABLE carport_test.customer LIKE carport.customer;
+CREATE TABLE carport_test.material_type LIKE carport.material_type;
+CREATE TABLE carport_test.material LIKE carport.material;
+CREATE TABLE carport_test.order LIKE carport.order;
+CREATE TABLE carport_test.description LIKE carport.description;
+CREATE TABLE carport_test.orderline LIKE carport.orderline;
