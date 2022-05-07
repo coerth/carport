@@ -21,16 +21,23 @@
     <label for="length">Længde (min 240 cm og max 780 cm:</label><br>
     <input type="number" id="length" name="length" placeholder="Vælg længde" min="240" max="780">
     <br>
-    <label for="roof">Længde (min 240 cm og max 780 cm:</label><br>
-    <select type="text" id="roof" name="roof" placeholder="Vælg længde" min="240" max="780">
+    <label for="roof">Vælg tag-type:</label><br>
+    <select type="text" id="roof" name="roof" placeholder="Vælg længde">
         <option value ="Vælg tagtype">
             Plasttrapezplader
         </option>
     </select>
     <br>
 
-    <input type="checkbox" id="shedOrNoShed" name = "shedOrNoShed" value ="true" onclick=IWantAShed()
-     ><label for="shedOrNoShed"> Ønskes skur? Klik her! </label>
+    <input type="checkbox" id="shedOrNoShed" name = "shedOrNoShed" value ="false" >
+    <label for="shedOrNoShed"> Ønskes skur? Klik her! </label>
+    <br>
+    <label for="shedWidth">Skurbredde (min 210 cm og max 720 cm:</label><br>
+    <input type="number" id="shedWidth" name ="shedWidth" placeholder="Vælg bredde på dit skur" min="210" max="720">
+    <br>
+    <label for="shedLength">Længde (min 150 cm og max 690 cm:</label><br>
+    <input type="number" id="shedLength" name ="shedLength" placeholder="Vælg længde på dit skur" min="150" max="690">
+
 
 
 </form>
