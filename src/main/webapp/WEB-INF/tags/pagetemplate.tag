@@ -31,12 +31,14 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about">About</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/startup?command=startup">Startup</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc">Page 3</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/register.jsp">Registrer</a>
-                    <c:if test="${sessionScope.user == null }">
+                    <c:if test="${sessionScope.account == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                     </c:if>
-                    <c:if test="${sessionScope.user != null }">
+                    <c:if test="${sessionScope.account.role == 1 }">
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=admin">Page 3</a>
+                    </c:if>
+                    <c:if test="${sessionScope.account != null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log out</a>
                     </c:if>
                 </div>

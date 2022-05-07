@@ -2,9 +2,9 @@ package dat.startcode.model.entities;
 
 public class Account {
 
-    String email;
-    String password;
-    int role;
+    private String email;
+    private String password;
+    private int role;
 
     public Account(String email, String password, int role) {
         this.email = email;
