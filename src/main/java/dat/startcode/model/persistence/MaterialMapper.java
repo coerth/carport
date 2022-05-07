@@ -175,7 +175,30 @@ public class MaterialMapper implements IMaterialMapper {
     }
 
     @Override
-    public boolean deleteMaterial(int material) {
+    public boolean deleteMaterial(int materialId)
+    {
+
+        String sql = "DELETE FROM `material` WHERE `material_id` = ?";
+
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, materialId);
+
+                int rowsAffected = ps.executeUpdate();
+
+                if (rowsAffected == 1)
+                {
+                    return true;
+                }
+            }
+
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
         return false;
     }
 }
