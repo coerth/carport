@@ -24,6 +24,7 @@ abstract class Command
         commands.put("deletematerial", new DeleteMaterial());
         commands.put("creatematerial", new CreateMaterial());
         commands.put("quickbuild", new Quickbuild());
+        commands.put("requestSent", new RequestSent()) ;
     }
 
     static Command from( HttpServletRequest request ) {

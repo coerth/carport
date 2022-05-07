@@ -38,6 +38,8 @@
     <label for="shedLength">Længde (min 150 cm og max 690 cm:</label><br>
     <input type="number" id="shedLength" name ="shedLength" placeholder="Vælg længde på dit skur" min="150" max="690">
 
+    <input type="submit" value="Vælg">
+
 
 
 </form>
