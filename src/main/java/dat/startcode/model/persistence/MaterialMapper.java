@@ -88,77 +88,32 @@ public class MaterialMapper implements IMaterialMapper {
     }
 
     @Override
-    public boolean updatePrice(Material material)
+    public Material updateMaterial(Material material)
     {
-        String sql = "UPDATE `carport`.`material` SET `price` = ?, WHERE `material_id` = ?";
+        Material newMaterial = null;
+
+        String sql = "UPDATE `material` SET `material_id` = ?, `name` = ?, `price` = ?, `unit` = ?, `length` = ?, `type_id` = ?, `width` = ?, `height` = ? WHERE `material_id` = ?";
+
 
         try (Connection connection = connectionPool.getConnection())
         {
 
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
-                ps.setInt(1, material.getPrice());
-                ps.setInt(2, material.getMaterialId());
-
-                int rowsAffected = ps.executeUpdate();
-
-                if (rowsAffected == 1)
-                {
-                    return true;
-                }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return false;
-    }
-
-
-
-
-    @Override
-    public boolean updateName(Material material) {
-
-        boolean result = false;
-
-        String sql = "UPDATE `carport`.`material` SET `material_id` = <{material_id: }>, `name` = <{name: }> WHERE `material_id` = <{expr}>";
-
-        try( Connection connection = connectionPool.getConnection()){
-            try(PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, material.getMaterialId());
                 ps.setString(2, material.getName());
-                int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 1){
-                    result = true; }
-
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return false;
-    }
-
-    @Override
-    public boolean updateLength(Material material)
-    {
-        String sql = "UPDATE `carport`.`material` SET `length` = ?, WHERE `material_id` = ?";
-
-        try (Connection connection = connectionPool.getConnection())
-        {
-
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
-                ps.setInt(1, price);
-                ps.setInt(2, materialId);
+                ps.setInt(3, material.getPrice());
+                ps.setString(4, material.getUnit());
+                ps.setInt(5, material.getLength());
+                ps.setInt(6, material.getTypeId());
+                ps.setInt(7, material.getWidth());
+                ps.setInt(8, material.getHeight());
 
                 int rowsAffected = ps.executeUpdate();
 
                 if (rowsAffected == 1)
                 {
-                    return true;
+                    newMaterial = new Material(material.getMaterialId(), material.getName(), material.getPrice(), material.getUnit(), material.getLength(), material.getLength(), material.getWidth(), material.getHeight());
                 }
             }
 
@@ -166,12 +121,7 @@ public class MaterialMapper implements IMaterialMapper {
             e.printStackTrace();
         }
 
-        return false;
-    }
-
-    @Override
-    public boolean updateUnit(int materialId) {
-        return false;
+        return newMaterial;
     }
 
     @Override
