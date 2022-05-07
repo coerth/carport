@@ -9,7 +9,7 @@ public interface IMaterialMapper
 
     public ArrayList<Material> getAllMaterials();
     public Material getSpecificMaterial(int materialID);
-    public boolean updatePrice(int materialId);
+    public boolean updatePrice(int materialId, int price);
     public boolean updateName(int materialId);
     public boolean updateLength(int materialId);
     public boolean updateUnit(int materialId);
