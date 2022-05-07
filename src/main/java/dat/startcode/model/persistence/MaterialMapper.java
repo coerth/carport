@@ -88,26 +88,31 @@ public class MaterialMapper implements IMaterialMapper {
     }
 
     @Override
-    public Material createNewMaterial(Material material) {
+    public Material createNewMaterial(String name, int price, String unit, int length, int typeId, int width, int height) {
+
 
         Material newMaterial = null;
 
-        String sql = "INSERT INTO `material` (`material_id`, `name`, `price`, `unit`, `length`, `type_id`, `width`, `height`) VALUES (?,?,?,?,?,?,?,?)";
+        int materialId = 0;
+
+        String sql = "INSERT INTO `material` (`name`, `price`, `unit`, `length`, `type_id`, `width`, `height`) VALUES (?,?,?,?,?,?,?)";
 
         try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
-                ps.setInt(1, material.getMaterialId());
-                ps.setString(2, material.getName());
-                ps.setInt(3, material.getPrice());
-                ps.setString(4, material.getUnit());
-                ps.setInt(5, material.getLength());
-                ps.setInt(6, material.getTypeId());
-                ps.setInt(7, material.getWidth());
-                ps.setInt(8, material.getHeight());
+                ps.setString(1, name);
+                ps.setInt(2, price);
+                ps.setString(3, unit);
+                ps.setInt(4, length);
+                ps.setInt(5, typeId);
+                ps.setInt(6, width);
+                ps.setInt(7, height);
                 int rowsAffected = ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
                 if (rowsAffected == 1) {
-                    newMaterial = new Material(material.getMaterialId(), material.getName(), material.getPrice(), material.getUnit(), material.getLength(), material.getLength(), material.getWidth(), material.getHeight());
+                    rs.next();
+                    materialId = rs.getInt(1);
+                    newMaterial = new Material(materialId, name, price, unit, length, typeId, width, height);
                 }
             }
         } catch (SQLException e) {
