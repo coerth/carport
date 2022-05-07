@@ -23,12 +23,14 @@ public class CustomerMapper implements ICustomerMapper
 
         int accountId = accountMapper.createAccount(email, password, 2);
 
+        int customerId = 0;
+
         Logger.getLogger("web").log(Level.INFO, "");
         Customer customer;
         String sql = "insert into customer (name, address, city, zip, mobile, account_id) values (?,?,?,?,?,?)";
         try (Connection connection = connectionPool.getConnection())
         {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
+            try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS))
             {
                 ps.setString(1, name);
                 ps.setString(2, address);
@@ -37,9 +39,12 @@ public class CustomerMapper implements ICustomerMapper
                 ps.setInt(5, mobile);
                 ps.setInt(6, accountId);
                 int rowsAffected = ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
                 if (rowsAffected == 1)
                 {
-                    customer = new Customer(email, password, 2, name, address, city, zip, mobile, accountId);
+                    rs.next();
+                    customerId = rs.getInt(1);
+                    customer = new Customer(email, password, 2, customerId, name, address, city, zip, mobile, accountId);
                 } else
                 {
                     throw new DatabaseException("The customer with name = " + name + " could not be inserted into the database");
