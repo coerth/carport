@@ -13,39 +13,43 @@
     </jsp:attribute>
 
     <jsp:body>
-        <br>
-        <br>
 
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th scope="col">Materiale ID</th>
-                <th scope="col">Navn</th>
-                <th scope="col">Pris</th>
-                <th scope="col">Enhed</th>
-                <th scope="col">Længde</th>
-                <th scope="col">Bredde</th>
-                <th scope="col">Højde</th>
-                <th scope="col">Type ID</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="item" items="${applicationScope.materialArrayList}">
-                <tr>
-                    <th  scope="row">${item.materialId}</th>
-                    <td>${item.name}</td>
-                    <td>${item.price}</td>
-                    <td>${item.unit}</td>
-                    <td>${item.length}</td>
-                    <td>${item.width}</td>
-                    <td>${item.height}</td>
-                    <td>${item.typeId}</td>
-                    <td><button name="delete" value="${item.materialId}">Slet</button> <txt></txt><button name="modify" value="${item.materialId}">Rediger</button></td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+        ${requestScope.material.name}
+
+        <form>
+            <div class="form-group">
+                <label for="name">Navn</label>
+                <input type="text" class="form-control" id="name" value=${requestScope.material.name}>
+            </div>
+            <div class="form-group">
+                <label for="price">Pris</label>
+                <input type="text" class="form-control" id="price" value=${requestScope.material.price}>
+            </div>
+            <div class="form-group">
+                <label for="unit">Enhed</label>
+                <input type="text" class="form-control" id="unit" value=${requestScope.material.unit}>
+            </div>
+            <div class="form-group">
+                <label for="length">Længde</label>
+                <input type="text" class="form-control" id="length" value=${requestScope.material.length}>
+            </div>
+            <div class="form-group">
+                <label for="width">Bredde</label>
+                <input type="text" class="form-control" id="width" value=${requestScope.material.width}>
+            </div>
+            <div class="form-group">
+                <label for="height">Højde</label>
+                <input type="text" class="form-control" id="height" value=${requestScope.material.height}>
+            </div>
+            <div class="form-group">
+                <label for="typeId">Typde ID</label>
+                <input type="text" class="form-control" id="typeId" value=${requestScope.material.typeId}>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+
 
     </jsp:body>
 

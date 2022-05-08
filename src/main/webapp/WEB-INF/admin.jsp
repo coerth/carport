@@ -16,6 +16,8 @@
         <br>
         <br>
 
+        <form action="fc/modify">
+            <input type="hidden" name="command" value="modifymaterial"/>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -46,6 +48,7 @@
             </c:forEach>
             </tbody>
         </table>
+        </form>
 
     </jsp:body>
 
