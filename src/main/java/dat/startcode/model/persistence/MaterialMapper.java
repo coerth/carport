@@ -77,6 +77,7 @@ public class MaterialMapper implements IMaterialMapper {
                     int typeID = rs.getInt("type_id");
 
                     material = new Material(materialID, name, price, unit, length, width, height, typeID, mtName);
+                    return material;
 
                 }
             }
