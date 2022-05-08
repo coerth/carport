@@ -5,7 +5,7 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the adminsite
+         Rediger materialer
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -18,17 +18,17 @@
 
         <table class="table table-striped table-hover">
             <thead>
-                <tr>
-                    <th scope="col">Materiale ID</th>
-                    <th scope="col">Navn</th>
-                    <th scope="col">Pris</th>
-                    <th scope="col">Enhed</th>
-                    <th scope="col">Længde</th>
-                    <th scope="col">Bredde</th>
-                    <th scope="col">Højde</th>
-                    <th scope="col">Type ID</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th scope="col">Materiale ID</th>
+                <th scope="col">Navn</th>
+                <th scope="col">Pris</th>
+                <th scope="col">Enhed</th>
+                <th scope="col">Længde</th>
+                <th scope="col">Bredde</th>
+                <th scope="col">Højde</th>
+                <th scope="col">Type ID</th>
+                <th></th>
+            </tr>
             </thead>
             <tbody>
             <c:forEach var="item" items="${applicationScope.materialArrayList}">
