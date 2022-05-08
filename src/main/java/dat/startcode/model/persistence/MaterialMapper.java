@@ -124,7 +124,7 @@ public class MaterialMapper implements IMaterialMapper {
     }
 
         @Override
-    public Material updateMaterial(Material material)
+    public boolean updateMaterial(Material material)
     {
         Material newMaterial = null;
 
@@ -149,7 +149,8 @@ public class MaterialMapper implements IMaterialMapper {
 
                 if (rowsAffected == 1)
                 {
-                    newMaterial = new Material(material.getMaterialId(), material.getName(), material.getPrice(), material.getUnit(), material.getLength(), material.getLength(), material.getWidth(), material.getHeight());
+                    return true;
+                    //newMaterial = new Material(material.getMaterialId(), material.getName(), material.getPrice(), material.getUnit(), material.getLength(), material.getWidth(), material.getHeight(), material.getTypeId());
                 }
             }
 
@@ -157,7 +158,8 @@ public class MaterialMapper implements IMaterialMapper {
             e.printStackTrace();
         }
 
-        return newMaterial;
+        return false;
+        //return newMaterial;
     }
 
     @Override

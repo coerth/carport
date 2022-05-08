@@ -27,19 +27,14 @@ public class ModifyMaterial extends Command
         int height = Integer.parseInt(request.getParameter("height"));
         int typeId = Integer.parseInt(request.getParameter("typeId"));
 
-        Material material = MaterialFacade.updateMaterial(new Material(materialId, name, price, unit, length, width, height, typeId), ApplicationStart.getConnectionPool());
+         if(MaterialFacade.updateMaterial(new Material(materialId, name, price, unit, length, width, height, typeId), ApplicationStart.getConnectionPool()))
+         {
+            ArrayList<Material> materialArrayList = new ArrayList<>();
 
-        ArrayList<Material> materialArrayList = (ArrayList<Material>) session.getServletContext().getAttribute("materialArrayList");
+            materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
+            request.getServletContext().setAttribute("materialArrayList", materialArrayList);
+         }
 
-        for (Material m : materialArrayList)
-        {
-            if(m.getMaterialId() == materialId)
-            {
-                m = material;
-            }
-        }
-
-        request.getServletContext().setAttribute("materialArrayList", materialArrayList);
 
         return "admin";
     }
