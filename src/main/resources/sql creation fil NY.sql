@@ -251,6 +251,7 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
+DROP SCHEMA IF EXISTS `carport_test` ;
 CREATE DATABASE  IF NOT EXISTS `carport_test` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `carport_test`;
 CREATE TABLE carport_test.account LIKE carport.account;
@@ -260,3 +261,18 @@ CREATE TABLE carport_test.material LIKE carport.material;
 CREATE TABLE carport_test.order LIKE carport.order;
 CREATE TABLE carport_test.description LIKE carport.description;
 CREATE TABLE carport_test.orderline LIKE carport.orderline;
+
+CREATE VIEW `material_view` AS
+SELECT 
+        `m`.`material_id` AS `material_id`,
+        `m`.`type_id` AS `type_id`,
+        `m`.`name` AS `material_name`,
+        `m`.`price` AS `price`,
+        `m`.`unit` AS `unit`,
+        `m`.`length` AS `length`,
+         `m`.`width` AS `width`,
+          `m`.`height` AS `height`,
+        `mt`.`name` AS `mt_name`
+    FROM
+        (`material` `m`
+        JOIN `material_type` `mt` ON ((`m`.`type_id` = `mt`.`type_id`)));
