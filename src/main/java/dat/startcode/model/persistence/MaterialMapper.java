@@ -89,17 +89,12 @@ public class MaterialMapper implements IMaterialMapper {
     }
 
     @Override
-    public Material createNewMaterial(String name, int price, String unit, int length, int typeId, int width, int height) {
-
-
-        Material newMaterial = null;
-
-        int materialId = 0;
+    public boolean createNewMaterial(String name, int price, String unit, int length, int typeId, int width, int height) {
 
         String sql = "INSERT INTO `material` (`name`, `price`, `unit`, `length`, `type_id`, `width`, `height`) VALUES (?,?,?,?,?,?,?)";
 
         try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
                 ps.setString(1, name);
                 ps.setInt(2, price);
@@ -109,18 +104,16 @@ public class MaterialMapper implements IMaterialMapper {
                 ps.setInt(6, width);
                 ps.setInt(7, height);
                 int rowsAffected = ps.executeUpdate();
-                ResultSet rs = ps.getGeneratedKeys();
+
                 if (rowsAffected == 1) {
-                    rs.next();
-                    materialId = rs.getInt(1);
-                    newMaterial = new Material(materialId, name, price, unit, length, typeId, width, height);
+                    return true;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return newMaterial;
+        return false;
     }
 
         @Override

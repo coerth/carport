@@ -21,6 +21,8 @@ abstract class Command
         commands.put("admin", new Admin());
         commands.put("requestmodify", new RequestModify());
         commands.put("modifymaterial", new ModifyMaterial());
+        commands.put("deletematerial", new DeleteMaterial());
+        commands.put("creatematerial", new CreateMaterial());
     }
 
     static Command from( HttpServletRequest request ) {

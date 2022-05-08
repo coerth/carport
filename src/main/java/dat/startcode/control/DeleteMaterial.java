@@ -10,28 +10,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
-public class RequestModify extends Command
-{
+public class DeleteMaterial extends Command{
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
         HttpSession session = request.getSession();
-        int materialId = Integer.parseInt(request.getParameter("modify"));
+        int materialId = Integer.parseInt(request.getParameter("delete"));
 
-        ArrayList<Material> materialArrayList = (ArrayList<Material>) session.getServletContext().getAttribute("materialArrayList");
+        System.out.println(MaterialFacade.deleteMaterial(materialId, ApplicationStart.getConnectionPool()));
 
-        Material material = null;
+        ArrayList<Material> materialArrayList = new ArrayList<>();
 
-        for (Material m : materialArrayList)
-        {
-            if(m.getMaterialId() == materialId)
-            {
-                material = m;
-            }
-        }
+        materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
+        request.getServletContext().setAttribute("materialArrayList", materialArrayList);
 
-        request.setAttribute("material", material);
+        System.out.println(materialId);
 
-        return "modify";
+        return "admin";
     }
 }
