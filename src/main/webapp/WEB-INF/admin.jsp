@@ -13,55 +13,36 @@
     </jsp:attribute>
 
     <jsp:body>
-
-        <head>
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-            <link rel="stylesheet" href="./css/kunder.css">
-
-            <div class="header" align="center">
-                <h1 style="margin: 50px">Oversigt over aterialer</h1>
-
-            </div>
-        </head>
-
-        <body>
-
-        <table>
-            <form action="#" method="post">
-                <thead>
+        <br>
+        <br>
+        <table class="table table-striped table-hover">
+            <thead>
                 <tr>
-                    <th>Materiale ID</th>
-                    <th>Navn</th>
-                    <th>Pris</th>
-                    <th>Enhed</th>
-                    <th>Længde</th>
-                    <th>Bredde</th>
-                    <th>Højde</th>
-                    <th>Type ID</th>
+                    <th scope="col">Materiale ID</th>
+                    <th scope="col">Navn</th>
+                    <th scope="col">Pris</th>
+                    <th scope="col">Enhed</th>
+                    <th scope="col">Længde</th>
+                    <th scope="col">Bredde</th>
+                    <th scope="col">Højde</th>
+                    <th scope="col">Type ID</th>
                 </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="item" items="${applicationScope.materialArrayList}">
-                    <tr>
-                        <td>${item.materialId}</td>
-                        <td>${item.name}</td>
-                        <td>${item.price}</td>
-                        <td>${item.unit}</td>
-                        <td>${item.length}</td>
-                        <td>${item.width}</td>
-                        <td>${item.height}</td>
-                        <td>${item.typeId}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </form>
+            </thead>
+            <tbody>
+            <c:forEach var="item" items="${applicationScope.materialArrayList}">
+                <tr>
+                    <th  scope="row">${item.materialId}</th>
+                    <td>${item.name}</td>
+                    <td>${item.price}</td>
+                    <td>${item.unit}</td>
+                    <td>${item.length}</td>
+                    <td>${item.width}</td>
+                    <td>${item.height}</td>
+                    <td>${item.typeId}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
         </table>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-        </body>
-
 
     </jsp:body>
 
