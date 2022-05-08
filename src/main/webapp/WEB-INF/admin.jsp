@@ -17,7 +17,7 @@
         <br>
 
         <form action="fc/modify">
-            <input type="hidden" name="command" value="modifymaterial"/>
+            <input type="hidden" name="command" value="requestmodify"/>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
