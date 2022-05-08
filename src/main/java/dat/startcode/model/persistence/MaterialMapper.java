@@ -22,7 +22,7 @@ public class MaterialMapper implements IMaterialMapper {
 
         ArrayList<Material> materialList = new ArrayList<>();
 
-        String sql = "SELECT * FROM carport.material_view";
+        String sql = "SELECT * FROM material_view";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {

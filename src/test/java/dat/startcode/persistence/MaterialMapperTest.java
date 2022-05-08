@@ -1,7 +1,6 @@
 package dat.startcode.persistence;
 
 import dat.startcode.model.entities.Material;
-import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.services.MaterialFacade;
 import org.junit.jupiter.api.BeforeAll;
@@ -24,7 +23,7 @@ public class MaterialMapperTest
     //private final static String PASSWORD = System.getenv("dbpassword");
     private final static String PASSWORD = "Bananflue";
 
-    private final static String URL = "jdbc:mysql://localhost:3306/carport_test?serverTimezone=CET&allowPublicKeyRetrieval=true&useSSL=false";
+    private final static String URL = "jdbc:mysql://localhost:3306/carport_test";
 
     private static ConnectionPool connectionPool;
 
@@ -41,11 +40,11 @@ public class MaterialMapperTest
             try (Statement stmt = testConnection.createStatement() )
             {
                 // Remove all rows from all tables
-                stmt.execute("delete from material");
+                stmt.execute("delete from `carport_test`.`material`");
                 // Indsæt et par brugere
-                stmt.execute("INSERT INTO `material` (`name`,`price`,`unit`,`length`,`width`,`height`,`type_id`)" +
+                stmt.execute("INSERT INTO `carport_test`.`material` (`name`,`price`,`unit`,`length`,`width`,`height`,`type_id`)" +
                         "VALUES ('25x200 mm. trykimp. Brædt', 50, 'Stk', 720,25, 200, 1),('45x95 mm. Reglar ub.', 25, 'Stk', 720,45, 95, 1)");
-                stmt.execute("INSERT INTO `material` (`name`,`price`,`unit`,`type_id`)" +
+                stmt.execute("INSERT INTO `carport_test`.`material` (`name`,`price`,`unit`,`type_id`)" +
                         "VALUES('plastmo bundskruer 200 stk.', 10, 'Pakke', 2),('universal 190 mm højre', 5, 'Stk', 2)");
 
             }
