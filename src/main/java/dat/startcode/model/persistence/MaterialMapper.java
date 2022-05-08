@@ -128,7 +128,7 @@ public class MaterialMapper implements IMaterialMapper {
     {
         Material newMaterial = null;
 
-        String sql = "UPDATE `material` SET `material_id` = ?, `name` = ?, `price` = ?, `unit` = ?, `length` = ?, `type_id` = ?, `width` = ?, `height` = ? WHERE `material_id` = ?";
+        String sql = "UPDATE `material` SET `name` = ?, `price` = ?, `unit` = ?, `length` = ?, `type_id` = ?, `width` = ?, `height` = ? WHERE `material_id` = ?";
 
 
         try (Connection connection = connectionPool.getConnection())
@@ -136,14 +136,14 @@ public class MaterialMapper implements IMaterialMapper {
 
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
-                ps.setInt(1, material.getMaterialId());
-                ps.setString(2, material.getName());
-                ps.setInt(3, material.getPrice());
-                ps.setString(4, material.getUnit());
-                ps.setInt(5, material.getLength());
-                ps.setInt(6, material.getTypeId());
-                ps.setInt(7, material.getWidth());
-                ps.setInt(8, material.getHeight());
+                ps.setString(1, material.getName());
+                ps.setInt(2, material.getPrice());
+                ps.setString(3, material.getUnit());
+                ps.setInt(4, material.getLength());
+                ps.setInt(5, material.getTypeId());
+                ps.setInt(6, material.getWidth());
+                ps.setInt(7, material.getHeight());
+                ps.setInt(8, material.getMaterialId());
 
                 int rowsAffected = ps.executeUpdate();
 
