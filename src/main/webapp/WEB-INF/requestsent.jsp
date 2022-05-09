@@ -13,6 +13,7 @@
 <body>
 
 Din forespørgsel indeholder følgende data:
+${requestScope.newCarportRequest}
 
 </body>
 </html>
