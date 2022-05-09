@@ -1,6 +1,18 @@
 package dat.startcode.model.entities;
 
 public class CarportRequest {
+    @Override
+    public String toString() {
+        return "CarportRequest{" +
+                "width=" + width +
+                ", length=" + length +
+                ", roofType='" + roofType + '\'' +
+                ", shedOrNoShed=" + shedOrNoShed +
+                ", shedWidth=" + shedWidth +
+                ", shedLength=" + shedLength +
+                ", roofIncline=" + roofIncline +
+                '}';
+    }
 
     int width;
     int length;

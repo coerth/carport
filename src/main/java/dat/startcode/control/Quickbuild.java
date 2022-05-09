@@ -1,6 +1,7 @@
 package dat.startcode.control;
 
 import dat.startcode.model.config.ApplicationStart;
+import dat.startcode.model.entities.CarportRequest;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.persistence.CustomCarportMapper;
@@ -44,7 +45,8 @@ public class Quickbuild extends Command{
         }
 
         try {
-            CarportRequestFacade.createCarportRequest(width,length,roofType,shedLength,shedWidth,connectionPool);
+            CarportRequest newCarportRequest = CarportRequestFacade.createCarportRequest(width,length,roofType,shedLength,shedWidth,connectionPool);
+            request.setAttribute("newCarportRequest", newCarportRequest);
         } catch (SQLException e) {
             e.printStackTrace();
         }
