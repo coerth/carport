@@ -11,10 +11,10 @@ import java.sql.SQLException;
 
 public class CarportRequestFacade {
 
-    public static CarportRequest createCarportRequest(int width, int length, String roofType, int shedWidth, int shedLength, ConnectionPool connectionPool ) throws DatabaseException, SQLException {
+    public static CarportRequest createCarportRequest(int width, int length, String roofType, int shedWidth, int shedLength, int customerId, ConnectionPool connectionPool ) throws DatabaseException, SQLException {
 
         CustomCarportMapper customCarportMapper = new CustomCarportMapper(connectionPool);
-        return customCarportMapper.createCarportRequest(width,length,roofType,shedWidth,shedLength);
+        return customCarportMapper.createCarportRequest(width,length,roofType,shedWidth,shedLength, customerId);
 
 
     }

@@ -1,5 +1,6 @@
 package dat.startcode.model.services;
 
+import dat.startcode.model.entities.Account;
 import dat.startcode.model.entities.Customer;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
@@ -18,4 +19,10 @@ public class CustomerFacade
         CustomerMapper customerMapper = new CustomerMapper(connectionPool);
         return customerMapper.getCustomerId(mobile);
     }
+
+    public static Customer customerAccount(Account account, ConnectionPool connectionPool) throws DatabaseException{
+        CustomerMapper customerMapper = new CustomerMapper(connectionPool);
+        return customerMapper.customerAccount(account);
+    }
+
 }

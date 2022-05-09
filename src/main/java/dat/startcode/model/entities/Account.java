@@ -5,11 +5,27 @@ public class Account {
     private String email;
     private String password;
     private int role;
+    private int accountId;
+
+    public Account(String email, String password, int role, int accountId) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.accountId = accountId;
+    }
 
     public Account(String email, String password, int role) {
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
 
     public String getEmail() {

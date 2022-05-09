@@ -1,7 +1,9 @@
 package dat.startcode.control;
 
 import dat.startcode.model.config.ApplicationStart;
+import dat.startcode.model.entities.Account;
 import dat.startcode.model.entities.CarportRequest;
+import dat.startcode.model.entities.Customer;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.persistence.CustomCarportMapper;
@@ -24,7 +26,13 @@ public class Quickbuild extends Command{
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
+
         HttpSession session = request.getSession();
+        Customer customer = (Customer) session.getAttribute("customer");
+        if (customer == null){
+            return "login";
+        }
+        int customerId = customer.getCustomerId();
         int width = Integer.parseInt(request.getParameter("width"));
         int length = Integer.parseInt(request.getParameter("length"));
         String roofType = request.getParameter("roof");
@@ -45,7 +53,7 @@ public class Quickbuild extends Command{
         }
 
         try {
-            CarportRequest newCarportRequest = CarportRequestFacade.createCarportRequest(width,length,roofType,shedLength,shedWidth,connectionPool);
+            CarportRequest newCarportRequest = CarportRequestFacade.createCarportRequest(width,length,roofType,shedLength,shedWidth, customerId,connectionPool);
             request.setAttribute("newCarportRequest", newCarportRequest);
         } catch (SQLException e) {
             e.printStackTrace();
