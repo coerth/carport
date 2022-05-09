@@ -8,6 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 public class RequestSent extends Command{
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
-        return "requestSent";
+        return "index";
     }
 }
