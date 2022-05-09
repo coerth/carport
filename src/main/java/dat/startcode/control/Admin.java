@@ -23,12 +23,12 @@ public class Admin extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
-        /*HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         ArrayList<Material> materialArrayList;
 
         materialArrayList = MaterialFacade.getAllMaterials(connectionPool);
 
-        session.getServletContext().setAttribute("materialArrayList", materialArrayList);*/
+        session.getServletContext().setAttribute("materialArrayList", materialArrayList);
 
         return "admin";
     }
