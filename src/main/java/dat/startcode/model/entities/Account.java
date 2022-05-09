@@ -51,4 +51,14 @@ public class Account {
     public void setRole(int role) {
         this.role = role;
     }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", accountId=" + accountId +
+                '}';
+    }
 }

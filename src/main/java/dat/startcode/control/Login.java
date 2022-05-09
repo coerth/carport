@@ -33,6 +33,9 @@ public class Login extends Command
         String password = request.getParameter("password");
 
         Account account = AccountFacade.login(email, password, connectionPool);
+
+        System.out.println(account);
+
         Customer customer = CustomerFacade.customerAccount(account,connectionPool);
 
         System.out.println(customer);

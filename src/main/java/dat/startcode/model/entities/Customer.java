@@ -65,5 +65,15 @@ public class Customer extends Account {
         this.mobile = mobile;
     }
 
-
+    @Override
+    public String toString() {
+        return super.toString() + "Customer{" +
+                "customerId=" + customerId +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", zip=" + zip +
+                ", mobile=" + mobile +
+                '}';
+    }
 }

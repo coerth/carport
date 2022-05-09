@@ -30,7 +30,6 @@ CREATE TABLE IF NOT EXISTS `carport`.`account` (
   `role` INT NULL DEFAULT '2',
   PRIMARY KEY (`account_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb3;
 
 INSERT INTO `carport`.`account`
@@ -62,7 +61,6 @@ CREATE TABLE IF NOT EXISTS `carport`.`customer` (
     FOREIGN KEY (`account_id`)
     REFERENCES `carport`.`account` (`account_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb3;
 
 INSERT INTO `carport`.`customer`
@@ -112,7 +110,6 @@ CREATE TABLE IF NOT EXISTS `carport`.`description` (
   `description` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`description_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb3;
 
 INSERT INTO `carport`.`description`
@@ -135,7 +132,6 @@ CREATE TABLE IF NOT EXISTS `carport`.`material_type` (
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`type_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb3;
 
 INSERT INTO `carport`.`material_type`
@@ -204,7 +200,6 @@ CREATE TABLE IF NOT EXISTS `carport`.`order` (
     FOREIGN KEY (`customer_id`)
     REFERENCES `carport`.`customer` (`customer_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb3;
 
 INSERT INTO `carport`.`order`
@@ -230,7 +225,6 @@ CREATE TABLE IF NOT EXISTS `carport`.`bill_of_materials` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb3;
 
 
