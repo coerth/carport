@@ -49,7 +49,7 @@ public class Quickbuild extends Command{
             e.printStackTrace();
         }
 
-        return "index";
+        return "requestsent";
 
     }
 
