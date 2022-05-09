@@ -40,11 +40,14 @@ public class MaterialMapperTest
             try (Statement stmt = testConnection.createStatement() )
             {
                 // Remove all rows from all tables
-                stmt.execute("delete from `carport_test`.`material`");
+                stmt.execute("delete from `material`");
+                stmt.execute("delete from `material_type`");
                 // Indsæt et par brugere
-                stmt.execute("INSERT INTO `carport_test`.`material` (`name`,`price`,`unit`,`length`,`width`,`height`,`type_id`)" +
+
+                stmt.execute("INSERT INTO `material_type` (`name`) VALUES ('Træ & Tagplader'), ('Beslag & Skruer')");
+                stmt.execute("INSERT INTO `material` (`name`,`price`,`unit`,`length`,`width`,`height`,`type_id`)" +
                         "VALUES ('25x200 mm. trykimp. Brædt', 50, 'Stk', 720,25, 200, 1),('45x95 mm. Reglar ub.', 25, 'Stk', 720,45, 95, 1)");
-                stmt.execute("INSERT INTO `carport_test`.`material` (`name`,`price`,`unit`,`type_id`)" +
+                stmt.execute("INSERT INTO `material` (`name`,`price`,`unit`,`type_id`)" +
                         "VALUES('plastmo bundskruer 200 stk.', 10, 'Pakke', 2),('universal 190 mm højre', 5, 'Stk', 2)");
 
             }
