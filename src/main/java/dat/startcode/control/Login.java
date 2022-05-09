@@ -17,6 +17,7 @@ public class Login extends Command
 
     public Login()
     {
+
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
 

@@ -1,6 +1,7 @@
 /* CSS stylesheet  for application */
 
 table {
+
     border-collapse: collapse;
     border: 1px solid silver;
     padding:15px;
@@ -10,6 +11,5 @@ th, td {
     border: 1px solid silver;
     padding:15px;
 }
-
 
 

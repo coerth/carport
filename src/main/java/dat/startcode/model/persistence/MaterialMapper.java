@@ -6,8 +6,7 @@ import java.util.ArrayList;
 
 
 
-public class MaterialMapper implements IMaterialMapper
-{
+public class MaterialMapper implements IMaterialMapper {
     ConnectionPool connectionPool;
 
     public MaterialMapper(ConnectionPool connectionPool) {
@@ -20,21 +19,25 @@ public class MaterialMapper implements IMaterialMapper
 
         ArrayList<Material> materialList = new ArrayList<>();
 
-        String sql = "SELECT * FROM carport.material_view";
+        String sql = "SELECT * FROM material_view";
 
-        try(Connection connection = connectionPool.getConnection()){
-            try(PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
-                while(rs.next()){
-                  int materialId = rs.getInt("material_id");
-                  int typeId = rs.getInt("type_id");
-                  String materialName = rs.getString("material_name");
-                  int price = rs.getInt("price");
-                  String unit = rs.getString("unit");
-                  int maxLength = rs.getInt("max_length");
-                  String typeName = rs.getString("mt_name");
-                  Material newMaterial = new Material(materialId, materialName, price, unit, maxLength, typeId, typeName);
-                  materialList.add(newMaterial);
+                while (rs.next()) {
+                    int materialId = rs.getInt("material_id");
+                    int typeId = rs.getInt("type_id");
+                    String materialName = rs.getString("material_name");
+                    int price = rs.getInt("price");
+                    String unit = rs.getString("unit");
+                    int length = rs.getInt("length");
+                    int width = rs.getInt("width");
+                    int height = rs.getInt("height");
+                    String typeName = rs.getString("mt_name");
+                    Material newMaterial = new Material(materialId, materialName, price, unit, length, width, height, typeId, typeName);
+                    materialList.add(newMaterial);
+
+
                 }
             }
         } catch (SQLException e) {
@@ -52,9 +55,11 @@ public class MaterialMapper implements IMaterialMapper
         Material material = null;
 
 
-        try (Connection connection = connectionPool.getConnection()) {
+        try (Connection connection = connectionPool.getConnection())
+        {
 
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
                 ps.setInt(1, materialID);
 
                 ResultSet rs = ps.executeQuery();
@@ -63,11 +68,14 @@ public class MaterialMapper implements IMaterialMapper
                     String name = rs.getString("material_name");
                     int price = rs.getInt("price");
                     String unit = rs.getString("unit");
-                    int maxLength = rs.getInt("max_length");
+                    int length = rs.getInt("length");
+                    int width = rs.getInt("width");
+                    int height = rs.getInt("height");
                     String mtName = rs.getString("mt_name");
                     int typeID = rs.getInt("type_id");
 
-                    material = new Material(materialID, name, price, unit, maxLength, typeID, mtName);
+                    material = new Material(materialID, name, price, unit, length, width, height, typeID, mtName);
+                    return material;
 
                 }
             }
@@ -79,33 +87,98 @@ public class MaterialMapper implements IMaterialMapper
     }
 
     @Override
-    public Material createNewMaterial(Material material) {
 
-        return null;
-    }
+    public boolean createNewMaterial(String name, int price, String unit, int length, int typeId, int width, int height) {
 
-    @Override
-    public boolean updatePrice(int materialId) {
+        String sql = "INSERT INTO `material` (`name`, `price`, `unit`, `length`, `type_id`, `width`, `height`) VALUES (?,?,?,?,?,?,?)";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setString(1, name);
+                ps.setInt(2, price);
+                ps.setString(3, unit);
+                ps.setInt(4, length);
+                ps.setInt(5, typeId);
+                ps.setInt(6, width);
+                ps.setInt(7, height);
+                int rowsAffected = ps.executeUpdate();
+
+                if (rowsAffected == 1) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return false;
     }
 
-    @Override
-    public boolean updateName(int materialId) {
+        @Override
+    public boolean updateMaterial(Material material)
+    {
+        Material newMaterial = null;
+
+        String sql = "UPDATE `material` SET `name` = ?, `price` = ?, `unit` = ?, `length` = ?, `type_id` = ?, `width` = ?, `height` = ? WHERE `material_id` = ?";
+
+
+        try (Connection connection = connectionPool.getConnection())
+        {
+
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setString(1, material.getName());
+                ps.setInt(2, material.getPrice());
+                ps.setString(3, material.getUnit());
+                ps.setInt(4, material.getLength());
+                ps.setInt(5, material.getTypeId());
+                ps.setInt(6, material.getWidth());
+                ps.setInt(7, material.getHeight());
+                ps.setInt(8, material.getMaterialId());
+
+                int rowsAffected = ps.executeUpdate();
+
+                if (rowsAffected == 1)
+                {
+                    return true;
+                    //newMaterial = new Material(material.getMaterialId(), material.getName(), material.getPrice(), material.getUnit(), material.getLength(), material.getWidth(), material.getHeight(), material.getTypeId());
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return false;
+        //return newMaterial;
     }
 
     @Override
-    public boolean updateLength(int materialId) {
-        return false;
-    }
+    public boolean deleteMaterial(int materialId)
+    {
 
-    @Override
-    public boolean updateUnit(int materialId) {
-        return false;
-    }
+        String sql = "DELETE FROM `material` WHERE `material_id` = ?";
 
-    @Override
-    public boolean deleteMaterial(int material) {
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, materialId);
+
+                int rowsAffected = ps.executeUpdate();
+
+                if (rowsAffected == 1)
+                {
+                    return true;
+                }
+            }
+
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
         return false;
     }
 }

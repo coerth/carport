@@ -17,6 +17,12 @@ abstract class Command
         commands.put("logout", new Logout());
         commands.put("about", new About());
         commands.put("register", new Register());
+        commands.put("startup", new StartUp());
+        commands.put("admin", new Admin());
+        commands.put("requestmodify", new RequestModify());
+        commands.put("modifymaterial", new ModifyMaterial());
+        commands.put("deletematerial", new DeleteMaterial());
+        commands.put("creatematerial", new CreateMaterial());
     }
 
     static Command from( HttpServletRequest request ) {

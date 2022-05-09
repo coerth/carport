@@ -6,19 +6,34 @@ public class Material
    private String name;
    private int price;
    private String unit;
-   private int maxLength;
+   private int length;
+   private int width;
+   private int height;
    private int typeId;
    private String typeName;
 
 
-    public Material(int materialId, String name, int price, String unit, int maxLength, int typeId, String typeName) {
+    public Material(int materialId, String name, int price, String unit, int length, int width, int height, int typeId, String typeName) {
         this.materialId = materialId;
         this.name = name;
         this.price = price;
         this.unit = unit;
-        this.maxLength = maxLength;
+        this.length = length;
+        this.width = width;
+        this.height = height;
         this.typeId = typeId;
         this.typeName = typeName;
+    }
+
+    public Material(int materialId, String name, int price, String unit, int length, int width, int height, int typeId) {
+        this.materialId = materialId;
+        this.name = name;
+        this.price = price;
+        this.unit = unit;
+        this.length = length;
+        this.width = width;
+        this.height = height;
+        this.typeId = typeId;
     }
 
     public Material(int materialId, String name, int price, String unit, int typeId, String typeName) {
@@ -46,15 +61,39 @@ public class Material
         return unit;
     }
 
-    public int getMaxLength() {
-        return maxLength;
-    }
-
     public int getTypeId() {
         return typeId;
     }
 
     public String getTypeName() {
         return typeName;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Material{" +
+                "materialId=" + materialId +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", unit='" + unit + '\'' +
+                ", length=" + length +
+                ", width=" + width +
+                ", height=" + height +
+                ", typeId=" + typeId +
+                ", typeName='" + typeName + '\'' +
+                '}';
     }
 }

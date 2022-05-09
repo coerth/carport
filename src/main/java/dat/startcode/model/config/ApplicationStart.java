@@ -1,13 +1,17 @@
 package dat.startcode.model.config;
 
+import dat.startcode.model.entities.Material;
 import dat.startcode.model.persistence.ConnectionPool;
+import dat.startcode.model.services.MaterialFacade;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import javax.servlet.http.HttpSession;
 import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +34,8 @@ public class ApplicationStart implements ServletContextListener
         {
             Class.forName("org.slf4j.impl.StaticLoggerBinder");
             connectionPool = new ConnectionPool();
+
+
         }
         catch (ClassNotFoundException e)
         {
