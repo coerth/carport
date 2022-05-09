@@ -23,6 +23,7 @@ abstract class Command
         commands.put("modifymaterial", new ModifyMaterial());
         commands.put("deletematerial", new DeleteMaterial());
         commands.put("creatematerial", new CreateMaterial());
+        commands.put("quickbuild", new Quickbuild());
     }
 
     static Command from( HttpServletRequest request ) {
@@ -33,7 +34,7 @@ abstract class Command
         return commands.getOrDefault(commandName, new UnknownCommand() );   // unknowncommand er default.
     }
 
-    abstract String execute( HttpServletRequest request, HttpServletResponse response ) 
+    abstract String execute( HttpServletRequest request, HttpServletResponse response )
             throws DatabaseException;
 
 }

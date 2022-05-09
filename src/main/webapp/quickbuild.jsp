@@ -13,43 +13,26 @@
 </head>
 <body>
 
-<form action="fc/register" method="post">
+<form action="fc/quickbuild" method="post">
     <input type="hidden" name="command" value="quickbuild"/>
-    <label for="width">Bredde:</label><br>
-    <select id="width" name="width" placeholder="Vælg bredde">
-        <c:forEach items="${applicationScope.widthArrayList}" var="items">
-            <option value="${item.width}">
-            </option>
-        </c:forEach>
-    </select><br>
-    <label for="length">Længde:</label><br>
-    <select id="length" name="length" placeholder="Vælg længde">
-        <c:forEach items="${applicationScope.lengthArrayList}" var="items">
-            <option value="${item.length}">
-            </option>
-        </c:forEach>
-    </select><br>
-    <label for="roof">Tag:</label><br>
-    <select id="roof" name="roof" placeholder="Vælg tagtype">
-        <c:forEach items="${applicationScope.roofArrayList}" var="items">
-            <option value="${item.roof}">
-            </option>
-        </c:forEach>
-    </select><br>
-    <label for="shedwidth">Redskabsrum bredde:</label><br>
-    <select id="shedwidth" name="shedwidth" placeholder="Ønsker ikke redskabsskur">
-        <c:forEach items="${applicationScope.shedArrayList}" var="items">
-            <option value="${item.shedwidth}">
-            </option>
-        </c:forEach>
-    </select><br>
-    <label for="shedlength">Redskabsrum længde:</label><br>
-    <select id="shedlength" name="shedlength" placeholder="Ønsker ikke redskabsskur">
-        <c:forEach items="${applicationScope.shedArrayList}" var="items">
-            <option value="${item.shedlength}">
-            </option>
-        </c:forEach>
-    </select><br>
+    <label for="width">Bredde (min 240 cm og max 600 cm:</label><br>
+    <input type="number" id="width" name="width" placeholder="Vælg bredde" min="240" max="600">
+    <br>
+    <label for="length">Længde (min 240 cm og max 780 cm:</label><br>
+    <input type="number" id="length" name="length" placeholder="Vælg længde" min="240" max="780">
+    <br>
+    <label for="roof">Længde (min 240 cm og max 780 cm:</label><br>
+    <select type="text" id="roof" name="roof" placeholder="Vælg længde" min="240" max="780">
+        <option value ="Vælg tagtype">
+            Plasttrapezplader
+        </option>
+    </select>
+    <br>
+
+    <input type="checkbox" id="shedOrNoShed" name = "shedOrNoShed" value ="true" onclick=IWantAShed()
+     ><label for="shedOrNoShed"> Ønskes skur? Klik her! </label>
+
+
 </form>
 </body>
 </html>
