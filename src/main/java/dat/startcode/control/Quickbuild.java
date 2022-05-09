@@ -27,8 +27,21 @@ public class Quickbuild extends Command{
         int width = Integer.parseInt(request.getParameter("width"));
         int length = Integer.parseInt(request.getParameter("length"));
         String roofType = request.getParameter("roof");
-        int shedLength = Integer.parseInt(request.getParameter("shedLength"));
-        int shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
+        int shedLength;
+        int shedWidth;
+
+        if(request.getParameter("shedLength").equals("") ) {
+            shedLength = 0;
+        } else {
+
+            shedLength = Integer.parseInt(request.getParameter("shedLength"));
+        }
+        if(request.getParameter("shedWidth").equals("")) {
+            shedWidth = 0;
+        } else {
+
+            shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
+        }
 
         try {
             CarportRequestFacade.createCarportRequest(width,length,roofType,shedLength,shedWidth,connectionPool);

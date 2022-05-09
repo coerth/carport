@@ -14,6 +14,5 @@
 
 Din forespørgsel indeholder følgende data:
 
-
 </body>
 </html>
