@@ -36,7 +36,7 @@ public class Quickbuild extends Command{
             e.printStackTrace();
         }
 
-        return "requestSent";
+        return "index";
 
     }
 
