@@ -16,7 +16,7 @@
 <form action="fc/quickbuild" method="post">
     <input type="hidden" name="command" value="quickbuild"/>
     <label for="width">Bredde (min 240 cm og max 600 cm:</label><br>
-    <input type="number" id="width" name="width" placeholder="Vælg bredde" min="240" max="600" step="30">
+    <input type="number" id="width" name="width" placeholder="Vælg bredde" min="240" max="600" step="30" required>
     <br>
     <label for="length">Længde (min 240 cm og max 780 cm:</label><br>
     <input type="number" id="length" name="length" placeholder="Vælg længde" min="240" max="780" step="30">
