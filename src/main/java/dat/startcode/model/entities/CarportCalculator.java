@@ -7,10 +7,10 @@ public class CarportCalculator
 
 
 
-    public ArrayList<BomLine> calculateRoofArea(int carportLength, int carportWidth)
+    public ArrayList<BomLine> calculateRoofPlates(int carportLength, int carportWidth, ArrayList<Material> listOfRoofPlates)
     {
         ArrayList<BomLine> bomLineArrayList = new ArrayList<BomLine>();
-        ArrayList<Material> listOfRoofPlates = new ArrayList<>();
+        //ArrayList<Material> listOfRoofPlates = new ArrayList<>();
         Material primaryRoofPlate = null;
 
         for(Material m : listOfRoofPlates)
@@ -80,7 +80,7 @@ public class CarportCalculator
         else
         {
             int amount = 1;
-            while(material.getWidth() * amount <= carportWidth )
+            while(material.getWidth() * amount < carportWidth )
             {
                 amount++;
             }
