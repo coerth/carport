@@ -34,13 +34,13 @@
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc">Page 2</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/quickbuild.jsp">quickbuild</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/register.jsp">Registrer</a>
-                    <c:if test="${sessionScope.account == null }">
+                    <c:if test="${sessionScope.customer == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                     </c:if>
                     <c:if test="${sessionScope.account.role == 1 }">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=admin">Admin</a>
                     </c:if>
-                    <c:if test="${sessionScope.account != null }">
+                    <c:if test="${sessionScope.customer != null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log out</a>
                     </c:if>
                 </div>

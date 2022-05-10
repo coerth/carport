@@ -118,5 +118,4 @@ public class CustomerMapper implements ICustomerMapper
         return customer;
     }
 
-
 }
