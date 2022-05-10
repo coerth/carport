@@ -37,7 +37,6 @@ public class MaterialMapper implements IMaterialMapper {
                     Material newMaterial = new Material(materialId, materialName, price, unit, length, width, height, typeId, typeName);
                     materialList.add(newMaterial);
 
-
                 }
             }
         } catch (SQLException e) {
@@ -157,7 +156,6 @@ public class MaterialMapper implements IMaterialMapper {
     @Override
     public boolean deleteMaterial(int materialId)
     {
-
         String sql = "DELETE FROM `material` WHERE `material_id` = ?";
 
         try (Connection connection = connectionPool.getConnection())
