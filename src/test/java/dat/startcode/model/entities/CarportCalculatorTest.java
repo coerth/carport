@@ -51,7 +51,7 @@ class CarportCalculatorTest
 
 
     @Test
-    void calculateBottomScrewForRoof() {
+    void calculateBottomScrewForRoofTest() {
 
         int quantity;
 
