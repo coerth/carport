@@ -43,5 +43,10 @@ CarportCalculator carportCalculator = new CarportCalculator();
     }
 
 
+    @Test
+    void calculateSteelBracket(){
+        int steelBracket = carportCalculator.calculateSteelBracket(12);
+        assertEquals(24, steelBracket);
+    }
 
 }

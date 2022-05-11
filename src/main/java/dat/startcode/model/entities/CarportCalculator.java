@@ -66,8 +66,14 @@ public class CarportCalculator {
 
         newDistance = carportLength / rafters + rafterWidth;
 
-
-
         return  newDistance;
+    }
+    public int calculateSteelBracket(int rafters){
+
+        int steelBracket = 0;
+
+        steelBracket = rafters * 2;
+
+        return steelBracket;
     }
 }
