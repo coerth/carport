@@ -16,11 +16,16 @@ public class CarportCalculator
         return null;
     }
 
+    public int calculateQuanityOfBoxes(int amountToBeUsed,Material material) {
+        if(amountToBeUsed < material.)
+    }
+
+
+
 
     public ArrayList<Bomline> calculateRoofPlates(int carportLength, int carportWidth, ArrayList<Material> listOfRoofPlates)
     {
         ArrayList<Bomline> bomLineArrayList = new ArrayList<Bomline>();
-        //ArrayList<Material> listOfRoofPlates = new ArrayList<>();
         Material primaryRoofPlate =  calculateMaterialLength(carportLength, listOfRoofPlates);
 
         if(primaryRoofPlate != null)
@@ -48,12 +53,7 @@ public class CarportCalculator
             bomLineArrayList.add(new Bomline("tagplader monteres på spær", primaryRoofPlate, amount));
             bomLineArrayList.add(new Bomline("tagplader monteres på spær", secondaryRoofPlate, amount));
 
-
         }
-
-
-
-       int carportArea = carportLength * carportWidth;
 
        if(carportLength > primaryRoofPlate.getLength())
        {
@@ -87,8 +87,10 @@ public class CarportCalculator
         }
     }
 
-    public int calculateBottomScrewForRoof(int carportWidth, int carportLength) {
+    public Bomline calculateBottomScrewForRoof(int carportWidth, int carportLength) {
         int quantity = (carportWidth * carportLength) * 13;
+
+        Bomline bomline = new Bomline("Skruer til tagplader",)
         return quantity;
     }
 

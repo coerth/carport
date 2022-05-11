@@ -154,6 +154,7 @@ CREATE TABLE IF NOT EXISTS `carport`.`material` (
   `type_id` INT NOT NULL,
   `width` VARCHAR(45) NULL,
   `height` VARCHAR(45) NULL,
+  `quantity` INT NULL DEFAULT '1', 
   PRIMARY KEY (`material_id`),
   INDEX `fk_material_material_type1_idx` (`type_id` ASC) VISIBLE,
   CONSTRAINT `fk_material_material_type1`
@@ -181,8 +182,16 @@ INSERT INTO `carport`.`material`
 `unit`,
 `type_id`)
 VALUES
-('plastmo bundskruer 200 stk.', 10, 'Pakke', 2),
 ('universal 190 mm højre', 5, 'Stk', 2);
+
+INSERT INTO `carport`.`material`
+(`name`,
+`price`,
+`unit`,
+`type_id`,
+`quantity`)
+VALUES
+('plastmo bundskruer 200 stk.', 10, 'Pakke', 2, 200);
 
 -- -----------------------------------------------------
 -- Table `carport`.`order`
