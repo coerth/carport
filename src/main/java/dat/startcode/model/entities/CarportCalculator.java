@@ -16,11 +16,22 @@ public class CarportCalculator
         return null;
     }
 
+    public int calculateQuantityOfBoxes(int amountToBeUsed,Material material) {
+
+        int amount = 1;
+
+        while(amountToBeUsed < material.getQuantity() * amount) {
+            amount++;
+        }
+        return amount;
+    }
+
+
+
 
     public ArrayList<Bomline> calculateRoofPlates(int carportLength, int carportWidth, ArrayList<Material> listOfRoofPlates)
     {
         ArrayList<Bomline> bomLineArrayList = new ArrayList<Bomline>();
-        //ArrayList<Material> listOfRoofPlates = new ArrayList<>();
         Material primaryRoofPlate =  calculateMaterialLength(carportLength, listOfRoofPlates);
 
         if(primaryRoofPlate != null)
@@ -48,12 +59,7 @@ public class CarportCalculator
             bomLineArrayList.add(new Bomline("tagplader monteres på spær", primaryRoofPlate, amount));
             bomLineArrayList.add(new Bomline("tagplader monteres på spær", secondaryRoofPlate, amount));
 
-
         }
-
-
-
-       int carportArea = carportLength * carportWidth;
 
        if(carportLength > primaryRoofPlate.getLength())
        {
@@ -90,11 +96,21 @@ public class CarportCalculator
     public int calculateBottomScrewForRoof(int carportWidth, int carportLength)
     {
         int quantity = (carportWidth * carportLength) * 13;
+
         return quantity;
     }
 
-    public Bomline calculateFrontAndBackSternLength (ArrayList <Material> frontAndBackSternArrayList, int rafterLength)
-    {
+
+    public Bomline calculateAmountOfBoxesOfBottomScrews(int quantity, Material material, int carportWidth, int carportLength) {
+
+        int screwsNeeded = calculateBottomScrewForRoof(carportWidth,carportLength);
+        int boxesNeeded = calculateQuantityOfBoxes(screwsNeeded,material);
+
+        Bomline bomline = new Bomline("Skruer til tagplader",material,boxesNeeded);
+        return bomline;
+    }
+
+    public Bomline calculateFrontAndBackSternLength (ArrayList <Material> frontAndBackSternArrayList, int rafterLength) {
         Material backAndFrontStern = calculateMaterialLength(rafterLength +5,frontAndBackSternArrayList);
         Bomline bomline = new Bomline("oversternbrædder til forenden",backAndFrontStern,2);
         return bomline;
