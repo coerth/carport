@@ -16,12 +16,19 @@ class CarportCalculatorTest
     Material material = new Material(1,"Tagplade", 5,"styk",600,109,1,1);
 
 
+
     @Test
     void calculateRoofArea() {
     }
 
     @BeforeEach
-    void setUp() {
+    void setUp()
+    {
+        ArrayList<Material> roofPlateArrayList = new ArrayList<>();
+        roofPlateArrayList.add(material);
+        roofPlateArrayList.add(new Material(1,"Tagplade", 5,"styk",360,109,1,1));
+        roofPlateArrayList.add(new Material(1,"Tagplade", 5,"styk",240,109,1,1));
+
     }
 
     @Test
@@ -57,6 +64,14 @@ class CarportCalculatorTest
 
         quantity=carportCalculator.calculateBottomScrewForRoof(6,7);
         assertEquals(546,quantity);
+        assertEquals(13, carportCalculator.calculateBottomScrewForRoof(1,1));
+        assertEquals(1300, carportCalculator.calculateBottomScrewForRoof(20,5));
+    }
+
+    @Test
+    void calculateMaterialLengthTest()
+    {
+
     }
 
 
