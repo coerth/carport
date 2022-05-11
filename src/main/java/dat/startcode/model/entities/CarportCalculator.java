@@ -39,4 +39,15 @@ public class CarportCalculator {
 
         return carriageBolt;
     }
+
+    public int calculateSquareSpacer(int carriageBolt) {
+
+        int squareSpacer;
+
+        squareSpacer = carriageBolt * 2;
+
+        return squareSpacer;
+    }
+
+
 }

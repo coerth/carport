@@ -24,4 +24,10 @@ CarportCalculator carportCalculator = new CarportCalculator();
         assertEquals(12, carriageBolt);
     }
 
+    @Test
+    void calculateSquareSpace(){
+        int squareSpace = carportCalculator.calculateSquareSpacer(12);
+        assertEquals(24, squareSpace);
+    }
+
 }
