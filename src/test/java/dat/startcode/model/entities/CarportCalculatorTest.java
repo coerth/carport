@@ -30,4 +30,18 @@ CarportCalculator carportCalculator = new CarportCalculator();
         assertEquals(24, squareSpace);
     }
 
+    @Test
+    void calculateRafters(){
+        int rafters = carportCalculator.calculateRafters(600);
+        assertEquals(12, rafters);
+    }
+
+    @Test
+    void calculateRaftersDistance(){
+        float distance = carportCalculator.calculateRaftersDistance(600, 12);
+        assertEquals(54.5, distance);
+    }
+
+
+
 }

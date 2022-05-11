@@ -49,5 +49,25 @@ public class CarportCalculator {
         return squareSpacer;
     }
 
+    public int calculateRafters(int carportLength){
 
+        int distance = 59;
+        int rafters = 0;
+
+        rafters = carportLength / distance + 2;
+
+        return rafters;
+    }
+
+    public float calculateRaftersDistance(float carportLength, float rafters){
+
+        float newDistance = 0;
+        float rafterWidth = 4.5f;
+
+        newDistance = carportLength / rafters + rafterWidth;
+
+
+
+        return  newDistance;
+    }
 }
