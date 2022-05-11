@@ -16,8 +16,14 @@ public class CarportCalculator
         return null;
     }
 
-    public int calculateQuanityOfBoxes(int amountToBeUsed,Material material) {
-        if(amountToBeUsed < material.)
+    public int calculateQuantityOfBoxes(int amountToBeUsed,Material material) {
+
+        int amount = 1;
+
+        while(amountToBeUsed < material.getQuantity() * amount) {
+            amount++;
+        }
+        return amount;
     }
 
 
@@ -87,11 +93,19 @@ public class CarportCalculator
         }
     }
 
-    public Bomline calculateBottomScrewForRoof(int carportWidth, int carportLength) {
+    public int calculateBottomScrewForRoof(int carportWidth, int carportLength) {
         int quantity = (carportWidth * carportLength) * 13;
 
-        Bomline bomline = new Bomline("Skruer til tagplader",)
         return quantity;
+    }
+
+    public Bomline calculateAmountOfBoxesOfBottomScrews(int quantity, Material material, int carportWidth, int carportLength) {
+
+        int screwsNeeded = calculateBottomScrewForRoof(carportWidth,carportLength);
+        int boxesNeeded = calculateQuantityOfBoxes(screwsNeeded,material);
+
+        Bomline bomline = new Bomline("Skruer til tagplader",material,boxesNeeded);
+        return bomline;
     }
 
     public Bomline calculateFrontAndBackSternLength (ArrayList <Material> frontAndBackSternArrayList, int rafterLength) {
