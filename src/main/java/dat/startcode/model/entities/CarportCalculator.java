@@ -6,24 +6,22 @@ public class CarportCalculator
 {
 
 
+    public Material calculateMaterialLength(int dimension, ArrayList<Material> listOfMaterials) {
+
+        for (Material material : listOfMaterials) {
+            if(material.getLength() > dimension) {
+                return material;
+            }
+        }
+        return null;
+    }
 
 
     public ArrayList<Bomline> calculateRoofPlates(int carportLength, int carportWidth, ArrayList<Material> listOfRoofPlates)
     {
         ArrayList<Bomline> bomLineArrayList = new ArrayList<Bomline>();
         //ArrayList<Material> listOfRoofPlates = new ArrayList<>();
-        Material primaryRoofPlate = null;
-
-        for(Material m : listOfRoofPlates)
-        {
-            if(m.getLength() > carportLength)
-            {
-
-                primaryRoofPlate = m;
-
-            }
-        }
-
+        Material primaryRoofPlate =  calculateMaterialLength(carportLength, listOfRoofPlates);
 
         if(primaryRoofPlate != null)
         {
@@ -94,9 +92,16 @@ public class CarportCalculator
         return quantity;
     }
 
-    public int calculateFrontAndBackStern (int rafterLength) {
-        int frontAndBackSternLength = rafterLength + 5;
-        return frontAndBackSternLength;
+    public Bomline calculateFrontAndBackSternLength (ArrayList <Material> frontAndBackSternArrayList, int rafterLength) {
+        Material backAndFrontStern = calculateMaterialLength(rafterLength +5,frontAndBackSternArrayList);
+        Bomline bomline = new Bomline("oversternbrædder til forenden",backAndFrontStern,2);
+        return bomline;
+    }
+
+    public Bomline calculateSideStern (ArrayList<Material> sideSternArrayList, int carportLength) {
+        Material sideStern = calculateMaterialLength(carportLength, sideSternArrayList);
+        Bomline bomline = new Bomline("oversternbrædder til siderne", sideStern,2);
+        return bomline;
     }
 
 }
