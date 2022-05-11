@@ -30,7 +30,7 @@ class CarportCalculatorTest
     ArrayList<Material> listOfRoofPlates = new ArrayList<>();
     listOfRoofPlates.add(material);
     listOfRoofPlates.add(new Material(2,"tagplade", 10,"styk",360,109,1,1));
-    ArrayList <BomLine> newBomLineArrayList = carportCalculator.calculateRoofPlates(900,600,listOfRoofPlates);
+    ArrayList <Bomline> newBomLineArrayList = carportCalculator.calculateRoofPlates(900,600,listOfRoofPlates);
     assertEquals(2,newBomLineArrayList.size());
     }
 
@@ -50,4 +50,12 @@ class CarportCalculatorTest
     }
 
 
+    @Test
+    void calculateBottomScrewForRoof() {
+
+        int quantity;
+
+        quantity=carportCalculator.calculateBottomScrewForRoof(6,7);
+        assertEquals(546,quantity);
+    }
 }
