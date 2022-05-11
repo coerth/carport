@@ -94,9 +94,9 @@ public class CarportCalculator
         return quantity;
     }
 
-    public int calculateSideStern (int rafterLength) {
-        int sideSternLength = rafterLength + 5;
-        return sideSternLength;
+    public int calculateFrontAndBackStern (int rafterLength) {
+        int frontAndBackSternLength = rafterLength + 5;
+        return frontAndBackSternLength;
     }
 
 }
