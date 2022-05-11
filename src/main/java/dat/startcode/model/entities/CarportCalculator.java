@@ -92,14 +92,16 @@ public class CarportCalculator
         return quantity;
     }
 
-    public Material calculateFrontAndBackSternLength (ArrayList <Material> frontAndBackSternArrayList, int rafterLength) {
+    public Bomline calculateFrontAndBackSternLength (ArrayList <Material> frontAndBackSternArrayList, int rafterLength) {
         Material backAndFrontStern = calculateMaterialLength(rafterLength +5,frontAndBackSternArrayList);
-        return backAndFrontStern;
+        Bomline bomline = new Bomline("oversternbrædder til forenden",backAndFrontStern,2);
+        return bomline;
     }
 
-    public Material calculateSideStern (ArrayList<Material> sideSternArrayList, int carportLength) {
+    public Bomline calculateSideStern (ArrayList<Material> sideSternArrayList, int carportLength) {
         Material sideStern = calculateMaterialLength(carportLength, sideSternArrayList);
-        return sideStern;
+        Bomline bomline = new Bomline("oversternbrædder til siderne", sideStern,2);
+        return bomline;
     }
 
 }
