@@ -68,6 +68,7 @@ public class CarportCalculator {
 
         return  newDistance;
     }
+
     public int calculateSteelBracket(int rafters){
 
         int steelBracket = 0;
@@ -75,5 +76,27 @@ public class CarportCalculator {
         steelBracket = rafters * 2;
 
         return steelBracket;
+    }
+
+    public int calculateScrewForBracket(int steelBracket){
+
+         int screws = 0;
+
+         screws = steelBracket * 9;
+
+         return screws;
+    }
+
+
+    public int calculateScrewForPerforatedTape(int rafters){
+
+        int screws = 0;
+        int perforatedTape = 2;
+
+        screws = (rafters - 2) * perforatedTape;
+        screws = screws * 2;
+
+        return screws;
+
     }
 }

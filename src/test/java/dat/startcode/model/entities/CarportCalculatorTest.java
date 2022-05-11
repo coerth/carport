@@ -49,4 +49,16 @@ CarportCalculator carportCalculator = new CarportCalculator();
         assertEquals(24, steelBracket);
     }
 
+    @Test
+    void calculateScrewForBracket(){
+        int screws = carportCalculator.calculateScrewForBracket(24);
+        assertEquals(216, screws);
+    }
+
+    @Test
+    void calculateScrewForPerforatedTape(){
+        int screws = carportCalculator.calculateScrewForPerforatedTape(15);
+        assertEquals(52, screws);
+    }
+
 }
