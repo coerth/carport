@@ -1,6 +1,5 @@
 package dat.startcode.model.entities;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -115,12 +114,31 @@ class CarportCalculatorTest
     }
 
     @Test
-    void calculateFrontAndBackSternLengthTest()
+    void calculateFrontAndBackSternTest()
     {
         ArrayList<Material> sternArrayList = new ArrayList<>();
         sternArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 360, 25, 125, 1));
-        sternArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1));
+        sternArrayList.add(new Material(2,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1));
+
+        Bomline bomline = carportCalculator.calculateFrontAndBackStern(sternArrayList, 360);
+        assertEquals(sternArrayList.get(1).getLength(), bomline.getMaterial().getLength());
+
+        bomline = carportCalculator.calculateFrontAndBackStern(sternArrayList, 554);
+        assertEquals(sternArrayList.get(1).getLength(), bomline.getMaterial().getLength());
 
     }
 
+    @Test
+    void  calculateSideSternTest()
+    {
+        ArrayList<Material> sternArrayList = new ArrayList<>();
+        sternArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 360, 25, 125, 1));
+        sternArrayList.add(new Material(2,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1));
+
+        Bomline bomline = carportCalculator.calculateFrontAndBackStern(sternArrayList, 360);
+        assertEquals(sternArrayList.get(1).getLength(), bomline.getMaterial().getLength());
+
+        bomline = carportCalculator.calculateFrontAndBackStern(sternArrayList, 554);
+        assertEquals(sternArrayList.get(1).getLength(), bomline.getMaterial().getLength());
+    }
 }

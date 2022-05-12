@@ -111,7 +111,7 @@ public class CarportCalculator
         return bomline;
     }
 
-    public Bomline calculateFrontAndBackSternLength (ArrayList <Material> frontAndBackSternArrayList, int rafterLength) {
+    public Bomline calculateFrontAndBackStern(ArrayList <Material> frontAndBackSternArrayList, int rafterLength) {
         Material backAndFrontStern = calculateMaterialLength(rafterLength +5,frontAndBackSternArrayList);
         Bomline bomline = new Bomline("oversternbrædder til forenden",backAndFrontStern,2);
         return bomline;
