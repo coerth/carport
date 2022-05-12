@@ -9,12 +9,9 @@
         <module name="startcode" />
       </profile>
     </annotationProcessing>
-<<<<<<< HEAD
-=======
     <bytecodeTargetLevel>
       <module name="Carport" target="1.8" />
       <module name="startcode" target="11" />
     </bytecodeTargetLevel>
->>>>>>> LBMath
   </component>
 </project>

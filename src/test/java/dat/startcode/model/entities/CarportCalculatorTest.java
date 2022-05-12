@@ -3,6 +3,8 @@ package dat.startcode.model.entities;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarportCalculatorTest
@@ -40,13 +42,15 @@ class CarportCalculatorTest
         int amount;
 
         amount = carportCalculator.calculateAmountOfRoofPlatesForWidth(material, 600);
-        assertEquals(6,amount);
+        assertEquals(6, amount);
         amount = carportCalculator.calculateAmountOfRoofPlatesForWidth(material, 1090);
-        assertEquals(10,amount);
+        assertEquals(10, amount);
         amount = carportCalculator.calculateAmountOfRoofPlatesForWidth(material, 2);
-        assertEquals(1,amount);
+        assertEquals(1, amount);
         amount = carportCalculator.calculateAmountOfRoofPlatesForWidth(material, 109);
-        assertEquals(1,amount);
+        assertEquals(1, amount);
+
+    }
 
     @Test
     void calculatePostAmountTest() {

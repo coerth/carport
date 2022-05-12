@@ -1,5 +1,7 @@
 package dat.startcode.model.entities;
 
+import java.util.ArrayList;
+
 public class CarportCalculator {
 
 
