@@ -2,7 +2,6 @@ package dat.startcode.model.entities;
 
 public class CarportCalculator {
 
-
     public int calculatePostAmount(int carportLength) {
 
         int minDistanceBetweenPost = 250;
@@ -87,7 +86,6 @@ public class CarportCalculator {
          return screws;
     }
 
-
     public int calculateScrewForPerforatedTape(int rafters){
 
         int screws = 0;
@@ -98,5 +96,54 @@ public class CarportCalculator {
 
         return screws;
 
+    }
+
+    public Bomline postAmount(Material material, int carportLength){
+        int post = calculatePostAmount(carportLength);
+
+        Bomline bomline = new Bomline("Stolper til carport", material, post);
+        return bomline;
+    }
+
+    public Bomline carriageBolt(Material material, int carportLength){
+        int bolt = calculateCarriageBolt(carportLength);
+
+        Bomline bomline = new Bomline("Breddebolte til montering af rem på stolper", material, bolt);
+        return bomline;
+    }
+
+    public Bomline squareSpacer(Material material, int carriageBolt){
+        int spacer = calculateSquareSpacer(carriageBolt);
+
+        Bomline bomline = new Bomline("Firkantskiver til montering af rem på stolper", material, spacer);
+        return bomline;
+    }
+
+    public Bomline rafters(Material material, int carportLength){
+        int rafter = calculateRafters(carportLength);
+
+        Bomline bomline = new Bomline("Spær, monteres på rem", material, rafter);
+        return bomline;
+    }
+
+    public Bomline steelBracket(Material material, int rafters){
+        int steelBrackets = calculateSteelBracket(rafters);
+
+        Bomline bomline = new Bomline("Universal beslag til montering af spær på rem", material, steelBrackets);
+        return bomline;
+    }
+
+    public Bomline screwsForBrackets(Material material, int steelBracket){
+        int screws = calculateScrewForBracket(steelBracket);
+
+        Bomline bomline = new Bomline("Skruer til montering af universalbeslag", material, screws);
+        return bomline;
+    }
+
+    public Bomline screwsForPerforatedTape(Material material, int rafters){
+        int screws = calculateScrewForPerforatedTape(rafters);
+
+        Bomline bomline = new Bomline("Skruer til hulbånd", material, screws);
+        return bomline;
     }
 }

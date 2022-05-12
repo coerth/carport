@@ -11,7 +11,24 @@ public class Material
    private int height;
    private int typeId;
    private String typeName;
+   private int quantity;
 
+    public Material(int materialId, String name, int price, String unit, int typeId) {
+        this.materialId = materialId;
+        this.name = name;
+        this.price = price;
+        this.unit = unit;
+        this.typeId = typeId;
+    }
+
+    public Material(int materialId, String name, int price, String unit, int typeId, int quantity) {
+        this.materialId = materialId;
+        this.name = name;
+        this.price = price;
+        this.unit = unit;
+        this.typeId = typeId;
+        this.quantity = quantity;
+    }
 
     public Material(int materialId, String name, int price, String unit, int length, int width, int height, int typeId, String typeName) {
         this.materialId = materialId;
