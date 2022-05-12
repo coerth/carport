@@ -68,14 +68,25 @@ public class CarportCalculator {
         return  newDistance;
     }
 
-    public int calculateSteelBracket(int rafters){
+    public int calculateSteelBracketRight(int rafters){
 
         int steelBracket = 0;
 
-        steelBracket = rafters * 2;
+        steelBracket = rafters;
 
         return steelBracket;
     }
+
+    public int calculateSteelBracketLeft(int rafters){
+
+        int steelBracket = 0;
+
+        steelBracket = rafters;
+
+        return steelBracket;
+    }
+
+
 
     public int calculateScrewForBracket(int steelBracket){
 
@@ -126,8 +137,15 @@ public class CarportCalculator {
         return bomline;
     }
 
-    public Bomline steelBracket(Material material, int rafters){
-        int steelBrackets = calculateSteelBracket(rafters);
+    public Bomline steelBracketRight(Material material, int rafters){
+        int steelBrackets = calculateSteelBracketRight(rafters);
+
+        Bomline bomline = new Bomline("Universal beslag til montering af spær på rem", material, steelBrackets);
+        return bomline;
+    }
+
+    public Bomline steelBracketLeft(Material material, int rafters){
+        int steelBrackets = calculateSteelBracketLeft(rafters);
 
         Bomline bomline = new Bomline("Universal beslag til montering af spær på rem", material, steelBrackets);
         return bomline;

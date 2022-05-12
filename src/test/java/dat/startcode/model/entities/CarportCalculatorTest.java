@@ -44,9 +44,15 @@ class CarportCalculatorTest {
 
 
     @Test
-    void calculateSteelBracket() {
-        int steelBracket = carportCalculator.calculateSteelBracket(12);
-        assertEquals(24, steelBracket);
+    void calculateSteelBracketRight() {
+        int steelBracket = carportCalculator.calculateSteelBracketRight(12);
+        assertEquals(12, steelBracket);
+    }
+
+    @Test
+    void calculateSteelBracketLeft() {
+        int steelBracket = carportCalculator.calculateSteelBracketLeft(12);
+        assertEquals(12, steelBracket);
     }
 
     @Test
@@ -94,11 +100,19 @@ class CarportCalculatorTest {
     }
 
     @Test
-    void steelBracket(){
-        Material material = new Material(1, "Universalbeslag", 5, "stk", 1);
+    void steelBracketRight(){
+        Material material = new Material(1, "Universalbeslag højre", 5, "stk", 1);
 
-        Bomline bomline = carportCalculator.steelBracket(material, 15);
-        assertEquals(30, bomline.getQuantity());
+        Bomline bomline = carportCalculator.steelBracketRight(material, 15);
+        assertEquals(15, bomline.getQuantity());
+    }
+
+    @Test
+    void steelBracketLeft(){
+        Material material = new Material(1, "Universalbeslag venstre", 5, "stk", 1);
+
+        Bomline bomline = carportCalculator.steelBracketLeft(material, 15);
+        assertEquals(15, bomline.getQuantity());
     }
 
     @Test
