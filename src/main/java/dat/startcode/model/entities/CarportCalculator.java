@@ -117,20 +117,37 @@ public class CarportCalculator {
         return bomline;
     }
 
+    public ArrayList<Bomline> calculateFrontAndBackStern (ArrayList<Material> sternArrayList, int rafterLength) {
+        ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
+        Material frontAndBackStern = calculateMaterialLength(rafterLength, sternArrayList);
+        if(frontAndBackStern == null) {
+            ArrayList<Material> frontAndBackSternArrayList = calculateMaterialIfMoreThanOneIsNeeded(rafterLength +5, sternArrayList);
 
-    public Bomline calculateFrontAndBackStern(ArrayList <Material> frontAndBackSternArrayList, int rafterLength) {
-        Material backAndFrontStern = calculateMaterialLength(rafterLength +5,frontAndBackSternArrayList);
-        Bomline bomline = new Bomline("oversternbrædder til forenden",backAndFrontStern,2);
-        return bomline;
+            for (Material material : frontAndBackSternArrayList) {
+
+                Bomline bomline = new Bomline("oversternbrædder til forenden",material,2);
+                bomlineArrayList.add(bomline);
+            }
+        } else {
+            Bomline bomline = new Bomline("oversternbrædder til forenden", frontAndBackStern,2);
+            bomlineArrayList.add(bomline);
+        } return bomlineArrayList;
     }
 
-    public Bomline calculateSideStern (ArrayList<Material> sideSternArrayList, int carportLength)
-    {
-
-        Material sideStern = calculateMaterialLength(carportLength, sideSternArrayList);
-        Bomline bomline = new Bomline("oversternbrædder til siderne", sideStern, 2);
-        return bomline;
-    }
+   public ArrayList<Bomline> calculateSideStern(ArrayList<Material> sternArrayList, int carportLength) {
+       ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
+       Material sideStern = calculateMaterialLength(carportLength, sternArrayList);
+       if(sideStern == null) {
+           ArrayList<Material> sideSternArrayList = calculateMaterialIfMoreThanOneIsNeeded(carportLength,sternArrayList);
+           for(Material material : sideSternArrayList) {
+               Bomline bomline = new Bomline("oversternbrædder til siderne", material,2);
+               bomlineArrayList.add(bomline);
+           }
+       }else {
+           Bomline bomline = new Bomline("oversternbrædder til siderne", sideStern,2);
+           bomlineArrayList.add(bomline);
+       }return bomlineArrayList;
+   }
 
     public ArrayList<Bomline> calculateWeatherBoardForSide(ArrayList<Material> weatherBoardArrayList, int carportLength) {
 
