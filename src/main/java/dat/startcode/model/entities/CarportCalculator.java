@@ -15,9 +15,9 @@ public class CarportCalculator {
         return null;
     }
 
-    public ArrayList calculateMaterialIfMoreThanOneIsNeeded(int dimension, ArrayList<Material> listOfMaterials) {
+    public ArrayList<Material> calculateMaterialIfMoreThanOneIsNeeded(int dimension, ArrayList<Material> listOfMaterials) {
 
-        ArrayList<Material> materialArrayList = null;
+        ArrayList<Material> materialArrayList = new ArrayList<>();
         Material material1 = null;
         Material material2 = null;
 
