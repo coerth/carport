@@ -69,9 +69,10 @@ class CarportCalculatorTest
     void calculateMaterialLengthTest()
     {
 
-        materialArrayList.add(material);
-        materialArrayList.add(new Material(1,"Tagplade", 5,"styk",360,109,1,1));
         materialArrayList.add(new Material(1,"Tagplade", 5,"styk",240,109,1,1));
+        materialArrayList.add(new Material(1,"Tagplade", 5,"styk",360,109,1,1));
+        materialArrayList.add(material);
+
 
         Material returnedMaterial = carportCalculator.calculateMaterialLength(370, materialArrayList);
         assertEquals(material, returnedMaterial);
@@ -80,7 +81,7 @@ class CarportCalculatorTest
         assertEquals(material, returnedMaterial);
 
         returnedMaterial = carportCalculator.calculateMaterialLength(120, materialArrayList);
-        assertEquals(materialArrayList.get(2), returnedMaterial);
+        assertEquals(materialArrayList.get(0), returnedMaterial);
     }
 
     @Test
@@ -120,11 +121,13 @@ class CarportCalculatorTest
         sternArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 360, 25, 125, 1));
         sternArrayList.add(new Material(2,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1));
 
-        Bomline bomline = carportCalculator.calculateFrontAndBackStern(sternArrayList, 360);
-        assertEquals(sternArrayList.get(1).getLength(), bomline.getMaterial().getLength());
+        ArrayList<Bomline> bomlineArrayList = carportCalculator.calculateFrontAndBackStern(sternArrayList, 900);
+        assertEquals(2, bomlineArrayList.size());
+        assertEquals(920, bomlineArrayList.get(0).getMaterial().getLength()+bomlineArrayList.get(1).getMaterial().getLength());
 
-        bomline = carportCalculator.calculateFrontAndBackStern(sternArrayList, 554);
-        assertEquals(sternArrayList.get(1).getLength(), bomline.getMaterial().getLength());
+        bomlineArrayList = carportCalculator.calculateFrontAndBackStern(sternArrayList, 360);
+        assertEquals(1, bomlineArrayList.size());
+        assertEquals(sternArrayList.get(1).getLength(), bomlineArrayList.get(0).getMaterial().getLength());
 
     }
 
@@ -135,29 +138,46 @@ class CarportCalculatorTest
         sternArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 360, 25, 125, 1));
         sternArrayList.add(new Material(2,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1));
 
-        Bomline bomline = carportCalculator.calculateSideStern(sternArrayList, 360);
-        assertEquals(sternArrayList.get(1).getLength(), bomline.getMaterial().getLength());
+        ArrayList<Bomline> bomlineArrayList = carportCalculator.calculateSideStern(sternArrayList, 900);
+        assertEquals(2, bomlineArrayList.size());
+        assertEquals(920, bomlineArrayList.get(0).getMaterial().getLength()+bomlineArrayList.get(1).getMaterial().getLength());
 
-        bomline = carportCalculator.calculateSideStern(sternArrayList, 554);
-        assertEquals(sternArrayList.get(1).getLength(), bomline.getMaterial().getLength());
+        bomlineArrayList = carportCalculator.calculateSideStern(sternArrayList, 360);
+        assertEquals(1, bomlineArrayList.size());
+        assertEquals(sternArrayList.get(1).getLength(), bomlineArrayList.get(0).getMaterial().getLength());
     }
 
     @Test
     void calculateWeatherBoardForFrontAndBackTest()
     {
-        ArrayList<Material> sternArrayList = new ArrayList<>();
-        sternArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 360, 25, 125, 1));
-        sternArrayList.add(new Material(2,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1));
+        ArrayList<Material> weatherboardArrayList = new ArrayList<>();
+        weatherboardArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 360, 25, 125, 1));
+        weatherboardArrayList.add(new Material(2,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1));
 
-        ArrayList<Bomline> bomlineArrayList = carportCalculator.calculateWeatherBoardForFrontAndBack(sternArrayList, 900);
+        ArrayList<Bomline> bomlineArrayList = carportCalculator.calculateWeatherBoardForFrontAndBack(weatherboardArrayList, 900);
         assertEquals(2, bomlineArrayList.size());
         assertEquals(920, bomlineArrayList.get(0).getMaterial().getLength()+bomlineArrayList.get(1).getMaterial().getLength());
 
-        bomlineArrayList = carportCalculator.calculateWeatherBoardForFrontAndBack(sternArrayList, 360);
+        bomlineArrayList = carportCalculator.calculateWeatherBoardForFrontAndBack(weatherboardArrayList, 360);
         assertEquals(1, bomlineArrayList.size());
-        assertEquals(sternArrayList.get(1).getLength(), bomlineArrayList.get(0).getMaterial().getLength());
+        assertEquals(weatherboardArrayList.get(1).getLength(), bomlineArrayList.get(0).getMaterial().getLength());
 
 
     }
 
+    @Test
+    void  calculateWeatherBoardForSideTest()
+    {
+        ArrayList<Material> sternArrayList = new ArrayList<>();
+        sternArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 360, 25, 125, 1));
+        sternArrayList.add(new Material(2,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1));
+
+        ArrayList<Bomline> bomlineArrayList = carportCalculator.calculateWeatherBoardForSide(sternArrayList, 900);
+        assertEquals(2, bomlineArrayList.size());
+        assertEquals(920, bomlineArrayList.get(0).getMaterial().getLength()+bomlineArrayList.get(1).getMaterial().getLength());
+
+        bomlineArrayList = carportCalculator.calculateWeatherBoardForSide(sternArrayList, 360);
+        assertEquals(1, bomlineArrayList.size());
+        assertEquals(sternArrayList.get(1).getLength(), bomlineArrayList.get(0).getMaterial().getLength());
+    }
 }
