@@ -275,13 +275,11 @@ public class CarportCalculator {
         return steelBracket;
     }
 
-
-
-    public int calculateScrewForBracket(int steelBracket){
+    public int calculateScrewForBracket(int steelBracketRight, int steelBracketLeft){
 
          int screws = 0;
 
-         screws = steelBracket * 9;
+         screws = (steelBracketRight + steelBracketLeft) * 9;
 
          return screws;
     }
@@ -340,8 +338,8 @@ public class CarportCalculator {
         return bomline;
     }
 
-    public Bomline screwsForBrackets(Material material, int steelBracket){
-        int screws = calculateScrewForBracket(steelBracket);
+    public Bomline screwsForBrackets(Material material, int steelBracketRight, int steelBracketLeft){
+        int screws = calculateScrewForBracket(steelBracketRight, steelBracketLeft);
 
         Bomline bomline = new Bomline("Skruer til montering af universalbeslag", material, screws);
         return bomline;

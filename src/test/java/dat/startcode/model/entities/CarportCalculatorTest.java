@@ -211,6 +211,7 @@ class CarportCalculatorTest
     }
 
 
+    @Test
     void calculateSteelBracketRight() {
         int steelBracket = carportCalculator.calculateSteelBracketRight(12);
         assertEquals(12, steelBracket);
@@ -224,7 +225,7 @@ class CarportCalculatorTest
 
     @Test
     void calculateScrewForBracket() {
-        int screws = carportCalculator.calculateScrewForBracket(30);
+        int screws = carportCalculator.calculateScrewForBracket(15, 15);
         assertEquals(270, screws);
     }
 
@@ -286,7 +287,7 @@ class CarportCalculatorTest
     void screwsForBrackets(){
         Material material = new Material(1, "Skruer til universalbeslag", 5, "stk", 2);
 
-        Bomline bomline = carportCalculator.screwsForBrackets(material, 30);
+        Bomline bomline = carportCalculator.screwsForBrackets(material, 15, 15);
         assertEquals(270, bomline.getQuantity());
     }
 
