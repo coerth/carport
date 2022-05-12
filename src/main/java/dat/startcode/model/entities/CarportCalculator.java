@@ -275,22 +275,13 @@ public class CarportCalculator {
         return steelBracket;
     }
 
-    public int calculateScrewForBracket(int steelBracketRight, int steelBracketLeft){
+    public int calculateScrewForBracket(int bracket){
 
          int screws = 0;
 
-         screws = (steelBracketRight + steelBracketLeft) * 9;
+         screws = (bracket*2) * 9;
 
          return screws;
-    }
-
-    public int calculateScrewAmount(int bracketScrew, int tapeScrew){
-
-        int screws = 0;
-
-        screws = bracketScrew + tapeScrew;
-
-        return screws;
     }
 
     public int calculateScrewForPerforatedTape(int rafters){
@@ -347,20 +338,12 @@ public class CarportCalculator {
         return bomline;
     }
 
+    public Bomline screwsForTapeAndBracket(Material material, int bracket, int rafters){
+        int screwsForBrackets = calculateScrewForBracket(bracket);
+        int screwsForTape = calculateScrewForPerforatedTape(rafters);
+        int screwBoxes = calculateQuantityOfBoxes(screwsForTape + screwsForBrackets, material);
 
-    public Bomline screwsForBrackets(Material material, int steelBracketRight, int steelBracketLeft){
-        int screwsNeeded = calculateScrewForBracket(steelBracketRight, steelBracketLeft);
-        int screwsBoxes = calculateQuantityOfBoxes(screwsNeeded, material);
-
-        Bomline bomline = new Bomline("Skruer til montering af universalbeslag", material, screwsBoxes);
-        return bomline;
-    }
-
-    public Bomline screwsForPerforatedTape(Material material, int rafters){
-        int screwsNeeded = calculateScrewForPerforatedTape(rafters);
-        int screwBoxes = calculateQuantityOfBoxes(screwsNeeded,material);
-
-        Bomline bomline = new Bomline("Skruer til hulbånd", material, screwBoxes);
+        Bomline bomline = new Bomline("Skruer til universalbeslag & hulbånd", material, screwBoxes);
         return bomline;
     }
 }

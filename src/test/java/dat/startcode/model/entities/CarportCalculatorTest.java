@@ -225,7 +225,7 @@ class CarportCalculatorTest
 
     @Test
     void calculateScrewForBracket() {
-        int screws = carportCalculator.calculateScrewForBracket(15, 15);
+        int screws = carportCalculator.calculateScrewForBracket(15);
         assertEquals(270, screws);
     }
 
@@ -284,24 +284,11 @@ class CarportCalculatorTest
     }
 
     @Test
-    void screwsForBrackets(){
-        Material material = new Material(1, "Skruer til universalbeslag", 5, "stk", 2);
+    void screwsForTapeAndBracket(){
+        Material material = new Material(1, "Skruer", 5, "pakke", 2, 250);
 
-        Bomline bomline = carportCalculator.screwsForBrackets(material, 15, 15);
-        assertEquals(270, bomline.getQuantity());
-    }
+        Bomline bomline = carportCalculator.screwsForTapeAndBracket(material, 15, 15);
+        assertEquals(2, bomline.getQuantity());
 
-    @Test
-    void screwsForPerforatedTape(){
-        Material material = new Material(1, "Skruer til universalbeslag", 5, "stk", 2);
-
-        Bomline bomline = carportCalculator.screwsForPerforatedTape(material, 15);
-        assertEquals(52, bomline.getQuantity());
-    }
-
-    @Test
-    void calculateScrewAmount(){
-        int screws = carportCalculator.calculateScrewAmount(270, 52);
-        assertEquals(322, screws);
     }
 }
