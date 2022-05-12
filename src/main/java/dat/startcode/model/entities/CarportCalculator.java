@@ -341,16 +341,18 @@ public class CarportCalculator {
     }
 
     public Bomline screwsForBrackets(Material material, int steelBracket){
-        int screws = calculateScrewForBracket(steelBracket);
+        int screwsNeeded = calculateScrewForBracket(steelBracket);
+        int screwsBoxes = calculateQuantityOfBoxes(screwsNeeded, material);
 
-        Bomline bomline = new Bomline("Skruer til montering af universalbeslag", material, screws);
+        Bomline bomline = new Bomline("Skruer til montering af universalbeslag", material, screwsBoxes);
         return bomline;
     }
 
     public Bomline screwsForPerforatedTape(Material material, int rafters){
-        int screws = calculateScrewForPerforatedTape(rafters);
+        int screwsNeeded = calculateScrewForPerforatedTape(rafters);
+        int screwBoxes = calculateQuantityOfBoxes(screwsNeeded,material);
 
-        Bomline bomline = new Bomline("Skruer til hulbånd", material, screws);
+        Bomline bomline = new Bomline("Skruer til hulbånd", material, screwBoxes);
         return bomline;
     }
 }
