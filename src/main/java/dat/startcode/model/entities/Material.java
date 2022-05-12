@@ -13,16 +13,20 @@ public class Material
    private String typeName;
    private int quantity;
 
-    public Material(int materialId, String name, int price, String unit, int length, int width, int height, int typeId, String typeName, int quantity) {
+    public Material(int materialId, String name, int price, String unit, int typeId) {
         this.materialId = materialId;
         this.name = name;
         this.price = price;
         this.unit = unit;
-        this.length = length;
-        this.width = width;
-        this.height = height;
         this.typeId = typeId;
-        this.typeName = typeName;
+    }
+
+    public Material(int materialId, String name, int price, String unit, int typeId, int quantity) {
+        this.materialId = materialId;
+        this.name = name;
+        this.price = price;
+        this.unit = unit;
+        this.typeId = typeId;
         this.quantity = quantity;
     }
 
