@@ -16,11 +16,12 @@ public class CarportCalculator
         return null;
     }
 
-    public int calculateQuantityOfBoxes(int amountToBeUsed,Material material) {
+    public int calculateQuantityOfBoxes(int amountNeeded, Material material) {
 
         int amount = 1;
 
-        while(amountToBeUsed < material.getQuantity() * amount) {
+        while(amountNeeded > material.getQuantity() * amount)
+        {
             amount++;
         }
         return amount;
@@ -101,7 +102,7 @@ public class CarportCalculator
     }
 
 
-    public Bomline calculateAmountOfBoxesOfBottomScrews(int quantity, Material material, int carportWidth, int carportLength) {
+    public Bomline calculateAmountOfBoxesOfBottomScrews(Material material, int carportWidth, int carportLength) {
 
         int screwsNeeded = calculateBottomScrewForRoof(carportWidth,carportLength);
         int boxesNeeded = calculateQuantityOfBoxes(screwsNeeded,material);
