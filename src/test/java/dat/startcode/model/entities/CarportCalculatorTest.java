@@ -298,4 +298,10 @@ class CarportCalculatorTest
         Bomline bomline = carportCalculator.screwsForPerforatedTape(material, 15);
         assertEquals(52, bomline.getQuantity());
     }
+
+    @Test
+    void calculateScrewAmount(){
+        int screws = carportCalculator.calculateScrewAmount(270, 52);
+        assertEquals(322, screws);
+    }
 }

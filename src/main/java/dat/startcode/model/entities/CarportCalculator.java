@@ -284,6 +284,15 @@ public class CarportCalculator {
          return screws;
     }
 
+    public int calculateScrewAmount(int bracketScrew, int tapeScrew){
+
+        int screws = 0;
+
+        screws = bracketScrew + tapeScrew;
+
+        return screws;
+    }
+
     public int calculateScrewForPerforatedTape(int rafters){
 
         int screws = 0;
