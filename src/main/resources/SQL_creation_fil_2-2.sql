@@ -81,24 +81,32 @@ DROP TABLE IF EXISTS `carport`.`carport_request` ;
 
 CREATE TABLE IF NOT EXISTS `carport`.`carport_request` (
   `carport_request_id` INT NOT NULL AUTO_INCREMENT,
-  `width` INT NOT NULL,
-  `length` INT NOT NULL,
+  `width` FLOAT NOT NULL,
+  `length` FLOAT NOT NULL,
   `roof` VARCHAR(45) NOT NULL,
   `roof_incline` INT NULL DEFAULT NULL,
-  `is_approved` TINYINT NOT NULL DEFAULT 0,
-  `shed_length` INT NULL,
-  `shed_width` INT NULL,
+  `is_approved` TINYINT NOT NULL DEFAULT '0',
+  `shed_length` FLOAT NULL DEFAULT NULL,
+  `shed_width` FLOAT NULL DEFAULT NULL,
   `customer_id` INT NOT NULL,
   PRIMARY KEY (`carport_request_id`),
   INDEX `fk_carport_request_customer1_idx` (`customer_id` ASC) VISIBLE,
   CONSTRAINT `fk_carport_request_customer1`
     FOREIGN KEY (`customer_id`)
-    REFERENCES `carport`.`customer` (`customer_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `carport`.`customer` (`customer_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
+INSERT INTO `carport`.`carport_request`
+(`width`,
+`length`,
+`roof`,
+`is_approved`,
+`shed_length`,
+`shed_width`,
+`customer_id`)
+VALUES
+(6, 7.8, 'Trapez', TRUE, 2.1, 6, 2 );
 
 -- -----------------------------------------------------
 -- Table `carport`.`description`
@@ -175,8 +183,8 @@ CREATE TABLE IF NOT EXISTS `carport`.`material` (
   `unit` VARCHAR(45) NOT NULL,
   `length` INT NULL,
   `type_id` INT NOT NULL,
-  `width` VARCHAR(45) NULL,
-  `height` VARCHAR(45) NULL,
+  `width` FLOAT NULL,
+  `height` INT NULL,
   `quantity` INT NULL DEFAULT '1', 
   PRIMARY KEY (`material_id`),
   INDEX `fk_material_material_type1_idx` (`type_id` ASC) VISIBLE,
@@ -211,7 +219,6 @@ VALUES
 ("trykimp. Bræt", 70, "Stk", 540, 1, 19, 100, 1),
 ("trykimp. Bræt", 55, "Stk", 360, 1, 19, 100, 1),
 ("Plastmo Ecolite blåtonet", 45, "Stk", 600, 2, 109, 16, 1),
-("Plastmo Ecolite blåtonet", 20, "Stk", 240, 2, 109, 16, 1),
 ("Plastmo Ecolite blåtonet", 30, "Stk", 360, 2, 109, 16, 1);
 
 INSERT INTO `carport`.`material`
@@ -221,9 +228,7 @@ INSERT INTO `carport`.`material`
 `type_id`,
 `quantity`)
 VALUES
-('universal 190 mm højre', 5, 'Stk', 3, 1),
-('universal 190 mm venstre', 5, 'Stk', 3, 1),
-('Vinkelbeslag 35', 5, 'Stk', 3, 1);
+('Plastmo bundskruer', 10, 'Pakke', 4, 200);
 
 INSERT INTO `carport`.`material`
 (`name`,
@@ -243,7 +248,9 @@ INSERT INTO `carport`.`material`
 `type_id`,
 `quantity`)
 VALUES
-('Plastmo bundskruer', 10, 'Pakke', 4, 200);
+('universal 190 mm højre', 5, 'Stk', 3, 1),
+('universal 190 mm venstre', 5, 'Stk', 3, 1),
+('Vinkelbeslag 35', 5, 'Stk', 3, 1);
 
 INSERT INTO `carport`.`material`
 (`name`,
@@ -254,11 +261,33 @@ INSERT INTO `carport`.`material`
 `width`,
 `height`)
 VALUES
-('Skruer', 10, 'Pakke', 4, 200, 5, 60),
+('Skruer', 10, 'Pakke', 4, 200, 4.5, 60),
 ('Beslagskruer', 10, 'Pakke', 4, 250, 4, 50),
-('Skruer', 10, 'Pakke', 4, 400, 5, 70),
-('Bræddebolt', 7, 'Stk', 4, 1, 10, 120),
-('Skruer', 10, 'Pakke', 4, 300, 5, 50);
+('Bræddebolt', 7, 'Stk', 4, 1, 10, 120);
+
+INSERT INTO `carport`.`material`
+(`name`,
+`price`,
+`unit`,
+`length`,
+`type_id`,
+`width`,
+`height`,
+`quantity`)
+VALUES
+("Firkantskiver", 4, "Stk", 40, 4, 11, 40, 1);
+
+INSERT INTO `carport`.`material`
+(`name`,
+`price`,
+`unit`,
+`type_id`,
+`quantity`,
+`width`,
+`height`)
+VALUES
+('Skruer', 10, 'Pakke', 4, 400, 4.5, 70),
+('Skruer', 10, 'Pakke', 4, 300, 4.5, 50);
 
 INSERT INTO `carport`.`material`
 (`name`,
@@ -293,6 +322,14 @@ INSERT INTO `carport`.`material`
 VALUES
 ('T hængsel', 30, 1, 3, 390, 1);
 
+INSERT INTO `carport`.`material`
+(`name`,
+`price`,
+`unit`,
+`type_id`,
+`quantity`)
+VALUES
+('Vinkelbeslag 35', 5, 'Stk', 3, 1);
 
 -- -----------------------------------------------------
 -- Table `carport`.`order`
@@ -316,7 +353,7 @@ INSERT INTO `carport`.`order`
 (`customer_id`,
 `date`)
 VALUES
-(1, '2022-02-20 00:00:00'),
+(2, '2022-02-20 00:00:00'),
 (2, '2022-04-11 08:50:27');
 
 -- -----------------------------------------------------
@@ -337,6 +374,11 @@ CREATE TABLE IF NOT EXISTS `carport`.`bill_of_materials` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
+INSERT INTO `carport`.`bill_of_materials`
+(`order_id`)
+VALUES
+(1),
+(1);
 
 -- -----------------------------------------------------
 -- Table `carport`.`shed`
@@ -356,6 +398,71 @@ CREATE TABLE IF NOT EXISTS `carport`.`shed` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
+INSERT INTO `carport`.`shed`
+(`bom_id`)
+VALUES
+(2);
+
+-- -----------------------------------------------------
+-- Table `carport`.`bomline`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `carport`.`bomline` (
+  `bomline_id` INT NOT NULL AUTO_INCREMENT,
+  `bom_id` INT NOT NULL,
+  `quantity` INT NOT NULL,
+  `description_id` INT NOT NULL,
+  `material_id` INT NOT NULL,
+  PRIMARY KEY (`bomline_id`),
+  INDEX `fk_bomline_description1_idx` (`description_id` ASC) VISIBLE,
+  INDEX `fk_bomline_bill_of_materials1_idx` (`bom_id` ASC) VISIBLE,
+  INDEX `fk_bomline_material1_idx` (`material_id` ASC) VISIBLE,
+  CONSTRAINT `fk_bomline_bill_of_materials1`
+    FOREIGN KEY (`bom_id`)
+    REFERENCES `carport`.`bill_of_materials` (`bom_id`),
+  CONSTRAINT `fk_bomline_description1`
+    FOREIGN KEY (`description_id`)
+    REFERENCES `carport`.`description` (`description_id`),
+  CONSTRAINT `fk_bomline_material1`
+    FOREIGN KEY (`material_id`)
+    REFERENCES `carport`.`material` (`material_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+INSERT INTO `carport`.`bomline`
+(`bom_id`,
+`quantity`,
+`description_id`,
+`material_id`)
+VALUES
+(1, 4, 1, 1),
+(1, 4, 2, 2),
+(1, 2, 3, 3),
+(1, 4, 4, 4),
+(2, 1, 5, 5),
+(2, 12, 6, 6),
+(2, 4, 7, 7),
+(1, 2, 8, 8),
+(1, 1, 9, 9),
+(1, 15, 10, 10),
+(1, 11, 11, 11),
+(2, 200, 12, 12),
+(1, 4, 13, 13),
+(1, 2, 14, 14),
+(1, 6, 15, 15),
+(1, 6, 15, 16),
+(1, 3, 16, 17),
+(1, 2, 17, 18),
+(1, 15, 18, 19),
+(1, 15, 18, 20),
+(1, 1, 19, 21),
+(1, 3, 20, 22),
+(1, 18, 21, 23),
+(1, 12, 21, 24),
+(2, 2, 22, 25),
+(2, 2, 23, 26),
+(2, 1, 24, 27),
+(2, 1, 25, 28),
+(2, 32, 26, 29);
 
 -- -----------------------------------------------------
 -- Table `carport`.`carport`
@@ -374,38 +481,11 @@ CREATE TABLE IF NOT EXISTS `carport`.`carport` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO `carport`.`carport`
+(`bom_id`)
+VALUES
+(1);
 
--- -----------------------------------------------------
--- Table `carport`.`bomline`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `carport`.`bomline` ;
-
-CREATE TABLE IF NOT EXISTS `carport`.`bomline` (
-  `bomline_id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `description_id` INT NOT NULL,
-  `bom_id` INT NOT NULL,
-  `material_id` INT NOT NULL,
-  PRIMARY KEY (`bomline_id`),
-  INDEX `fk_bomline_description1_idx` (`description_id` ASC) VISIBLE,
-  INDEX `fk_bomline_bill_of_materials1_idx` (`bom_id` ASC) VISIBLE,
-  INDEX `fk_bomline_material1_idx` (`material_id` ASC) VISIBLE,
-  CONSTRAINT `fk_bomline_description1`
-    FOREIGN KEY (`description_id`)
-    REFERENCES `carport`.`description` (`description_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_bomline_bill_of_materials1`
-    FOREIGN KEY (`bom_id`)
-    REFERENCES `carport`.`bill_of_materials` (`bom_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_bomline_material1`
-    FOREIGN KEY (`material_id`)
-    REFERENCES `carport`.`material` (`material_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
 
 CREATE 
     ALGORITHM = UNDEFINED 
@@ -418,6 +498,7 @@ VIEW `material_view` AS
         `m`.`name` AS `material_name`,
         `m`.`price` AS `price`,
         `m`.`unit` AS `unit`,
+        `m`.`quantity` AS `quantity`,
         `m`.`length` AS `length`,
          `m`.`width` AS `width`,
           `m`.`height` AS `height`,
@@ -425,6 +506,31 @@ VIEW `material_view` AS
     FROM
         (`material` `m`
         JOIN `material_type` `mt` ON ((`m`.`type_id` = `mt`.`type_id`)));
+        
+        CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `bomlines_with_materialname_and_description` AS
+    SELECT 
+        `b`.`bom_id` AS `bom_id`,
+        `b`.`bomline_id` AS `bomline_id`,
+        `m`.`name` AS `name`,
+        `m`.`length` AS `length`,
+        `b`.`quantity` AS `quantity`,
+        `m`.`unit` AS `unit`,
+        `d`.`description` AS `description`,
+        `m`.`material_id` AS `material_id`,
+        `m`.`price` AS `price`,
+        `m`.`type_id` AS `type_id`,
+        `m`.`width` AS `width`,
+        `m`.`height` AS `height`,
+        `m`.`quantity` AS `m_quantity`
+    FROM
+        ((`bomline` `b`
+        JOIN `material` `m` ON ((`b`.`material_id` = `m`.`material_id`)))
+        JOIN `description` `d` ON ((`b`.`description_id` = `d`.`description_id`)))
+    ORDER BY `b`.`bom_id`;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
@@ -457,6 +563,7 @@ VIEW `material_view` AS
         `m`.`name` AS `material_name`,
         `m`.`price` AS `price`,
         `m`.`unit` AS `unit`,
+        `m`.`quantity` AS `quantity`,
         `m`.`length` AS `length`,
          `m`.`width` AS `width`,
           `m`.`height` AS `height`,
@@ -464,3 +571,28 @@ VIEW `material_view` AS
     FROM
         (`material` `m`
         JOIN `material_type` `mt` ON ((`m`.`type_id` = `mt`.`type_id`)));
+        
+        CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `bomlines_with_materialname_and_description` AS
+    SELECT 
+        `b`.`bom_id` AS `bom_id`,
+        `b`.`bomline_id` AS `bomline_id`,
+        `m`.`name` AS `name`,
+        `m`.`length` AS `length`,
+        `b`.`quantity` AS `quantity`,
+        `m`.`unit` AS `unit`,
+        `d`.`description` AS `description`,
+        `m`.`material_id` AS `material_id`,
+        `m`.`price` AS `price`,
+        `m`.`type_id` AS `type_id`,
+        `m`.`width` AS `width`,
+        `m`.`height` AS `height`,
+        `m`.`quantity` AS `m_quantity`
+    FROM
+        ((`bomline` `b`
+        JOIN `material` `m` ON ((`b`.`material_id` = `m`.`material_id`)))
+        JOIN `description` `d` ON ((`b`.`description_id` = `d`.`description_id`)))
+    ORDER BY `b`.`bom_id`;
