@@ -16,6 +16,14 @@ public class Bomline {
         this.bomId = bomId;
     }
 
+    public Bomline(int bomlineId, int bomId, int quantity, int descriptionId, int materialId) {
+        this.bomlineId = bomlineId;
+        this.descriptionId = descriptionId;
+        this.materialId = materialId;
+        this.quantity = quantity;
+        this.bomId = bomId;
+    }
+
     public Bomline(int descriptionId, Material material, int quantity, int bomId) {
         this.descriptionId = descriptionId;
         this.material = material;
