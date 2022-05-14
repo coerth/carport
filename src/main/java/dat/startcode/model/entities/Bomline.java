@@ -1,30 +1,40 @@
 package dat.startcode.model.entities;
 
 public class Bomline {
-    String description;
+
+    int descriptionId;
     Material material;
     int quantity;
     int bomId;
+    int bomlineId;
+    int materialId;
 
-    public Bomline(String description, Material material, int quantity, int bomId) {
-        this.description = description;
+    public Bomline(int bomId, int quantity, int descriptionId, int materialId) {
+        this.descriptionId = descriptionId;
+        this.materialId = materialId;
+        this.quantity = quantity;
+        this.bomId = bomId;
+    }
+
+    public Bomline(int descriptionId, Material material, int quantity, int bomId) {
+        this.descriptionId = descriptionId;
         this.material = material;
         this.quantity = quantity;
         this.bomId = bomId;
     }
 
-    public Bomline(String description, Material material, int quantity) {
-        this.description = description;
+    public Bomline(int descriptionId, Material material, int quantity) {
+        this.descriptionId = descriptionId;
         this.material = material;
         this.quantity = quantity;
     }
 
-    public String getDescription() {
-        return description;
+    public int getDescriptionId() {
+        return descriptionId;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescriptionId(int descriptionId) {
+        this.descriptionId = descriptionId;
     }
 
     public Material getMaterial() {
@@ -49,5 +59,17 @@ public class Bomline {
 
     public void setBomId(int bomId) {
         this.bomId = bomId;
+    }
+
+    public int getBomlineId() {
+        return bomlineId;
+    }
+
+    public void setBomlineId(int bomlineId) {
+        this.bomlineId = bomlineId;
+    }
+
+    public int getMaterialId() {
+        return materialId;
     }
 }
