@@ -27,11 +27,12 @@ public class BomlineMapper implements IBomlineMapper{
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
+                    int bomlineId = rs.getInt("bomline_id");
                     int bomId = rs.getInt("bom_id");
                     int quantity = rs.getInt("quantity");
                     int descriptionId = rs.getInt("description_id");
                     int materialId = rs.getInt("material_id");
-                    Bomline newBomline = new Bomline(bomId, quantity, descriptionId, materialId);
+                    Bomline newBomline = new Bomline(bomlineId, bomId, quantity, descriptionId, materialId);
                     bomlineArrayList.add(newBomline);
                 }
             }
@@ -59,7 +60,7 @@ public class BomlineMapper implements IBomlineMapper{
                     int descriptionId = rs.getInt("description_id");
                     int materialId = rs.getInt("material_id");
 
-                    bomline = new Bomline(bomId, quantity, descriptionId, materialId);
+                    bomline = new Bomline(bomlineId, bomId, quantity, descriptionId, materialId);
                     return  bomline;
                 }
             }

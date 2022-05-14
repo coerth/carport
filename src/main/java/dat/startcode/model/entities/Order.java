@@ -4,22 +4,30 @@ import java.time.LocalDateTime;
 
 public class Order {
 
-    int customer_id;
+    int orderId;
+    int customerId;
     LocalDateTime dateTime;
     int price;
 
-    public Order(int customer_id, LocalDateTime dateTime, int price) {
-        this.customer_id = customer_id;
+    public Order(int orderId, int customerId, LocalDateTime dateTime, int price) {
+        this.orderId = orderId;
+        this.customerId = customerId;
         this.dateTime = dateTime;
         this.price = price;
     }
 
-    public int getCustomer_id() {
-        return customer_id;
+    public Order(int customerId, LocalDateTime dateTime, int price) {
+        this.customerId = customerId;
+        this.dateTime = dateTime;
+        this.price = price;
     }
 
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public LocalDateTime getDateTime() {
