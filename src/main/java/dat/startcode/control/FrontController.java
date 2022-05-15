@@ -6,6 +6,8 @@
 package dat.startcode.control;
 
 import dat.startcode.model.config.ApplicationStart;
+import dat.startcode.model.entities.Bomline;
+import dat.startcode.model.entities.CarportCalculator;
 import dat.startcode.model.entities.Material;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.services.MaterialFacade;
@@ -32,6 +34,12 @@ public class  FrontController extends HttpServlet {
         ArrayList<Material> materialArrayList;
         materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
         System.out.println(materialArrayList);
+
+        CarportCalculator carportCalculator = new CarportCalculator(materialArrayList);
+
+        ArrayList<Bomline> bomlineArrayList = carportCalculator.createCarportNoShed(780, 600);
+
+        System.out.println(bomlineArrayList);
 
         getServletContext().setAttribute("materialArrayList", materialArrayList);
     }

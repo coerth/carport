@@ -80,4 +80,16 @@ public class Bomline {
     public int getMaterialId() {
         return materialId;
     }
+
+    @Override
+    public String toString() {
+        return "Bomline{" +
+                "descriptionId=" + descriptionId +
+                ", material=" + material +
+                ", quantity=" + quantity +
+                ", bomId=" + bomId +
+                ", bomlineId=" + bomlineId +
+                ", materialId=" + materialId +
+                '}'+"\n";
+    }
 }

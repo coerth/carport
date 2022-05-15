@@ -211,7 +211,7 @@ VALUES
 ("trykimp. Bræt", 50, "Stk", 360, 1, 25, 200, 1),
 ("trykimp. Bræt", 70, "Stk", 540, 1, 25, 200, 1),
 ("trykimp. Bræt", 40, "Stk", 360, 1, 25, 125, 1),
-("trykimp. Bræt", 50, "Stk", 540, 1, 25, 200, 1),
+("trykimp. Bræt", 50, "Stk", 540, 1, 25, 125, 1),
 ("Lægte ubh.", 20, "Stk", 420, 1, 38, 73, 1),
 ("Reglar ubh.", 45, "Stk", 270, 1, 45, 95, 1),
 ("Reglar ubh.", 40, "Stk", 240, 1, 45, 95, 1),
@@ -219,8 +219,8 @@ VALUES
 ("Spærtræ ubh.", 80, "Stk", 480, 1, 45, 195, 1),
 ("Trykimp. Stolpe", 200, "Stk", 300, 1, 97, 97, 1),
 ("trykimp. Bræt", 45, "Stk", 210, 1, 19, 100, 1),
-("trykimp. Bræt", 70, "Stk", 540, 1, 19, 100, 1),
 ("trykimp. Bræt", 55, "Stk", 360, 1, 19, 100, 1),
+("trykimp. Bræt", 70, "Stk", 540, 1, 19, 100, 1),
 ("Plastmo Ecolite blåtonet", 45, "Stk", 600, 2, 109, 16, 1),
 ("Plastmo Ecolite blåtonet", 30, "Stk", 360, 2, 109, 16, 1);
 

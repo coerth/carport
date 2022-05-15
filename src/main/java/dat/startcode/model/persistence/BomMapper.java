@@ -8,11 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BomlineMapper implements IBomlineMapper{
+public class BomMapper implements IBomMapper {
 
     ConnectionPool connectionPool;
 
-    public BomlineMapper(ConnectionPool connectionPool){
+    public BomMapper(ConnectionPool connectionPool){
         this.connectionPool = connectionPool;
     }
 
@@ -44,13 +44,44 @@ public class BomlineMapper implements IBomlineMapper{
     }
 
     @Override
+    public ArrayList<Bomline> getAllBomlinesWithSpecificBOMId(int bomId) {
+
+        ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
+
+        String sql = "SELECT * FROM bomline WHERE bom_id = ?";
+        Bomline bomline = null;
+
+        try (Connection connection = connectionPool.getConnection()){
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, bomId);
+
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int bomlineId = rs.getInt("bomline_id");
+                    int quantity = rs.getInt("quantity");
+                    int descriptionId = rs.getInt("description_id");
+                    int materialId = rs.getInt("material_id");
+                    Bomline newBomline = new Bomline(bomlineId, bomId, quantity, descriptionId, materialId);
+                    bomlineArrayList.add(newBomline);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return bomlineArrayList;
+    }
+
+    @Override
     public Bomline getSpecificBomline(int bomlineId) {
 
         String sql = "SELECT * FROM bomline WHERE bomline_id = ?";
         Bomline bomline = null;
 
         try (Connection connection = connectionPool.getConnection()){
-            try ( PreparedStatement ps = connection.prepareStatement(sql)){
+            try ( PreparedStatement ps = connection.prepareStatement(sql))
+            {
                 ps.setInt(1, bomlineId);
 
                 ResultSet rs = ps.executeQuery();
@@ -94,4 +125,52 @@ public class BomlineMapper implements IBomlineMapper{
         }
         return false;
     }
+
+    @Override
+    public int createBom(int orderId) {
+        String sql = "INSERT INTO bill_of_materials (order_id) VALUES (?)";
+
+        int returnedBomId = -1;
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+                ps.setInt(1, orderId);
+
+                int rowsAffected = ps.executeUpdate();
+
+                ResultSet rs = ps.getGeneratedKeys();
+
+                if (rowsAffected == 1)
+                {
+                    rs.next();
+                    returnedBomId = rs.getInt("1");
+                }
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return returnedBomId;
+    }
+
+    @Override
+    public boolean createCompleteBillOfMaterials(ArrayList<Bomline> bomlineArrayList, int orderId) {
+        int bomId = createBom(orderId);
+        boolean returnedBoolean = false;
+
+
+        for(Bomline bomline : bomlineArrayList)
+        {
+            returnedBoolean = createBomline(bomId, bomline.getQuantity(), bomline.getDescriptionId(), bomline.getMaterialId());
+            if(!returnedBoolean)
+            {
+                break;
+            }
+        }
+
+        return returnedBoolean;
+    }
+
+
 }

@@ -7,12 +7,16 @@ public class Order {
     int orderId;
     int customerId;
     LocalDateTime dateTime;
+    int carportType;
+    int carportRequestId;
     int price;
 
-    public Order(int orderId, int customerId, LocalDateTime dateTime, int price) {
+    public Order(int orderId, int customerId, LocalDateTime dateTime, int carportType, int carportRequestId, int price) {
         this.orderId = orderId;
         this.customerId = customerId;
         this.dateTime = dateTime;
+        this.carportType = carportType;
+        this.carportRequestId = carportRequestId;
         this.price = price;
     }
 
@@ -44,5 +48,17 @@ public class Order {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public int getCarportType() {
+        return carportType;
+    }
+
+    public int getCarportRequestId() {
+        return carportRequestId;
     }
 }

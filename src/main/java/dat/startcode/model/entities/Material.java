@@ -21,7 +21,7 @@ public class Material
         this.typeId = typeId;
     }
 
-    public Material(int materialId, String name, int price, String unit, int length, int width, int height, int typeId, String typeName) {
+    public Material(int materialId, String name, int price, String unit, int length, int width, int height, int quantity, int typeId, String typeName) {
         this.materialId = materialId;
         this.name = name;
         this.price = price;
@@ -31,9 +31,10 @@ public class Material
         this.height = height;
         this.typeId = typeId;
         this.typeName = typeName;
+        this.quantity = quantity;
     }
 
-    public Material(int materialId, String name, int price, String unit, int length, int width, int height, int typeId) {
+    public Material(int materialId, String name, int price, String unit, int length, int width, int height, int quantity, int typeId) {
         this.materialId = materialId;
         this.name = name;
         this.price = price;
@@ -42,6 +43,7 @@ public class Material
         this.width = width;
         this.height = height;
         this.typeId = typeId;
+        this.quantity = quantity;
     }
 
     public int getQuantity() {
@@ -96,6 +98,7 @@ public class Material
     public int getHeight() {
         return height;
     }
+
 
 
     @Override

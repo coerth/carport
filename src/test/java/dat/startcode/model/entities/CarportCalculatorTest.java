@@ -1,5 +1,7 @@
 package dat.startcode.model.entities;
 
+import dat.startcode.model.config.ApplicationStart;
+import dat.startcode.model.services.MaterialFacade;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +13,8 @@ class CarportCalculatorTest
 
 {
 
-    CarportCalculator carportCalculator = new CarportCalculator();
-    Material material = new Material(1,"Tagplade", 5,"styk",600,109,1,1);
+    CarportCalculator carportCalculator = new CarportCalculator(MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool()));
+    Material material = new Material(1,"Tagplade", 5,"styk",600,109,1,1,2);
     ArrayList<Material> materialArrayList = new ArrayList<>();
 
 
@@ -22,17 +24,26 @@ class CarportCalculatorTest
         ArrayList<Material> roofPlateArrayList = new ArrayList<>();
         materialArrayList.clear();
         roofPlateArrayList.add(material);
-        roofPlateArrayList.add(new Material(1,"Tagplade", 5,"styk",360,109,1,1));
-        roofPlateArrayList.add(new Material(1,"Tagplade", 5,"styk",240,109,1,1));
+        roofPlateArrayList.add(new Material(1,"Tagplade", 5,"styk",360,109,1,1,2));
+        roofPlateArrayList.add(new Material(1,"Tagplade", 5,"styk",240,109,1,1,2));
 
     }
+
+    @Test
+    void createCarportNoShed()
+    {
+        ArrayList<Bomline> bomlineArrayList = carportCalculator.createCarportNoShed(780, 600);
+
+        System.out.println(bomlineArrayList);
+    }
+
 
     @Test
     void CalculateRoofPlatesTest()
     {
     ArrayList<Material> listOfRoofPlates = new ArrayList<>();
     listOfRoofPlates.add(material);
-    listOfRoofPlates.add(new Material(2,"tagplade", 10,"styk",360,109,1,1));
+    listOfRoofPlates.add(new Material(2,"tagplade", 10,"styk",360,109,1,1,2));
     ArrayList <Bomline> newBomLineArrayList = carportCalculator.calculateRoofPlates(900,600,listOfRoofPlates);
     assertEquals(2,newBomLineArrayList.size());
     }
@@ -98,8 +109,8 @@ class CarportCalculatorTest
     void calculateMaterialLengthTest()
     {
 
-        materialArrayList.add(new Material(1,"Tagplade", 5,"styk",240,109,1,1));
-        materialArrayList.add(new Material(1,"Tagplade", 5,"styk",360,109,1,1));
+        materialArrayList.add(new Material(1,"Tagplade", 5,"styk",240,109,1,1,2));
+        materialArrayList.add(new Material(1,"Tagplade", 5,"styk",360,109,1,1,2));
         materialArrayList.add(material);
 
 
@@ -147,8 +158,8 @@ class CarportCalculatorTest
     void calculateFrontAndBackSternTest()
     {
         ArrayList<Material> sternArrayList = new ArrayList<>();
-        sternArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 360, 25, 125, 1));
-        sternArrayList.add(new Material(2,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1));
+        sternArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 360, 25, 125, 1,1));
+        sternArrayList.add(new Material(2,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1,1));
 
         ArrayList<Bomline> bomlineArrayList = carportCalculator.calculateFrontAndBackStern(sternArrayList, 900);
         assertEquals(2, bomlineArrayList.size());
@@ -164,8 +175,8 @@ class CarportCalculatorTest
     void  calculateSideSternTest()
     {
         ArrayList<Material> sternArrayList = new ArrayList<>();
-        sternArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 360, 25, 125, 1));
-        sternArrayList.add(new Material(2,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1));
+        sternArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 360, 25, 125, 1,1));
+        sternArrayList.add(new Material(2,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1,1));
 
         ArrayList<Bomline> bomlineArrayList = carportCalculator.calculateSideStern(sternArrayList, 900);
         assertEquals(2, bomlineArrayList.size());
@@ -180,8 +191,8 @@ class CarportCalculatorTest
     void calculateWeatherBoardForFrontAndBackTest()
     {
         ArrayList<Material> weatherboardArrayList = new ArrayList<>();
-        weatherboardArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 360, 25, 125, 1));
-        weatherboardArrayList.add(new Material(2,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1));
+        weatherboardArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 360, 25, 125, 1,1));
+        weatherboardArrayList.add(new Material(2,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1,1));
 
         ArrayList<Bomline> bomlineArrayList = carportCalculator.calculateWeatherBoardForFrontAndBack(weatherboardArrayList, 900);
         assertEquals(2, bomlineArrayList.size());
@@ -198,8 +209,8 @@ class CarportCalculatorTest
     void  calculateWeatherBoardForSideTest()
     {
         ArrayList<Material> sternArrayList = new ArrayList<>();
-        sternArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 360, 25, 125, 1));
-        sternArrayList.add(new Material(2,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1));
+        sternArrayList.add(new Material(1,"25x125mm. trykimp. Brædt ", 50, "stk", 360, 25, 125, 1,1));
+        sternArrayList.add(new Material(2,"25x125mm. trykimp. Brædt ", 50, "stk", 560, 25, 125, 1,1));
 
         ArrayList<Bomline> bomlineArrayList = carportCalculator.calculateWeatherBoardForSide(sternArrayList, 900);
         assertEquals(2, bomlineArrayList.size());

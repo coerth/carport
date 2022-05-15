@@ -25,9 +25,10 @@ public class ModifyMaterial extends Command
         int length = Integer.parseInt(request.getParameter("length"));
         int width = Integer.parseInt(request.getParameter("width"));
         int height = Integer.parseInt(request.getParameter("height"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
         int typeId = Integer.parseInt(request.getParameter("typeId"));
 
-         if(MaterialFacade.updateMaterial(new Material(materialId, name, price, unit, length, width, height, typeId), ApplicationStart.getConnectionPool()))
+         if(MaterialFacade.updateMaterial(new Material(materialId, name, price, unit, length, width, height, quantity, typeId), ApplicationStart.getConnectionPool()))
          {
             ArrayList<Material> materialArrayList = new ArrayList<>();
 

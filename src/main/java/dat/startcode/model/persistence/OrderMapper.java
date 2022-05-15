@@ -30,8 +30,10 @@ public class OrderMapper implements IOrderMapper{
                     int customerId = rs.getInt("customer_id");
                     Timestamp timeStamp = rs.getTimestamp("date");
                     LocalDateTime date = timeStamp.toLocalDateTime();
+                    int carportType = rs.getInt("carport_type");
                     int price = rs.getInt("price");
-                    Order newOrder = new Order(orderId, customerId, date, price);
+                    int carportRequestId = rs.getInt("carport_request_id");
+                    Order newOrder = new Order(orderId, customerId, date,carportType, price, carportRequestId);
                     orderList.add(newOrder);
                 }
             }
@@ -57,9 +59,11 @@ public class OrderMapper implements IOrderMapper{
                     int customerId = rs.getInt("customer_id");
                     Timestamp timeStamp = rs.getTimestamp("date");
                     LocalDateTime date = timeStamp.toLocalDateTime();
+                    int carportType = rs.getInt("carport_type");
                     int price = rs.getInt("price");
+                    int carportRequestId = rs.getInt("carport_request_id");
 
-                    order = new Order(orderId, customerId, date, price);
+                    order = new Order(orderId, customerId, date,carportType, price, carportRequestId);
 
                     return  order;
                 }
@@ -71,16 +75,17 @@ public class OrderMapper implements IOrderMapper{
     }
 
     @Override
-    public boolean createOrder(int customerId, LocalDateTime dateTime, int price) {
+    public boolean createOrder(int customerId, LocalDateTime dateTime, int carportType, int carportRequestId) {
 
-        String sql = "INSERT INTO order (customer_id, date, price) VALUES (?,?,?)";
+        String sql = "INSERT INTO order (customer_id, date, carport_type, carport_request_id) VALUES (?,?,?,?,?)";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
                 ps.setInt(1, customerId);
                 ps.setTimestamp(2, Timestamp.valueOf(dateTime));
-                ps.setInt(3, price);
+                ps.setInt(3, carportType);
+                ps.setInt(4, carportRequestId);
                 int rowsAffected = ps.executeUpdate();
 
                 if (rowsAffected == 1) {
