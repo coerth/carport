@@ -98,4 +98,11 @@ public class CarportRequest {
         this.shedLength = shedLength;
         this.customerId = customerId;
     }
+
+    public CarportRequest(int width, int length, String roofType, int customerId) {
+        this.width = width;
+        this.length = length;
+        this.roofType = roofType;
+        this.customerId = customerId;
+    }
 }

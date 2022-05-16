@@ -47,6 +47,34 @@ public class CustomCarportMapper implements ICustomCarportMapper {
         }return carportRequest;
     }
 
+    @Override
+    public CarportRequest getSpecificRequest(int carportRequestId) {
+
+        String sql = "SELECT * FROM carport_request WHERE carport_request_id = ?";
+        CarportRequest carportRequest = null;
+
+        try( Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+                ps.setInt(1, carportRequestId);
+
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()){
+                    int width = rs.getInt("width");
+                    int length = rs.getInt("length");
+                    String roof = rs.getString("roof");
+                    int customerId = rs.getInt("customer_id");
+
+                    carportRequest = new CarportRequest(width, length, roof, customerId);
+                    return carportRequest;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return carportRequest;
+    }
+
 
 }
 
