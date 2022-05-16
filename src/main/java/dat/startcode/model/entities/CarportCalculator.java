@@ -73,7 +73,7 @@ public class CarportCalculator
             int amount = calculateAmountOfRoofPlatesForWidth(primaryRoofPlate, carportWidth);
             bomLineArrayList.add(new Bomline(15, primaryRoofPlate, amount));
         } else {
-            primaryRoofPlate = new Material(1, "tagplade", 110, "stk", 600, 109, 1, 1, 2);
+            primaryRoofPlate = listOfRoofPlates.get(0);
             Material secondaryRoofPlate = null;
             for (Material m : listOfRoofPlates) {
                 if (primaryRoofPlate.getLength() + m.getLength() > carportLength) {
