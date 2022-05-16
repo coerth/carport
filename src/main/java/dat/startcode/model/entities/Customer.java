@@ -8,17 +8,17 @@ public class Customer extends Account {
     private String city;
     private int zip;
     private int mobile;
-    private int accountId;
+
 
     public Customer(String email, String password, int role, int customerId, String name, String address, String city, int zip, int mobile, int accountId) {
-        super(email, password, role);
+        super(email, password, role, accountId);
         this.customerId = customerId;
         this.name = name;
         this.address = address;
         this.city = city;
         this.zip = zip;
         this.mobile = mobile;
-        this.accountId = accountId;
+
     }
 
     public int getCustomerId() {
@@ -65,11 +65,15 @@ public class Customer extends Account {
         this.mobile = mobile;
     }
 
-    public int getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
+    @Override
+    public String toString() {
+        return super.toString() + "Customer{" +
+                "customerId=" + customerId +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", zip=" + zip +
+                ", mobile=" + mobile +
+                '}';
     }
 }

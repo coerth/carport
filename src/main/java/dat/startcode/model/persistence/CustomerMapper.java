@@ -1,5 +1,6 @@
 package dat.startcode.model.persistence;
 
+import dat.startcode.model.entities.Account;
 import dat.startcode.model.entities.Customer;
 import dat.startcode.model.exceptions.DatabaseException;
 
@@ -84,5 +85,37 @@ public class CustomerMapper implements ICustomerMapper
         return customerId;
     }
 
+    @Override
+    public Customer customerAccount(Account account) throws DatabaseException{
+
+        Logger.getLogger("web").log(Level.INFO, "");
+        String sql = "SELECT * FROM customer WHERE account_id = ?";
+
+        Customer customer = null;
+
+        try (Connection connection = connectionPool.getConnection()) {
+
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, account.getAccountId());
+                ResultSet rs = ps.executeQuery();
+                if(rs.next()){
+                    int customerId = rs.getInt("customer_id");
+                    String name = rs.getString("name");
+                    String address = rs.getString("address");
+                    String city = rs.getString("city");
+                    int zip = rs.getInt("zip");
+                    int mobile = rs.getInt("mobile");
+
+                    customer = new Customer(account.getEmail(), account.getPassword(),account.getRole(), customerId, name, address, city, zip, mobile, account.getAccountId());
+                    return customer;
+                }
+
+            }
+        } catch (SQLException ex){
+            throw new DatabaseException(ex, "Kunne ikke finde customer:id");
+        }
+
+        return customer;
+    }
 
 }

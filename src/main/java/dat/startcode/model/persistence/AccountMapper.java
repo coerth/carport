@@ -34,11 +34,13 @@ public class AccountMapper implements IAccountMapper{
                 {
                     ps.setString(1, email);
                     ps.setString(2, password);
+
                     ResultSet rs = ps.executeQuery();
                     if (rs.next())
                     {
                         int role = rs.getInt("role");
-                        account = new Account(email, password, role);
+                        int accountId = rs.getInt("account_id");
+                        account = new Account(email, password, role, accountId);
                     } else
                     {
                         throw new DatabaseException("Wrong username or password");

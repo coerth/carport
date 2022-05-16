@@ -30,16 +30,27 @@ CREATE TABLE IF NOT EXISTS `carport`.`account` (
   `role` INT NULL DEFAULT '2',
   PRIMARY KEY (`account_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb3;
 
-INSERT INTO `carport`.`account`
-(`email`,
-`password`,
-`role`)
-VALUES
-('admin@fog.dk', 1234, 1),
-('test@test.dk', 1234, 2),
-('a@a.dk', 1234, 2);
+
+-- -----------------------------------------------------
+-- Table `carport`.`carport_request`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `carport`.`carport_request` ;
+
+CREATE TABLE IF NOT EXISTS `carport`.`carport_request` (
+  `carport_request_id` INT NOT NULL AUTO_INCREMENT,
+  `width` INT NOT NULL,
+  `height` INT NOT NULL,
+  `roof` VARCHAR(45) NOT NULL,
+  `roof_incline` INT NULL DEFAULT NULL,
+  `is_approved` TINYINT NOT NULL DEFAULT 0,
+  `shed_length` INT NULL,
+  `shed_width` INT NULL,
+  PRIMARY KEY (`carport_request_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
 
 
 -- -----------------------------------------------------
@@ -55,48 +66,20 @@ CREATE TABLE IF NOT EXISTS `carport`.`customer` (
   `zip` INT NOT NULL,
   `mobile` INT NOT NULL,
   `account_id` INT NOT NULL,
+  `carport_request_id` INT NOT NULL,
   PRIMARY KEY (`customer_id`),
   INDEX `fk_customer_user1_idx` (`account_id` ASC) VISIBLE,
+  INDEX `fk_customer_carport_request1_idx` (`carport_request_id` ASC) VISIBLE,
   CONSTRAINT `fk_customer_user1`
     FOREIGN KEY (`account_id`)
-    REFERENCES `carport`.`account` (`account_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
-
-INSERT INTO `carport`.`customer`
-(`name`,
-`address`,
-`city`,
-`zip`,
-`mobile`,
-`account_id`)
-VALUES
-('test testington', 'balladegade 42', 'Bagsværd', 2880, 12345678, 2),
-('allan albertson', 'Bygade 20', 'Søborg', 2860, 87654321, 3);
-
--- -----------------------------------------------------
--- Table `carport`.`carport_request`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `carport`.`carport_request` ;
-
-CREATE TABLE IF NOT EXISTS `carport`.`carport_request` (
-  `carport_request_id` INT NOT NULL AUTO_INCREMENT,
-  `width` INT NOT NULL,
-  `length` INT NOT NULL,
-  `roof` VARCHAR(45) NOT NULL,
-  `roof_incline` INT NULL DEFAULT NULL,
-  `is_approved` TINYINT NOT NULL DEFAULT 0,
-  `shed_length` INT NULL,
-  `shed_width` INT NULL,
-  `customer_id` INT NOT NULL,
-  PRIMARY KEY (`carport_request_id`),
-  INDEX `fk_carport_request_customer1_idx` (`customer_id` ASC) VISIBLE,
-  CONSTRAINT `fk_carport_request_customer1`
-    FOREIGN KEY (`customer_id`)
-    REFERENCES `carport`.`customer` (`customer_id`)
+    REFERENCES `carport`.`account` (`account_id`),
+  CONSTRAINT `fk_customer_carport_request1`
+    FOREIGN KEY (`carport_request_id`)
+    REFERENCES `carport`.`carport_request` (`carport_request_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -110,17 +93,9 @@ CREATE TABLE IF NOT EXISTS `carport`.`description` (
   `description` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`description_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb3;
 
-INSERT INTO `carport`.`description`
-(`description`)
-VALUES
-('understernbrædder til for & bag ende'),
-('løsholter til skur gavle'),
-('Skruer til tagplader'),
-('understernbrædder til for & bag ende'),
-('løsholter til skur gavle'),
-('Skruer til tagplader');
 
 -- -----------------------------------------------------
 -- Table `carport`.`material_type`
@@ -132,13 +107,9 @@ CREATE TABLE IF NOT EXISTS `carport`.`material_type` (
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`type_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb3;
 
-INSERT INTO `carport`.`material_type`
-(`name`)
-VALUES
-('Træ & Tagplader'),
-('Beslag & Skruer');
 
 -- -----------------------------------------------------
 -- Table `carport`.`material`
@@ -150,39 +121,17 @@ CREATE TABLE IF NOT EXISTS `carport`.`material` (
   `name` VARCHAR(45) NOT NULL,
   `price` INT NOT NULL,
   `unit` VARCHAR(45) NOT NULL,
-  `length` INT NULL,
+  `max_length` INT NULL DEFAULT NULL,
   `type_id` INT NOT NULL,
-  `width` VARCHAR(45) NULL,
-  `height` VARCHAR(45) NULL,
   PRIMARY KEY (`material_id`),
   INDEX `fk_material_material_type1_idx` (`type_id` ASC) VISIBLE,
   CONSTRAINT `fk_material_material_type1`
     FOREIGN KEY (`type_id`)
-    REFERENCES `carport`.`material_type` (`type_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `carport`.`material_type` (`type_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = utf8mb3;
 
-INSERT INTO `carport`.`material`
-(`name`,
-`price`,
-`unit`,
-`length`,
-`type_id`,
-`width`,
-`height`)
-VALUES
-('25x200 mm. trykimp. Brædt', 50, 'Stk', 720, 1, 25, 200),
-('45x95 mm. Reglar ub.', 25, 'Stk', 720, 1, 45, 95);
-
-INSERT INTO `carport`.`material`
-(`name`,
-`price`,
-`unit`,
-`type_id`)
-VALUES
-('plastmo bundskruer 200 stk.', 10, 'Pakke', 2),
-('universal 190 mm højre', 5, 'Stk', 2);
 
 -- -----------------------------------------------------
 -- Table `carport`.`order`
@@ -200,14 +149,9 @@ CREATE TABLE IF NOT EXISTS `carport`.`order` (
     FOREIGN KEY (`customer_id`)
     REFERENCES `carport`.`customer` (`customer_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb3;
 
-INSERT INTO `carport`.`order`
-(`customer_id`,
-`date`)
-VALUES
-(1, '2022-02-20 00:00:00'),
-(2, '2022-04-11 08:50:27');
 
 -- -----------------------------------------------------
 -- Table `carport`.`bill_of_materials`
@@ -225,6 +169,7 @@ CREATE TABLE IF NOT EXISTS `carport`.`bill_of_materials` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -297,60 +242,7 @@ CREATE TABLE IF NOT EXISTS `carport`.`bomline` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE 
-    ALGORITHM = UNDEFINED 
-    DEFINER = `root`@`localhost` 
-    SQL SECURITY DEFINER
-VIEW `material_view` AS
-    SELECT 
-        `m`.`material_id` AS `material_id`,
-        `m`.`type_id` AS `type_id`,
-        `m`.`name` AS `material_name`,
-        `m`.`price` AS `price`,
-        `m`.`unit` AS `unit`,
-        `m`.`length` AS `length`,
-         `m`.`width` AS `width`,
-          `m`.`height` AS `height`,
-        `mt`.`name` AS `mt_name`
-    FROM
-        (`material` `m`
-        JOIN `material_type` `mt` ON ((`m`.`type_id` = `mt`.`type_id`)));
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
-DROP SCHEMA IF EXISTS `carport_test` ;
-CREATE DATABASE  IF NOT EXISTS `carport_test` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `carport_test`;
-CREATE TABLE carport_test.account LIKE carport.account;
-CREATE TABLE carport_test.customer LIKE carport.customer;
-CREATE TABLE carport_test.carport_request LIKE carport.carport_request;
-CREATE TABLE carport_test.description LIKE carport.description;
-CREATE TABLE carport_test.material_type LIKE carport.material_type;
-CREATE TABLE carport_test.material LIKE carport.material;
-CREATE TABLE carport_test.order LIKE carport.order;
-CREATE TABLE carport_test.bill_of_materials LIKE carport.bill_of_materials;
-CREATE TABLE carport_test.shed LIKE carport.shed;
-CREATE TABLE carport_test.carport LIKE carport.carport;
-CREATE TABLE carport_test.bomline LIKE carport.bomline;
-
-CREATE 
-    ALGORITHM = UNDEFINED 
-    DEFINER = `root`@`localhost` 
-    SQL SECURITY DEFINER
-VIEW `material_view` AS
-    SELECT 
-        `m`.`material_id` AS `material_id`,
-        `m`.`type_id` AS `type_id`,
-        `m`.`name` AS `material_name`,
-        `m`.`price` AS `price`,
-        `m`.`unit` AS `unit`,
-        `m`.`length` AS `length`,
-         `m`.`width` AS `width`,
-          `m`.`height` AS `height`,
-        `mt`.`name` AS `mt_name`
-    FROM
-        (`material` `m`
-        JOIN `material_type` `mt` ON ((`m`.`type_id` = `mt`.`type_id`)));

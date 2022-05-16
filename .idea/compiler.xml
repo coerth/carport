@@ -9,8 +9,5 @@
         <module name="startcode" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Carport" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
