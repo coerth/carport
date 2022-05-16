@@ -115,7 +115,7 @@ public class CarportCalculator
 
     public int calculateBottomScrewForRoof(int carportWidth, int carportLength)
     {
-        int quantity = (carportWidth * carportLength) * 13;
+        int quantity = ((carportWidth/100) * (carportLength/100)) * 13;
 
         return quantity;
     }
