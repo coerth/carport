@@ -23,12 +23,10 @@ abstract class Command
         commands.put("modifymaterial", new ModifyMaterial());
         commands.put("deletematerial", new DeleteMaterial());
         commands.put("creatematerial", new CreateMaterial());
-<<<<<<< HEAD
         commands.put("quickbuild", new Quickbuild());
         commands.put("requestsent", new RequestSent()) ;
-=======
         commands.put("showsvg",new ShowSVGCommand("svgpage"));
->>>>>>> 45138cc (SVG klasse lavet + SVG jsp)
+
     }
 
     static Command from( HttpServletRequest request ) {
