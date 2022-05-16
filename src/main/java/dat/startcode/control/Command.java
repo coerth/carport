@@ -23,6 +23,7 @@ abstract class Command
         commands.put("modifymaterial", new ModifyMaterial());
         commands.put("deletematerial", new DeleteMaterial());
         commands.put("creatematerial", new CreateMaterial());
+        commands.put("showsvg",new ShowSVGCommand("svgpage"));
     }
 
     static Command from( HttpServletRequest request ) {
