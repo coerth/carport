@@ -221,8 +221,8 @@ VALUES
 ("trykimp. Bræt", 45, "Stk", 210, 1, 19, 100, 1),
 ("trykimp. Bræt", 55, "Stk", 360, 1, 19, 100, 1),
 ("trykimp. Bræt", 70, "Stk", 540, 1, 19, 100, 1),
-("Plastmo Ecolite blåtonet", 45, "Stk", 600, 2, 109, 16, 1),
-("Plastmo Ecolite blåtonet", 30, "Stk", 360, 2, 109, 16, 1);
+("Plastmo Ecolite blåtonet", 45, "Stk", 360, 2, 109, 16, 1),
+("Plastmo Ecolite blåtonet", 30, "Stk", 600, 2, 109, 16, 1);
 
 INSERT INTO `carport`.`material`
 (`name`,
