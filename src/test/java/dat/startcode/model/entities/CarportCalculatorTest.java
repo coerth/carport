@@ -331,4 +331,11 @@ class CarportCalculatorTest
         assertEquals(2, bomline.getQuantity());
 
     }
+
+    @Test
+    void calculateHeadTest()
+    {
+
+    }
+
 }
