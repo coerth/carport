@@ -1,7 +1,9 @@
 package dat.startcode.model.entities;
 
 import dat.startcode.model.config.ApplicationStart;
+import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.services.MaterialFacade;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +15,27 @@ class CarportCalculatorTest
 
 {
 
-    CarportCalculator carportCalculator = new CarportCalculator(MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool()));
+    private final static String USER = "SQLUser";
+    //private final static String PASSWORD = System.getenv("dbpassword");
+    private final static String PASSWORD = "Bananflue";
+
+    private final static String URL = "jdbc:mysql://localhost:3306/carport";
+
+    private static ConnectionPool connectionPool;
+
+
+
+    CarportCalculator carportCalculator = new CarportCalculator(MaterialFacade.getAllMaterials(new ConnectionPool(USER, PASSWORD, URL)));
     Material material = new Material(1,"Tagplade", 5,"styk",600,109,1,1,2);
     ArrayList<Material> materialArrayList = new ArrayList<>();
+
+
+    @BeforeAll
+    public static void setUpClass() {
+
+        connectionPool = new ConnectionPool(USER, PASSWORD, URL);
+
+    }
 
 
     @BeforeEach
@@ -26,6 +46,15 @@ class CarportCalculatorTest
         roofPlateArrayList.add(material);
         roofPlateArrayList.add(new Material(1,"Tagplade", 5,"styk",360,109,1,1,2));
         roofPlateArrayList.add(new Material(1,"Tagplade", 5,"styk",240,109,1,1,2));
+
+    }
+
+    @Test
+    void calculateShed2on1Test()
+    {
+        int planks = carportCalculator.calculateShed2on1(210, 600);
+
+        assertEquals(187, planks);
 
     }
 

@@ -16,7 +16,26 @@ public class CarportCalculator
         //this.materialHashMap = materialHashMap;
     }
 
+    public CarportCalculator() {
+    }
 
+    public int calculateShed2on1(float shedLength, float shedWidth)
+    {
+        Material material = materialArrayList.get(10);
+
+        int plankOverlap = (2*material.getHeight()) - (2*15);
+
+        float overlapsForSide = ((shedLength * 10 - material.getHeight()) / plankOverlap) * 2;
+        float overlapsForFrontAndBack = ((shedWidth * 10 - material.getHeight()) / plankOverlap) * 2;
+
+        int planksNeededForSide = (int) Math.ceil(overlapsForSide * 2) ;
+        int planksNeededForFrontAndBack = (int) Math.ceil(overlapsForFrontAndBack * 2) ;
+
+        int totalPlanksNeeded = planksNeededForSide + planksNeededForFrontAndBack;
+
+        return  totalPlanksNeeded;
+
+    }
 
     public Material calculateMaterialLength(int dimension, ArrayList<Material> listOfMaterials) {
 
@@ -359,6 +378,8 @@ public class CarportCalculator
         Bomline bomline = new Bomline(20, material, screwBoxes);
         return bomline;
     }
+
+
 
     public ArrayList<Bomline> createCarportNoShed(int carportLength, int carportWidth)
     {
