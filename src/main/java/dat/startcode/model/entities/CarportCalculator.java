@@ -3,15 +3,13 @@ package dat.startcode.model.entities;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CarportCalculator
-{
+public class CarportCalculator {
 
     private ArrayList<Material> materialArrayList = new ArrayList<>();
 
     //private HashMap<String, ArrayList<Material>> materialHashMap = new HashMap<>();
 
-    public CarportCalculator(ArrayList<Material> materialArrayList)
-    {
+    public CarportCalculator(ArrayList<Material> materialArrayList) {
         this.materialArrayList = materialArrayList;
         //this.materialHashMap = materialHashMap;
     }
@@ -75,8 +73,7 @@ public class CarportCalculator
 
         int amount = 1;
 
-        while(amountNeeded > material.getQuantity() * amount)
-        {
+        while (amountNeeded > material.getQuantity() * amount) {
 
             amount++;
         }
@@ -132,9 +129,8 @@ public class CarportCalculator
         }
     }
 
-    public int calculateBottomScrewForRoof(int carportWidth, int carportLength)
-    {
-        int quantity = (carportWidth * carportLength) * 13;
+    public int calculateBottomScrewForRoof(int carportWidth, int carportLength) {
+        int quantity = ((carportWidth / 100) * (carportLength / 100)) * 13;
 
         return quantity;
     }
@@ -148,6 +144,8 @@ public class CarportCalculator
         Bomline bomline = new Bomline(16, material, boxesNeeded);
         return bomline;
     }
+
+
 
     public ArrayList<Bomline> calculateFrontAndBackStern (ArrayList<Material> sternArrayList, int rafterLength) {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
@@ -379,7 +377,29 @@ public class CarportCalculator
         return bomline;
     }
 
+    public ArrayList <Bomline> calculateHead (int carportLength, ArrayList<Material> headArrayList, int shedLength) {
+        ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
+        Material head1 = calculateMaterialLength(carportLength - shedLength, headArrayList);
+        if (head1 != null) {
+            bomlineArrayList.add(new Bomline(8, head1, 2));
+        } else {
+            head1 = headArrayList.get(0);
+            Material headForShed = null;
+            for (Material m : headArrayList) {
+                if (head1.getLength() + m.getLength() > carportLength) {
+                    headForShed = m;
+                    break;
+                }
+            }
+            if (headForShed == null) {
+                throw new ArithmeticException("Der var ikke en lang nok spær til din rem");
+            }
+            bomlineArrayList.add(new Bomline(8, head1, 2));
+            bomlineArrayList.add(new Bomline(9, headForShed, 1));
+        }
 
+        return bomlineArrayList;
+    }
 
     public ArrayList<Bomline> createCarportNoShed(int carportLength, int carportWidth)
     {
