@@ -392,7 +392,7 @@ public class CarportCalculator {
                 }
             }
             if (headForShed == null) {
-                throw new ArithmeticException("Der var ikke en lang nok spær til din rem");
+                throw new ArithmeticException("Der var ikke en lang nok rem til din rem");
             }
             bomlineArrayList.add(new Bomline(8, head1, 2));
             bomlineArrayList.add(new Bomline(9, headForShed, 1));
