@@ -392,7 +392,7 @@ public class CarportCalculator {
                 }
             }
             if (headForShed == null) {
-                throw new ArithmeticException("Der var ikke en lang nok spær til din rem");
+                throw new ArithmeticException("Der var ikke en lang nok rem til din rem");
             }
             bomlineArrayList.add(new Bomline(8, head1, 2));
             bomlineArrayList.add(new Bomline(9, headForShed, 1));
@@ -406,6 +406,10 @@ public class CarportCalculator {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
         int rafters = calculateRafters(carportLength);
         int brackets = calculateSteelBracketLeft(rafters) * 2;
+
+        ArrayList<Material> headArrayList = new ArrayList<>();
+        headArrayList.add(materialArrayList.get(7));
+        headArrayList.add(materialArrayList.get(8));
 
         ArrayList<Material> roofPlatesArraylist = new ArrayList<>();
         roofPlatesArraylist.add(materialArrayList.get(13));
@@ -460,6 +464,10 @@ public class CarportCalculator {
         // tilføj vandbræt til arraylist
         bomlineArrayList.addAll(calculateWeatherBoardForFrontAndBack(weatherboardArrayList, carportWidth));
         bomlineArrayList.addAll(calculateWeatherBoardForSide(weatherboardArrayList, carportLength));
+
+
+        //tilføj rem til arraylist
+        bomlineArrayList.addAll(calculateHead(carportLength,headArrayList, 210));
 
 
         return bomlineArrayList;
