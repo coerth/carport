@@ -407,6 +407,10 @@ public class CarportCalculator {
         int rafters = calculateRafters(carportLength);
         int brackets = calculateSteelBracketLeft(rafters) * 2;
 
+        ArrayList<Material> headArrayList = new ArrayList<>();
+        headArrayList.add(materialArrayList.get(7));
+        headArrayList.add(materialArrayList.get(8));
+
         ArrayList<Material> roofPlatesArraylist = new ArrayList<>();
         roofPlatesArraylist.add(materialArrayList.get(13));
         roofPlatesArraylist.add(materialArrayList.get(14));
@@ -460,6 +464,10 @@ public class CarportCalculator {
         // tilføj vandbræt til arraylist
         bomlineArrayList.addAll(calculateWeatherBoardForFrontAndBack(weatherboardArrayList, carportWidth));
         bomlineArrayList.addAll(calculateWeatherBoardForSide(weatherboardArrayList, carportLength));
+
+
+        //tilføj rem til arraylist
+        bomlineArrayList.addAll(calculateHead(carportLength,headArrayList, 210));
 
 
         return bomlineArrayList;
