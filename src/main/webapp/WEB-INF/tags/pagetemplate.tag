@@ -34,7 +34,14 @@
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc">Page 2</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/quickbuild.jsp">quickbuild</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/register.jsp">Registrer</a>
-                    <c:if test="${sessionScope.customer == null }">
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/showsvg?command=showsvg">SVG tegning</a>
+
+
+
+
+
+                    <c:if test="${sessionScope.account == null }">
+
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                     </c:if>
                     <c:if test="${sessionScope.account.role == 1 }">
