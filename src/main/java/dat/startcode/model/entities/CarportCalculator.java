@@ -36,6 +36,7 @@ public class CarportCalculator {
        return  bomlineArrayList;
     }
 
+
     public int calculateShortScrewsForShed(int amountOfPlanks)
     {
         int screwsNeeded = amountOfPlanks * 4;
@@ -183,7 +184,6 @@ public class CarportCalculator {
 
         return quantity;
     }
-
 
     public Bomline calculateAmountOfBoxesOfBottomScrews(Material material, int carportWidth, int carportLength) {
 
@@ -475,7 +475,15 @@ public class CarportCalculator {
         return bomlineArrayList;
     }
 
-    public ArrayList<Bomline> calculateNogging (int shedLength, ArrayList<Material> noggingArrayList)
+
+    public Bomline calculateAngleBracket (int noggingAmount) {
+
+        Bomline bomline = new Bomline(26,materialArrayList.get(29),noggingAmount*2);
+        return bomline;
+    }
+
+
+    public ArrayList<Bomline> calculateNoggingAndBracket(int shedLength, ArrayList<Material> noggingArrayList)
     {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
 
@@ -483,6 +491,10 @@ public class CarportCalculator {
         Material noggingTheLongOne = calculateMaterialLength(250, noggingArrayList);
         bomlineArrayList.add(new Bomline(6,noggingTheShortOne,4));
         bomlineArrayList.add(new Bomline(7, noggingTheLongOne,12));
+
+        bomlineArrayList.add(calculateAngleBracket(16));
+
+
 
         return bomlineArrayList;
     }
@@ -559,8 +571,10 @@ public class CarportCalculator {
         //tilføj rem til arraylist
         bomlineArrayList.addAll(calculateHead(carportLength,headArrayList, 210));
 
-        //tilføj løsholt til arraylist
-        bomlineArrayList.addAll(calculateNogging(210,noggingArrayList));
+        //tilføj løsholt og vinkelbeslag til arraylist
+        bomlineArrayList.addAll(calculateNoggingAndBracket(210,noggingArrayList));
+
+
 
 
 
