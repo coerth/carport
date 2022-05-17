@@ -276,6 +276,13 @@ class CarportCalculatorTest
     }
 
     @Test
+    void calculatePostAmountWithShedTest()
+    {
+        int posts = carportCalculator.calculatePostAmountWithShed(780, 210);
+        assertEquals(11, posts);
+    }
+
+    @Test
     void postAmount() {
         Material material = new Material(1, "Stolper", 5, "stk", 1);
 

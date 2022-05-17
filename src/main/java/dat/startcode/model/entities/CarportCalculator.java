@@ -32,8 +32,11 @@ public class CarportCalculator {
         int totalPlanksNeeded = planksNeededForSide + planksNeededForFrontAndBack;
 
         return  totalPlanksNeeded;
-
     }
+
+
+
+
 
     public Material calculateMaterialLength(int dimension, ArrayList<Material> listOfMaterials) {
 
@@ -219,6 +222,31 @@ public class CarportCalculator {
             bomlineArrayList.add(bomline);
         }
         return bomlineArrayList;
+    }
+
+    public int calculatePostAmountWithShed(int carportLength, int shedLength)
+    {
+        int posts = 0;
+        int sidePosts = 2;
+        int shedPosts = 4;
+        int sparePost = 1;
+        int minDistanceBetweenPost = 250;
+        int maxDistanceBetweenPost = 310;
+
+        if (carportLength - shedLength < maxDistanceBetweenPost)
+        {
+            posts = 2;
+        }
+
+        else
+        {
+            posts = 4 ;
+        }
+
+        int totalPosts = posts + shedPosts + sidePosts + sparePost;
+
+        return  totalPosts;
+
     }
 
     public int calculatePostAmount(int carportLength) {
