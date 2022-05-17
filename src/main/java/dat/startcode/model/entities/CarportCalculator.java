@@ -487,6 +487,16 @@ public class CarportCalculator {
         return bomline;
     }
 
+    public Bomline screwsForSternAndWeatherBoard(Material material)
+    {
+        return new Bomline(18, material, 1);
+    }
+
+    public Bomline perforatedTape(Material material)
+    {
+        return new Bomline(16, material, 2);
+    }
+
 
     public ArrayList <Bomline> calculateHead (int carportLength, ArrayList<Material> headArrayList, int shedLength) {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
@@ -557,17 +567,40 @@ public class CarportCalculator {
         int rafters = calculateRafters(carportLength);
         int brackets = calculateSteelBracketLeft(rafters) * 2;
 
-        // tilføj stolper til arraylist
-        bomlineArrayList.add(postAmountWithShed(carportLength, shedLength, materialArrayList.get(9)));
+        // tilføj understern til arraylist
+        //TODO Lav understern funktion så beskrivelse bliver rigtig.
+        bomlineArrayList.addAll(calculateFrontAndBackStern(underSternArrayList, carportWidth));
+        bomlineArrayList.addAll(calculateSideStern(underSternArrayList, carportLength));
 
-        // tilføj bræddebolte til arraylist
-        bomlineArrayList.add(carriageBolt(materialArrayList.get(22), carportLength));
+        // tilføj overstern til arraylist
+        bomlineArrayList.addAll(calculateFrontAndBackStern(overSternArrayList, carportWidth));
+        bomlineArrayList.addAll(calculateSideStern(overSternArrayList, carportLength));
 
-        // tilføj firkantskiver til arraylist
-        bomlineArrayList.add(squareSpacer(materialArrayList.get(23), calculateCarriageBolt(carportLength)));
+        //tilføj løsholt og vinkelbeslag til arraylist
+        bomlineArrayList.addAll(calculateNoggingAndBracket(210,noggingArrayList));
+
+        //tilføj rem til arraylist
+        bomlineArrayList.addAll(calculateHead(carportLength,headArrayList, 210));
 
         // tilføj spær til arraylist
         bomlineArrayList.add(rafters(materialArrayList.get(7), carportLength));
+
+        // tilføj stolper til arraylist
+        bomlineArrayList.add(postAmountWithShed(carportLength, shedLength, materialArrayList.get(9)));
+
+        //tilføj skurbeklædning og skruer til arraylist
+        bomlineArrayList.addAll(shedPlanksAndScrews(shedWidth, shedLength, materialArrayList.get(10), materialArrayList.get(25), materialArrayList.get(24)));
+
+        // tilføj vandbræt til arraylist
+        bomlineArrayList.addAll(calculateWeatherBoardForFrontAndBack(weatherboardArrayList, carportWidth));
+        bomlineArrayList.addAll(calculateWeatherBoardForSide(weatherboardArrayList, carportLength));
+
+        // tilføj tagplader og skruer til arraylist
+        bomlineArrayList.addAll(calculateRoofPlates(carportLength, carportWidth, roofPlatesArraylist ));
+        bomlineArrayList.add(calculateAmountOfBoxesOfBottomScrews(materialArrayList.get(15), carportWidth, carportLength));
+
+        //tilføj hulbånd til arraylist
+        bomlineArrayList.add(perforatedTape(materialArrayList.get(16)));
 
         // tilføj venstre beslag til arraylist
         bomlineArrayList.add(steelBracketLeft(materialArrayList.get(18), rafters));
@@ -575,40 +608,20 @@ public class CarportCalculator {
         // tilføj højre beslag til arraylist
         bomlineArrayList.add(steelBracketRight(materialArrayList.get(17), rafters));
 
+        //tilføj skruer til stern og vandbræt til arraylist
+        bomlineArrayList.add(screwsForSternAndWeatherBoard(materialArrayList.get(20)));
+
         // tilføj skruer til beslag og hulbånd til arraylist
         bomlineArrayList.add(screwsForTapeAndBracket(materialArrayList.get(21), brackets, rafters));
 
-        // tilføj tagplader og skruer til arraylist
-        bomlineArrayList.addAll(calculateRoofPlates(carportLength, carportWidth, roofPlatesArraylist ));
-        bomlineArrayList.add(calculateAmountOfBoxesOfBottomScrews(materialArrayList.get(15), carportWidth, carportLength));
+        // tilføj bræddebolte til arraylist
+        bomlineArrayList.add(carriageBolt(materialArrayList.get(22), carportLength));
 
-        // tilføj overstern til arraylist
-        bomlineArrayList.addAll(calculateFrontAndBackStern(overSternArrayList, carportWidth));
-        bomlineArrayList.addAll(calculateSideStern(overSternArrayList, carportLength));
+        // tilføj firkantskiver til arraylist
+        bomlineArrayList.add(squareSpacer(materialArrayList.get(23), calculateCarriageBolt(carportLength)));
 
-        // tilføj understern til arraylist
-        //TODO Lav understern funktion så beskrivelse bliver rigtig.
-        bomlineArrayList.addAll(calculateFrontAndBackStern(underSternArrayList, carportWidth));
-        bomlineArrayList.addAll(calculateSideStern(underSternArrayList, carportLength));
-
-        // tilføj vandbræt til arraylist
-        bomlineArrayList.addAll(calculateWeatherBoardForFrontAndBack(weatherboardArrayList, carportWidth));
-        bomlineArrayList.addAll(calculateWeatherBoardForSide(weatherboardArrayList, carportLength));
-
-        //tilføj rem til arraylist
-        bomlineArrayList.addAll(calculateHead(carportLength,headArrayList, 210));
-
-
-        //tilføj løsholt til arraylist
-        bomlineArrayList.addAll(calculateNoggingAndBracket(210,noggingArrayList));
-
-        //tilføj løsholt og vinkelbeslag til arraylist
-        bomlineArrayList.addAll(calculateNoggingAndBracket(210,noggingArrayList));
-
-        //tilføj skurbeklædning og skruer til arraylist
-        bomlineArrayList.addAll(shedPlanksAndScrews(shedWidth, shedLength, materialArrayList.get(10), materialArrayList.get(25), materialArrayList.get(24)));
-
-
+        //tilføj træ til z og håndtag og hængsel til dør til skuret
+        bomlineArrayList.addAll(addWoodForZPlusHandleAndHingeForDoor());
 
         return bomlineArrayList;
     }
@@ -663,11 +676,6 @@ public class CarportCalculator {
 
         //tilføj løsholt og vinkelbeslag til arraylist
         bomlineArrayList.addAll(calculateNoggingAndBracket(210,noggingArrayList));
-
-        //tilføj træ til z og håndtag og hængsel til dør til skuret
-        bomlineArrayList.addAll(addWoodForZPlusHandleAndHingeForDoor());
-
-
 
         return bomlineArrayList;
     }
