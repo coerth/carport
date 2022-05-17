@@ -518,6 +518,22 @@ public class CarportCalculator {
         return bomline;
     }
 
+    public ArrayList<Bomline> addWoodForZPlusHandleAndHingeForDoor () {
+
+        ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
+
+        Bomline bomline1 = new Bomline(5, materialArrayList.get(4),1);
+        Bomline bomline2 = new Bomline(24, materialArrayList.get(27),1);
+        Bomline bomline3 = new Bomline(25, materialArrayList.get(28),2);
+
+        bomlineArrayList.add(bomline1);
+        bomlineArrayList.add(bomline2);
+        bomlineArrayList.add(bomline3);
+
+        return bomlineArrayList;
+
+    }
+
 
     public ArrayList<Bomline> calculateNoggingAndBracket(int shedLength, ArrayList<Material> noggingArrayList)
     {
@@ -644,6 +660,14 @@ public class CarportCalculator {
 
         //tilføj rem til arraylist
         bomlineArrayList.addAll(calculateHead(carportLength,headArrayList, 210));
+
+        //tilføj løsholt og vinkelbeslag til arraylist
+        bomlineArrayList.addAll(calculateNoggingAndBracket(210,noggingArrayList));
+
+        //tilføj træ til z og håndtag og hængsel til dør til skuret
+        bomlineArrayList.addAll(addWoodForZPlusHandleAndHingeForDoor());
+
+
 
         return bomlineArrayList;
     }
