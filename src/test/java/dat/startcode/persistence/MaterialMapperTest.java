@@ -45,10 +45,10 @@ public class MaterialMapperTest
                 // Indsæt et par brugere
 
                 stmt.execute("INSERT INTO `material_type` (`type_id`,`name`) VALUES (1,'Træ & Tagplader'), (2,'Beslag & Skruer')");
-                stmt.execute("INSERT INTO `material` (`material_id`,`name`,`price`,`unit`,`length`,`width`,`height`,`type_id`)" +
-                        "VALUES (1,'25x200 mm. trykimp. Brædt', 50, 'Stk', 720,25, 200, 1),(2,'45x95 mm. Reglar ub.', 25, 'Stk', 720,45, 95, 1)");
-                stmt.execute("INSERT INTO `material` (`material_id`,`name`,`price`,`unit`,`type_id`)" +
-                        "VALUES(3,'plastmo bundskruer 200 stk.', 10, 'Pakke', 2),(4,'universal 190 mm højre', 5, 'Stk', 2)");
+                stmt.execute("INSERT INTO `material` (`material_id`,`name`,`price`,`unit`,`length`,`width`,`height`,`type_id`, `quantity`)" +
+                        "VALUES (1,'25x200 mm. trykimp. Brædt', 50, 'Stk', 720,25, 200, 1, 1),(2,'45x95 mm. Reglar ub.', 25, 'Stk', 720,45, 95, 1, 1)");
+                stmt.execute("INSERT INTO `material` (`material_id`,`name`,`price`,`unit`,`type_id`, `quantity`)" +
+                        "VALUES(3,'plastmo bundskruer 200 stk.', 10, 'Pakke', 2, 200),(4,'universal 190 mm højre', 5, 'Stk', 2, 1)");
 
             }
         } catch (SQLException throwables) {

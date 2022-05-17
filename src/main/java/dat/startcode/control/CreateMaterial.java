@@ -21,9 +21,10 @@ public class CreateMaterial extends Command{
         int length = Integer.parseInt(request.getParameter("length"));
         int width = Integer.parseInt(request.getParameter("width"));
         int height = Integer.parseInt(request.getParameter("height"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
         int typeId = Integer.parseInt(request.getParameter("typeId"));
 
-        if(MaterialFacade.createNewMaterial(name, price, unit, length, typeId, width, height, ApplicationStart.getConnectionPool()))
+        if(MaterialFacade.createNewMaterial(name, price, unit, length, typeId, width, height, quantity, ApplicationStart.getConnectionPool()))
         {
             ArrayList<Material> materialArrayList = new ArrayList<>();
 

@@ -3,7 +3,7 @@ package dat.startcode.model.persistence;
 import dat.startcode.model.entities.Material;
 import java.sql.*;
 import java.util.ArrayList;
-
+import java.util.HashMap;
 
 
 public class MaterialMapper implements IMaterialMapper {
@@ -19,7 +19,7 @@ public class MaterialMapper implements IMaterialMapper {
 
         ArrayList<Material> materialList = new ArrayList<>();
 
-        String sql = "SELECT * FROM material_view";
+        String sql = "SELECT * FROM material_view ORDER BY material_id";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -33,8 +33,9 @@ public class MaterialMapper implements IMaterialMapper {
                     int length = rs.getInt("length");
                     int width = rs.getInt("width");
                     int height = rs.getInt("height");
+                    int quantity = rs.getInt("quantity");
                     String typeName = rs.getString("mt_name");
-                    Material newMaterial = new Material(materialId, materialName, price, unit, length, width, height, typeId, typeName);
+                    Material newMaterial = new Material(materialId, materialName, price, unit, length, width, height, quantity, typeId, typeName);
                     materialList.add(newMaterial);
 
                 }
@@ -70,10 +71,12 @@ public class MaterialMapper implements IMaterialMapper {
                     int length = rs.getInt("length");
                     int width = rs.getInt("width");
                     int height = rs.getInt("height");
+                    int quantity = rs.getInt("quantity");
+
                     String mtName = rs.getString("mt_name");
                     int typeID = rs.getInt("type_id");
 
-                    material = new Material(materialID, name, price, unit, length, width, height, typeID, mtName);
+                    material = new Material(materialID, name, price, unit, length, width, height, quantity, typeID);
                     return material;
 
                 }
@@ -87,9 +90,9 @@ public class MaterialMapper implements IMaterialMapper {
 
     @Override
 
-    public boolean createNewMaterial(String name, int price, String unit, int length, int typeId, int width, int height) {
+    public boolean createNewMaterial(String name, int price, String unit, int length, int typeId, int width, int height, int quantity) {
 
-        String sql = "INSERT INTO `material` (`name`, `price`, `unit`, `length`, `type_id`, `width`, `height`) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO `material` (`name`, `price`, `unit`, `length`, `type_id`, `width`, `height`, `quantity`) VALUES (?,?,?,?,?,?,?,?)";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -101,6 +104,8 @@ public class MaterialMapper implements IMaterialMapper {
                 ps.setInt(5, typeId);
                 ps.setInt(6, width);
                 ps.setInt(7, height);
+                ps.setInt(8, quantity);
+
                 int rowsAffected = ps.executeUpdate();
 
                 if (rowsAffected == 1) {
@@ -119,7 +124,7 @@ public class MaterialMapper implements IMaterialMapper {
     {
         Material newMaterial = null;
 
-        String sql = "UPDATE `material` SET `name` = ?, `price` = ?, `unit` = ?, `length` = ?, `type_id` = ?, `width` = ?, `height` = ? WHERE `material_id` = ?";
+        String sql = "UPDATE `material` SET `name` = ?, `price` = ?, `unit` = ?, `length` = ?, `type_id` = ?, `width` = ?, `height` = ?, `quantity` = ? WHERE `material_id` = ?";
 
 
         try (Connection connection = connectionPool.getConnection())
@@ -134,7 +139,8 @@ public class MaterialMapper implements IMaterialMapper {
                 ps.setInt(5, material.getTypeId());
                 ps.setInt(6, material.getWidth());
                 ps.setInt(7, material.getHeight());
-                ps.setInt(8, material.getMaterialId());
+                ps.setInt(8, material.getQuantity());
+                ps.setInt(9, material.getMaterialId());
 
                 int rowsAffected = ps.executeUpdate();
 
@@ -179,4 +185,38 @@ public class MaterialMapper implements IMaterialMapper {
 
         return false;
     }
+
+    @Override
+    public HashMap<String, ArrayList<Material>> getMaterialHashmaps()
+    {
+        HashMap<String, ArrayList<Material>> materialHashmap = new HashMap<>();
+
+        ArrayList<Material> materialArrayList = new ArrayList<>();
+
+        //Stolper
+        materialArrayList.add(getSpecificMaterial(10));
+        materialHashmap.put("Stolpe", materialArrayList);
+
+        //Overstern
+        materialArrayList.clear();
+        materialArrayList.add(getSpecificMaterial(3));
+        materialArrayList.add(getSpecificMaterial(4));
+        materialHashmap.put("Overstern", materialArrayList);
+
+        //Understern
+        materialArrayList.clear();
+        materialArrayList.add(getSpecificMaterial(1));
+        materialArrayList.add(getSpecificMaterial(2));
+        materialHashmap.put("Understern", materialArrayList);
+
+        //Tagplader
+
+
+
+
+
+        return null;
+    }
+
+
 }
