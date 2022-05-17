@@ -16,7 +16,7 @@ public class SVG {
             "y=\"%d\"   " +
             " preserveAspectRatio=\"xMinYMin\">";
 
-    private final String rectTemplate = "<rect x=\"%d\" y=\"%d\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String rectTemplate = "<rect x=\"%d\" y=\"%d\" height=\"%d\" width=\"%d\" style=\"stroke:#000000; fill: #ffffff\" />";
 
     private final String lineTemplate = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; fill: #ffffff\" />";
 
@@ -31,7 +31,7 @@ public class SVG {
         svg.append(String.format(headerTemplate, height, width, viewBox, x, y));
     }
 
-    public void addRect(int x, int y, double height, double width) {
+    public void addRect(int x, int y, int height, int width) {
         svg.append(String.format(rectTemplate, x, y, height, width));
     }
 
