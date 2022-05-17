@@ -20,6 +20,7 @@ public class ShowSVGCommand extends CommandUnprotectedPage {
         CarportRequest carportRequest = (CarportRequest) session.getAttribute("newCarportRequest");
 
 
+
 /*
         SVG arrowsvg = new SVG(0, 0, "0 0 855 690", 50, 50);
 */
