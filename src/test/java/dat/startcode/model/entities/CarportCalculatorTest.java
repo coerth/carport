@@ -377,4 +377,24 @@ class CarportCalculatorTest
 
         assertEquals(187,totalPlanksNeeded);
     }
+
+    @Test
+    void calculateShortScrewsForShed() {
+        int screwsNeeded = carportCalculator.calculateShortScrewsForShed(94);
+
+        assertEquals(376,screwsNeeded);
+    }
+
+    @Test
+    void calculateLongScrewsForShed() {
+        int screwNeeded = carportCalculator.calculateLongScrewsForShed(94);
+
+        assertEquals(752,screwNeeded);
+    }
+
+    @Test
+    void shedPlanksAndScrewsTest () {
+
+
+    }
 }
