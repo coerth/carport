@@ -14,7 +14,7 @@ public class ShowSVGCommand extends CommandUnprotectedPage {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        CarportRequest carportRequest = (CarportRequest) request.getAttribute("CarportObject");
+        CarportRequest carportRequest = (CarportRequest) request.getAttribute("newCarportRequest");
 
 
         SVG arrowsvg = new SVG(0, 0, "0 0 855 690", 50, 50);
