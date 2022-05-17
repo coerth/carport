@@ -15,9 +15,9 @@ class CarportCalculatorTest
 
 {
 
-    private final static String USER = "SQLUser";
+    private final static String USER = "root";
     //private final static String PASSWORD = System.getenv("dbpassword");
-    private final static String PASSWORD = "Bananflue";
+    private final static String PASSWORD = "Hof210091_Hvorerden";
 
     private final static String URL = "jdbc:mysql://localhost:3306/carport";
 
@@ -342,7 +342,15 @@ class CarportCalculatorTest
     @Test
     void calculateHeadTest()
     {
+        ArrayList<Material> headArrayList = new ArrayList<>();
+        headArrayList.add(new Material(8,"Spærtræ ubh.", 100,"Stk",600,45,195,2,1,"Træ"));
+        headArrayList.add(new Material(9,"Spærtræ ubh.",80,"Stk",480,45,195,1,1,"Træ"));
+
+        ArrayList<Bomline> bomlineArrayList = carportCalculator.calculateHead(780,headArrayList,210);
+        assertEquals(2, bomlineArrayList.size());
+
 
     }
+
 
 }

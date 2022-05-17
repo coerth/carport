@@ -429,11 +429,27 @@ public class CarportCalculator {
         return bomlineArrayList;
     }
 
+    public ArrayList<Bomline> calculateNogging (int shedLength, ArrayList<Material> noggingArrayList)
+    {
+        ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
+
+        Material noggingTheShortOne = calculateMaterialLength(shedLength, noggingArrayList);
+        Material noggingTheLongOne = calculateMaterialLength(250, noggingArrayList);
+        bomlineArrayList.add(new Bomline(6,noggingTheShortOne,4));
+        bomlineArrayList.add(new Bomline(7, noggingTheLongOne,12));
+
+        return bomlineArrayList;
+    }
+
     public ArrayList<Bomline> createCarportNoShed(int carportLength, int carportWidth)
     {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
         int rafters = calculateRafters(carportLength);
         int brackets = calculateSteelBracketLeft(rafters) * 2;
+
+        ArrayList<Material> noggingArrayList = new ArrayList<>();
+        noggingArrayList.add(materialArrayList.get(6));
+        noggingArrayList.add(materialArrayList.get(5));
 
         ArrayList<Material> headArrayList = new ArrayList<>();
         headArrayList.add(materialArrayList.get(8));
@@ -496,6 +512,9 @@ public class CarportCalculator {
 
         //tilføj rem til arraylist
         bomlineArrayList.addAll(calculateHead(carportLength,headArrayList, 210));
+
+        //tilføj løsholt til arraylist
+        bomlineArrayList.addAll(calculateNogging(210,noggingArrayList));
 
 
         return bomlineArrayList;
