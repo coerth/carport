@@ -52,7 +52,7 @@ class CarportCalculatorTest
     @Test
     void calculateShed2on1Test()
     {
-        int planks = carportCalculator.calculateShed2on1(210, 600);
+        int planks = carportCalculator.calculateShed2on1(210, 600, materialArrayList.get(10));
 
         assertEquals(187, planks);
 

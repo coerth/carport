@@ -1,7 +1,6 @@
 package dat.startcode.model.entities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class CarportCalculator {
 
@@ -14,24 +13,71 @@ public class CarportCalculator {
         //this.materialHashMap = materialHashMap;
     }
 
-    public CarportCalculator() {
+    public CarportCalculator()
+    {
     }
 
-    public int calculateShed2on1(float shedLength, float shedWidth)
+    public ArrayList<Bomline> shedPlanksAndScrews(int shedWidth, int shedLength, Material planks, Material shortScrews, Material longScrews)
     {
-        Material material = materialArrayList.get(10);
+        ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
+
+        int amountOfPlanks = calculateShed2on1(shedLength, shedWidth, planks);
+        int shortScrewsNeeded = calculateShortScrewsForShed(amountOfPlanks / 2);
+        int longScrewsNeeded = calculateLongScrewsForShed(amountOfPlanks / 2);
+
+        int shortScrewBoxes = calculateQuantityOfBoxes(shortScrewsNeeded, shortScrews);
+        int longScrewBoxes = calculateQuantityOfBoxes(longScrewsNeeded, longScrews);
+
+
+       bomlineArrayList.add(new Bomline(12, planks, amountOfPlanks));
+       bomlineArrayList.add(new Bomline(22, longScrews, longScrewBoxes));
+       bomlineArrayList.add(new Bomline(23, shortScrews, shortScrewBoxes));
+
+       return  bomlineArrayList;
+    }
+
+    public int calculateShortScrewsForShed(int amountOfPlanks)
+    {
+        int screwsNeeded = amountOfPlanks * 4;
+
+        return screwsNeeded;
+    }
+
+    public int calculateLongScrewsForShed(int amountOfPlanks)
+    {
+        int screwsNeeded = amountOfPlanks * 8;
+        return screwsNeeded;
+    }
+
+    public int calculateShed2on1(float shedLength, float shedWidth, Material material)
+    {
 
         int plankOverlap = (2*material.getHeight()) - (2*15);
 
-        float overlapsForSide = ((shedLength * 10 - material.getHeight()) / plankOverlap) * 2;
-        float overlapsForFrontAndBack = ((shedWidth * 10 - material.getHeight()) / plankOverlap) * 2;
-
-        int planksNeededForSide = (int) Math.ceil(overlapsForSide * 2) ;
-        int planksNeededForFrontAndBack = (int) Math.ceil(overlapsForFrontAndBack * 2) ;
+        int planksNeededForSide = calculateShedPlanksNeededForSide(shedLength, material);
+        int planksNeededForFrontAndBack = calculateShedPlanksNeededForFrontAndBack(shedWidth, material) ;
 
         int totalPlanksNeeded = planksNeededForSide + planksNeededForFrontAndBack;
 
         return  totalPlanksNeeded;
+    }
+
+    public int calculateShedPlanksNeededForSide(float shedLength, Material material)
+    {
+        int plankOverlap = (2*material.getHeight()) - (2*15);
+        float overlapsForSide = ((shedLength * 10 - material.getHeight()) / plankOverlap) * 2;
+        int planksNeededForSide = (int) Math.ceil(overlapsForSide * 2) ;
+
+        return planksNeededForSide;
+    }
+
+    public int calculateShedPlanksNeededForFrontAndBack(float shedWidth, Material material)
+    {
+        int plankOverlap = (2*material.getHeight()) - (2*15);
+        float overlapsForFrontAndBack = ((shedWidth * 10 - material.getHeight()) / plankOverlap) * 2;
+        int planksNeededForFrontAndBack = (int) Math.ceil(overlapsForFrontAndBack * 2) ;
+
+        return planksNeededForFrontAndBack;
     }
 
 
@@ -409,9 +455,11 @@ public class CarportCalculator {
     public ArrayList <Bomline> calculateHead (int carportLength, ArrayList<Material> headArrayList, int shedLength) {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
         Material head1 = calculateMaterialLength(carportLength - shedLength, headArrayList);
-        if (head1 != null) {
+        if (head1 != null)
+        {
             bomlineArrayList.add(new Bomline(8, head1, 2));
-        } else {
+        } else
+        {
 
             head1 = headArrayList.get(0);
             Material headForShed = null;
@@ -500,6 +548,8 @@ public class CarportCalculator {
 
         //tilføj rem til arraylist
         bomlineArrayList.addAll(calculateHead(carportLength,headArrayList, 210));
+
+
 
 
         return bomlineArrayList;
