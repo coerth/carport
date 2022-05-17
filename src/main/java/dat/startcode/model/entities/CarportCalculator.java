@@ -5,12 +5,45 @@ import java.util.ArrayList;
 public class CarportCalculator {
 
     private ArrayList<Material> materialArrayList = new ArrayList<>();
+    private ArrayList<Material> noggingArrayList = new ArrayList<>();
+    private ArrayList<Material> headArrayList = new ArrayList<>();
+    private ArrayList<Material> roofPlatesArraylist = new ArrayList<>();
+    private ArrayList<Material> overSternArrayList = new ArrayList<>();
+    private ArrayList<Material> underSternArrayList = new ArrayList<>();
+    private ArrayList<Material> weatherboardArrayList = new ArrayList<>();
+
 
     //private HashMap<String, ArrayList<Material>> materialHashMap = new HashMap<>();
 
-    public CarportCalculator(ArrayList<Material> materialArrayList) {
+    public CarportCalculator(ArrayList<Material> materialArrayList)
+    {
         this.materialArrayList = materialArrayList;
         //this.materialHashMap = materialHashMap;
+
+        //tilføj løsholter til egen arraylist
+        noggingArrayList.add(materialArrayList.get(6));
+        noggingArrayList.add(materialArrayList.get(5));
+
+        //tilføj rem til egen arraylist
+        headArrayList.add(materialArrayList.get(8));
+        headArrayList.add(materialArrayList.get(7));
+
+        //tilføj tagplader til egen arraylist
+        roofPlatesArraylist.add(materialArrayList.get(13));
+        roofPlatesArraylist.add(materialArrayList.get(14));
+
+        //tilføj overstern til egen arraylist
+        overSternArrayList.add(materialArrayList.get(2));
+        overSternArrayList.add(materialArrayList.get(3));
+
+        //tilføj understern til egen arraylist
+        underSternArrayList.add(materialArrayList.get(0));
+        underSternArrayList.add(materialArrayList.get(1));
+
+        //tilføj vandbræt til egen arraylist
+        weatherboardArrayList.add(materialArrayList.get(11));
+        weatherboardArrayList.add(materialArrayList.get(12));
+
     }
 
     public CarportCalculator()
@@ -515,35 +548,31 @@ public class CarportCalculator {
         return bomlineArrayList;
     }
 
+    public ArrayList<Bomline> createCarportWithFullShed(int carportLength, int carportWidth, int shedLength, int shedWidth)
+    {
+        ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
+
+        //brug carport funktion så der undgåes dobbelt arbejde
+        bomlineArrayList.addAll(createCarportNoShed(carportLength, carportWidth));
+
+        //tilføj løsholt til arraylist
+        bomlineArrayList.addAll(calculateNoggingAndBracket(210,noggingArrayList));
+
+        //tilføj løsholt og vinkelbeslag til arraylist
+        bomlineArrayList.addAll(calculateNoggingAndBracket(210,noggingArrayList));
+
+        //tilføj skurbeklædning og skruer til arraylist
+        bomlineArrayList.addAll(shedPlanksAndScrews(shedWidth, shedLength, materialArrayList.get(10), materialArrayList.get(25), materialArrayList.get(24)));
+
+        return bomlineArrayList;
+    }
+
     public ArrayList<Bomline> createCarportNoShed(int carportLength, int carportWidth)
     {
+
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
         int rafters = calculateRafters(carportLength);
         int brackets = calculateSteelBracketLeft(rafters) * 2;
-
-        ArrayList<Material> noggingArrayList = new ArrayList<>();
-        noggingArrayList.add(materialArrayList.get(6));
-        noggingArrayList.add(materialArrayList.get(5));
-
-        ArrayList<Material> headArrayList = new ArrayList<>();
-        headArrayList.add(materialArrayList.get(8));
-        headArrayList.add(materialArrayList.get(7));
-
-        ArrayList<Material> roofPlatesArraylist = new ArrayList<>();
-        roofPlatesArraylist.add(materialArrayList.get(13));
-        roofPlatesArraylist.add(materialArrayList.get(14));
-
-        ArrayList<Material> overSternArrayList = new ArrayList<>();
-        overSternArrayList.add(materialArrayList.get(2));
-        overSternArrayList.add(materialArrayList.get(3));
-
-        ArrayList<Material> underSternArrayList = new ArrayList<>();
-        underSternArrayList.add(materialArrayList.get(0));
-        underSternArrayList.add(materialArrayList.get(1));
-
-        ArrayList<Material> weatherboardArrayList = new ArrayList<>();
-        weatherboardArrayList.add(materialArrayList.get(11));
-        weatherboardArrayList.add(materialArrayList.get(12));
 
         // tilføj stolper til arraylist
         bomlineArrayList.add(postAmount(materialArrayList.get(9), carportLength));
@@ -592,8 +621,6 @@ public class CarportCalculator {
 
         //tilføj træ til z og håndtag og hængsel til dør til skuret
         bomlineArrayList.addAll(addWoodForZPlusHandleAndHingeForDoor());
-
-
 
 
 
