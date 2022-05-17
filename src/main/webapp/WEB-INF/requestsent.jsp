@@ -16,9 +16,8 @@
 
     <jsp:body>
 
-
         Din forespørgsel indeholder følgende data:
-        ${requestScope.newCarportRequest}
+        ${sessionScope.newCarportRequest}
 
     </jsp:body>
 </t:pagetemplate>

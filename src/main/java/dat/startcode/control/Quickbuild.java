@@ -54,7 +54,7 @@ public class Quickbuild extends Command{
 
         try {
             CarportRequest newCarportRequest = CarportRequestFacade.createCarportRequest(width,length,roofType,shedLength,shedWidth, customerId,connectionPool);
-            request.setAttribute("newCarportRequest", newCarportRequest);
+            session.setAttribute("newCarportRequest", newCarportRequest);
         } catch (SQLException e) {
             e.printStackTrace();
         }
