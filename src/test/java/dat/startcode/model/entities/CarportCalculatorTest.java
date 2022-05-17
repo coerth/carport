@@ -98,6 +98,7 @@ class CarportCalculatorTest
         assertEquals(8, post);
     }
 
+
     @Test
     void calculateCarriageBolt() {
         int carriageBolt = carportCalculator.calculateCarriageBolt(600);
@@ -352,5 +353,28 @@ class CarportCalculatorTest
 
     }
 
+    @Test
+    void calculateShedPlanksNeededForSide() {
+        Material material = new Material(11,"tryimp. Bræt", 45,"styk",210,19,100,1,1);
 
+        int planksNeededForSide = carportCalculator.calculateShedPlanksNeededForSide(210,material);
+
+        assertEquals(48, planksNeededForSide);
+    }
+
+    @Test
+    void calculateShedPlanksNeededForFrontAndBack() {
+        Material material = new Material(11,"tryimp. Bræt", 45,"styk",210,19,100,1,1);
+        int planksNeededForFrontAndBack = carportCalculator.calculateShedPlanksNeededForFrontAndBack(600,material);
+
+        assertEquals(139,planksNeededForFrontAndBack);
+    }
+
+    @Test
+    void calculateShed2on1() {
+        Material material = new Material(11,"tryimp. Bræt", 45,"styk",210,19,100,1,1);
+        int totalPlanksNeeded = carportCalculator.calculateShed2on1(210,600,material);
+
+        assertEquals(187,totalPlanksNeeded);
+    }
 }
