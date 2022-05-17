@@ -455,17 +455,11 @@ public class CarportCalculator {
     public ArrayList <Bomline> calculateHead (int carportLength, ArrayList<Material> headArrayList, int shedLength) {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
         Material head1 = calculateMaterialLength(carportLength - shedLength, headArrayList);
-        if (head1 != null)
-        {
-            bomlineArrayList.add(new Bomline(8, head1, 2));
-        } else
-        {
 
-            head1 = headArrayList.get(0);
             Material headForShed = null;
 
             for (Material m : headArrayList) {
-                if (head1.getLength() + m.getLength() > carportLength) {
+                if (m.getLength() > shedLength) {
                     headForShed = m;
                     break;
                 }
@@ -476,7 +470,19 @@ public class CarportCalculator {
 
             bomlineArrayList.add(new Bomline(8,head1,2));
             bomlineArrayList.add(new Bomline(9,headForShed,1));
-        }
+
+
+        return bomlineArrayList;
+    }
+
+    public ArrayList<Bomline> calculateNogging (int shedLength, ArrayList<Material> noggingArrayList)
+    {
+        ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
+
+        Material noggingTheShortOne = calculateMaterialLength(shedLength, noggingArrayList);
+        Material noggingTheLongOne = calculateMaterialLength(250, noggingArrayList);
+        bomlineArrayList.add(new Bomline(6,noggingTheShortOne,4));
+        bomlineArrayList.add(new Bomline(7, noggingTheLongOne,12));
 
         return bomlineArrayList;
     }
@@ -487,9 +493,13 @@ public class CarportCalculator {
         int rafters = calculateRafters(carportLength);
         int brackets = calculateSteelBracketLeft(rafters) * 2;
 
+        ArrayList<Material> noggingArrayList = new ArrayList<>();
+        noggingArrayList.add(materialArrayList.get(6));
+        noggingArrayList.add(materialArrayList.get(5));
+
         ArrayList<Material> headArrayList = new ArrayList<>();
-        headArrayList.add(materialArrayList.get(7));
         headArrayList.add(materialArrayList.get(8));
+        headArrayList.add(materialArrayList.get(7));
 
         ArrayList<Material> roofPlatesArraylist = new ArrayList<>();
         roofPlatesArraylist.add(materialArrayList.get(13));
@@ -548,6 +558,9 @@ public class CarportCalculator {
 
         //tilføj rem til arraylist
         bomlineArrayList.addAll(calculateHead(carportLength,headArrayList, 210));
+
+        //tilføj løsholt til arraylist
+        bomlineArrayList.addAll(calculateNogging(210,noggingArrayList));
 
 
 
