@@ -275,7 +275,7 @@ public class CarportCalculator {
         } return bomlineArrayList;
     }
 
-   public ArrayList<Bomline> calculateSideStern(ArrayList<Material> sternArrayList, int carportLength) {
+   public ArrayList<Bomline> calculateSideOverStern(ArrayList<Material> sternArrayList, int carportLength) {
        ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
        Material sideStern = calculateMaterialLength(carportLength, sternArrayList);
        if(sideStern == null) {
@@ -289,6 +289,21 @@ public class CarportCalculator {
            bomlineArrayList.add(bomline);
        }return bomlineArrayList;
    }
+
+    public ArrayList<Bomline> calculateSideUnderStern(ArrayList<Material> sternArrayList, int carportLength) {
+        ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
+        Material sideStern = calculateMaterialLength(carportLength, sternArrayList);
+        if(sideStern == null) {
+            ArrayList<Material> sideSternArrayList = calculateMaterialIfMoreThanOneIsNeeded(carportLength,sternArrayList);
+            for(Material material : sideSternArrayList) {
+                Bomline bomline = new Bomline(2, material,2);
+                bomlineArrayList.add(bomline);
+            }
+        }else {
+            Bomline bomline = new Bomline(2, sideStern,2);
+            bomlineArrayList.add(bomline);
+        }return bomlineArrayList;
+    }
 
     public ArrayList<Bomline> calculateWeatherBoardForSide(ArrayList<Material> weatherBoardArrayList, int carportLength) {
 
@@ -397,14 +412,16 @@ public class CarportCalculator {
 
         carriageBolt = carriageBolt * calculatePostAmount(carportLength);
 
-        return carriageBolt;
+        int carriageboltToHead = 2;
+
+        return carriageBolt + carriageboltToHead;
     }
 
     public int calculateSquareSpacer(int carriageBolt) {
 
         int squareSpacer;
 
-        squareSpacer = carriageBolt * 2;
+        squareSpacer = carriageBolt;
 
         return squareSpacer;
     }
@@ -600,8 +617,13 @@ public class CarportCalculator {
         int brackets = calculateSteelBracketLeft(rafters) * 2;
 
 
+        //tilføj understern til arraylist
+        bomlineArrayList.addAll(calculateFrontUnderStern(underSternArrayList, carportWidth));
+        bomlineArrayList.addAll(calculateSideUnderStern(underSternArrayList, carportLength));
 
-
+        //tilføj overstern til arraylist
+        bomlineArrayList.addAll(calculateFrontOverStern(overSternArrayList, carportWidth));
+        bomlineArrayList.addAll(calculateSideOverStern(overSternArrayList, carportLength));
 
         //tilføj løsholt og vinkelbeslag til arraylist
         bomlineArrayList.addAll(calculateNoggingAndBracket(210,noggingArrayList));
@@ -660,17 +682,34 @@ public class CarportCalculator {
         int rafters = calculateRafters(carportLength);
         int brackets = calculateSteelBracketLeft(rafters) * 2;
 
-        // tilføj stolper til arraylist
-        bomlineArrayList.add(postAmount(materialArrayList.get(9), carportLength));
 
-        // tilføj bræddebolte til arraylist
-        bomlineArrayList.add(carriageBolt(materialArrayList.get(22), carportLength));
+        //tilføj understern til arraylist
+        bomlineArrayList.addAll(calculateFrontUnderStern(underSternArrayList, carportWidth));
+        bomlineArrayList.addAll(calculateSideUnderStern(underSternArrayList, carportLength));
 
-        // tilføj firkantskiver til arraylist
-        bomlineArrayList.add(squareSpacer(materialArrayList.get(23), calculateCarriageBolt(carportLength)));
+        //tilføj overstern til arraylist
+        bomlineArrayList.addAll(calculateFrontOverStern(overSternArrayList, carportWidth));
+        bomlineArrayList.addAll(calculateSideOverStern(overSternArrayList, carportLength));
+
+        //tilføj rem til arraylist
+        bomlineArrayList.addAll(calculateHead(carportLength,headArrayList, 210));
 
         // tilføj spær til arraylist
         bomlineArrayList.add(rafters(materialArrayList.get(7), carportLength));
+
+        // tilføj stolper til arraylist
+        bomlineArrayList.add(postAmount(materialArrayList.get(9), carportLength));
+
+        // tilføj vandbræt til arraylist
+        bomlineArrayList.addAll(calculateWeatherBoardForFrontAndBack(weatherboardArrayList, carportWidth));
+        bomlineArrayList.addAll(calculateWeatherBoardForSide(weatherboardArrayList, carportLength));
+
+        // tilføj tagplader og skruer til arraylist
+        bomlineArrayList.addAll(calculateRoofPlates(carportLength, carportWidth, roofPlatesArraylist ));
+        bomlineArrayList.add(calculateAmountOfBoxesOfBottomScrews(materialArrayList.get(15), carportWidth, carportLength));
+
+        //tilføj hulbånd til arraylist
+        bomlineArrayList.add(perforatedTape(materialArrayList.get(16)));
 
         // tilføj venstre beslag til arraylist
         bomlineArrayList.add(steelBracketLeft(materialArrayList.get(18), rafters));
@@ -678,40 +717,17 @@ public class CarportCalculator {
         // tilføj højre beslag til arraylist
         bomlineArrayList.add(steelBracketRight(materialArrayList.get(17), rafters));
 
+        //tilføj skruer til stern og vandbræt til arraylist
+        bomlineArrayList.add(screwsForSternAndWeatherBoard(materialArrayList.get(20)));
+
         // tilføj skruer til beslag og hulbånd til arraylist
         bomlineArrayList.add(screwsForTapeAndBracket(materialArrayList.get(21), brackets, rafters));
 
-        // tilføj tagplader og skruer til arraylist
-        bomlineArrayList.addAll(calculateRoofPlates(carportLength, carportWidth, roofPlatesArraylist ));
-        bomlineArrayList.add(calculateAmountOfBoxesOfBottomScrews(materialArrayList.get(15), carportWidth, carportLength));
+        // tilføj bræddebolte til arraylist
+        bomlineArrayList.add(carriageBolt(materialArrayList.get(22), carportLength));
 
-        // tilføj overstern til arraylist
-        bomlineArrayList.addAll(calculateFrontUnderStern(overSternArrayList, carportWidth));
-        bomlineArrayList.addAll(calculateSideStern(overSternArrayList, carportLength));
-
-
-        // tilføj vandbræt til arraylist
-        bomlineArrayList.addAll(calculateWeatherBoardForFrontAndBack(weatherboardArrayList, carportWidth));
-        bomlineArrayList.addAll(calculateWeatherBoardForSide(weatherboardArrayList, carportLength));
-
-        //tilføj rem til arraylist
-        bomlineArrayList.addAll(calculateHead(carportLength,headArrayList, 210));
-
-        //tilføj løsholt og vinkelbeslag til arraylist
-        bomlineArrayList.addAll(calculateNoggingAndBracket(210,noggingArrayList));
-
-
-        //tilføj træ til z og håndtag og hængsel til dør til skuret
-        bomlineArrayList.addAll(addWoodForZPlusHandleAndHingeForDoor());
-
-
-        // tilføj understern til arraylist
-        //TODO Lav understern funktion så beskrivelse bliver rigtig.
-        bomlineArrayList.addAll(calculateFrontUnderStern(underSternArrayList, carportWidth));
-
-        //tilføj frontOverstern til arraylist
-        bomlineArrayList.addAll(calculateFrontOverStern(overSternArrayList, carportWidth));
-
+        // tilføj firkantskiver til arraylist
+        bomlineArrayList.add(squareSpacer(materialArrayList.get(23), calculateCarriageBolt(carportLength)));
 
         return bomlineArrayList;
     }

@@ -37,7 +37,7 @@ public class  FrontController extends HttpServlet {
 
         CarportCalculator carportCalculator = new CarportCalculator(materialArrayList);
 
-        ArrayList<Bomline> bomlineArrayList = carportCalculator.createCarportNoShed(780, 600);
+        ArrayList<Bomline> bomlineArrayList = carportCalculator.createCarportWithFullShed(780, 600, 210, 600);
 
         System.out.println(bomlineArrayList);
 
