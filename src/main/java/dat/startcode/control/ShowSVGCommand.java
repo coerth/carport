@@ -1,5 +1,6 @@
 package dat.startcode.control;
 
+import dat.startcode.model.entities.CarportRequest;
 import dat.startcode.model.services.SVG;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ public class ShowSVGCommand extends CommandUnprotectedPage {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        CarportRequest carportRequest = request.getAttribute("CarportObject");
+        CarportRequest carportRequest = (CarportRequest) request.getAttribute("CarportObject");
 
 
         SVG arrowsvg = new SVG(0, 0, "0 0 855 690", 50, 50);
@@ -22,8 +23,8 @@ public class ShowSVGCommand extends CommandUnprotectedPage {
 
         for (int x = 0; x < 14; x++) {
             svg.addRect(0 + 55 * x, 0, 600.0, 4.5);
-            svg.addLine(0, 0, 780, 0);
-            svg.addLine(0, 600, 780, 600);
+            svg.addLine(0, 0, carportRequest.getLength(), 0);
+            svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength(), carportRequest.getWidth());
 
             svg.addLine(780, 0, 780, 600);
             svg.addLine(775, 0, 775, 600);

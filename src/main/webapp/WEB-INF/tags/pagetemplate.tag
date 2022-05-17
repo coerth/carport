@@ -36,10 +36,6 @@
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/register.jsp">Registrer</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/showsvg?command=showsvg">SVG tegning</a>
 
-
-
-
-
                     <c:if test="${sessionScope.account == null }">
 
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
