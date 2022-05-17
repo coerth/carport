@@ -4,6 +4,52 @@ import java.util.ArrayList;
 
 public class CarportCalculator {
 
+    public int calculatePostDistance(int carportLength) {
+        int postDistance = 0;
+        int distanceFromStern = 100;
+        int restCarportLength = 0;
+
+        restCarportLength = carportLength - distanceFromStern;
+
+        if (restCarportLength >= 680) {
+            postDistance = restCarportLength / 3;
+        } else if (restCarportLength < 680 && restCarportLength >= 500) {
+            postDistance = restCarportLength / 2;
+        }
+
+        return postDistance;
+    }
+
+    public int calculatePostDistanceWithFullShedLength(int carportLength, int shedLength) {
+        int postDistance = 0;
+        int minDistanceFromStern = 50;
+        int maxDistanceFromStern = 100;
+        int restCarportLength = 0;
+        int maxPostDistance = 310;
+        int minPostDistance = 280;
+
+        if (carportLength >= 780) {
+            restCarportLength = shedLength + maxDistanceFromStern;
+            restCarportLength = carportLength - restCarportLength;
+            restCarportLength = restCarportLength - maxPostDistance;
+            postDistance = restCarportLength - 30;
+        } else if (carportLength < 780) {
+            restCarportLength = shedLength + minDistanceFromStern;
+            restCarportLength = carportLength - restCarportLength;
+            restCarportLength = restCarportLength - minPostDistance;
+            postDistance = restCarportLength;
+        }
+        return postDistance;
+    }
+
+    public int calculatePostDistanceWithFullShedWidth(int shedWidth){
+        int postDistance = 0;
+
+        postDistance = shedWidth / 2;
+
+        return postDistance;
+    }
+
 
     public Material calculateMaterialLength(int dimension, ArrayList<Material> listOfMaterials) {
 
@@ -43,8 +89,7 @@ public class CarportCalculator {
 
         int amount = 1;
 
-        while(amountNeeded > material.getQuantity() * amount)
-        {
+        while (amountNeeded > material.getQuantity() * amount) {
 
             amount++;
         }
@@ -100,8 +145,7 @@ public class CarportCalculator {
         }
     }
 
-    public int calculateBottomScrewForRoof(int carportWidth, int carportLength)
-    {
+    public int calculateBottomScrewForRoof(int carportWidth, int carportLength) {
         int quantity = (carportWidth * carportLength) * 13;
 
         return quantity;
@@ -117,37 +161,39 @@ public class CarportCalculator {
         return bomline;
     }
 
-    public ArrayList<Bomline> calculateFrontAndBackStern (ArrayList<Material> sternArrayList, int rafterLength) {
+    public ArrayList<Bomline> calculateFrontAndBackStern(ArrayList<Material> sternArrayList, int rafterLength) {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
         Material frontAndBackStern = calculateMaterialLength(rafterLength, sternArrayList);
-        if(frontAndBackStern == null) {
-            ArrayList<Material> frontAndBackSternArrayList = calculateMaterialIfMoreThanOneIsNeeded(rafterLength +5, sternArrayList);
+        if (frontAndBackStern == null) {
+            ArrayList<Material> frontAndBackSternArrayList = calculateMaterialIfMoreThanOneIsNeeded(rafterLength + 5, sternArrayList);
 
             for (Material material : frontAndBackSternArrayList) {
 
-                Bomline bomline = new Bomline("oversternbrædder til forenden",material,2);
+                Bomline bomline = new Bomline("oversternbrædder til forenden", material, 2);
                 bomlineArrayList.add(bomline);
             }
         } else {
-            Bomline bomline = new Bomline("oversternbrædder til forenden", frontAndBackStern,2);
+            Bomline bomline = new Bomline("oversternbrædder til forenden", frontAndBackStern, 2);
             bomlineArrayList.add(bomline);
-        } return bomlineArrayList;
+        }
+        return bomlineArrayList;
     }
 
-   public ArrayList<Bomline> calculateSideStern(ArrayList<Material> sternArrayList, int carportLength) {
-       ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
-       Material sideStern = calculateMaterialLength(carportLength, sternArrayList);
-       if(sideStern == null) {
-           ArrayList<Material> sideSternArrayList = calculateMaterialIfMoreThanOneIsNeeded(carportLength,sternArrayList);
-           for(Material material : sideSternArrayList) {
-               Bomline bomline = new Bomline("oversternbrædder til siderne", material,2);
-               bomlineArrayList.add(bomline);
-           }
-       }else {
-           Bomline bomline = new Bomline("oversternbrædder til siderne", sideStern,2);
-           bomlineArrayList.add(bomline);
-       }return bomlineArrayList;
-   }
+    public ArrayList<Bomline> calculateSideStern(ArrayList<Material> sternArrayList, int carportLength) {
+        ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
+        Material sideStern = calculateMaterialLength(carportLength, sternArrayList);
+        if (sideStern == null) {
+            ArrayList<Material> sideSternArrayList = calculateMaterialIfMoreThanOneIsNeeded(carportLength, sternArrayList);
+            for (Material material : sideSternArrayList) {
+                Bomline bomline = new Bomline("oversternbrædder til siderne", material, 2);
+                bomlineArrayList.add(bomline);
+            }
+        } else {
+            Bomline bomline = new Bomline("oversternbrædder til siderne", sideStern, 2);
+            bomlineArrayList.add(bomline);
+        }
+        return bomlineArrayList;
+    }
 
     public ArrayList<Bomline> calculateWeatherBoardForSide(ArrayList<Material> weatherBoardArrayList, int carportLength) {
 
@@ -237,7 +283,7 @@ public class CarportCalculator {
         return squareSpacer;
     }
 
-    public int calculateRafters(int carportLength){
+    public int calculateRafters(int carportLength) {
 
         int distance = 59;
         int rafters = 0;
@@ -247,17 +293,17 @@ public class CarportCalculator {
         return rafters;
     }
 
-    public float calculateRaftersDistance(float carportLength, float rafters){
+    public float calculateRaftersDistance(float carportLength, float rafters) {
 
         float newDistance = 0;
         float rafterWidth = 4.5f;
 
         newDistance = carportLength / rafters + rafterWidth;
 
-        return  newDistance;
+        return newDistance;
     }
 
-    public int calculateSteelBracketRight(int rafters){
+    public int calculateSteelBracketRight(int rafters) {
 
         int steelBracket = 0;
 
@@ -266,7 +312,7 @@ public class CarportCalculator {
         return steelBracket;
     }
 
-    public int calculateSteelBracketLeft(int rafters){
+    public int calculateSteelBracketLeft(int rafters) {
 
         int steelBracket = 0;
 
@@ -275,16 +321,16 @@ public class CarportCalculator {
         return steelBracket;
     }
 
-    public int calculateScrewForBracket(int bracket){
+    public int calculateScrewForBracket(int bracket) {
 
-         int screws = 0;
+        int screws = 0;
 
-         screws = (bracket*2) * 9;
+        screws = (bracket * 2) * 9;
 
-         return screws;
+        return screws;
     }
 
-    public int calculateScrewForPerforatedTape(int rafters){
+    public int calculateScrewForPerforatedTape(int rafters) {
 
         int screws = 0;
         int perforatedTape = 2;
@@ -296,49 +342,49 @@ public class CarportCalculator {
 
     }
 
-    public Bomline postAmount(Material material, int carportLength){
+    public Bomline postAmount(Material material, int carportLength) {
         int post = calculatePostAmount(carportLength);
 
         Bomline bomline = new Bomline("Stolper til carport", material, post);
         return bomline;
     }
 
-    public Bomline carriageBolt(Material material, int carportLength){
+    public Bomline carriageBolt(Material material, int carportLength) {
         int bolt = calculateCarriageBolt(carportLength);
 
         Bomline bomline = new Bomline("Breddebolte til montering af rem på stolper", material, bolt);
         return bomline;
     }
 
-    public Bomline squareSpacer(Material material, int carriageBolt){
+    public Bomline squareSpacer(Material material, int carriageBolt) {
         int spacer = calculateSquareSpacer(carriageBolt);
 
         Bomline bomline = new Bomline("Firkantskiver til montering af rem på stolper", material, spacer);
         return bomline;
     }
 
-    public Bomline rafters(Material material, int carportLength){
+    public Bomline rafters(Material material, int carportLength) {
         int rafter = calculateRafters(carportLength);
 
         Bomline bomline = new Bomline("Spær, monteres på rem", material, rafter);
         return bomline;
     }
 
-    public Bomline steelBracketRight(Material material, int rafters){
+    public Bomline steelBracketRight(Material material, int rafters) {
         int steelBrackets = calculateSteelBracketRight(rafters);
 
         Bomline bomline = new Bomline("Universal beslag til montering af spær på rem", material, steelBrackets);
         return bomline;
     }
 
-    public Bomline steelBracketLeft(Material material, int rafters){
+    public Bomline steelBracketLeft(Material material, int rafters) {
         int steelBrackets = calculateSteelBracketLeft(rafters);
 
         Bomline bomline = new Bomline("Universal beslag til montering af spær på rem", material, steelBrackets);
         return bomline;
     }
 
-    public Bomline screwsForTapeAndBracket(Material material, int bracket, int rafters){
+    public Bomline screwsForTapeAndBracket(Material material, int bracket, int rafters) {
         int screwsForBrackets = calculateScrewForBracket(bracket);
         int screwsForTape = calculateScrewForPerforatedTape(rafters);
         int screwBoxes = calculateQuantityOfBoxes(screwsForTape + screwsForBrackets, material);

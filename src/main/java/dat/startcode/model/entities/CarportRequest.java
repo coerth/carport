@@ -105,4 +105,14 @@ public class CarportRequest {
         this.roofType = roofType;
         this.customerId = customerId;
     }
+
+    public CarportRequest(int width, int length, String roofType, int shedWidth, int shedLength, int roofIncline, int customerId) {
+        this.width = width;
+        this.length = length;
+        this.roofType = roofType;
+        this.shedWidth = shedWidth;
+        this.shedLength = shedLength;
+        this.roofIncline = roofIncline;
+        this.customerId = customerId;
+    }
 }

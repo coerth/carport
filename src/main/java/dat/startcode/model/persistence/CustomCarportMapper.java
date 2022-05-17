@@ -75,6 +75,35 @@ public class CustomCarportMapper implements ICustomCarportMapper {
         return carportRequest;
     }
 
+    public ArrayList<CarportRequest> getAllRequest() {
+
+        ArrayList<CarportRequest> carportRequestList = new ArrayList<>();
+
+        String sql = "SELECT * FROM carport_request";
+
+        try(Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    int width = rs.getInt("width");
+                    int length = rs.getInt("length");
+                    String roof = rs.getString("roof");
+                    int roofIncline = rs.getInt("roof_incline");
+                    int shedLength = rs.getInt("shed_length");
+                    int shedWidth = rs.getInt("shed_width");
+                    int customerId = rs.getInt("customer_id");
+
+                    CarportRequest newCarportRequest = new CarportRequest(width, length, roof, roofIncline, shedLength, shedWidth, customerId);
+                    carportRequestList.add(newCarportRequest);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return carportRequestList;
+    }
+
 
 }
 

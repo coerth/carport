@@ -19,10 +19,7 @@ public class ShowSVGCommand extends CommandUnprotectedPage {
         HttpSession session = request.getSession();
         CarportRequest carportRequest = (CarportRequest) session.getAttribute("newCarportRequest");
 
-
-        SVG arrowsvg = new SVG(0, 0, "0 0 855 690", 50, 50);
-        SVG svg = new SVG(75, 10, "0 0 780 600", 50, 50);
-
+        SVG svg = new SVG(75, 10, "0 0 800 600", 50, 50);
 
         for (int x = 0; x < 14; x++) {
             svg.addRect(0 + 55 * x, 0, 600.0, 4.5);
@@ -67,8 +64,6 @@ public class ShowSVGCommand extends CommandUnprotectedPage {
             svg.addRect(752, 527, 10, 10);
         }
 
-
-        arrowsvg.addSvg(svg);
         request.setAttribute("svgdrawing", svg.toString());
         return pageToShow;
     }

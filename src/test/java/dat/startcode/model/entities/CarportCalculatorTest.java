@@ -291,4 +291,22 @@ class CarportCalculatorTest
         assertEquals(2, bomline.getQuantity());
 
     }
+
+    @Test
+    void calculatePostDistance(){
+        int postDistance = carportCalculator.calculatePostDistance(660);
+        assertEquals(280, postDistance);
+    }
+
+    @Test
+    void calculatePostDistanceWithFullShedLength(){
+        int postDistance = carportCalculator.calculatePostDistanceWithFullShedLength(620, 150);
+        assertEquals(140, postDistance);
+    }
+
+    @Test
+    void calculatePostDistanceWithFullShedWidth(){
+        int postDistanceWidth = carportCalculator.calculatePostDistanceWithFullShedWidth(530);
+        assertEquals(265, postDistanceWidth);
+    }
 }
