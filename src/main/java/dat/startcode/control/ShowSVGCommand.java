@@ -1,5 +1,6 @@
 package dat.startcode.control;
 
+import dat.startcode.model.entities.CarportCalculator;
 import dat.startcode.model.entities.CarportRequest;
 import dat.startcode.model.services.CarportRequestFacade;
 import dat.startcode.model.services.SVG;
@@ -18,7 +19,7 @@ public class ShowSVGCommand extends CommandUnprotectedPage {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         CarportRequest carportRequest = (CarportRequest) session.getAttribute("newCarportRequest");
-
+        CarportCalculator carportCalculator = new CarportCalculator();
 
 
 /*
@@ -27,8 +28,8 @@ public class ShowSVGCommand extends CommandUnprotectedPage {
         SVG svg = new SVG(75, 10, "0 0 780 600", 50, 50);
 
 
-        for (int x = 0; x < 14; x++) {
-            svg.addRect(0 + 59 * x, 0, carportRequest.getWidth(), 4);
+        for (int x = 0; x < carportCalculator.calculatePostAmount(carportRequest.getLength()); x++) {
+            svg.addRect((int) (0 + carportCalculator.calculateRaftersDistance(carportRequest.getLength(),carportCalculator.calculateRafters(carportRequest.getLength())) * x), 0, carportRequest.getWidth(), 4);
 
             /*Top og bund rem*/
             svg.addLine(0, 0, carportRequest.getLength(), 0);
@@ -39,10 +40,10 @@ public class ShowSVGCommand extends CommandUnprotectedPage {
 
             /*Venstre side af rammen*/
             svg.addLine(0, 0, 0, carportRequest.getWidth());
-            System.out.println(svg);
+
 
             /*Skur væg venstre side*/
-            svg.addLine(carportRequest.getShedLength()-65, carportRequest.getWidth()-535, carportRequest.getShedLength(), carportRequest.getShedWidth());
+            svg.addLine(carportRequest.getShedLength(), carportRequest.getWidth(), carportRequest.getShedLength(), carportRequest.getShedWidth());
 
             /*Skur væg højre side*/
             svg.addLine(carportRequest.getShedLength(), carportRequest.getShedWidth(), carportRequest.getShedLength(), carportRequest.getShedWidth());
