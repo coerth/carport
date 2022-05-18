@@ -499,6 +499,50 @@ VIEW `bomlines_with_materialname_and_description` AS
         JOIN `description` `d` ON ((`b`.`description_id` = `d`.`description_id`)))
     ORDER BY `b`.`bom_id`;
 
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `customer_and_account_overview` AS
+    SELECT 
+        `account`.`account_id` AS `account_id`,
+        `account`.`email` AS `email`,
+        `account`.`password` AS `password`,
+        `account`.`role` AS `role`,
+        `customer`.`customer_id` AS `customer_id`,
+        `customer`.`name` AS `name`,
+        `customer`.`address` AS `address`,
+        `customer`.`city` AS `city`,
+        `customer`.`zip` AS `zip`,
+        `customer`.`mobile` AS `mobile`
+    FROM
+        (`account`
+        JOIN `customer` ON ((`account`.`account_id` = `customer`.`account_id`)));
+        
+        CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `carport_request_with_customer_info` AS
+    SELECT 
+        `carport_request`.`customer_id` AS `customer_id`,
+        `carport_request`.`carport_request_id` AS `carport_request_id`,
+        `carport_request`.`width` AS `width`,
+        `carport_request`.`length` AS `length`,
+        `carport_request`.`roof` AS `roof`,
+        `carport_request`.`roof_incline` AS `roof_incline`,
+        `carport_request`.`is_approved` AS `is_approved`,
+        `carport_request`.`shed_length` AS `shed_length`,
+        `carport_request`.`shed_width` AS `shed_width`,
+        `c`.`name` AS `name`,
+        `c`.`address` AS `address`,
+        `c`.`city` AS `city`,
+        `c`.`zip` AS `zip`,
+        `c`.`mobile` AS `mobile`,
+        `c`.`account_id` AS `account_id`
+    FROM
+        (`carport`.`carport_request`
+        JOIN `customer` `c` ON ((`carport_request`.`customer_id` = `c`.`customer_id`)));
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -561,3 +605,48 @@ VIEW `bomlines_with_materialname_and_description` AS
         JOIN `material` `m` ON ((`b`.`material_id` = `m`.`material_id`)))
         JOIN `description` `d` ON ((`b`.`description_id` = `d`.`description_id`)))
     ORDER BY `b`.`bom_id`;
+    
+    CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `customer_and_account_overview` AS
+    SELECT 
+        `account`.`account_id` AS `account_id`,
+        `account`.`email` AS `email`,
+        `account`.`password` AS `password`,
+        `account`.`role` AS `role`,
+        `customer`.`customer_id` AS `customer_id`,
+        `customer`.`name` AS `name`,
+        `customer`.`address` AS `address`,
+        `customer`.`city` AS `city`,
+        `customer`.`zip` AS `zip`,
+        `customer`.`mobile` AS `mobile`
+    FROM
+        (`account`
+        JOIN `customer` ON ((`account`.`account_id` = `customer`.`account_id`)));
+        
+        CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `carport_request_with_customer_info` AS
+    SELECT 
+        `carport_request`.`customer_id` AS `customer_id`,
+        `carport_request`.`carport_request_id` AS `carport_request_id`,
+        `carport_request`.`width` AS `width`,
+        `carport_request`.`length` AS `length`,
+        `carport_request`.`roof` AS `roof`,
+        `carport_request`.`roof_incline` AS `roof_incline`,
+        `carport_request`.`is_approved` AS `is_approved`,
+        `carport_request`.`shed_length` AS `shed_length`,
+        `carport_request`.`shed_width` AS `shed_width`,
+        `c`.`name` AS `name`,
+        `c`.`address` AS `address`,
+        `c`.`city` AS `city`,
+        `c`.`zip` AS `zip`,
+        `c`.`mobile` AS `mobile`,
+        `c`.`account_id` AS `account_id`
+    FROM
+        (`carport`.`carport_request`
+        JOIN `customer` `c` ON ((`carport_request`.`customer_id` = `c`.`customer_id`)));
