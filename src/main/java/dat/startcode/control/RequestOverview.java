@@ -16,5 +16,7 @@ public class RequestOverview extends Command
 
         ArrayList<CarportRequest> carportRequestArraylist = CarportRequestFacade.getAllCarportRequests(ApplicationStart.getConnectionPool());
 
+        request.setAttribute("carportRequestArraylist", carportRequestArraylist);
+        return "requestoverview";
     }
 }
