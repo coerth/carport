@@ -97,13 +97,14 @@ public class CustomCarportMapper implements ICustomCarportMapper {
                     CarportRequest newCarportRequest = new CarportRequest(carportRequestId, width, length, roof, roofIncline, isApproved, shedLength, shedWidth, customerId);
                     requestArrayList.add(newCarportRequest);
                 }
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }            return requestArrayList;
 
-            return requestArrayList;
-
-        }
     }
 }
 

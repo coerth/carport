@@ -23,7 +23,7 @@ public class CarportRequestFacade {
 
     public static ArrayList<CarportRequest> getAllCarportRequests(ConnectionPool connectionPool){
         CustomCarportMapper customCarportMapper = new CustomCarportMapper(connectionPool);
-        return customCarportMapper.getAllCarportRequests();
+        return customCarportMapper.getAllRequests();
     }
 
 }

@@ -1,35 +1,34 @@
 package dat.startcode.model.entities;
 
 public class CarportRequest {
+
+
     @Override
     public String toString() {
         return "CarportRequest{" +
                 "width=" + width +
                 ", length=" + length +
                 ", roofType='" + roofType + '\'' +
-                ", shedOrNoShed=" + shedOrNoShed +
                 ", shedWidth=" + shedWidth +
                 ", shedLength=" + shedLength +
                 ", roofIncline=" + roofIncline +
                 '}';
     }
 
+    int requestId;
     int width;
     int length;
     String roofType;
-    boolean shedOrNoShed;
     int shedWidth;
     int shedLength;
     int roofIncline;
-    int requestId;
     int customerId;
     boolean isApproved;
 
-    public CarportRequest(int width, int length, String roofType, boolean shedOrNoShed, int shedWidth, int shedLength, int roofIncline, int requestId, int customerId, boolean isApproved) {
+    public CarportRequest(int requestId, int width, int length, String roofType,int roofIncline, boolean isApproved, int shedLength, int shedWidth, int customerId) {
         this.width = width;
         this.length = length;
         this.roofType = roofType;
-        this.shedOrNoShed = shedOrNoShed;
         this.shedWidth = shedWidth;
         this.shedLength = shedLength;
         this.roofIncline = roofIncline;
@@ -38,6 +37,16 @@ public class CarportRequest {
         this.isApproved = isApproved;
     }
 
+
+
+    public CarportRequest(int width, int length, String roofType, int shedLength, int shedWidth, int customerId) {
+        this.width = width;
+        this.length = length;
+        this.roofType  = roofType;
+        this.shedLength = shedLength;
+        this.shedWidth = shedWidth;
+        this.customerId = customerId;
+    }
     public int getWidth() {
         return width;
     }
@@ -62,13 +71,6 @@ public class CarportRequest {
         this.roofType = roofType;
     }
 
-    public boolean isShedOrNoShed() {
-        return shedOrNoShed;
-    }
-
-    public void setShedOrNoShed(boolean shedOrNoShed) {
-        this.shedOrNoShed = shedOrNoShed;
-    }
 
     public int getShedWidth() {
         return shedWidth;
@@ -102,25 +104,8 @@ public class CarportRequest {
         return requestId;
     }
 
-
-
-    public CarportRequest(int width, int length, String roofType, boolean shedOrNoShed, int shedWidth, int shedLength, int roofIncline) {
-        this.width = width;
-        this.length = length;
-        this.roofType = roofType;
-        this.shedOrNoShed = shedOrNoShed;
-        this.shedWidth = shedWidth;
-        this.shedLength = shedLength;
-        this.roofIncline = roofIncline;
-    }
-
-    public CarportRequest(int width, int length, String roofType, int shedWidth, int shedLength, int customerId) {
-        this.width = width;
-        this.length = length;
-        this.roofType = roofType;
-        this.shedWidth = shedWidth;
-        this.shedLength = shedLength;
-        this.customerId = customerId;
+    public boolean isApproved() {
+        return isApproved;
     }
 
     public CarportRequest(int width, int length, String roofType, int customerId) {
