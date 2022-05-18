@@ -2,9 +2,11 @@ package dat.startcode.model.services;
 
 import dat.startcode.model.entities.Account;
 import dat.startcode.model.entities.Customer;
+import dat.startcode.model.entities.Material;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.persistence.CustomerMapper;
+import dat.startcode.model.persistence.MaterialMapper;
 
 public class CustomerFacade
 {
@@ -23,6 +25,12 @@ public class CustomerFacade
     public static Customer customerAccount(Account account, ConnectionPool connectionPool) throws DatabaseException{
         CustomerMapper customerMapper = new CustomerMapper(connectionPool);
         return customerMapper.customerAccount(account);
+    }
+
+    public static Customer getSpecificCustomer(int customerId, ConnectionPool connectionPool) throws DatabaseException
+    {
+        CustomerMapper customerMapper = new CustomerMapper(connectionPool);
+        return customerMapper.getSpecificCustomer(customerId);
     }
 
 }

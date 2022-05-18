@@ -26,4 +26,12 @@ public class CarportRequestFacade {
         return customCarportMapper.getAllRequests();
     }
 
+    public static CarportRequest getSpecificCarportRequest(int requestId, ConnectionPool connectionPool){
+        CustomCarportMapper customCarportMapper = new CustomCarportMapper(connectionPool);
+
+        return customCarportMapper.getSpecificRequest(requestId);
+    }
+
+
+
 }

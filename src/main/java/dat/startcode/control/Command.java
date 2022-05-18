@@ -26,6 +26,7 @@ abstract class Command
         commands.put("quickbuild", new Quickbuild());
         commands.put("requestsent", new RequestSent());
         commands.put("requestoverview", new RequestOverview());
+        commands.put("requestview", new RequestView());
     }
 
     static Command from( HttpServletRequest request ) {

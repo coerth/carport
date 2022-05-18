@@ -62,9 +62,13 @@ public class CustomCarportMapper implements ICustomCarportMapper {
                     int width = rs.getInt("width");
                     int length = rs.getInt("length");
                     String roof = rs.getString("roof");
+                    int roofIncline = rs.getInt("roof_incline");
+                    boolean isApproved = rs.getBoolean("is_approved");
+                    int shedLength = rs.getInt("shed_length");
+                    int shedWidth = rs.getInt("shed_width");
                     int customerId = rs.getInt("customer_id");
 
-                    carportRequest = new CarportRequest(width, length, roof, customerId);
+                    carportRequest = new CarportRequest(carportRequestId, width, length, roof, roofIncline, isApproved, shedLength, shedWidth, customerId);
                     return carportRequest;
                 }
             }
