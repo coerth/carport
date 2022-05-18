@@ -1,7 +1,6 @@
 package dat.startcode.model.persistence;
 
 import dat.startcode.model.entities.CarportRequest;
-import dat.startcode.model.entities.Customer;
 import dat.startcode.model.exceptions.DatabaseException;
 
 import java.sql.Connection;
@@ -10,11 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class CustomCarportMapper implements ICustomCarportMapper {
+public class CarportRequestMapper implements ICarportRequestMapper {
 
     ConnectionPool connectionPool;
 
-    public CustomCarportMapper(ConnectionPool connectionPool) {
+    public CarportRequestMapper(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
     }
 
@@ -109,6 +108,31 @@ public class CustomCarportMapper implements ICustomCarportMapper {
             e.printStackTrace();
         }            return requestArrayList;
 
+    }
+
+    @Override
+    public boolean deleteCarportRequest(int carportRequestId) {
+        String sql = "DELETE FROM `carport_request` WHERE `carport_request_id` = ?";
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, carportRequestId);
+
+                int rowsAffected = ps.executeUpdate();
+
+                if (rowsAffected == 1)
+                {
+                    return true;
+                }
+            }
+
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }
 
