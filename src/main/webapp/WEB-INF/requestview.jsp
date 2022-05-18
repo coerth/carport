@@ -69,8 +69,8 @@
             </tbody>
         </table>
 
-        <form action="fc/approveRequest"><input type="hidden" name="command" value="requestapprove"/><button name="requestId" class="btn btn-success" value="${requestScope.carportRequest.requestId}">Godkend</button></form>
-        <form action="fc/denyRequest"><input type="hidden" name="command" value="requestdeny"/><button name="requestId" class="btn btn-outline-danger" value="${requestScope.carportRequest.requestId}">Afvis</button></form>
+        <form action="fc/approveRequest"><input type="hidden" name="command" value="requestapprove"/><button name="requestId" class="btn btn-success" value="${requestScope.carportRequestDTO.carportRequestId}">Godkend</button></form>
+        <form action="fc/denyRequest"><input type="hidden" name="command" value="requestdeny"/><button name="requestId" class="btn btn-outline-danger" value="${requestScope.carportRequestDTO.carportRequestId}">Afvis</button></form>
 
 
     </jsp:body>

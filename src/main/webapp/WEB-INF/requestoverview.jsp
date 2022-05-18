@@ -15,6 +15,8 @@
 
     <jsp:body>
 
+        ${requestScope.requestDeleted}
+
         <h3>Her er alle forespørgelser</h3>
 
         <table class="table table-striped table-hover">
@@ -35,8 +37,8 @@
             <tbody>
             <c:forEach var="item" items="${requestScope.carportRequestArraylist}">
                 <tr>
-                    <th  scope="row">${item.customerId}</th>
-                    <td>${item.requestId}</td>
+                    <th  scope="row">${item.requestId}</th>
+                    <td>${item.customerId}</td>
                     <td>${item.length}</td>
                     <td>${item.width}</td>
                     <td>${item.roofType}</td>

@@ -9,11 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class CarportRequestRequestMapper implements ICarportRequestMapper {
+public class CarportRequestMapper implements ICarportRequestMapper {
 
     ConnectionPool connectionPool;
 
-    public CarportRequestRequestMapper(ConnectionPool connectionPool) {
+    public CarportRequestMapper(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
     }
 
