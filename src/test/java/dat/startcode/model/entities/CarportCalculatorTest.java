@@ -309,4 +309,16 @@ class CarportCalculatorTest
         int postDistanceWidth = carportCalculator.calculatePostDistanceWithFullShedWidth(530);
         assertEquals(265, postDistanceWidth);
     }
+
+    @Test
+    void calculatePerforatedTapeLength(){
+
+        int perforatedTapeLength = carportCalculator.calculatePerforatedTapeLength(780);
+        assertEquals(662,perforatedTapeLength);
+    }
+    @Test
+    void calculatePerforatedtapeLengthWithShed(){
+        int perforatedTapeLength = carportCalculator.calculatePerforatedtapeLengthWithShed(780,210);
+        assertEquals(511,perforatedTapeLength);
+    }
 }

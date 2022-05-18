@@ -42,12 +42,33 @@ public class CarportCalculator {
         return postDistance;
     }
 
-    public int calculatePostDistanceWithFullShedWidth(int shedWidth){
+    public int calculatePostDistanceWithFullShedWidth(int shedWidth) {
         int postDistance = 0;
 
         postDistance = shedWidth / 2;
 
         return postDistance;
+    }
+
+    public int calculatePerforatedTapeLength(int carportLength) {
+
+        int perforatedTapeLength = 0;
+        int maxRafterDistance = 59;
+
+        perforatedTapeLength = carportLength - maxRafterDistance * 2;
+        return perforatedTapeLength;
+
+    }
+
+    public int calculatePerforatedtapeLengthWithShed(int carportLength, int shedLength) {
+
+        int perforatedTapeLength = 0;
+        int maxRafterDistance = 59;
+
+        perforatedTapeLength = carportLength - shedLength;
+        perforatedTapeLength = perforatedTapeLength - maxRafterDistance;
+        return perforatedTapeLength;
+
     }
 
 
