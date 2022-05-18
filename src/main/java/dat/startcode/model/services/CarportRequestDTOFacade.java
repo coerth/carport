@@ -6,8 +6,11 @@ import dat.startcode.model.persistence.ConnectionPool;
 
 public class CarportRequestDTOFacade {
 
-    public static CarportRequestDTO getSpecificCarportRequestDTO(int carportRequestId) {
-        CarportRequestDTO carportRequestDTO = new CarportRequestDTO(carportRequestId);
+    public static CarportRequestDTO getSpecificCarportRequestDTO(int carportRequestId, ConnectionPool connectionPool) {
+
+        CarportRequestDTOMapper carportRequestDTOMapper= new CarportRequestDTOMapper(connectionPool);
+
+        return carportRequestDTOMapper.getSpecificCarportRequestDTO(carportRequestId);
 
     }
 
