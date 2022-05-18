@@ -97,7 +97,6 @@ CREATE TABLE IF NOT EXISTS `carport`.`carport_request` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb3;
 
 INSERT INTO `carport`.`carport_request`
@@ -358,7 +357,6 @@ CREATE TABLE IF NOT EXISTS `carport`.`order` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb3;
 
 INSERT INTO `carport`.`order`
@@ -541,8 +539,40 @@ VIEW `carport_request_with_customer_info` AS
         `c`.`mobile` AS `mobile`,
         `c`.`account_id` AS `account_id`
     FROM
-        (`carport`.`carport_request`
+        (`carport_request`
         JOIN `customer` `c` ON ((`carport_request`.`customer_id` = `c`.`customer_id`)));
+        CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `order_to_description_view` AS
+    SELECT 
+        `bomline`.`description_id` AS `description_id`,
+        `bomline`.`material_id` AS `material_id`,
+        `bill_of_materials`.`bom_id` AS `bom_id`,
+        `order`.`order_id` AS `order_id`,
+        `order`.`customer_id` AS `customer_id`,
+        `order`.`date` AS `date`,
+        `order`.`carport_type` AS `carport_type`,
+        `order`.`price` AS `order_price`,
+        `order`.`carport_request_id` AS `carport_request_id`,
+        `bomline`.`bomline_id` AS `bomline_id`,
+        `bomline`.`quantity` AS `bomline_quantity`,
+        `material`.`name` AS `name`,
+        `material`.`price` AS `material_price`,
+        `material`.`unit` AS `unit`,
+        `material`.`length` AS `length`,
+        `material`.`type_id` AS `type_id`,
+        `material`.`width` AS `width`,
+        `material`.`height` AS `height`,
+        `material`.`quantity` AS `material_quantity`,
+        `description`.`description` AS `description`
+    FROM
+        ((((`order`
+        JOIN `bill_of_materials` ON ((`order`.`order_id` = `bill_of_materials`.`order_id`)))
+        JOIN `bomline` ON ((`bill_of_materials`.`bom_id` = `bomline`.`bom_id`)))
+        JOIN `material` ON ((`bomline`.`material_id` = `material`.`material_id`)))
+        JOIN `description` ON ((`bomline`.`description_id` = `description`.`description_id`)));
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -648,5 +678,37 @@ VIEW `carport_request_with_customer_info` AS
         `c`.`mobile` AS `mobile`,
         `c`.`account_id` AS `account_id`
     FROM
-        (`carport`.`carport_request`
+        (`carport_request`
         JOIN `customer` `c` ON ((`carport_request`.`customer_id` = `c`.`customer_id`)));
+        CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `order_to_description_view` AS
+    SELECT 
+        `bomline`.`description_id` AS `description_id`,
+        `bomline`.`material_id` AS `material_id`,
+        `bill_of_materials`.`bom_id` AS `bom_id`,
+        `order`.`order_id` AS `order_id`,
+        `order`.`customer_id` AS `customer_id`,
+        `order`.`date` AS `date`,
+        `order`.`carport_type` AS `carport_type`,
+        `order`.`price` AS `order_price`,
+        `order`.`carport_request_id` AS `carport_request_id`,
+        `bomline`.`bomline_id` AS `bomline_id`,
+        `bomline`.`quantity` AS `bomline_quantity`,
+        `material`.`name` AS `name`,
+        `material`.`price` AS `material_price`,
+        `material`.`unit` AS `unit`,
+        `material`.`length` AS `length`,
+        `material`.`type_id` AS `type_id`,
+        `material`.`width` AS `width`,
+        `material`.`height` AS `height`,
+        `material`.`quantity` AS `material_quantity`,
+        `description`.`description` AS `description`
+    FROM
+        ((((`order`
+        JOIN `bill_of_materials` ON ((`order`.`order_id` = `bill_of_materials`.`order_id`)))
+        JOIN `bomline` ON ((`bill_of_materials`.`bom_id` = `bomline`.`bom_id`)))
+        JOIN `material` ON ((`bomline`.`material_id` = `material`.`material_id`)))
+        JOIN `description` ON ((`bomline`.`description_id` = `description`.`description_id`)));
