@@ -39,6 +39,7 @@
                     </c:if>
                     <c:if test="${sessionScope.account.role == 1 }">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=admin">Admin</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=requestoverview">Forespørgelser</a>
                     </c:if>
                     <c:if test="${sessionScope.customer != null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log out</a>

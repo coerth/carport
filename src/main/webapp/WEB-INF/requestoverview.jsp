@@ -41,10 +41,12 @@
                     <td>${item.width}</td>
                     <td>${item.roofType}</td>
                     <td>${item.roofIncline}</td>
-                    <td>${item.}</td>
-                    <td>${item.typeId}</td>
-                    <td><form action="fc/delete"><input type="hidden" name="command" value="deletematerial"/><button name="delete" value="${item.materialId}">Slet</button> </form><button name="modify" value="${item.materialId}">Rediger</button></td>
+                    <td>${item.approved}</td>
+                    <td>${item.shedLength}</td>
+                    <td>${item.shedWidth}</td>
+                    <td><form action="fc/approveRequest"><input type="hidden" name="command" value="approveRequest"/><button name="Godkend" value="${item.requestId}">Godkend</button> </form><button name="modify" value="${item.requestId}">Rediger</button></td>
                 </tr>
+                <br>
             </c:forEach>
             </tbody>
         </table>
