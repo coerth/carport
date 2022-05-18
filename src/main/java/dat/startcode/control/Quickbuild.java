@@ -36,6 +36,7 @@ public class Quickbuild extends Command{
         int width = Integer.parseInt(request.getParameter("width"));
         int length = Integer.parseInt(request.getParameter("length"));
         String roofType = request.getParameter("roof");
+        int roofIncline = 0;
         int shedLength;
         int shedWidth;
 
@@ -53,7 +54,7 @@ public class Quickbuild extends Command{
         }
 
         try {
-            CarportRequest newCarportRequest = CarportRequestFacade.createCarportRequest(width,length,roofType,shedLength,shedWidth, customerId,connectionPool);
+            CarportRequest newCarportRequest = CarportRequestFacade.createCarportRequest(width,length,roofType,roofIncline, shedLength,shedWidth, customerId,connectionPool);
             request.setAttribute("newCarportRequest", newCarportRequest);
         } catch (SQLException e) {
             e.printStackTrace();

@@ -9,8 +9,9 @@ import java.util.ArrayList;
 
 public interface ICustomCarportMapper {
     ArrayList<CarportRequest> getAll = new ArrayList<>();
-    CarportRequest createCarportRequest(int width, int length, String roofType, int shedWidth, int shedLength, int customerId ) throws DatabaseException, SQLException;
+    CarportRequest createCarportRequest(int width, int length, String roofType, int roofIncline, int shedWidth, int shedLength, int customerId ) throws DatabaseException, SQLException;
     CarportRequest getSpecificRequest(int carportRequestId);
+    ArrayList<CarportRequest> getAllRequests();
 
 
 }
