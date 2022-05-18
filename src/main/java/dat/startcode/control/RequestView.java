@@ -1,9 +1,11 @@
 package dat.startcode.control;
 
+import dat.startcode.model.DTO.CarportRequestDTO;
 import dat.startcode.model.config.ApplicationStart;
 import dat.startcode.model.entities.CarportRequest;
 import dat.startcode.model.entities.Customer;
 import dat.startcode.model.exceptions.DatabaseException;
+import dat.startcode.model.services.CarportRequestDTOFacade;
 import dat.startcode.model.services.CarportRequestFacade;
 import dat.startcode.model.services.CustomerFacade;
 
@@ -16,11 +18,9 @@ public class RequestView extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
         int requestId = Integer.parseInt(request.getParameter("requestId"));
 
-        CarportRequest carportRequest = CarportRequestFacade.getSpecificCarportRequest(requestId, ApplicationStart.getConnectionPool());
-        Customer customer = CustomerFacade.getSpecificCustomer(carportRequest.getCustomerId(), ApplicationStart.getConnectionPool());
+        CarportRequestDTO carportRequestDTO = CarportRequestDTOFacade.getSpecificCarportRequestDTO(requestId, ApplicationStart.getConnectionPool());
 
-        request.setAttribute("carportRequest", carportRequest);
-        request.setAttribute("customer", customer);
+        request.setAttribute("carportRequestDTO", carportRequestDTO);
 
         return "requestview";
     }

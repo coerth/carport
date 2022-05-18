@@ -34,14 +34,14 @@
             <tbody>
 
                 <tr>
-                    <th  scope="row">${requestScope.carportRequest.requestId}</th>
-                    <td>${requestScope.carportRequest.length}</td>
-                    <td>${requestScope.carportRequest.width}</td>
-                    <td>${requestScope.carportRequest.roofType}</td>
-                    <td>${requestScope.carportRequest.roofIncline}</td>
-                    <td>${requestScope.carportRequest.approved}</td>
-                    <td>${requestScope.carportRequest.shedLength}</td>
-                    <td>${requestScope.carportRequest.shedWidth}</td>
+                    <th  scope="row">${requestScope.carportRequestDTO.carportRequestId}</th>
+                    <td>${requestScope.carportRequestDTO.length}</td>
+                    <td>${requestScope.carportRequestDTO.width}</td>
+                    <td>${requestScope.carportRequestDTO.roof}</td>
+                    <td>${requestScope.carportRequestDTO.roofIncline}</td>
+                    <td>${requestScope.carportRequestDTO.approved}</td>
+                    <td>${requestScope.carportRequestDTO.shedLength}</td>
+                    <td>${requestScope.carportRequestDTO.shedWidth}</td>
                 </tr>
                 <br>
             </tbody>
@@ -60,10 +60,10 @@
             </thead>
             <tbody>
                 <tr>
-                    <th  scope="row">${requestScope.customer.customerId}</th>
-                    <td>${requestScope.customer.name}</td>
-                    <td>${requestScope.customer.address}</td>
-                    <td>${requestScope.customer.mobile}</td>
+                    <th  scope="row">${requestScope.carportRequestDTO.customerId}</th>
+                    <td>${requestScope.carportRequestDTO.name}</td>
+                    <td>${requestScope.carportRequestDTO.address}</td>
+                    <td>${requestScope.carportRequestDTO.mobile}</td>
                 </tr>
                 <br>
             </tbody>

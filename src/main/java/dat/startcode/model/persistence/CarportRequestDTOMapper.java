@@ -17,7 +17,7 @@ public class CarportRequestDTOMapper implements ICarportRequestDTOMapper{
 
     @Override
     public CarportRequestDTO getSpecificCarportRequestDTO(int carportRequestId) {
-        String sql = "SELECT * FROM carport.carport_request_with_customer_info";
+        String sql = "SELECT * FROM carport.carport_request_with_customer_info WHERE carport_request_id = ?";
 
         CarportRequestDTO carportRequestDTO = null;
 

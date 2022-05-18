@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 public class RequestDeny extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
+        int requestId = Integer.parseInt(request.getParameter("requestId"));
+
+
+
         return null;
     }
 }
