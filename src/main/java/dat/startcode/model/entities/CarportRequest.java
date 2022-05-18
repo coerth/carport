@@ -21,8 +21,22 @@ public class CarportRequest {
     int shedWidth;
     int shedLength;
     int roofIncline;
+    int requestId;
     int customerId;
+    boolean isApproved;
 
+    public CarportRequest(int width, int length, String roofType, boolean shedOrNoShed, int shedWidth, int shedLength, int roofIncline, int requestId, int customerId, boolean isApproved) {
+        this.width = width;
+        this.length = length;
+        this.roofType = roofType;
+        this.shedOrNoShed = shedOrNoShed;
+        this.shedWidth = shedWidth;
+        this.shedLength = shedLength;
+        this.roofIncline = roofIncline;
+        this.requestId = requestId;
+        this.customerId = customerId;
+        this.isApproved = isApproved;
+    }
 
     public int getWidth() {
         return width;
@@ -79,6 +93,16 @@ public class CarportRequest {
     public void setRoofIncline(int roofIncline) {
         this.roofIncline = roofIncline;
     }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public int getRequestId() {
+        return requestId;
+    }
+
+
 
     public CarportRequest(int width, int length, String roofType, boolean shedOrNoShed, int shedWidth, int shedLength, int roofIncline) {
         this.width = width;
