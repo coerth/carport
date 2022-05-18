@@ -2,6 +2,7 @@ package dat.startcode.model.persistence;
 
 import dat.startcode.model.entities.Account;
 import dat.startcode.model.entities.Customer;
+import dat.startcode.model.entities.Material;
 import dat.startcode.model.exceptions.DatabaseException;
 
 import java.sql.*;
@@ -86,6 +87,44 @@ public class CustomerMapper implements ICustomerMapper
     }
 
     @Override
+    public Customer getSpecificCustomer(int customerId) throws DatabaseException {
+        String sql = "Select * FROM `customer_and_account_overview` WHERE customer_id = ?";
+        Customer customer = null;
+
+
+        try (Connection connection = connectionPool.getConnection())
+        {
+
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, customerId);
+
+                ResultSet rs = ps.executeQuery();
+                if (rs.next())
+                {
+                    String name = rs.getString("name");
+                    String address = rs.getString("address");
+                    String city = rs.getString("city");
+                    int zip = rs.getInt("zip");
+                    int mobile = rs.getInt("mobile");
+                    int account_id = rs.getInt("account_id");
+                    String email = rs.getString("email");
+                    String password = rs.getString("password");
+                    int role = rs.getInt("role");
+
+                    customer = new Customer(email, password, role, customerId, name, address, city, zip, mobile, account_id);
+                    return customer;
+
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customer;
+    }
+
+    @Override
     public Customer customerAccount(Account account) throws DatabaseException{
 
         Logger.getLogger("web").log(Level.INFO, "");
@@ -117,5 +156,7 @@ public class CustomerMapper implements ICustomerMapper
 
         return customer;
     }
+
+
 
 }

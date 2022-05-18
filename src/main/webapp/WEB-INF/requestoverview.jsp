@@ -20,8 +20,8 @@
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th scope="col">Kunde ID</th>
                 <th scope="col">Forespørgsel ID</th>
+                <th scope="col">Kunde ID</th>
                 <th scope="col">Længde</th>
                 <th scope="col">Bredde</th>
                 <th scope="col">Tagtype</th>
@@ -44,7 +44,7 @@
                     <td>${item.approved}</td>
                     <td>${item.shedLength}</td>
                     <td>${item.shedWidth}</td>
-                    <td><form action="fc/approveRequest"><input type="hidden" name="command" value="approveRequest"/><button name="Godkend" value="${item.requestId}">Godkend</button> </form><button name="modify" value="${item.requestId}">Rediger</button></td>
+                    <td><form action="fc/approveRequest"><input type="hidden" name="command" value="requestview"/><button name="requestId" value="${item.requestId}">Vis</button></form></td>
                 </tr>
                 <br>
             </c:forEach>
