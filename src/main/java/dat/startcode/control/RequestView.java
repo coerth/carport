@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
-public class RequestOverview extends Command
-{
+public class RequestView extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
-
         ArrayList<CarportRequest> carportRequestArraylist = CarportRequestFacade.getAllCarportRequests(ApplicationStart.getConnectionPool());
 
+        request.setAttribute("carportRequestArraylist", carportRequestArraylist);
+
+
     }
+
 }
