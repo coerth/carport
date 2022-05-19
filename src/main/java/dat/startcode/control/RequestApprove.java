@@ -32,9 +32,6 @@ public class RequestApprove extends Command {
         CarportRequest carportRequest = CarportRequestFacade.getSpecificCarportRequest(requestId, ApplicationStart.getConnectionPool());
         LocalDateTime date = LocalDateTime.now();
 
-
-        System.out.println(carportRequest);
-
         int carportType;
         if (carportRequest.getShedLength() == 0) {
             carportType = 1; //type 1 er NO SHED! IKKE NOGET SKUR!

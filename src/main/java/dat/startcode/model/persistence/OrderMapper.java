@@ -81,11 +81,6 @@ public class OrderMapper implements IOrderMapper{
 
         int orderId = 0;
 
-        System.out.println(customerId);
-        System.out.println(dateTime);
-        System.out.println(carportType);
-        System.out.println(carportRequestId);
-
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
@@ -99,7 +94,6 @@ public class OrderMapper implements IOrderMapper{
                 if (rowsAffected == 1) {
                     rs.next();
                     orderId = rs.getInt(1);
-                    System.out.println(orderId);
                 }
             }
 
