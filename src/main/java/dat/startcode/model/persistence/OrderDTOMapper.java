@@ -2,10 +2,7 @@ package dat.startcode.model.persistence;
 
 import dat.startcode.model.DTO.OrderDTO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDateTime;
 
 public class OrderDTOMapper implements IOrderDTOMapper {
@@ -32,7 +29,8 @@ public class OrderDTOMapper implements IOrderDTOMapper {
                     int materialId = rs.getInt("material_id");
                     int bomId = rs.getInt("bom_id");
                     int customerId = rs.getInt("customer_id");
-                    LocalDateTime date = rs.getDate("date");
+                    Timestamp timestamp = rs.getTimestamp("date");
+                    LocalDateTime date = timestamp.toLocalDateTime();
                     int carportType = rs.getInt("type");
                     int orderPrice = rs.getInt("order_price");
                     int carportRequestId = rs.getInt("carport_request_id");
