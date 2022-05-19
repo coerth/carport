@@ -47,7 +47,7 @@ public class OrderMapper implements IOrderMapper{
     @Override
     public Order getSpecificOrder(int orderId) {
 
-        String sql = "SELECT * FROM order WHERE order_id = ?";
+        String sql = "SELECT * FROM `order` WHERE order_id = ?";
         Order order = null;
 
         try (Connection connection = connectionPool.getConnection()){
