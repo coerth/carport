@@ -1,16 +1,73 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: hvore
-  Date: 19-05-2022
-  Time: 11:22
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@page errorPage="../error.jsp" isErrorPage="false" %>
 
-</body>
-</html>
+<t:pagetemplate>
+    <jsp:attribute name="header">
+             Ordreoversigt
+    </jsp:attribute>
+
+    <jsp:attribute name="footer">
+            Ordreoversigt
+    </jsp:attribute>
+
+    <jsp:body>
+
+        <h3>Ordren med id ${requestScope.OrderDTO.orderId} er nu sendt til kunden.</h3>
+
+        <br>Husk at kigge ordren igennem og gå evt. tilbage og ret i den.
+
+        <thead>
+        <tr>
+            <th scope="col">Ordre id</th>
+            <th scope="col">Dato og tid</th>
+            <th scope="col">Kundens id</th>
+            <th scope="col">Carport type (1 = intet skur, 2 = skur)</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="item" items="${requestScope.orderDTO.bomlineArrayList}">
+        <tr>
+            <th  scope="row">${requestScope.orderDTO.orderId}</th>
+            <td>${requestScope.orderDTO.orderId}</td>
+            <td>${requestScope.orderDTO.date}</td>
+            <td>${requestScope.orderDTO.customerId}</td>
+            <td>${requestScope.orderDTO.carportType}</td>
+
+        </tr>
+        <br>
+            </c:forEach>
+        Ordren indeholder:
+        <br>
+        <thead>
+        <tr>
+            <th scope="col">Materiale:</th>
+            <th scope="col">Beskrivelse:</th>
+            <th scope="col">Antal: </th>
+            <th scope="col">Pris: </th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <th  scope="row">${requestScope.orderDTO.orderId}</th>
+            <td>${requestScope.orderDTO.name}</td>
+            <td>${requestScope.orderDTO.description}</td>
+            <td>${requestScope.orderDTO.materialQuantity}</td>
+            <td>${requestScope.orderDTO.materialQuantity * requestScope.orderDTO.materialPrice}</td>
+
+        </tr>
+
+
+
+
+        <p><a href="../index.jsp">Til forsiden</a></p>
+
+    </jsp:body>
+</t:pagetemplate>

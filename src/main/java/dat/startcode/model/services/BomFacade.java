@@ -12,4 +12,14 @@ public class BomFacade {
         BomMapper bomMapper = new BomMapper(connectionPool);
         return bomMapper.createCompleteBillOfMaterials(bomlineArrayList,orderId);
     }
+
+    public static ArrayList<Bomline> getAllBomlinesWithSpecificBOMId(int bomId, ConnectionPool connectionPool) {
+        BomMapper bomMapper = new BomMapper(connectionPool);
+        return bomMapper.getAllBomlinesWithSpecificBOMId(bomId);
+    }
+
+    public int getBomIdFromOrderId(int orderId, ConnectionPool connectionPool) {
+        BomMapper bomMapper = new BomMapper(connectionPool);
+        return bomMapper.getBomIdFromOrderId(orderId);
+    }
 }

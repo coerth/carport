@@ -101,6 +101,28 @@ public class BomMapper implements IBomMapper {
         return bomline;
     }
 
+    public int getBomIdFromOrderId(int orderId) {
+        String sql = "SELECT bom_id FROM carport.bill_of_materials WHERE order_id = ?";
+
+        int bomId = 0;
+        try (Connection connection = connectionPool.getConnection()){
+            try ( PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, orderId);
+
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()){
+                    bomId = rs.getInt("bom_id");
+
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return bomId;
+
+    }
+
     @Override
     public boolean createBomline(int bomId, int quantity, int descriptionId, int materialId) {
 

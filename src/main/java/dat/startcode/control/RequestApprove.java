@@ -1,6 +1,7 @@
 package dat.startcode.control;
 
 import dat.startcode.model.DTO.CarportRequestDTO;
+import dat.startcode.model.DTO.OrderDTO;
 import dat.startcode.model.config.ApplicationStart;
 import dat.startcode.model.entities.Bomline;
 import dat.startcode.model.entities.CarportCalculator;
@@ -9,10 +10,7 @@ import dat.startcode.model.entities.Order;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.persistence.OrderMapper;
-import dat.startcode.model.services.BomFacade;
-import dat.startcode.model.services.CarportRequestFacade;
-import dat.startcode.model.services.MaterialFacade;
-import dat.startcode.model.services.OrderFacade;
+import dat.startcode.model.services.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -61,6 +59,9 @@ public class RequestApprove extends Command {
         }
 
         if (BomFacade.createCompleteBillOfMaterials(bomlineArrayList, orderId, ApplicationStart.getConnectionPool())) {
+
+            OrderDTO orderDTO = OrderDTOFacade.getOrderWithAllInfo(orderId,ApplicationStart.getConnectionPool());
+            request.setAttribute("orderDTO", orderDTO);
             return "orderview";
 
         } else {
