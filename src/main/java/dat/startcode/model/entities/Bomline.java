@@ -9,6 +9,9 @@ public class Bomline {
     int bomlineId;
     int materialId;
 
+    String name;
+    String description;
+
     public Bomline(int bomId, int quantity, int descriptionId, int materialId) {
         this.descriptionId = descriptionId;
         this.materialId = materialId;
@@ -35,6 +38,12 @@ public class Bomline {
         this.descriptionId = descriptionId;
         this.material = material;
         this.quantity = quantity;
+    }
+
+    public Bomline(int bomId, String name, String description) {
+        this.bomId = bomId;
+        this.name = name;
+        this.description = description;
     }
 
     public int getDescriptionId() {

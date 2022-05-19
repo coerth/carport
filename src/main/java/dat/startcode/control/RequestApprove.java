@@ -1,5 +1,6 @@
 package dat.startcode.control;
 
+import dat.startcode.model.DTO.BomDTO;
 import dat.startcode.model.DTO.CarportRequestDTO;
 import dat.startcode.model.DTO.OrderDTO;
 import dat.startcode.model.config.ApplicationStart;
@@ -58,6 +59,8 @@ public class RequestApprove extends Command {
         if (BomFacade.createCompleteBillOfMaterials(bomlineArrayList, orderId, ApplicationStart.getConnectionPool())) {
 
             OrderDTO orderDTO = OrderDTOFacade.getOrderWithAllInfo(orderId,ApplicationStart.getConnectionPool());
+
+
             request.setAttribute("orderDTO", orderDTO);
             return "orderview";
 

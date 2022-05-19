@@ -40,6 +40,8 @@
         </tr>
         <br>
         Ordren indeholder:
+        <table class="table table-striped table-hover">
+
         <br>
         <thead>
         <tr>
@@ -62,7 +64,8 @@
         </tr>
     </c:forEach>
 
-
+        </tbody>
+        </table>
 
 
         <p><a href="../index.jsp">Til forsiden</a></p>

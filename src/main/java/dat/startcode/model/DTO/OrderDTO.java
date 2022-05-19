@@ -10,23 +10,22 @@ import java.util.ArrayList;
 public class OrderDTO {
     Order order;
     CarportRequestDTO carportRequestDTO;
-    ArrayList<Bomline> bomlineArrayList;
+    ArrayList<BomDTO> bomDTOArrayList;
 
     @Override
     public String toString() {
         return "OrderDTO{" +
                 "order=" + order +
                 ", carportRequestDTO=" + carportRequestDTO +
-                ", bomlineArrayList=" + bomlineArrayList +
+                ", bomlineArrayList=" + bomDTOArrayList +
                 '}';
     }
 
-    public OrderDTO(Order order, CarportRequestDTO carportRequestDTO, ArrayList<Bomline> bomlineArrayList) {
+    public OrderDTO(Order order, CarportRequestDTO carportRequestDTO, ArrayList<BomDTO> bomDTOArrayList) {
         this.order = order;
         this.carportRequestDTO = carportRequestDTO;
-        this.bomlineArrayList = bomlineArrayList;
+        this.bomDTOArrayList = bomDTOArrayList;
     }
-
 
     public Order getOrder() {
         return order;
@@ -36,7 +35,7 @@ public class OrderDTO {
         return carportRequestDTO;
     }
 
-    public ArrayList<Bomline> getBomlineArrayList() {
-        return bomlineArrayList;
+    public ArrayList<BomDTO> getBomDTOArrayList() {
+        return bomDTOArrayList;
     }
 }
