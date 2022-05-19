@@ -9,6 +9,6 @@ public interface IOrderMapper {
 
     ArrayList<Order> getAllOrders();
     Order getSpecificOrder(int orderId);
-    boolean createOrder(int customerId, LocalDateTime dateTime, int carportType, int carportRequestId);
+    int createOrder(int customerId, LocalDateTime dateTime, int carportType, int carportRequestId);
 
 }

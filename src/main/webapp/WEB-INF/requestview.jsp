@@ -15,7 +15,7 @@
 
     <jsp:body>
 
-        <h3>Her er forespørgelse nr ${requestScope.carportRequest.requestId}</h3>
+        <h3>Her er forespørgelse nr ${requestScope.carportRequestDTO.carportRequestId}</h3>
 
         <table class="table table-striped table-hover">
             <thead>

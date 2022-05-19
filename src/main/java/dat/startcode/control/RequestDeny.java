@@ -15,13 +15,11 @@ public class RequestDeny extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
         int requestId = Integer.parseInt(request.getParameter("requestId"));
 
-
         if (CarportRequestFacade.deleteRequest(requestId, ApplicationStart.getConnectionPool()))
         {
           String requestDeleted = "Forespørgsel med id nummer " + requestId + " blev slettet";
           request.setAttribute("requestDeleted", requestDeleted);
         }
-
 
         ArrayList<CarportRequest> carportRequestArraylist = CarportRequestFacade.getAllCarportRequests(ApplicationStart.getConnectionPool());
 

@@ -74,7 +74,6 @@ public class AccountMapper implements IAccountMapper{
                 {
                     rs.next();
                     accountId = rs.getInt(1);
-                    System.out.println(accountId);
 
                 } else
                 {
