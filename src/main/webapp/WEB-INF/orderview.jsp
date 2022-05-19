@@ -54,12 +54,12 @@
         </tr>
         </thead>
         <tbody>
-    <c:forEach var="item" items="${requestScope.orderDTO.bomlineArrayList}">
+    <c:forEach var="item" items="${requestScope.orderDTO.bomDTOArrayList}">
         <tr>
-            <td>${item.material.name}</td>
-            <td>${item.descriptionId}</td>
+            <td>${item.name}</td>
+            <td>${item.description}</td>
             <td>${item.quantity}</td>
-            <td>${item.material.price * item.quantity}</td>
+            <td>${item.price * item.quantity}</td>
 
         </tr>
     </c:forEach>
