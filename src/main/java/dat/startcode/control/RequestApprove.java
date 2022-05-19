@@ -61,7 +61,7 @@ public class RequestApprove extends Command {
         }
 
         if (BomFacade.createCompleteBillOfMaterials(bomlineArrayList, orderId, ApplicationStart.getConnectionPool())) {
-            return "orderView";
+            return "orderview";
 
         } else {
             return "error";
