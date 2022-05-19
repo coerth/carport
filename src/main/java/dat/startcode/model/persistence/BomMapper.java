@@ -144,7 +144,7 @@ public class BomMapper implements IBomMapper {
                 if (rowsAffected == 1)
                 {
                     rs.next();
-                    returnedBomId = rs.getInt("1");
+                    returnedBomId = rs.getInt(  1);
                 }
             }
 

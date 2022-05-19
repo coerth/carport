@@ -43,7 +43,7 @@ public class RequestApprove extends Command {
         }
 
 
-        int orderId = OrderFacade.createOrder(carportRequest.getCustomerId(), date.toString(), carportType, requestId, ApplicationStart.getConnectionPool());
+        int orderId = OrderFacade.createOrder(carportRequest.getCustomerId(), date, carportType, requestId, ApplicationStart.getConnectionPool());
 
         CarportCalculator carportCalculator = new CarportCalculator(MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool()));
 

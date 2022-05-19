@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class OrderFacade {
 
-    public static int createOrder (int customerId, String date, int carportType, int carportRequestId, ConnectionPool connectionPool) {
+    public static int createOrder (int customerId, LocalDateTime date, int carportType, int carportRequestId, ConnectionPool connectionPool) {
         OrderMapper orderMapper = new OrderMapper(connectionPool);
         return orderMapper.createOrder(customerId,date, carportType, carportRequestId);
     }

@@ -75,7 +75,7 @@ public class OrderMapper implements IOrderMapper{
     }
 
     @Override
-    public int createOrder(int customerId, String dateTime, int carportType, int carportRequestId) {
+    public int createOrder(int customerId, LocalDateTime dateTime, int carportType, int carportRequestId) {
 
         String sql = "INSERT INTO `order` (customer_id, date, carport_type, carport_request_id) VALUES (?,?,?,?)";
 
@@ -90,8 +90,7 @@ public class OrderMapper implements IOrderMapper{
             try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
                 ps.setInt(1, customerId);
-                //ps.setTimestamp(2, Timestamp.valueOf(dateTime));
-                ps.setString(2,dateTime);
+                ps.setTimestamp(2, Timestamp.valueOf(dateTime));
                 ps.setInt(3, carportType);
                 ps.setInt(4, carportRequestId);
 
