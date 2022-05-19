@@ -15,7 +15,7 @@
 
     <jsp:body>
 
-        <h3>Ordren med id ${requestScope.OrderDTO.orderId} er nu sendt til kunden.</h3>
+        <h3>Ordren med id ${requestScope.orderDTO.order.orderId} er nu sendt til kunden.</h3>
 
         <br>Husk at kigge ordren igennem og gå evt. tilbage og ret i den.
 
@@ -30,17 +30,15 @@
         </tr>
         </thead>
         <tbody>
-            <c:forEach var="item" items="${requestScope.orderDTO.bomlineArrayList}">
+
         <tr>
-            <th  scope="row">${requestScope.orderDTO.orderId}</th>
-            <td>${requestScope.orderDTO.orderId}</td>
-            <td>${requestScope.orderDTO.date}</td>
-            <td>${requestScope.orderDTO.customerId}</td>
-            <td>${requestScope.orderDTO.carportType}</td>
+            <th  scope="row">${requestScope.orderDTO.order.orderId}</th>
+            <td>${requestScope.orderDTO.order.dateTime}</td>
+            <td>${requestScope.orderDTO.order.customerId}</td>
+            <td>${requestScope.orderDTO.order.carportType}</td>
 
         </tr>
         <br>
-            </c:forEach>
         Ordren indeholder:
         <br>
         <thead>
@@ -54,15 +52,15 @@
         </tr>
         </thead>
         <tbody>
-
+    <c:forEach var="item" items="${requestScope.orderDTO.bomlineArrayList}">
         <tr>
-            <th  scope="row">${requestScope.orderDTO.orderId}</th>
-            <td>${requestScope.orderDTO.name}</td>
-            <td>${requestScope.orderDTO.description}</td>
-            <td>${requestScope.orderDTO.materialQuantity}</td>
-            <td>${requestScope.orderDTO.materialQuantity * requestScope.orderDTO.materialPrice}</td>
+            <td>${item.material.name}</td>
+            <td>${item.descriptionId}</td>
+            <td>${item.quantity}</td>
+            <td>${item.material.price * item.quantity}</td>
 
         </tr>
+    </c:forEach>
 
 
 
