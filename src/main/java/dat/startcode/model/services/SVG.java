@@ -41,7 +41,7 @@ public class SVG {
 
     private final String rectTemplate = "<rect x=\"%d\" y=\"%d\" height=\"%f\" width=\"%f\" style=\"stroke:#000000; fill: #ffffff\" />";
 
-    private final String lineTemplate = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String lineTemplate = "<line x1=\"%d\" y1=\"%d\" x2=\"%f\" y2=\"%d\" style=\"stroke:#000000; fill: #ffffff\" />";
 
     private final String lineWithDashTemplate = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; fill: #ffffff\" stroke-dasharray=\"4\" />";
 
@@ -64,10 +64,11 @@ public class SVG {
     }
 
     public void addRect(int x, int y, float height, float width) {
+
         svg.append(String.format(rectTemplate, x, y, height, width));
     }
 
-    public void addLine(int x1, int y1, int x2, int y2) {
+    public void addLine(int x1, int y1, float x2, int y2) {
         svg.append(String.format(lineTemplate, x1, y1, x2, y2));
     }
     public void addLineWithDash(int x1, int y1, int x2, int y2){

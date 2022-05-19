@@ -351,14 +351,14 @@ public class CarportCalculator {
         return rafters;
     }
 
-    public float calculateRaftersDistance(float carportLength, float rafters) {
+    public float calculateRaftersDistance(float carportLength, int rafters) {
 
         float newDistance = 0;
         float rafterWidth = 4.5f;
 
-        newDistance = carportLength / rafters + rafterWidth;
+        newDistance = carportLength / rafters;
 
-        return newDistance;
+        return newDistance + rafterWidth;
     }
 
     public int calculateSteelBracketRight(int rafters) {

@@ -72,14 +72,14 @@ class CarportCalculatorTest
 
     @Test
     void calculateRafters() {
-        int rafters = carportCalculator.calculateRafters(600);
-        assertEquals(12, rafters);
+        int rafters = carportCalculator.calculateRafters(780);
+        assertEquals(15, rafters);
     }
 
     @Test
     void calculateRaftersDistance() {
-        float distance = carportCalculator.calculateRaftersDistance(600, 12);
-        assertEquals(54.5, distance);
+        float distance = carportCalculator.calculateRaftersDistance(780, 15);
+        assertEquals(56.5, distance);
     }
 
 
@@ -294,7 +294,7 @@ class CarportCalculatorTest
 
     @Test
     void calculatePostDistance(){
-        int postDistance = carportCalculator.calculatePostDistance(660);
+        float postDistance = carportCalculator.calculatePostDistance(660);
         assertEquals(280, postDistance);
     }
 
