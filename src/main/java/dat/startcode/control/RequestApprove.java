@@ -5,6 +5,7 @@ import dat.startcode.model.config.ApplicationStart;
 import dat.startcode.model.entities.Bomline;
 import dat.startcode.model.entities.CarportCalculator;
 import dat.startcode.model.entities.CarportRequest;
+import dat.startcode.model.entities.Order;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.persistence.OrderMapper;
@@ -31,6 +32,7 @@ public class RequestApprove extends Command {
         CarportRequest carportRequest = CarportRequestFacade.getSpecificCarportRequest(requestId, ApplicationStart.getConnectionPool());
         LocalDateTime date = LocalDateTime.now();
 
+
         System.out.println(carportRequest);
 
         int carportType;
@@ -41,8 +43,7 @@ public class RequestApprove extends Command {
         }
 
 
-        int orderId = OrderFacade.createOrder(carportRequest.getCustomerId(), date, carportType, carportRequest.getRequestId(), ApplicationStart.getConnectionPool());
-
+        int orderId = OrderFacade.createOrder(carportRequest.getCustomerId(), date.toString(), carportType, requestId, ApplicationStart.getConnectionPool());
 
         CarportCalculator carportCalculator = new CarportCalculator(MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool()));
 

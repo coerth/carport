@@ -75,24 +75,32 @@ public class OrderMapper implements IOrderMapper{
     }
 
     @Override
-    public int createOrder(int customerId, LocalDateTime dateTime, int carportType, int carportRequestId) {
+    public int createOrder(int customerId, String dateTime, int carportType, int carportRequestId) {
 
-        String sql = "INSERT INTO order (customer_id, date, carport_type, carport_request_id) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO `order` (customer_id, date, carport_type, carport_request_id) VALUES (?,?,?,?)";
 
         int orderId = 0;
+
+        System.out.println(customerId);
+        System.out.println(dateTime);
+        System.out.println(carportType);
+        System.out.println(carportRequestId);
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
                 ps.setInt(1, customerId);
-                ps.setTimestamp(2, Timestamp.valueOf(dateTime));
+                //ps.setTimestamp(2, Timestamp.valueOf(dateTime));
+                ps.setString(2,dateTime);
                 ps.setInt(3, carportType);
                 ps.setInt(4, carportRequestId);
+
                 int rowsAffected = ps.executeUpdate();
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rowsAffected == 1) {
                     rs.next();
                     orderId = rs.getInt(1);
+                    System.out.println(orderId);
                 }
             }
 
