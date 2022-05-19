@@ -162,7 +162,7 @@ public class BomMapper implements IBomMapper {
 
         for(Bomline bomline : bomlineArrayList)
         {
-            returnedBoolean = createBomline(bomId, bomline.getQuantity(), bomline.getDescriptionId(), bomline.getMaterialId());
+            returnedBoolean = createBomline(bomId, bomline.getQuantity(), bomline.getDescriptionId(), bomline.getMaterial().getMaterialId());
             if(!returnedBoolean)
             {
                 break;
