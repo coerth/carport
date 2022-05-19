@@ -4,6 +4,6 @@ import dat.startcode.model.DTO.OrderDTO;
 
 public interface IOrderDTOMapper {
 
-    OrderDTO getOrderWithFulloverview(int orderId);
+    //OrderDTO getOrderWithFulloverview(int orderId);
 
 }

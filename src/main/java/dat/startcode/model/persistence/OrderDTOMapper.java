@@ -1,6 +1,7 @@
 package dat.startcode.model.persistence;
 
 import dat.startcode.model.DTO.OrderDTO;
+import dat.startcode.model.entities.Order;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -13,7 +14,9 @@ public class OrderDTOMapper implements IOrderDTOMapper {
         this.connectionPool = connectionPool;
     }
 
-    @Override
+
+
+   /* @Override
     public OrderDTO getOrderWithFulloverview(int orderId) {
         String sql = "SELECT * FROM carport.order_to_description_view WHERE order_id = ?";
 
@@ -31,7 +34,7 @@ public class OrderDTOMapper implements IOrderDTOMapper {
                     int customerId = rs.getInt("customer_id");
                     Timestamp timestamp = rs.getTimestamp("date");
                     LocalDateTime date = timestamp.toLocalDateTime();
-                    int carportType = rs.getInt("type");
+                    int carportType = rs.getInt("carport_type");
                     int orderPrice = rs.getInt("order_price");
                     int carportRequestId = rs.getInt("carport_request_id");
                     int bomlineId = rs.getInt("bomline_id");
@@ -54,5 +57,5 @@ public class OrderDTOMapper implements IOrderDTOMapper {
             e.printStackTrace();
         }
         return orderDTO;
-    }
+    }*/
 }
