@@ -1,8 +1,10 @@
 package dat.startcode.control;
 
 import dat.startcode.model.config.ApplicationStart;
+import dat.startcode.model.entities.Account;
 import dat.startcode.model.entities.Customer;
 import dat.startcode.model.exceptions.DatabaseException;
+import dat.startcode.model.services.AccountFacade;
 import dat.startcode.model.services.CustomerFacade;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +30,7 @@ public class CustomerModify extends Command {
         int zip = customer.getZip();
         int mobile = customer.getMobile();
 
+        AccountFacade.updateAccount(new Account(email, password, role), ApplicationStart.getConnectionPool());
         CustomerFacade.updateCustomerProfile(new Customer(email, password, role, customerId, name, address, city, zip, mobile, accountId), ApplicationStart.getConnectionPool());
 
         return "customerprofile";

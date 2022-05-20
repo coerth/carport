@@ -1,6 +1,7 @@
 package dat.startcode.model.services;
 
 import dat.startcode.model.entities.Account;
+import dat.startcode.model.entities.Customer;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.AccountMapper;
 import dat.startcode.model.persistence.ConnectionPool;
@@ -23,5 +24,10 @@ public class AccountFacade {
     public static int getAccountId(String email, String password, ConnectionPool connectionPool) throws DatabaseException{
         AccountMapper accountMapper = new AccountMapper(connectionPool);
         return accountMapper.getAccountId(email, password);
+    }
+
+    public  static boolean updateAccount(Account account, ConnectionPool connectionPool){
+        AccountMapper accountMapper = new AccountMapper(connectionPool);
+        return accountMapper.updateAccount(account);
     }
 }
