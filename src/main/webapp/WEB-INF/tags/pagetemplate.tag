@@ -31,7 +31,6 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about">About</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/customerprofile.jsp">Kunde Profil</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/quickbuild.jsp">quickbuild</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/register.jsp">Registrer</a>
                     <c:if test="${sessionScope.customer == null }">
@@ -39,9 +38,10 @@
                     </c:if>
                     <c:if test="${sessionScope.account.role == 1 }">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=admin">Admin</a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=requestoverview">Forespørgelser</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=requestoverview">Forespørgsler</a>
                     </c:if>
                     <c:if test="${sessionScope.customer != null }">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/customerprofile.jsp">Kundeprofil</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log out</a>
                     </c:if>
                 </div>
