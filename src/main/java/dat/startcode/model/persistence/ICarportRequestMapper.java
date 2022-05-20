@@ -11,6 +11,7 @@ public interface ICarportRequestMapper {
     CarportRequest createCarportRequest(int width, int length, String roofType, int roofIncline, int shedWidth, int shedLength, int customerId ) throws DatabaseException, SQLException;
     CarportRequest getSpecificRequest(int carportRequestId);
     ArrayList<CarportRequest> getAllRequests();
+    ArrayList<CarportRequest> getAllOpenRequests();
     boolean deleteCarportRequest(int carportRequestId);
 
 

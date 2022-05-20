@@ -14,7 +14,7 @@ public class RequestOverview extends Command
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
-        ArrayList<CarportRequest> carportRequestArraylist = CarportRequestFacade.getAllCarportRequests(ApplicationStart.getConnectionPool());
+        ArrayList<CarportRequest> carportRequestArraylist = CarportRequestFacade.getAllOpenCarportRequests(ApplicationStart.getConnectionPool());
 
         request.setAttribute("carportRequestArraylist", carportRequestArraylist);
         return "requestoverview";

@@ -21,7 +21,7 @@ public class RequestDeny extends Command {
           request.setAttribute("requestDeleted", requestDeleted);
         }
 
-        ArrayList<CarportRequest> carportRequestArraylist = CarportRequestFacade.getAllCarportRequests(ApplicationStart.getConnectionPool());
+        ArrayList<CarportRequest> carportRequestArraylist = CarportRequestFacade.getAllOpenCarportRequests(ApplicationStart.getConnectionPool());
 
         request.setAttribute("carportRequestArraylist", carportRequestArraylist);
         return "requestoverview";

@@ -111,6 +111,38 @@ public class CarportRequestMapper implements ICarportRequestMapper {
     }
 
     @Override
+    public ArrayList<CarportRequest> getAllOpenRequests() {
+        ArrayList<CarportRequest> requestArrayList = new ArrayList<>();
+        String sql = "SELECT * FROM carport_request WHERE is_approved = 0";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int carportRequestId = rs.getInt("carport_request_id");
+                    int width = rs.getInt("width");
+                    int length = rs.getInt("length");
+                    String roof = rs.getString("roof");
+                    int roofIncline = rs.getInt("roof_incline");
+                    boolean isApproved = rs.getBoolean("is_approved");
+                    int shedLength = rs.getInt("shed_length");
+                    int shedWidth = rs.getInt("shed_width");
+                    int customerId = rs.getInt("customer_id");
+
+                    CarportRequest newCarportRequest = new CarportRequest(carportRequestId, width, length, roof, roofIncline, isApproved, shedLength, shedWidth, customerId);
+                    requestArrayList.add(newCarportRequest);
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }            return requestArrayList;
+
+    }
+
+    @Override
     public boolean deleteCarportRequest(int carportRequestId) {
         String sql = "DELETE FROM `carport_request` WHERE `carport_request_id` = ?";
         try (Connection connection = connectionPool.getConnection())
