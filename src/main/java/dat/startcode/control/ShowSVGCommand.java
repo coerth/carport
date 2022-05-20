@@ -29,7 +29,6 @@ public class ShowSVGCommand extends CommandUnprotectedPage {
         for (int x = 0; x < carportCalculator.calculateRafters(carportRequest.getLength()); x++) {
             svg.addRect((int) (0 + carportCalculator.calculateRaftersDistance(carportRequest.getLength(), carportCalculator.calculateRafters(carportRequest.getLength())) * x), 0, carportRequest.getWidth(), 4.5f);
 
-
             /*Top rem*/
             svg.addLine(0, 0, carportRequest.getLength(), 0);
 
