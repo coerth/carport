@@ -33,6 +33,11 @@
                 <input type="password" class="form-label" name="password" id="password" value="${sessionScope.customer.getPassword()}">
             </div>
             <div class="mb-3">
+                <label for="address" class="form-label">Adresse:</label>
+                <br>
+                <input type="text" class="form-label" name="address" id="address" value="${sessionScope.customer.address}">
+            </div>
+            <div class="mb-3">
                 <label for="city" class="form-label">By:</label>
                 <br>
                 <input type="text" class="form-label" name="city" id="city" value="${sessionScope.customer.city}">

@@ -31,14 +31,14 @@ public class CustomerModify extends Command {
         int zip = Integer.parseInt(request.getParameter("zip"));
         int mobile = Integer.parseInt(request.getParameter("mobile"));
 
-        Customer customer1 = new Customer(email, password, role, customerId, name, address, city, zip, mobile, accountId);
 
         if(!customer.getEmail().equals(email) || !customer.getPassword().equals(password)){
             AccountFacade.updateAccount(new Account(email, password, role, accountId), ApplicationStart.getConnectionPool());
         }
 
-        CustomerFacade.updateCustomerProfile(customer1, ApplicationStart.getConnectionPool());
+        CustomerFacade.updateCustomerProfile(new Customer(email, password, role, customerId, name, address, city, zip, mobile, accountId), ApplicationStart.getConnectionPool());
 
+        session.setAttribute("customer", customer);
         //System.out.println(customer1);
 
         return "index";
