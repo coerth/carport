@@ -18,6 +18,7 @@ public class CustomerModify extends Command {
         HttpSession session = request.getSession();
 
         Customer customer = (Customer) session.getAttribute("customer");
+        System.out.println(customer);
 
         int accountId = customer.getAccountId();
         String email = request.getParameter("email");
