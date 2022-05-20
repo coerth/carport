@@ -15,9 +15,10 @@
 
     <jsp:body>
 
-        <h3>Her kan der stå lidt om dig</h3>
+        <h3>Her er en oversigt over alle ordrer</h3>
 
-        <p><a href="../index.jsp">Til forsiden</a></p>
+
+
 
     </jsp:body>
 </t:pagetemplate>
