@@ -47,6 +47,12 @@
             </form>
 
 
+        <br>
+        Her er dine forespørgsler som venter på godkendelse:
+        <br>
+
+
+
     </jsp:body>
 
 </t:pagetemplate>
