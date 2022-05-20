@@ -21,6 +21,16 @@ public class Customer extends Account {
 
     }
 
+    public Customer(int accountId, int customerId, String name, String address, String city, int zip, int mobile) {
+        super(accountId);
+        this.customerId = customerId;
+        this.name = name;
+        this.address = address;
+        this.city = city;
+        this.zip = zip;
+        this.mobile = mobile;
+    }
+
     public int getCustomerId() {
         return customerId;
     }

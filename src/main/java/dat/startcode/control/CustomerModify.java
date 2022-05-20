@@ -20,20 +20,27 @@ public class CustomerModify extends Command {
         Customer customer = (Customer) session.getAttribute("customer");
 
         int accountId = customer.getAccountId();
-        String email = customer.getEmail();
-        String password = customer.getPassword();
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
         int role = customer.getRole();
         int customerId = customer.getCustomerId();
-        String name = customer.getName();
-        String address = customer.getAddress();
-        String city = customer.getCity();
-        int zip = customer.getZip();
-        int mobile = customer.getMobile();
+        String name = request.getParameter("name");
+        String address = request.getParameter("address");
+        String city = request.getParameter("city");
+        int zip = Integer.parseInt(request.getParameter("zip"));
+        int mobile = Integer.parseInt(request.getParameter("mobile"));
 
-        AccountFacade.updateAccount(new Account(email, password, role), ApplicationStart.getConnectionPool());
-        CustomerFacade.updateCustomerProfile(new Customer(email, password, role, customerId, name, address, city, zip, mobile, accountId), ApplicationStart.getConnectionPool());
+        Customer customer1 = new Customer(email, password, role, customerId, name, address, city, zip, mobile, accountId);
 
-        return "customerprofile";
+        if(!customer.getEmail().equals(email) || !customer.getPassword().equals(password)){
+            AccountFacade.updateAccount(new Account(email, password, role, accountId), ApplicationStart.getConnectionPool());
+        }
+
+        CustomerFacade.updateCustomerProfile(customer1, ApplicationStart.getConnectionPool());
+
+        //System.out.println(customer1);
+
+        return "index";
     }
 
 }

@@ -129,6 +129,7 @@ public class AccountMapper implements IAccountMapper{
             try(PreparedStatement ps = connection.prepareStatement(sql)){
                 ps.setString(1, account.getEmail());
                 ps.setString(2, account.getPassword());
+                ps.setInt(3, account.getAccountId());
 
                 int rowsAffected = ps.executeUpdate();
 

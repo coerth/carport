@@ -14,6 +14,10 @@ public class Account {
         this.accountId = accountId;
     }
 
+    public Account(int accountId) {
+        this.accountId = accountId;
+    }
+
     public Account(String email, String password, int role) {
         this.email = email;
         this.password = password;

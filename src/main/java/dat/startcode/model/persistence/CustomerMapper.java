@@ -127,7 +127,8 @@ public class CustomerMapper implements ICustomerMapper
     @Override
     public boolean updateCustomerProfile(Customer customer) {
 
-        String sql = "UPDATE customer SET name = ?, address = ?, city = ?, zip = ?, mobile = ? WHERE customer_id = ?";
+        String sql = "UPDATE `customer` SET `name` = ?, `address` = ?, `city` = ?, `zip` = ?, `mobile` = ?  WHERE `customer_id` = ?";
+
 
         try(Connection connection = connectionPool.getConnection()){
             try(PreparedStatement ps = connection.prepareStatement(sql)){
@@ -136,6 +137,7 @@ public class CustomerMapper implements ICustomerMapper
                 ps.setString(3, customer.getCity());
                 ps.setInt(4, customer.getZip());
                 ps.setInt(5, customer.getMobile());
+                ps.setInt(6, customer.getCustomerId());
 
                 int rowsAffected = ps.executeUpdate();
 
