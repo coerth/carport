@@ -33,6 +33,12 @@ public class CarportRequestFacade {
         return carportRequestMapper.getSpecificRequest(requestId);
     }
 
+    public static boolean approveSpecificCarportRequest(int requestId, ConnectionPool connectionPool){
+        CarportRequestMapper carportRequestMapper = new CarportRequestMapper(connectionPool);
+
+        return carportRequestMapper.approveSpecificRequest(requestId);
+    }
+
     public static boolean deleteRequest(int carportRequestId, ConnectionPool connectionPool) {
         CarportRequestMapper carportRequestMapper = new CarportRequestMapper(connectionPool);
         return carportRequestMapper.deleteCarportRequest(carportRequestId);

@@ -79,6 +79,30 @@ public class CarportRequestMapper implements ICarportRequestMapper {
     }
 
     @Override
+    public boolean approveSpecificRequest(int carportRequestId) {
+        String sql = "UPDATE `carport_request` SET `is_approved` = ? WHERE `carport_request_id` = ?;";
+        boolean returnedBoolean = false;
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setBoolean(1, true);
+                ps.setInt(2, carportRequestId);
+
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1) {
+
+                returnedBoolean = true;
+                    return  returnedBoolean;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return returnedBoolean;
+    }
+
+    @Override
     public ArrayList<CarportRequest> getAllRequests() {
         ArrayList<CarportRequest> requestArrayList = new ArrayList<>();
         String sql = "SELECT * FROM carport_request";

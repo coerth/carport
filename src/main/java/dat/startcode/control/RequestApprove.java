@@ -27,7 +27,7 @@ public class RequestApprove extends Command {
         String requestApproved = "Forespørgsel med id-nummer " + requestId + " er accepteret";
         request.setAttribute("requestApproved", requestApproved);
 
-
+        CarportRequestFacade.approveSpecificCarportRequest(requestId, ApplicationStart.getConnectionPool());
         CarportRequest carportRequest = CarportRequestFacade.getSpecificCarportRequest(requestId, ApplicationStart.getConnectionPool());
         LocalDateTime date = LocalDateTime.now();
 
