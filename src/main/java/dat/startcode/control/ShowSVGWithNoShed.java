@@ -2,16 +2,15 @@ package dat.startcode.control;
 
 import dat.startcode.model.entities.CarportCalculator;
 import dat.startcode.model.entities.CarportRequest;
-import dat.startcode.model.services.CarportRequestFacade;
 import dat.startcode.model.services.SVG;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class ShowSVGCommand extends CommandUnprotectedPage {
+public class ShowSVGWithNoShed extends CommandUnprotectedPage {
 
-    public ShowSVGCommand(String pageToShow) {
+    public ShowSVGWithNoShed(String pageToShow) {
         super(pageToShow);
     }
 
@@ -29,38 +28,38 @@ public class ShowSVGCommand extends CommandUnprotectedPage {
         for (int x = 0; x < carportCalculator.calculateRafters(carportRequest.getLength()); x++) {
             svg.addRect((int) (0 + carportCalculator.calculateRaftersDistance(carportRequest.getLength(), carportCalculator.calculateRafters(carportRequest.getLength())) * x), 0, carportRequest.getWidth(), 4.5f);
 
+        }
+        /*Top rem*/
+        svg.addLine(0, 0, carportRequest.getLength(), 0);
 
-            /*Top rem*/
-            svg.addLine(0, 0, carportRequest.getLength(), 0);
+        /*Bund rem*/
+        svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength(), carportRequest.getWidth());
 
-            /*Bund rem*/
-            svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength(), carportRequest.getWidth());
+        /*Hulbånd*/
+        svg.addLineWithDash(55, 0, carportCalculator.calculatePerforatedTapeLength(carportRequest.getLength()), carportRequest.getWidth());
+        svg.addLineWithDash(carportCalculator.calculatePerforatedTapeLength(carportRequest.getLength()), 0, 55, carportRequest.getWidth());
 
-            /*Hulbånd*/
-            svg.addLineWithDash(55, 0, carportCalculator.calculatePerforatedTapeLength(carportRequest.getLength()), carportRequest.getWidth());
-            svg.addLineWithDash(carportCalculator.calculatePerforatedTapeLength(carportRequest.getLength()), 0, 55, carportRequest.getWidth());
+        /*Stolper fast*/
+        svg.addRect(45, 0, 15, 15);
+        svg.addRect(45, carportRequest.getWidth() - 15, 15, 15);
+        svg.addRect(carportRequest.getLength() - 45, 0, 15, 15);
+        svg.addRect(carportRequest.getLength() - 45, carportRequest.getWidth() - 15, 15, 15);
 
-            /*Stolper fast*/
-            svg.addRect(45, 0, 15, 15);
-            svg.addRect(45, carportRequest.getWidth() - 15, 15, 15);
-            svg.addRect(carportRequest.getLength() - 45, 0, 15, 15);
-            svg.addRect(carportRequest.getLength() - 45, carportRequest.getWidth() - 15, 15, 15);
+        /*Midter stolper*/
+        if (carportCalculator.calculatePostAmountNeeded(carportRequest.getLength()) == 3) {
+            svg.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()), 0, 15, 15);
+            svg.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
+        } else if (carportCalculator.calculatePostAmountNeeded(carportRequest.getLength()) == 4) {
+            svg.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()), 0, 15, 15);
+            svg.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()) + carportCalculator.calculatePostDistance(carportRequest.getLength()), 0, 15, 15);
+            svg.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
+            svg.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()) + carportCalculator.calculatePostDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
+        }
 
-            /*Midter stolper*/
-            if (carportCalculator.calculatePostAmountNeeded(carportRequest.getLength()) == 3) {
-                svg.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()), 0, 15, 15);
-                svg.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
-            } else if (carportCalculator.calculatePostAmountNeeded(carportRequest.getLength()) == 4) {
-                svg.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()), 0, 15, 15);
-                svg.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()) + carportCalculator.calculatePostDistance(carportRequest.getLength()), 0, 15, 15);
-                svg.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
-                svg.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()) + carportCalculator.calculatePostDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
-            }
+        /*Top og bund rem*/
 
-            /*Top og bund rem*/
-
-            svg.addLine(0, 0, carportRequest.getLength(), 0);
-            svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength(), carportRequest.getWidth());
+        svg.addLine(0, 0, carportRequest.getLength(), 0);
+        svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength(), carportRequest.getWidth());
 
             /*if (carportRequest.getLength()>= 780) {
                 svg.addLine(0, 0, carportRequest.getLength() + 10f, 0);
@@ -82,7 +81,6 @@ public class ShowSVGCommand extends CommandUnprotectedPage {
             svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength() - 13, carportRequest.getWidth());
             }*/
 
-        }
 
         request.setAttribute("svgdrawing", svg.toString());
         return pageToShow;

@@ -9,7 +9,7 @@ public class SVG {
     private int width;
     private int height;
 
-    private final String headerTemplate2 = "<svg height=\"%d%%\" " + "viewBox=\"%s\" "+ "preserveAspectRatio=\"xMinYMin\">";
+    private final String headerTemplate2 = "<svg height=\"%d%%\" " + "viewBox=\"%s\" " + "preserveAspectRatio=\"xMinYMin\">";
 
     private final String headerTemplate = "<svg height=\"%d\" " +
             "width=\"%d\" " +
@@ -63,7 +63,7 @@ public class SVG {
         this.svg = svg;
         this.viewBox = viewBox;
         this.height = height;
-        svg.append(String.format(markerPointer,viewBox,height));
+        svg.append(String.format(markerPointer, viewBox, height));
     }
 
     public void addRect(int x, int y, float height, float width) {
@@ -74,15 +74,21 @@ public class SVG {
     public void addLine(int x1, int y1, float x2, int y2) {
         svg.append(String.format(lineTemplate, x1, y1, x2, y2));
     }
-    public void addLineWithDash(int x1, int y1, int x2, int y2){
-        svg.append(String.format(lineWithDashTemplate,x1,y1,x2,y2));
-    }
-    public void addStartArrow(int x1, int y1, int x2, int y2){
-        svg.append(String.format(startMarker, x1,y1,x2,y2));
+
+    public void addLineWithDash(int x1, int y1, int x2, int y2) {
+        svg.append(String.format(lineWithDashTemplate, x1, y1, x2, y2));
     }
 
-    public void addEndArrow(int x1, int y1, int x2, int y2){
-        svg.append(String.format(endMarker, x1,y1,x2,y2));
+    public void addStartArrow(int x1, int y1, int x2, int y2) {
+        svg.append(String.format(startMarker, x1, y1, x2, y2));
+    }
+
+    public void addEndArrow(int x1, int y1, int x2, int y2) {
+        svg.append(String.format(endMarker, x1, y1, x2, y2));
+    }
+
+    public void addLine(int x1, int y1, int x2, int y2) {
+        svg.append(String.format(lineTemplate, x1, y1, x2, y2));
     }
 
     public void addSvg(SVG innerSVG) {

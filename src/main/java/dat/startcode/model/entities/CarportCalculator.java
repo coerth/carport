@@ -33,6 +33,17 @@ public class CarportCalculator {
         return distanceBetweenPost;
     }
 
+    public int calculateXDistanceWithShed(int carportLength, int shedLength) {
+
+        int minDistanceFromStern = 45;
+        int distanceBetweenShedPostAndPost = (carportLength - minDistanceFromStern) - shedLength;
+
+        if (distanceBetweenShedPostAndPost > 310) {
+            return distanceBetweenShedPostAndPost / 2;
+        }
+        return -1;
+    }
+
     public int calculatePostDistance(int carportLength) {
         int postDistance = 0;
         int distanceFromSternBigCarport = 100;
