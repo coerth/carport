@@ -15,7 +15,7 @@
     <jsp:body>
 
 
-            <form action="fc/customermodify">
+            <form action="fc/customermodify2">
                 <div class="mb-3">
                     <label for="name" class="form-label">Navn:</label>
                     <br>
@@ -42,7 +42,7 @@
                     <br>
                     <p type="text" class="form-label" id="mobile">${sessionScope.customer.mobile}</p>
                 </div>
-                <form action="fc/customermodify"><input type="hidden" name="command" value="customermodify"/><button name="modify" >Rediger oplysninger</button></form>
+                <form action="fc/customermodify2"><input type="hidden" name="command" value="customermodify2"/><button name="modify" >Rediger oplysninger</button></form>
 <%--                <button type="submit" class="btn btn-primary">Rediger</button>--%>
             </form>
 
