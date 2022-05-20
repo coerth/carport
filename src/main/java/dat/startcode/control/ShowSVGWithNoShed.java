@@ -22,6 +22,7 @@ public class ShowSVGWithNoShed extends CommandUnprotectedPage {
 
 
         SVG svg = new SVG(75, 10, "0 0 800 600", 500, 500);
+        SVG outerSVG = new SVG(0, 0, "0 0 855 690", 1000, 1000);
 
 
         for (int x = 0; x < carportCalculator.calculateRafters(carportRequest.getLength()); x++) {
