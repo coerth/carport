@@ -11,8 +11,8 @@ public class SVG {
 
     private final String headerTemplate2 = "<svg height=\"%d%%\" " + "viewBox=\"%s\" "+ "preserveAspectRatio=\"xMinYMin\">";
 
-    private final String headerTemplate = "<svg height=\"%d%%\" " +
-            "width=\"%d%%\" " +
+    private final String headerTemplate = "<svg height=\"%d\" " +
+            "width=\"%d\" " +
             "viewBox=\"%s\" " +
             "x=\"%d\"   " +
             "y=\"%d\"   " +
@@ -45,8 +45,9 @@ public class SVG {
 
     private final String lineWithDashTemplate = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; fill: #ffffff\" stroke-dasharray=\"4\" />";
 
-    private final String marker = "<line marker-start=url(#beginArrow) x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String startMarker = "<line marker-start=url(#beginArrow) x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; fill: #ffffff\" />";
 
+    private final String endMarker = "<line marker-start=url(#endArrow) x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; fill: #ffffff\" />";
 
     public SVG(int x, int y, String viewBox, int width, int height) {
         this.x = x;
@@ -55,12 +56,14 @@ public class SVG {
         this.width = width;
         this.height = height;
         svg.append(String.format(headerTemplate, height, width, viewBox, x, y));
+
     }
 
     public SVG(StringBuilder svg, String viewBox, int height) {
         this.svg = svg;
         this.viewBox = viewBox;
         this.height = height;
+        svg.append(String.format(markerPointer,viewBox,height));
     }
 
     public void addRect(int x, int y, float height, float width) {
@@ -74,8 +77,12 @@ public class SVG {
     public void addLineWithDash(int x1, int y1, int x2, int y2){
         svg.append(String.format(lineWithDashTemplate,x1,y1,x2,y2));
     }
-    public void addArrow(int x1, int y1, int x2, int y2){
-        svg.append(String.format(marker, x1,y1,x2,y2));
+    public void addStartArrow(int x1, int y1, int x2, int y2){
+        svg.append(String.format(startMarker, x1,y1,x2,y2));
+    }
+
+    public void addEndArrow(int x1, int y1, int x2, int y2){
+        svg.append(String.format(endMarker, x1,y1,x2,y2));
     }
 
     public void addSvg(SVG innerSVG) {

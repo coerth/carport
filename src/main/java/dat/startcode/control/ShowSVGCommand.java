@@ -23,10 +23,7 @@ public class ShowSVGCommand extends CommandUnprotectedPage {
 
 
 
-/*
-        SVG arrowsvg = new SVG(0, 0, "0 0 855 690", 50, 50);
-*/
-        SVG svg = new SVG(75, 10, "0 0 800 600", 50, 50);
+        SVG svg = new SVG(75, 10, "0 0 800 600", 500, 500);
 
 
         for (int x = 0; x < carportCalculator.calculateRafters(carportRequest.getLength()); x++) {
@@ -61,7 +58,11 @@ public class ShowSVGCommand extends CommandUnprotectedPage {
             }
 
             /*Top og bund rem*/
-            if (carportRequest.getLength()>= 780) {
+
+            svg.addLine(0, 0, carportRequest.getLength(), 0);
+            svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength(), carportRequest.getWidth());
+
+            /*if (carportRequest.getLength()>= 780) {
                 svg.addLine(0, 0, carportRequest.getLength() + 10f, 0);
                 svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength() + 10f, carportRequest.getWidth());
             } else if(carportRequest.getLength()< 780 && carportRequest.getLength() >= 660) {
@@ -79,7 +80,7 @@ public class ShowSVGCommand extends CommandUnprotectedPage {
             } else if(carportRequest.getLength()<300){
             svg.addLine(0, 0, carportRequest.getLength() - 13, 0);
             svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength() - 13, carportRequest.getWidth());
-            }
+            }*/
 
         }
 
