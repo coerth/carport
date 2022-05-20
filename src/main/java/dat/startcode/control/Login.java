@@ -43,6 +43,7 @@ public class Login extends Command
         if(customer != null)
         {
             session.setAttribute("customer", customer);
+            session.setAttribute("account", account);
             return "index";
         }
         else

@@ -125,6 +125,34 @@ public class CustomerMapper implements ICustomerMapper
     }
 
     @Override
+    public boolean updateCustomerProfile(Customer customer) {
+
+        String sql = "UPDATE customer_and_account_overview SET email = ?, password = ?, name = ?, address = ?, city = ?, zip = ?, mobile = ? WHERE customer_id = ?";
+
+        try(Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+                ps.setString(1, customer.getEmail());
+                ps.setString(2, customer.getPassword());
+                ps.setString(3, customer.getName());
+                ps.setString(4, customer.getAddress());
+                ps.setString(5, customer.getCity());
+                ps.setInt(6, customer.getZip());
+                ps.setInt(7, customer.getMobile());
+
+                int rowsAffected = ps.executeUpdate();
+
+                if(rowsAffected == 1){
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    @Override
     public Customer customerAccount(Account account) throws DatabaseException{
 
         Logger.getLogger("web").log(Level.INFO, "");
@@ -156,6 +184,7 @@ public class CustomerMapper implements ICustomerMapper
 
         return customer;
     }
+
 
 
 

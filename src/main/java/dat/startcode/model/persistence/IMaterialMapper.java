@@ -9,12 +9,12 @@ public interface IMaterialMapper
 {
 
 
-    public ArrayList<Material> getAllMaterials();
-    public Material getSpecificMaterial(int materialId);
-    public boolean createNewMaterial(String name, int price, String unit, int length, int typeId, int width, int height, int quantity);
-    public boolean updateMaterial(Material material);
-    public boolean deleteMaterial(int materialId);
-    public HashMap<String, ArrayList<Material>> getMaterialHashmaps();
+    ArrayList<Material> getAllMaterials();
+    Material getSpecificMaterial(int materialId);
+    boolean createNewMaterial(String name, int price, String unit, int length, int typeId, int width, int height, int quantity);
+    boolean updateMaterial(Material material);
+    boolean deleteMaterial(int materialId);
+    HashMap<String, ArrayList<Material>> getMaterialHashmaps();
 
 
 

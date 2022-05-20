@@ -14,11 +14,41 @@
 
     <jsp:body>
 
-        <form action="">
 
-            ${requestScope.AccountDTO.name}
+            <form action="">
+                <input type="hidden" name="command" value="customermodify"/>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Navn:</label>
+                    <br>
+                    <p type="text" class="form-label" id="name">${sessionScope.customer.name}</p>
 
-        </form>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <br>
+                    <p type="text" class="form-label" id="email">${sessionScope.account.email}</p>
+                </div>
+                <div class="mb-3">
+                    <label for="city" class="form-label">By:</label>
+                    <br>
+                    <p type="text" class="form-label" id="city">${sessionScope.customer.city}</p>
+                </div>
+                <div class="mb-3">
+                    <label for="zip" class="form-label">Postnummer:</label>
+                    <br>
+                    <p type="text" class="form-label" id="zip">${sessionScope.customer.zip}</p>
+                </div>
+                <div class="mb-3">
+                    <label for="mobile" class="form-label">Telefon nr.:</label>
+                    <br>
+                    <p type="text" class="form-label" id="mobile">${sessionScope.customer.mobile}</p>
+                </div>
+                <button type="submit" class="btn btn-primary">Rediger</button>
+            </form>
+
+
+
+
 
 
 
