@@ -15,8 +15,7 @@
     <jsp:body>
 
 
-            <form action="">
-                <input type="hidden" name="command" value="customermodify"/>
+            <form action="fc/customermodify">
                 <div class="mb-3">
                     <label for="name" class="form-label">Navn:</label>
                     <br>
@@ -26,7 +25,7 @@
                 <div class="mb-3">
                     <label for="email" class="form-label">Email:</label>
                     <br>
-                    <p type="text" class="form-label" id="email">${sessionScope.account.email}</p>
+                    <p type="text" class="form-label" id="email">${sessionScope.customer.getEmail()}</p>
                 </div>
                 <div class="mb-3">
                     <label for="city" class="form-label">By:</label>
@@ -43,14 +42,9 @@
                     <br>
                     <p type="text" class="form-label" id="mobile">${sessionScope.customer.mobile}</p>
                 </div>
-                <button type="submit" class="btn btn-primary">Rediger</button>
+                <form action="fc/customermodify"><input type="hidden" name="command" value="customermodify"/><button name="modify" >Rediger oplysninger</button></form>
+<%--                <button type="submit" class="btn btn-primary">Rediger</button>--%>
             </form>
-
-
-
-
-
-
 
 
     </jsp:body>

@@ -7,21 +7,26 @@ import dat.startcode.model.services.CustomerFacade;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class CustomerModify extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
-        int accountId = Integer.parseInt(request.getParameter("accountId"));
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        int role = Integer.parseInt(request.getParameter("role"));
-        int customerId = Integer.parseInt(request.getParameter("customerId"));
-        String name = request.getParameter("name");
-        String address = request.getParameter("address");
-        String city = request.getParameter("city");
-        int zip = Integer.parseInt(request.getParameter("zip"));
-        int mobile = Integer.parseInt(request.getParameter("mobile"));
+        HttpSession session = request.getSession();
+
+        Customer customer = (Customer) session.getAttribute("customer");
+
+        int accountId = customer.getAccountId();
+        String email = customer.getEmail();
+        String password = customer.getPassword();
+        int role = customer.getRole();
+        int customerId = customer.getCustomerId();
+        String name = customer.getName();
+        String address = customer.getAddress();
+        String city = customer.getCity();
+        int zip = customer.getZip();
+        int mobile = customer.getMobile();
 
         CustomerFacade.updateCustomerProfile(new Customer(email, password, role, customerId, name, address, city, zip, mobile, accountId), ApplicationStart.getConnectionPool());
 

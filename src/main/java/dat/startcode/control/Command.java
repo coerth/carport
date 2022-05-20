@@ -29,6 +29,7 @@ abstract class Command
         commands.put("requestview", new RequestView());
         commands.put("requestdeny", new RequestDeny());
         commands.put("requestapprove", new RequestApprove());
+        commands.put("customermodify", new CustomerModify());
     }
 
     static Command from( HttpServletRequest request ) {
