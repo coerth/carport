@@ -34,8 +34,8 @@ public class ShowSVGWithShed extends CommandUnprotectedPage {
         svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength(), carportRequest.getWidth());
 
         /*Hulbånd*/
-        svg.addLineWithDash(55, 0, carportCalculator.calculatePerforatedTapeLength(carportRequest.getLength()), carportRequest.getWidth());
-        svg.addLineWithDash(carportCalculator.calculatePerforatedTapeLength(carportRequest.getLength()), 0, 55, carportRequest.getWidth());
+        svg.addLineWithDash(55, 0, carportCalculator.calculatePerforatedTapeLength(carportRequest.getLength()) - carportRequest.getShedLength() + 50, carportRequest.getWidth());
+        svg.addLineWithDash(carportCalculator.calculatePerforatedTapeLength(carportRequest.getLength()) - carportRequest.getShedLength() + 50, 0, 55, carportRequest.getWidth());
 
         /*Stolper fast*/
         svg.addRect(45, 0, 15, 15);
@@ -48,12 +48,17 @@ public class ShowSVGWithShed extends CommandUnprotectedPage {
         svg.addLine(shedStart, 0, shedStart, carportRequest.getWidth());
 
         /*Stolper på skur / midten*/
-        int yPos = carportRequest.getWidth() / 2;
-        svg.addRect(shedStart,yPos,15,15);
+        int yPosShed = carportRequest.getWidth() / 2;
+        svg.addRect(shedStart, yPosShed, 15, 15);
 
-        int xPos = carportRequest.getLength() - 15;
-        svg.addRect(xPos,carportRequest.getWidth(),15,15);
+        int xPosShed = carportRequest.getLength() - 10;
+        svg.addRect(xPosShed, carportRequest.getWidth() / 2, 15, 15);
 
+        /*Stolper på skur*/
+        int xPos = carportRequest.getLength()-carportRequest.getShedLength();
+        svg.addRect(xPos,0,15,15);
+
+        svg.addRect(xPos,carportRequest.getWidth()-15,15,15);
 
         request.setAttribute("svgdrawing", svg.toString());
         return pageToShow;

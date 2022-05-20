@@ -25,8 +25,8 @@ abstract class Command
         commands.put("creatematerial", new CreateMaterial());
         commands.put("quickbuild", new Quickbuild());
         commands.put("requestsent", new RequestSent()) ;
-        commands.put("showsvgwithnoshed",new ShowSVGWithNoShed("svgpage"));
-        commands.put("showsvgwithshed",new ShowSVGWithShed("svgpage"));
+        commands.put("showsvg",new ShowSVGWithNoShed("svgpage"));
+        commands.put("showsvg",new ShowSVGWithShed("svgpage"));
 
     }
 

@@ -43,6 +43,9 @@ public class SVG {
 
     private final String lineTemplate = "<line x1=\"%d\" y1=\"%d\" x2=\"%f\" y2=\"%d\" style=\"stroke:#000000; fill: #ffffff\" />";
 
+    private final String lineTemplate2 = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; fill: #ffffff\" />";
+
+
     private final String lineWithDashTemplate = "<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; fill: #ffffff\" stroke-dasharray=\"4\" />";
 
     private final String startMarker = "<line marker-start=url(#beginArrow) x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"stroke:#000000; fill: #ffffff\" />";
@@ -88,7 +91,7 @@ public class SVG {
     }
 
     public void addLine(int x1, int y1, int x2, int y2) {
-        svg.append(String.format(lineTemplate, x1, y1, x2, y2));
+        svg.append(String.format(lineTemplate2, x1, y1, x2, y2));
     }
 
     public void addSvg(SVG innerSVG) {
