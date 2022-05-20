@@ -13,7 +13,6 @@ public class BomDTOFacade {
 
         BomDTOMapper bomDTOMapper = new BomDTOMapper(connectionPool);
 
-
         return bomDTOMapper.getBomlineWithInfo(bomId);
 
     }
