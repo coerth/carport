@@ -48,7 +48,7 @@ public class Login extends Command
         else
         {
             session.setAttribute("account", account); // adding user object to session scope
-            return "index";
+            return "adminindex";
         }
     }
 }

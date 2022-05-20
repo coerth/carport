@@ -18,7 +18,7 @@ abstract class Command
         commands.put("about", new About());
         commands.put("register", new Register());
         commands.put("startup", new StartUp());
-        commands.put("admin", new Admin());
+        commands.put("materialoverview", new MaterialOverview());
         commands.put("requestmodify", new RequestModify());
         commands.put("modifymaterial", new ModifyMaterial());
         commands.put("deletematerial", new DeleteMaterial());
@@ -30,6 +30,7 @@ abstract class Command
         commands.put("requestdeny", new RequestDeny());
         commands.put("requestapprove", new RequestApprove());
         commands.put("orderoverview",new OrderOverview());
+        commands.put("orderview",new OrderView());
     }
 
     static Command from( HttpServletRequest request ) {

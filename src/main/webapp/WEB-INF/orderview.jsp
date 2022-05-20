@@ -15,9 +15,13 @@
 
     <jsp:body>
 
+<%--
         <h3>Ordren med id ${requestScope.orderDTO.order.orderId} er nu sendt til kunden.</h3>
+--%>
 
-        <br>Husk at kigge ordren igennem og gå evt. tilbage og ret i den.
+        <br>
+        <h4>Husk at kigge ordren igennem for fejl og mangler. Kontakt kundeservice hvis der er fejl i ordren</h4>
+
 
         <thead>
         <tr>

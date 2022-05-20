@@ -6,11 +6,11 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             About
+             Ordreoversigt
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            About
+            Ordreoversigt
     </jsp:attribute>
 
     <jsp:body>
@@ -32,13 +32,13 @@
         <tbody>
         <c:forEach var="item" items="${requestScope.orderArraylist}">
             <tr>
-            <th scope="row">${item.orderId}></th>
+            <th scope="row">${item.orderId}</th>
             <td>${item.customerId}</td>
             <td>${item.dateTime}</td>
             <td>${item.carportType}</td>
             <td>${item.carportRequestId}</td>
             <td>${item.price}</td>
-            <td><form action="fc/orderview"><input type="hidden" name="command" value="orderview"/><button name="orderId" value="${item.orderId}">Vis</button></form></td>
+            <td><form action="fc/overview"><input type="hidden" name="command" value="orderview"/><button name="orderId" value="${item.orderId}">Vis</button></form></td>
             </tr>
         </c:forEach>
         </tbody>

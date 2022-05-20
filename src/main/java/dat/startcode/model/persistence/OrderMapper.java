@@ -22,7 +22,7 @@ public class OrderMapper implements IOrderMapper{
 
         ArrayList<Order> orderList = new ArrayList<>();
 
-        String sql = "SELECT * FROM order";
+        String sql = "SELECT * FROM `order`";
 
         try (Connection connection = connectionPool.getConnection()){
             try (PreparedStatement ps = connection.prepareStatement(sql)) {

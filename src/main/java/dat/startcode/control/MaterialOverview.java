@@ -11,11 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
-public class Admin extends Command {
+public class MaterialOverview extends Command {
 
     private ConnectionPool connectionPool;
 
-    public Admin()
+    public MaterialOverview()
     {
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
@@ -30,6 +30,6 @@ public class Admin extends Command {
 
         session.getServletContext().setAttribute("materialArrayList", materialArrayList);
 
-        return "admin";
+        return "materialoverview";
     }
 }
