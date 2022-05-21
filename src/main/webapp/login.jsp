@@ -6,24 +6,24 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             Login
+             Log ind
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            Login
+            Log ind
     </jsp:attribute>
 
     <jsp:body>
 
-        <h3>You can log in here</h3>
+        <h3>Her kan du logge ind</h3>
 
         <form action="fc/login" method="post">
             <input type="hidden" name="command" value="login"/>
             <label for="email">Email: </label>
             <input type="text" id="email" name="email"/>
-            <label for="password">Password: </label>
+            <label for="password">Kodeord: </label>
             <input type="password" id="password" name="password"/>
-            <input type="submit"  value="Log in"/>
+            <input type="submit"  value="Log ind"/>
         </form>
 
     </jsp:body>

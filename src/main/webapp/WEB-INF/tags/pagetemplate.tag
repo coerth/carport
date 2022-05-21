@@ -30,9 +30,10 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/register.jsp">Registrer</a>
+
                     <c:if test="${sessionScope.customer == null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Log ind</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/register.jsp">Registrer</a>
                     </c:if>
                     <c:if test="${sessionScope.customer != null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/quickbuild.jsp">Byg selv</a>
