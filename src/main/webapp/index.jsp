@@ -16,10 +16,18 @@
 
         <h2 style="text-align: center">VELKOMMEN TIL FOG TRÆLAST OG BYGGECENTER</h2>
 
-
         <c:if test="${sessionScope.customer == null}">
-            <p>For at begynde at shoppe din nye carport, skal du først logge ind i toppen</p>
-            <p>Hvis ikke du allerede har en bruger, skal du registrere dig for at shoppe</p>
+            <div class="row">
+            <div class="col-sm-6">
+                <video src="images/videoCarport.mp4"></video>
+            </div>
+            <div class="col-sm-6">
+            <h2>Tilmeld dig eller log ind for at shoppe</h2>
+           <a class="btn btn-secondary btn-lg" href="${pageContext.request.contextPath}/login.jsp"> Log ind</a>
+            <a class="btn btn-secondary btn-lg" href="${pageContext.request.contextPath}/register.jsp">Opret bruger</a>
+            </div>
+            </div>
+
         </c:if>
 
         <c:if test="${sessionScope.customer != null}">
