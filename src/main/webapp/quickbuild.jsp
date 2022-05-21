@@ -8,7 +8,6 @@
     <jsp:attribute name="header">
              Byg selv carport
     </jsp:attribute>
-<<<<<<< HEAD
 
     <jsp:attribute name="footer">
             Byg selv carport

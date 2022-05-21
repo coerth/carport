@@ -4,7 +4,10 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/tags/pagetemplate.tag" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/tags" />
+<<<<<<< HEAD
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+=======
+>>>>>>> 2b86054 (quickbuild jsp rettet til med frontend)
         <entry key="file://$PROJECT_DIR$/src/main/webapp/quickbuild.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
       </map>
     </option>
