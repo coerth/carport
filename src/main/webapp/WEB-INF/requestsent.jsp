@@ -7,17 +7,38 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             About
+             Din forespørgsel
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            About
+            Forespørgsel
+
     </jsp:attribute>
 
     <jsp:body>
 
+
         Din forespørgsel indeholder følgende data:
         ${sessionScope.newCarportRequest}
+
+        <label for="svgTegning">Klik her for at se din carport</label>
+        <input type="button" value="Klik her" id="svgTegning" onclick="myFunction()"><br><br>
+
+        <div id="carportSVG" name="${requestScope.newCarportRequest}">hej med dig</div>
+        <script>
+            function myFunction() {
+                var button = document.getElementById("svgTegning");
+                if (button.click() === true) {
+                    carportSVG.style.display = "block";
+                } else {
+                    carportSVG.style.display = "none";
+                }
+            }
+        </script>
+
+
+        Din forespørgsel indeholder følgende data:
+        ${requestScope.newCarportRequest}
 
     </jsp:body>
 </t:pagetemplate>
