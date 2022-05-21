@@ -26,7 +26,7 @@
           <div class="row">
           <div class="col-sm-6">
             <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="Byg selv">
+                <img src="${pageContext.request.contextPath}/images/bygselv.jpg" class="card-img-top" alt="Byg selv">
                 <div class="card-body">
                     <h5 class="card-title">Byg selv</h5>
                     <p class="card-text">Her kan du selv bygge en carport ud fra dine ønskede mål.</p>
