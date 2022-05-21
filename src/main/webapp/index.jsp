@@ -50,7 +50,7 @@
           </div>
 
             <div class="col-sm-6">
-            <div class="card" style="width: 18rem; margin-left: 100px;margin-top: 50px">
+            <div class="card" style="width: 18rem; margin-left: 100px" >
                 <img src="${pageContext.request.contextPath}/images/standardcarport.jpg" class="card-img-top" alt="Standard carport">
                 <div class="card-body">
                     <h5 class="card-title">Standard carport</h5>
