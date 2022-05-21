@@ -29,18 +29,20 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about">About</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc">Page 2</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/register.jsp">Registrer</a>
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/showsvg?command=showsvg">SVG tegning</a>
 
                     <c:if test="${sessionScope.account == null }">
 
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
+
+                    <c:if test="${sessionScope.customer == null }">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Log ind</a>
+
                     </c:if>
                     <c:if test="${sessionScope.customer != null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/quickbuild.jsp">quickbuild</a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log out</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/quickbuild.jsp">Byg selv</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log ud</a>
                     </c:if>
                     <c:if test="${sessionScope.account.role == 1 }">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=admin">Admin</a>
@@ -62,24 +64,18 @@
 </div>
 
 <!-- Footer -->
-<div class="container mt-3">
-    <hr/>
+<footer  style="background-color: #003d76; color:white">
+    <div class="container p-4">
     <div class="row mt-4">
         <div class="col">
-            Nørgaardsvej 30<br/>
-            2800 Lyngby
+            Johannes Fog A/S - Firskovvej 20 - 2800 Lyngby<br/>
         </div>
         <div class="col">
-            <jsp:invoke fragment="footer"/><br/>
-            <p>&copy; 2022 Cphbusiness</p>
-        </div>
-        <div class="col">
-            Datamatikeruddannelsen<br/>
-            2. semester forår 2022
+            Alle priser er inkl. moms - CVR-nr. 16314439<br/>
         </div>
     </div>
-
-</div>
+    </div>
+</footer>
 
 </div>
 
