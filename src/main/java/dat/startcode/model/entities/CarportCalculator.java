@@ -611,7 +611,7 @@ public class CarportCalculator {
     public Bomline postAmount(Material material, int carportLength) {
         int post = calculatePostAmount(carportLength);
 
-        Bomline bomline = new Bomline(11, material, post);
+        Bomline bomline = new Bomline(10, material, post);
         return bomline;
     }
 
