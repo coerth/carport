@@ -14,6 +14,7 @@
 
     <jsp:body>
 
+
         <h2 style="text-align: center; margin-bottom: 50px">VELKOMMEN TIL FOG TRÆLAST OG BYGGECENTER</h2>
 
         <c:if test="${sessionScope.customer == null}">
@@ -33,7 +34,6 @@
                 </div>
             </div>
             </div>
-
         </c:if>
 
         <c:if test="${sessionScope.customer != null}">
