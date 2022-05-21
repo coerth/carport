@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,6 +52,7 @@ public class  FrontController extends HttpServlet {
         {
             request.setCharacterEncoding("UTF-8");
             response.setCharacterEncoding("UTF-8");
+            Locale.setDefault(new Locale("US"));
 
             Command action = Command.from( request );
             String view = action.execute( request, response );
