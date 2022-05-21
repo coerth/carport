@@ -16,7 +16,7 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0c2069;">
         <div class="container">
@@ -58,7 +58,7 @@
 </div>
 
 <!-- Footer -->
-<footer  style="background-color: #003d76; color:white">
+<footer class="mt-auto" style="background-color: #003d76; color:white">
     <div class="container p-4">
     <div class="row mt-4">
         <div class="col">
