@@ -6,7 +6,6 @@
 <t:pagetemplate>
     <jsp:attribute name="header">
 
-
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -14,7 +13,6 @@
     </jsp:attribute>
 
     <jsp:body>
-
 
         <h2 style="text-align: center; margin-bottom: 50px">VELKOMMEN TIL FOG TRÆLAST OG BYGGECENTER</h2>
 
@@ -53,10 +51,19 @@
           </div>
 
             <div class="col-sm-6">
-            <div class="card" style="width: 18rem; margin-left: 100px" >
-                <img src="${pageContext.request.contextPath}/images/standardcarport.jpg" class="card-img-top" alt="Standard carport">
-
+            <div class="card" style="width: 18rem; margin-right: 100px;margin-top: 50px">
+                <img src="${pageContext.request.contextPath}/images/ProductModel.png" class="card-img-top" alt="Standard carport">
+                <div class="card-body">
+                    <h5 class="card-title">Standard carport</h5>
+                    <p class="card-text">Vælg ud fra vores store udvalg af carporte!</p>
+                    <a href="https://www.johannesfog.dk/byggecenter/have--fritid/byg-selv-produkter/" class="btn btn-primary">Vælg</a>
+                </div>
+            </div>
+            </div>
+          </div>
+          </div>
         </c:if>
+        <br>
 
     </jsp:body>
 
