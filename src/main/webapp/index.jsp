@@ -51,8 +51,8 @@
           </div>
 
             <div class="col-sm-6">
-            <div class="card" style="width: 18rem; margin-right: 100px;margin-top: 50px">
-                <img src="${pageContext.request.contextPath}/images/ProductModel.png" class="card-img-top" alt="Standard carport">
+            <div class="card" style="width: 18rem; margin-left: 100px;margin-top: 50px">
+                <img src="${pageContext.request.contextPath}/images/standardcarport.jpg" class="card-img-top" alt="Standard carport">
                 <div class="card-body">
                     <h5 class="card-title">Standard carport</h5>
                     <p class="card-text">Vælg ud fra vores store udvalg af carporte!</p>
