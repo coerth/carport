@@ -19,12 +19,18 @@
         <c:if test="${sessionScope.customer == null}">
             <div class="row">
             <div class="col-sm-6">
-                <video src="images/videoCarport.mp4"></video>
+                <img src="images/bygselv.jpg" >
             </div>
             <div class="col-sm-6">
             <h2>Tilmeld dig eller log ind for at shoppe</h2>
+                <div class="d-flex flex-column bd-highlight mb-3">
+                    <div class="p-2 bd-highlight">
            <a class="btn btn-secondary btn-lg" href="${pageContext.request.contextPath}/login.jsp"> Log ind</a>
+                    </div>
+                    <div class="p-2 bd-highlight">
             <a class="btn btn-secondary btn-lg" href="${pageContext.request.contextPath}/register.jsp">Opret bruger</a>
+                    </div>
+                </div>
             </div>
             </div>
 
