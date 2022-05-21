@@ -5,7 +5,7 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-        <h2 style="text-align: center">VELKOMMEN TIL FOG TRÆLAST OG BYGGECENTER</h2>
+
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -14,12 +14,12 @@
 
     <jsp:body>
 
+        <h2 style="text-align: center">VELKOMMEN TIL FOG TRÆLAST OG BYGGECENTER</h2>
+
 
         <c:if test="${sessionScope.customer == null}">
-            <p>For at begynde at shoppe din nye carport, skal du først logge ind her: <a
-                    href="login.jsp">Log ind</a></p>
-            <br>Hvis ikke du allerede har en bruger, kan du registrere dig her: <a
-                href="register.jsp">Registrer</a>
+            <p>For at begynde at shoppe din nye carport, skal du først logge ind i toppen</p>
+            <p>Hvis ikke du allerede har en bruger, skal du registrere dig for at shoppe</p>
         </c:if>
 
         <c:if test="${sessionScope.customer != null}">
