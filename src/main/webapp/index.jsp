@@ -33,6 +33,7 @@
                 </div>
             </div>
             </div>
+
         </c:if>
 
         <c:if test="${sessionScope.customer != null}">
@@ -62,7 +63,6 @@
           </div>
           </div>
         </c:if>
-        <br>
 
     </jsp:body>
 
