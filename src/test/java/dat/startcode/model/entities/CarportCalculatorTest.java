@@ -112,14 +112,14 @@ class CarportCalculatorTest
 
     @Test
     void calculateRafters() {
-        int rafters = carportCalculator.calculateRafters(600);
-        assertEquals(12, rafters);
+        int rafters = carportCalculator.calculateRafters(780);
+        assertEquals(15, rafters);
     }
 
     @Test
     void calculateRaftersDistance() {
-        float distance = carportCalculator.calculateRaftersDistance(600, 12);
-        assertEquals(54.5, distance);
+        float distance = carportCalculator.calculateRaftersDistance(780, 15);
+        assertEquals(56.5, distance);
     }
 
 
@@ -340,6 +340,7 @@ class CarportCalculatorTest
     }
 
     @Test
+<<<<<<< HEAD
     void calculateHeadTest()
     {
         ArrayList<Material> headArrayList = new ArrayList<>();
@@ -395,5 +396,34 @@ class CarportCalculatorTest
     void shedPlanksAndScrewsTest () {
 
 
+=======
+    void calculatePostDistance(){
+        float postDistance = carportCalculator.calculatePostDistance(660);
+        assertEquals(280, postDistance);
+    }
+
+    @Test
+    void calculatePostDistanceWithFullShedLength(){
+        int postDistance = carportCalculator.calculatePostDistanceWithFullShedLength(620, 150);
+        assertEquals(140, postDistance);
+    }
+
+    @Test
+    void calculatePostDistanceWithFullShedWidth(){
+        int postDistanceWidth = carportCalculator.calculatePostDistanceWithFullShedWidth(530);
+        assertEquals(265, postDistanceWidth);
+    }
+
+    @Test
+    void calculatePerforatedTapeLength(){
+
+        int perforatedTapeLength = carportCalculator.calculatePerforatedTapeLength(780);
+        assertEquals(662,perforatedTapeLength);
+    }
+    @Test
+    void calculatePerforatedtapeLengthWithShed(){
+        int perforatedTapeLength = carportCalculator.calculatePerforatedtapeLengthWithShed(780,210);
+        assertEquals(511,perforatedTapeLength);
+>>>>>>> LongBranch
     }
 }

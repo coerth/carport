@@ -29,6 +29,9 @@ abstract class Command
         commands.put("requestview", new RequestView());
         commands.put("requestdeny", new RequestDeny());
         commands.put("requestapprove", new RequestApprove());
+        commands.put("showsvg",new ShowSVGWithNoShed("svgpage"));
+        //commands.put("showsvg",new ShowSVGWithShed("svgpage"));
+
     }
 
     static Command from( HttpServletRequest request ) {
