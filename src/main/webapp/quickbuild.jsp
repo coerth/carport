@@ -8,44 +8,102 @@
     <jsp:attribute name="header">
              Byg selv carport
     </jsp:attribute>
+<<<<<<< HEAD
 
     <jsp:attribute name="footer">
             Byg selv carport
     </jsp:attribute>
 
     <jsp:body>
+        <div class="row">
+            <div class="col-sm-6">
+                <form action="fc/quickbuild" method="post">
+                    <input type="hidden" name="command" value="quickbuild"/>
 
-        <form action="fc/quickbuild" method="post">
-            <input type="hidden" name="command" value="quickbuild"/>
-            <label for="width">Bredde (min 240 cm og max 600 cm:</label><br>
-            <input type="number" id="width" name="width" placeholder="Vælg bredde" min="240" max="600" step="30" required>
-            <br>
-            <label for="length">Længde (min 240 cm og max 780 cm:</label><br>
-            <input type="number" id="length" name="length" placeholder="Vælg længde" min="240" max="780" step="30">
-            <br>
-            <label for="roof">Vælg tag-type:</label><br>
-            <select type="text" id="roof" name="roof">
-                <option value ="Plasttrapezplader">
-                    Plasttrapezplader
-                </option>
-                <option value ="Tegltag">
-                    Tegltag
-                </option>
-            </select>
-            <br>
+                    <label for="carportWidth">Vælg bredde (min 240 cm og max 600 cm:)</label><br><br>
+                    <select name="width" id="carportWidth">
+                        <option>Vælg bredde</option>
+                        <c:forEach varStatus="loop" begin="240" end="600" step="30">
+                            <option><c:out value="${loop.current}"></c:out></option>
+                        </c:forEach></select>
+                    <br>
+                    <br>
+                    <label for="carportLength">Vælg længde (min 240 cm og max 780 cm:)</label><br><br>
+                    <select name="length" id="carportLength">
+                        <option>Vælg længde</option>
+                        <br><br>
+                        <c:forEach varStatus="loop" begin="240" end="780" step="30">
+                            <option><c:out value="${loop.current}"></c:out></option>
+                        </c:forEach></select>
+                    <br>
+                    <br>
+                    <label for="roof">Vælg tag-type:</label><br><br>
+                    <select name="roof" id="roof">
+                        <option>Vælg tag-type</option>
+                        <c:forEach items="Plasttrapezplader" var="names" begin="0" end="1">
+                            <option><c:out value="${names}"></c:out></option>
+                        </c:forEach></select>
+                    <br>
 
-            <input type="checkbox" id="shedOrNoShed" name = "shedOrNoShed" value ="false" >
-            <label for="shedOrNoShed"> Ønskes skur? Klik her! </label>
-            <br>
-            <label for="shedWidth">Skurbredde (min 210 cm og max 720 cm:</label><br>
-            <input type="number" id="shedWidth" name ="shedWidth" placeholder="Vælg bredde på dit skur" min="210" max="720" step="30">
-            <br>
-            <label for="shedLength">Længde (min 150 cm og max 690 cm:</label><br>
-            <input type="number" id="shedLength" name ="shedLength" placeholder="Vælg længde på dit skur" min="150" max="690" step="30">
 
-            <input type="submit" value="Vælg">
+                    <label for="shed">Ønskes skur? Klik her</label>
+                    <input type="checkbox" id="shed" onclick="myFunction()"><br><br>
 
-        </form>
+                    <div id="shedMeasurements" style="display:none">
+                        <label for="shedWidth">Vælg bredde</label>
+                        <select name="shedWidth" id="shedWidth" style="display:none">
+                            <option value="">Vælg bredde</option>
+                            <c:forEach varStatus="loop" begin="210" end="720" step="30">
+                                <option><c:out value="${loop.current}"></c:out></option>
+                            </c:forEach>
+                        </select><br>
+                        <label for="shedLength">Vælg længde</label>
+                        <select name="shedLength" id="shedLength" style="display:none">
+                            <option value="">Vælg længde</option>
+                            <c:forEach varStatus="loop" begin="150" end="690" step="30">
+                                <option><c:out value="${loop.current}"></c:out></option>
+                            </c:forEach>
+                        </select>
+                    </div>
+
+                    <script>
+                        function myFunction() {
+                            var checkBox = document.getElementById("shed");
+                            var shedMeasurements = document.getElementById("shedMeasurements");
+                            var shedWidth = document.getElementById("shedWidth");
+                            var shedLength = document.getElementById("shedLength");
+                            if (checkBox.checked == true) {
+                                shedWidth.style.display = "block";
+                                shedLength.style.display = "block";
+                                shedMeasurements.style.display = "block";
+                            } else {
+                                shedWidth.style.display = "none";
+                                shedLength.style.display = "none";
+                                shedMeasurements.style.display = "none";
+                            }
+                        }
+                    </script>
+
+
+                    <input type="submit" value="Vælg">
+                </form>
+            </div>
+
+
+        <div class="col-xl-6">
+            <div class="card mb-3">
+                <img class="card-img-top" src="./images/construction-worker.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Velkommen til Fog's byg selv side. Her kan du indtaste dine ønskede
+                        mål til din
+                        drømme carport! Husk du også
+                        kan bestille carporte med skur. Er du i tvivl om noget, så kontakt vores
+                        kundeservice for
+                        hjælp</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     </jsp:body>
 </t:pagetemplate>
