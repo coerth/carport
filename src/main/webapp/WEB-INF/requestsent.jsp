@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
-
 <t:pagetemplate>
     <jsp:attribute name="header">
              Din forespørgsel
@@ -16,10 +15,6 @@
     </jsp:attribute>
 
     <jsp:body>
-
-
-        Din forespørgsel indeholder følgende data:
-        ${sessionScope.newCarportRequest}
 
         <label for="svgTegning">Klik her for at se din carport</label>
         <input type="button" value="Klik her" id="svgTegning" onclick="myFunction()"><br><br>
