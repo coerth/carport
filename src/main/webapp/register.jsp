@@ -1,17 +1,26 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: yelon
-  Date: 05-05-2022
-  Time: 09:46
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Registrering</title>
-</head>
-<body>
-<form action="fc/register" method="post">
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@page errorPage="error.jsp" isErrorPage="false" %>
+
+<t:pagetemplate>
+    <jsp:attribute name="header">
+        Registrer
+    </jsp:attribute>
+
+    <jsp:attribute name="footer">
+
+    </jsp:attribute>
+
+    <jsp:body>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <img src="images/registrer.jpg" style="margin-right: auto;margin-bottom: auto"/>
+            </div>
+        <div class="col-sm-6">
+<form action="fc/register" method="post" >
     <input type="hidden" name="command" value="register"/>
     <label for="name">Navn:</label><br>
     <input type="text" id="name" name="name" placeholder="Skriv dit navn"><br>
@@ -28,6 +37,9 @@
     <label for="password">Password:</label><br>
     <input type="password" id="password" name="password" placeholder="Password"><br><br>
     <input type="submit" value="Godkend">
+
 </form>
-</body>
-</html>
+        </div>
+        </div>
+    </jsp:body>
+</t:pagetemplate>
