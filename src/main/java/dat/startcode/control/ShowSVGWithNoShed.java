@@ -56,30 +56,6 @@ public class ShowSVGWithNoShed extends CommandUnprotectedPage {
             svg.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()) + carportCalculator.calculatePostDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
         }
 
-        /*Top og bund rem*/
-
-        svg.addLine(0, 0, carportRequest.getLength(), 0);
-        svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength(), carportRequest.getWidth());
-
-        if (carportRequest.getLength() >= 780) {
-            svg.addLine(0, 0, carportRequest.getLength() + 10f, 0);
-            svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength() + 10f, carportRequest.getWidth());
-        } else if (carportRequest.getLength() < 780 && carportRequest.getLength() >= 660) {
-            svg.addLine(0, 0, carportRequest.getLength() + 7.5f, 0);
-            svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength() + 7.5f, carportRequest.getWidth());
-        } else if (carportRequest.getLength() < 660 && carportRequest.getLength() >= 540) {
-            svg.addLine(0, 0, carportRequest.getLength(), 0);
-            svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength(), carportRequest.getWidth());
-        } else if (carportRequest.getLength() < 540 && carportRequest.getLength() >= 420) {
-            svg.addLine(0, 0, carportRequest.getLength() - 7.5f, 0);
-            svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength() - 7.5f, carportRequest.getWidth());
-        } else if (carportRequest.getLength() < 420 && carportRequest.getLength() >= 300) {
-            svg.addLine(0, 0, carportRequest.getLength() - 10, 0);
-            svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength() - 10, carportRequest.getWidth());
-        } else if (carportRequest.getLength() < 300) {
-            svg.addLine(0, 0, carportRequest.getLength() - 13, 0);
-            svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength() - 13, carportRequest.getWidth());
-        }
 
         request.setAttribute("svgdrawing", svg.toString());
         return pageToShow;
