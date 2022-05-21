@@ -30,6 +30,10 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1ef9d75 (login og registrerknapper)
                     <c:if test="${sessionScope.customer != null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/quickbuild.jsp">Byg selv</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log ud</a>
