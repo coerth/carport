@@ -40,6 +40,7 @@ public class Login extends Command
 
         System.out.println(customer);
 
+
         if(customer != null)
         {
             session.setAttribute("customer", customer);
