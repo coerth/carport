@@ -25,6 +25,7 @@
                     <th scope="col">Navn</th>
                     <th scope="col">Pris</th>
                     <th scope="col">Enhed</th>
+                    <th scope="col">Antal</th>
                     <th scope="col">Længde</th>
                     <th scope="col">Bredde</th>
                     <th scope="col">Højde</th>
@@ -39,6 +40,7 @@
                     <td>${item.name}</td>
                     <td>${item.price}</td>
                     <td>${item.unit}</td>
+                    <td>${item.quantity}</td>
                     <td>${item.length}</td>
                     <td>${item.width}</td>
                     <td>${item.height}</td>
@@ -62,6 +64,10 @@
                 <div class="form-group">
                     <label for="unit">Enhed</label>
                     <input type="text" class="form-control" name="unit" id="unit" placeholder="Enhed">
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Antal</label>
+                    <input type="text" class="form-control" name="quantity" id="quantity" placeholder="Antal">
                 </div>
                 <div class="form-group">
                     <label for="length">Længde</label>
