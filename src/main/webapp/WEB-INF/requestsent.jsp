@@ -20,8 +20,41 @@
         <label for="svgTegning">Klik her for at se din carport</label>
         <input type="button" value="Klik her" id="svgTegning" onclick="myFunction()"><br><br>
 
+
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+
+                <th scope="col">Længde</th>
+                <th scope="col">Bredde</th>
+                <th scope="col">Tagtype</th>
+                <th scope="col">Taghældning</th>
+                <th scope="col">Godkendt</th>
+                <th scope="col">Skur Længde</th>
+                <th scope="col">Skur Bredde</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>${requestScope.newCarportRequest.length}</td>
+                    <td>${requestScope.newCarportRequest.width}</td>
+                    <td>${requestScope.newCarportRequest.roofType}</td>
+                    <td>${requestScope.newCarportRequest.roofIncline}</td>
+                    <td>${requestScope.newCarportRequest.approved}</td>
+                    <td>${requestScope.newCarportRequest.shedLength}</td>
+                    <td>${requestScope.newCarportRequest.shedWidth}</td>
+                    <td><form action="fc/approveRequest"><input type="hidden" name="command" value="requestview"/><button name="requestId" value="${item.requestId}">Vis</button></form></td>
+                </tr>
+                <br>
+
+            </tbody>
+        </table>
+
+
         <button id="toggle" onclick="myFunction()">Vis carport tegning</button>
-        <div id="carportSVG">${requestScope.newCarportRequest}</div>
+        <div id="carportSVG"></div>
 
         <script>
             const targetDiv = document.getElementById("carportSVG");
