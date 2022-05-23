@@ -45,7 +45,6 @@
                     <td>${requestScope.newCarportRequest.approved}</td>
                     <td>${requestScope.newCarportRequest.shedLength}</td>
                     <td>${requestScope.newCarportRequest.shedWidth}</td>
-                    <td><form action="fc/approveRequest"><input type="hidden" name="command" value="requestview"/><button name="requestId" value="${item.requestId}">Vis</button></form></td>
                 </tr>
                 <br>
 
