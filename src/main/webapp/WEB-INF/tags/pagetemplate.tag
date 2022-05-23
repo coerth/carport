@@ -36,6 +36,7 @@
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=requestoverview">Forespørgelser</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/orderoverview?command=orderoverview">Ordrer</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/materialoverview?command=materialoverview">Lager</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log ud</a>
                     </c:if>
 
 
@@ -43,13 +44,8 @@
                     <c:if test="${sessionScope.customer != null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/quickbuild.jsp">Byg selv</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/WEB-INF/customerindex.jsp">Kundeprofil</a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log out</a>
-                    </c:if>
-
-                    <c:if test="${sessionScope.account != null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log af</a>
-
-                    </c:if>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log ud</a>
+                        </c:if>
 
                 </div>
             </div>
