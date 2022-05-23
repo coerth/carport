@@ -6,6 +6,7 @@ import dat.startcode.model.entities.Material;
 import dat.startcode.model.exceptions.DatabaseException;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -85,6 +86,7 @@ public class CustomerMapper implements ICustomerMapper
 
         return customerId;
     }
+
 
     @Override
     public Customer getSpecificCustomer(int customerId) throws DatabaseException {

@@ -1,3 +1,4 @@
+/*
 package dat.startcode.control;
 
 import dat.startcode.model.entities.CarportCalculator;
@@ -29,23 +30,33 @@ public class ShowSVGWithNoShed extends CommandUnprotectedPage {
             svg.addRect((int) (0 + carportCalculator.calculateRaftersDistance(carportRequest.getLength(), carportCalculator.calculateRafters(carportRequest.getLength())) * x), 0, carportRequest.getWidth(), 4.5f);
 
         }
-        /*Top rem*/
+        */
+/*Top rem*//*
+
         svg.addLine(0, 0, carportRequest.getLength(), 0);
 
-        /*Bund rem*/
+        */
+/*Bund rem*//*
+
         svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength(), carportRequest.getWidth());
 
-        /*Hulbånd*/
+        */
+/*Hulbånd*//*
+
         svg.addLineWithDash(55, 0, carportCalculator.calculatePerforatedTapeLength(carportRequest.getLength()), carportRequest.getWidth());
         svg.addLineWithDash(carportCalculator.calculatePerforatedTapeLength(carportRequest.getLength()), 0, 55, carportRequest.getWidth());
 
-        /*Stolper fast*/
+        */
+/*Stolper fast*//*
+
         svg.addRect(45, 0, 15, 15);
         svg.addRect(45, carportRequest.getWidth() - 15, 15, 15);
         svg.addRect(carportRequest.getLength() - 45, 0, 15, 15);
         svg.addRect(carportRequest.getLength() - 45, carportRequest.getWidth() - 15, 15, 15);
 
-        /*Midter stolper*/
+        */
+/*Midter stolper*//*
+
         if (carportCalculator.calculatePostAmountNeeded(carportRequest.getLength()) == 3) {
             svg.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()), 0, 15, 15);
             svg.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
@@ -61,3 +72,4 @@ public class ShowSVGWithNoShed extends CommandUnprotectedPage {
         return pageToShow;
     }
 }
+*/

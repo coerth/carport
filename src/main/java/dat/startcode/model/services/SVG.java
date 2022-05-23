@@ -9,14 +9,13 @@ public class SVG {
     private int width;
     private int height;
 
-    private final String headerTemplate2 = "<svg height=\"%d%%\" " + "viewBox=\"%s\" " + "preserveAspectRatio=\"xMinYMin\">";
 
     private final String headerTemplate = "<svg height=\"%d\" " +
             "width=\"%d\" " +
             "viewBox=\"%s\" " +
             "x=\"%d\"   " +
             "y=\"%d\"   " +
-            " preserveAspectRatio=\"xMinYMin\">";
+            " preserveAspectRatio=\"yMinXMin\">";
 
     private final String markerPointer = "<defs>\n" +
             "            <marker\n" +
@@ -60,13 +59,6 @@ public class SVG {
         this.height = height;
         svg.append(String.format(headerTemplate, height, width, viewBox, x, y));
 
-    }
-
-    public SVG(StringBuilder svg, String viewBox, int height) {
-        this.svg = svg;
-        this.viewBox = viewBox;
-        this.height = height;
-        svg.append(String.format(markerPointer, viewBox, height));
     }
 
     public void addRect(int x, int y, float height, float width) {

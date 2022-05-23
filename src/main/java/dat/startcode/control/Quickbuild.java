@@ -3,9 +3,11 @@ package dat.startcode.control;
 import dat.startcode.model.config.ApplicationStart;
 import dat.startcode.model.entities.CarportRequest;
 import dat.startcode.model.entities.Customer;
+import dat.startcode.model.entities.SVGDrawing;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.services.CarportRequestFacade;
+import dat.startcode.model.services.SVG;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,22 +41,34 @@ public class Quickbuild extends Command{
 
         if(request.getParameter("shedLength").equals("") ) {
             shedLength = 0;
+            shedWidth = 0;
         } else {
 
             shedLength = Integer.parseInt(request.getParameter("shedLength"));
+            shedWidth = width;
         }
-        if(request.getParameter("shedWidth").equals("")) {
+        /*if(request.getParameter("shedWidth").equals("")) {
             shedWidth = 0;
         } else {
 
             shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
-        }
+        }*/
 
         try {
 
             CarportRequest newCarportRequest = CarportRequestFacade.createCarportRequest(width,length,roofType,roofIncline,shedWidth, shedLength, customerId,connectionPool);
             request.setAttribute("newCarportRequest", newCarportRequest);
 
+
+            if(newCarportRequest.getShedLength()==0) {
+                SVGDrawing drawer = new SVGDrawing(newCarportRequest);
+                SVG drawing = drawer.draw();
+                request.setAttribute("svgdrawing", drawing);
+            } else {
+                SVGDrawing drawer = new SVGDrawing(newCarportRequest);
+                SVG drawing = drawer.drawWithShed();
+                request.setAttribute("svgdrawing", drawing);
+            }
 
 
         } catch (SQLException e) {
