@@ -16,24 +16,26 @@
 
     <jsp:body>
 
+
         <label for="svgTegning">Klik her for at se din carport</label>
         <input type="button" value="Klik her" id="svgTegning" onclick="myFunction()"><br><br>
 
-        <div id="carportSVG" name="${requestScope.newCarportRequest}">hej med dig</div>
+        <button id="toggle" onclick="myFunction()">Vis carport tegning</button>
+        <div id="carportSVG">${requestScope.newCarportRequest}</div>
+
         <script>
-            function myFunction() {
-                var button = document.getElementById("svgTegning");
-                if (button.click() === true) {
-                    carportSVG.style.display = "block";
+            const targetDiv = document.getElementById("carportSVG");
+            const button = document.getElementById("toggle");
+            button.onclick = function () {
+                if (targetDiv.style.display !== "none") {
+                    targetDiv.style.display = "none";
                 } else {
-                    carportSVG.style.display = "none";
+                    targetDiv.style.display = "block";
                 }
-            }
+            };
         </script>
 
 
-        Din forespørgsel indeholder følgende data:
-        ${requestScope.newCarportRequest}
 
     </jsp:body>
 </t:pagetemplate>
