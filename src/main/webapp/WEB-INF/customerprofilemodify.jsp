@@ -25,12 +25,12 @@
       <div class="mb-3">
         <label for="email" class="form-label">Email:</label>
         <br>
-        <input type="email" class="form-label" name="email" id="email" value="${sessionScope.customer.getEmail()}">
+        <input type="email" class="form-label" name="email" id="email" value="${sessionScope.customer.email}">
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password:</label>
         <br>
-        <input type="password" class="form-label" name="password" id="password" value="${sessionScope.customer.getPassword()}">
+        <input type="password" class="form-label" name="password" id="password" value="${sessionScope.customer.password}">
       </div>
       <div class="mb-3">
         <label for="address" class="form-label">Adresse:</label>
