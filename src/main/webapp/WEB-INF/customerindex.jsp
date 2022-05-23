@@ -42,7 +42,7 @@
             <div class="col">
                 <form action="fc/">
                     <div class="card" style="width: 18rem;">
-                        <input type="hidden" name="command" value="customermodify">
+                        <input type="hidden" name="command" value="customerorderview">
                         <div class="card-body">
                             <h5 class="card-title">Se ordrehistorik</h5>
                             <button type="submit" class="btn btn-primary">Vælg</button>
