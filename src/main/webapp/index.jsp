@@ -14,9 +14,53 @@
 
     <jsp:body>
 
-        <h2 style="text-align: center; margin-bottom: 50px">VELKOMMEN TIL FOG TRÆLAST OG BYGGECENTER</h2>
+        <c:if test="${sessionScope.account.role == 1}">
+            <h2 style="text-align: center; margin-bottom: 50px">VELKOMMEN TIL ADMIN SIDEN</h2>
+            <div class="row" style="margin: 50px">
+                <div class="col">
+                    <form action="fc/">
+                        <div class="card" style="width: 18rem;">
+                            <input type="hidden" name="command" value="orderoverview">
+                            <img class="card-img-top" src="images/adminorder.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Se alle ordre</h5>
+                                <button type="submit" class="btn btn-primary">Vælg</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
-        <c:if test="${sessionScope.customer == null}">
+                <div class="col">
+                    <form action="fc/">
+                        <div class="card" style="width: 18rem;">
+                            <input type="hidden" name="command" value="requestoverview">
+                            <img class="card-img-top" src="images/quote.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Se alle forespørgsler</h5>
+                                <button type="submit" class="btn btn-primary">Vælg</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col">
+                    <form action="fc/">
+                        <div class="card" style="width: 18rem;">
+                            <input type="hidden" name="command" value="materialoverview">
+                            <img class="card-img-top" src="images/lager.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Gå til lager</h5>
+                                <button type="submit" class="btn btn-primary">Vælg</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </c:if>
+
+
+        <c:if test="${sessionScope.customer == null && sessionScope.account == null}">
+            <h2 style="text-align: center; margin-bottom: 50px">VELKOMMEN TIL FOG TRÆLAST OG BYGGECENTER</h2>
             <div class="row">
             <div class="col-sm-6">
                 <img src="images/bygselv.jpg" >
@@ -37,6 +81,7 @@
         </c:if>
 
         <c:if test="${sessionScope.customer != null}">
+            <h2 style="text-align: center; margin-bottom: 50px">VELKOMMEN TIL FOG TRÆLAST OG BYGGECENTER</h2>
           <div class="col d-flex justify-content-center">
             <div class="row">
           <div class="col-sm-6">
