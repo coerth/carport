@@ -16,11 +16,6 @@
 
     <jsp:body>
 
-
-        <label for="svgTegning">Klik her for at se din carport</label>
-        <input type="button" value="Klik her" id="svgTegning" onclick="myFunction()"><br><br>
-
-
         <table class="table table-striped table-hover">
             <thead>
             <tr>
@@ -37,27 +32,26 @@
             </thead>
             <tbody>
 
-                <tr>
-                    <td>${requestScope.newCarportRequest.length}</td>
-                    <td>${requestScope.newCarportRequest.width}</td>
-                    <td>${requestScope.newCarportRequest.roofType}</td>
-                    <td>${requestScope.newCarportRequest.roofIncline}</td>
-                    <td>${requestScope.newCarportRequest.approved}</td>
-                    <td>${requestScope.newCarportRequest.shedLength}</td>
-                    <td>${requestScope.newCarportRequest.shedWidth}</td>
-                </tr>
-                <br>
+            <tr>
+                <td>${requestScope.newCarportRequest.length}</td>
+                <td>${requestScope.newCarportRequest.width}</td>
+                <td>${requestScope.newCarportRequest.roofType}</td>
+                <td>${requestScope.newCarportRequest.roofIncline}</td>
+                <td>${requestScope.newCarportRequest.approved}</td>
+                <td>${requestScope.newCarportRequest.shedLength}</td>
+                <td>${requestScope.newCarportRequest.shedWidth}</td>
+            </tr>
+            <br>
 
             </tbody>
         </table>
 
 
-
         <button id="toggle" onclick="myFunction()">Vis carport tegning</button>
         <div id="carportSVG" style="display: none">
-            ${requestScope.svgdrawing}
+                ${requestScope.svgdrawing}
         </div>
-
+        <br>
         <script>
             const targetDiv = document.getElementById("carportSVG");
             const button = document.getElementById("toggle");
@@ -69,7 +63,6 @@
                 }
             };
         </script>
-
 
 
     </jsp:body>

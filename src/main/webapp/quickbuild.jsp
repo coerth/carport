@@ -50,13 +50,8 @@
                     <input type="checkbox" id="shed" onclick="myFunction()"><br><br>
 
                     <div id="shedMeasurements" style="display:none">
-                        <label for="shedWidth">Vælg bredde</label>
-                        <select name="shedWidth" id="shedWidth" style="display:none">
-                            <option value="">Vælg bredde</option>
-                            <c:forEach varStatus="loop" begin="210" end="720" step="30">
-                                <option><c:out value="${loop.current}"></c:out></option>
-                            </c:forEach>
-                        </select><br>
+                            <p id="shedWidth" name="shedWidth" style="display: none">* Bemærk at skurbredden er samme størrelse som carportbredden</p>
+                    <br>
                         <label for="shedLength">Vælg længde</label>
                         <select name="shedLength" id="shedLength" style="display:none">
                             <option value="">Vælg længde</option>

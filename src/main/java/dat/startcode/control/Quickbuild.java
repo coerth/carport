@@ -41,16 +41,18 @@ public class Quickbuild extends Command{
 
         if(request.getParameter("shedLength").equals("") ) {
             shedLength = 0;
+            shedWidth = 0;
         } else {
 
             shedLength = Integer.parseInt(request.getParameter("shedLength"));
+            shedWidth = width;
         }
-        if(request.getParameter("shedWidth").equals("")) {
+        /*if(request.getParameter("shedWidth").equals("")) {
             shedWidth = 0;
         } else {
 
             shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
-        }
+        }*/
 
         try {
 
