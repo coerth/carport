@@ -21,7 +21,6 @@
             <thead>
             <tr>
                 <th scope="col">Ordre ID</th>
-                <th scope="col">Kunde ID</th>
                 <th scope="col">Dato</th>
                 <th scope="col">Carport type</th>
                 <th scope="col">Forespørgsel ID</th>
