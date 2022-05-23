@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page errorPage="error.jsp" isErrorPage="false" %>
+<%@page errorPage="../error.jsp" isErrorPage="false" %>
 
 <t:pagetemplate>
     <jsp:attribute name="header">
@@ -14,8 +14,8 @@
 
     <jsp:body>
 
-
-            <form action="fc/customermodify2">
+            <form action="fc/">
+                <input type="hidden" name="command" value="customermodify">
                 <div class="mb-3">
                     <label for="name" class="form-label">Navn:</label>
                     <br>
@@ -42,16 +42,8 @@
                     <br>
                     <p type="text" class="form-label" id="mobile">${sessionScope.customer.mobile}</p>
                 </div>
-                <form action="fc/customermodify2"><input type="hidden" name="command" value="customermodify2"/><button name="modify" >Rediger oplysninger</button></form>
-<%--                <button type="submit" class="btn btn-primary">Rediger</button>--%>
-            </form>
-
-
-        <br>
-        Her er dine forespørgsler som venter på godkendelse:
-        <br>
-
-
+                <button name="modify" >Rediger oplysninger</button>
+                </form>
 
     </jsp:body>
 

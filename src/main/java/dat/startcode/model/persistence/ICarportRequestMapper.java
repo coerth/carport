@@ -14,6 +14,7 @@ public interface ICarportRequestMapper {
     ArrayList<CarportRequest> getAllRequests();
     ArrayList<CarportRequest> getAllOpenRequests();
     boolean deleteCarportRequest(int carportRequestId);
+    ArrayList<CarportRequest> getAllRequestFromCustomer(int customerId);
 
 
 }

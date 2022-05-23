@@ -22,6 +22,11 @@ public class CarportRequestFacade {
         return carportRequestMapper.getAllRequests();
     }
 
+    public static ArrayList<CarportRequest> getAllCarportRequestsFromCustomer(int customerId, ConnectionPool connectionPool){
+        CarportRequestMapper carportRequestMapper = new CarportRequestMapper(connectionPool);
+        return carportRequestMapper.getAllRequestFromCustomer(customerId);
+    }
+
     public static ArrayList<CarportRequest> getAllOpenCarportRequests(ConnectionPool connectionPool){
         CarportRequestMapper carportRequestMapper = new CarportRequestMapper(connectionPool);
         return carportRequestMapper.getAllOpenRequests();

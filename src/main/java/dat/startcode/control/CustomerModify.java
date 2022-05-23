@@ -41,7 +41,7 @@ public class CustomerModify extends Command {
         session.setAttribute("customer", customer);
         //System.out.println(customer1);
 
-        return "index";
+        return "customermodify";
     }
 
 }
