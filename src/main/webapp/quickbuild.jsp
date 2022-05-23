@@ -16,20 +16,21 @@
     <jsp:body>
         <div class="row">
             <div class="col-sm-6">
+
                 <form action="fc/quickbuild" method="post">
                     <input type="hidden" name="command" value="quickbuild"/>
 
                     <label for="carportWidth">Vælg bredde (min 240 cm og max 600 cm:)</label><br><br>
-                    <select name="width" id="carportWidth">
-                        <option>Vælg bredde</option>
+                    <select name="width" id="carportWidth" required="required">
+                        <option value="">Vælg bredde</option>
                         <c:forEach varStatus="loop" begin="240" end="600" step="30">
                             <option><c:out value="${loop.current}"></c:out></option>
                         </c:forEach></select>
                     <br>
                     <br>
                     <label for="carportLength">Vælg længde (min 240 cm og max 780 cm:)</label><br><br>
-                    <select name="length" id="carportLength">
-                        <option>Vælg længde</option>
+                    <select name="length" id="carportLength" required="required">
+                        <option value="">Vælg længde</option>
                         <br><br>
                         <c:forEach varStatus="loop" begin="240" end="780" step="30">
                             <option><c:out value="${loop.current}"></c:out></option>
@@ -37,8 +38,8 @@
                     <br>
                     <br>
                     <label for="roof">Vælg tag-type:</label><br><br>
-                    <select name="roof" id="roof">
-                        <option>Vælg tag-type</option>
+                    <select name="roof" id="roof" required="required">
+                        <option value="">Vælg tag-type</option>
                         <c:forEach items="Plasttrapezplader" var="names" begin="0" end="1">
                             <option><c:out value="${names}"></c:out></option>
                         </c:forEach></select>
