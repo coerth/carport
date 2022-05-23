@@ -6,9 +6,10 @@ import dat.startcode.model.exceptions.DatabaseException;
 
 public interface ICustomerMapper
 {
-    public Customer createCustomer(String name, String address, String city, int zip, int mobile, String email, String password) throws DatabaseException;
-    public int getCustomerId(int mobile) throws DatabaseException;
-    public Customer getSpecificCustomer(int customerId) throws DatabaseException;
+    Customer createCustomer(String name, String address, String city, int zip, int mobile, String email, String password) throws DatabaseException;
+    int getCustomerId(int mobile) throws DatabaseException;
+    Customer getSpecificCustomer(int customerId) throws DatabaseException;
+    boolean updateCustomerProfile(Customer customer);
 
 
 

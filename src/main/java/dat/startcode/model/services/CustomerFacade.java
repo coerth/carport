@@ -33,4 +33,10 @@ public class CustomerFacade
         return customerMapper.getSpecificCustomer(customerId);
     }
 
+    public static boolean updateCustomerProfile(Customer customer, ConnectionPool connectionPool){
+
+        CustomerMapper customerMapper = new CustomerMapper(connectionPool);
+        return  customerMapper.updateCustomerProfile(customer);
+    }
+
 }

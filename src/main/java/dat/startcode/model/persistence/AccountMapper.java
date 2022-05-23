@@ -1,6 +1,7 @@
 package dat.startcode.model.persistence;
 
 import dat.startcode.model.entities.Account;
+import dat.startcode.model.entities.Customer;
 import dat.startcode.model.exceptions.DatabaseException;
 
 import java.sql.Connection;
@@ -118,4 +119,30 @@ public class AccountMapper implements IAccountMapper{
         return accountId;
 
     }
+
+    @Override
+    public boolean updateAccount(Account account) {
+
+        String sql = "UPDATE account SET email = ?, password = ? WHERE account_id = ?";
+
+        try(Connection connection = connectionPool.getConnection()){
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+                ps.setString(1, account.getEmail());
+                ps.setString(2, account.getPassword());
+                ps.setInt(3, account.getAccountId());
+
+                int rowsAffected = ps.executeUpdate();
+
+                if(rowsAffected == 1){
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+
 }
