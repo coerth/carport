@@ -32,16 +32,21 @@
 
 
                     <c:if test="${sessionScope.account.role == 1 }">
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=admin">Admin</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=adminindex">Forside</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=requestoverview">Forespørgelser</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/orderoverview?command=orderoverview">Se ordrer</a>
                     </c:if>
+
 
 
                     <c:if test="${sessionScope.customer != null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/quickbuild.jsp">Byg selv</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/customerprofile.jsp">Kundeprofil</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log out</a>
+
+                    <c:if test="${sessionScope.account != null }">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log af</a>
+
                     </c:if>
 
                 </div>
