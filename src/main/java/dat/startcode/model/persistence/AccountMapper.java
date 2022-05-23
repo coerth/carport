@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,8 +56,8 @@ public class AccountMapper implements IAccountMapper{
             return account;
         }
 
-    public ArrayList<String> getAllEmails() throws SQLException {
-        ArrayList<String> emailArrayList = new ArrayList<>();
+    public Set<String> getAllEmails() throws SQLException {
+        Set<String> emailSet = new HashSet<>();
 
         String sql = "SELECT * FROM carport.account";
 
@@ -65,13 +67,13 @@ public class AccountMapper implements IAccountMapper{
                 while (rs.next()) {
                     String email = rs.getString("email");
 
-                    emailArrayList.add(email);
+                    emailSet.add(email);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
 
-            return emailArrayList;
+            return emailSet;
         }
     }
     @Override
