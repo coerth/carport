@@ -57,11 +57,16 @@ public class Quickbuild extends Command{
             CarportRequest newCarportRequest = CarportRequestFacade.createCarportRequest(width,length,roofType,roofIncline, shedLength,shedWidth, customerId,connectionPool);
             request.setAttribute("newCarportRequest", newCarportRequest);
 
-            SVGDrawing drawer = new SVGDrawing(newCarportRequest);
-            SVG drawing = drawer.draw();
 
-            request.setAttribute("svgdrawing", drawing);
-
+            if(newCarportRequest.getShedLength()==0) {
+                SVGDrawing drawer = new SVGDrawing(newCarportRequest);
+                SVG drawing = drawer.draw();
+                request.setAttribute("svgdrawing", drawing);
+            } else {
+                SVGDrawing drawer = new SVGDrawing(newCarportRequest);
+                SVG drawing = drawer.drawWithShed();
+                request.setAttribute("svgdrawing", drawing);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
