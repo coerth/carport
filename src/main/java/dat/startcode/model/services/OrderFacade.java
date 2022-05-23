@@ -19,6 +19,11 @@ public class OrderFacade {
         return orderMapper.getAllOrders();
     }
 
+    public static ArrayList<Order> getAllOrdersFromSpecificCustomer(int customerId, ConnectionPool connectionPool) {
+        OrderMapper orderMapper = new OrderMapper(connectionPool);
+        return orderMapper.getAllOrdersFromSpecificCustomer(customerId);
+    }
+
     public static Order getSpecificOrder (int orderId, ConnectionPool connectionPool) {
         OrderMapper orderMapper = new OrderMapper(connectionPool);
         return orderMapper.getSpecificOrder(orderId);

@@ -47,6 +47,35 @@ public class OrderMapper implements IOrderMapper{
     }
 
     @Override
+    public ArrayList<Order> getAllOrdersFromSpecificCustomer(int customerId) {
+
+        ArrayList<Order> orderList = new ArrayList<>();
+
+        String sql = "SELECT * FROM `order` WHERE customer_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()){
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1,customerId);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int orderId = rs.getInt("order_id");
+                    Timestamp timeStamp = rs.getTimestamp("date");
+                    LocalDateTime date = timeStamp.toLocalDateTime();
+                    int carportType = rs.getInt("carport_type");
+                    int price = rs.getInt("price");
+                    int carportRequestId = rs.getInt("carport_request_id");
+                    Order newOrder = new Order(orderId, customerId, date,carportType, price, carportRequestId);
+                    orderList.add(newOrder);
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return orderList;
+    }
+
+    @Override
     public Order getSpecificOrder(int orderId) {
 
         String sql = "SELECT * FROM `order` WHERE order_id = ?";
