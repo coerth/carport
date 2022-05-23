@@ -2,6 +2,7 @@ package dat.startcode.control;
 
 import dat.startcode.model.config.ApplicationStart;
 import dat.startcode.model.exceptions.DatabaseException;
+import dat.startcode.model.persistence.AccountMapper;
 import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.services.AccountFacade;
 import dat.startcode.model.services.CustomerFacade;
@@ -20,7 +21,7 @@ public class Register extends Command{
     }
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException, SQLException {
 
         HttpSession session = request.getSession();
         String name = request.getParameter("name");
@@ -31,12 +32,19 @@ public class Register extends Command{
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        try{
-            CustomerFacade.createCustomer(name,address,city,zip,mobile,email,password,connectionPool);
-        }
-        catch (DatabaseException e)
-        {
-            System.out.println(e);
+        AccountMapper accountMapper = new AccountMapper(connectionPool);
+
+        if(accountMapper.getAllEmails().contains(email)) {
+            return "errorpage";
+
+        } else {
+
+
+            try {
+                CustomerFacade.createCustomer(name, address, city, zip, mobile, email, password, connectionPool);
+            } catch (DatabaseException e) {
+                System.out.println(e);
+            }
         }
 
 

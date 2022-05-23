@@ -4,6 +4,7 @@ import dat.startcode.model.exceptions.DatabaseException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 abstract class Command
@@ -45,6 +46,6 @@ abstract class Command
     }
 
     abstract String execute( HttpServletRequest request, HttpServletResponse response )
-            throws DatabaseException;
+            throws DatabaseException, SQLException;
 
 }

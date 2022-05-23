@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.logging.Level;
@@ -67,7 +68,9 @@ public class  FrontController extends HttpServlet {
         {
             Logger.getLogger("web").log(Level.SEVERE, e.getMessage());
             request.setAttribute("errormessage", e.getMessage());
-            request.getRequestDispatcher(request.getServletContext().getContextPath() + "/error.jsp").forward(request, response);        }
+            request.getRequestDispatcher(request.getServletContext().getContextPath() + "/error.jsp").forward(request, response);        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -53,7 +54,26 @@ public class AccountMapper implements IAccountMapper{
             return account;
         }
 
+    public ArrayList<String> getAllEmails() throws SQLException {
+        ArrayList<String> emailArrayList = new ArrayList<>();
 
+        String sql = "SELECT * FROM carport.account";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    String email = rs.getString("email");
+
+                    emailArrayList.add(email);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            return emailArrayList;
+        }
+    }
     @Override
     public int createAccount(String email, String password, int role) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
