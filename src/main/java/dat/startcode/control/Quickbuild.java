@@ -3,9 +3,11 @@ package dat.startcode.control;
 import dat.startcode.model.config.ApplicationStart;
 import dat.startcode.model.entities.CarportRequest;
 import dat.startcode.model.entities.Customer;
+import dat.startcode.model.entities.SVGDrawing;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.services.CarportRequestFacade;
+import dat.startcode.model.services.SVG;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,6 +56,12 @@ public class Quickbuild extends Command{
 
             CarportRequest newCarportRequest = CarportRequestFacade.createCarportRequest(width,length,roofType,roofIncline, shedLength,shedWidth, customerId,connectionPool);
             request.setAttribute("newCarportRequest", newCarportRequest);
+
+            SVGDrawing drawer = new SVGDrawing(newCarportRequest);
+            SVG drawing = drawer.draw();
+
+            request.setAttribute("svgdrawing", drawing);
+
 
         } catch (SQLException e) {
             e.printStackTrace();

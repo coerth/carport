@@ -52,8 +52,11 @@
         </table>
 
 
+
         <button id="toggle" onclick="myFunction()">Vis carport tegning</button>
-        <div id="carportSVG"></div>
+        <div id="carportSVG" style="display: none">
+            ${requestScope.svgdrawing}
+        </div>
 
         <script>
             const targetDiv = document.getElementById("carportSVG");
