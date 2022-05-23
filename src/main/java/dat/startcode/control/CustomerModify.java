@@ -39,9 +39,9 @@ public class CustomerModify extends Command {
         CustomerFacade.updateCustomerProfile(new Customer(email, password, role, customerId, name, address, city, zip, mobile, accountId), ApplicationStart.getConnectionPool());
 
         session.setAttribute("customer", customer);
-        //System.out.println(customer1);
 
-        return "customermodify";
+
+        return "customerprofile";
     }
 
 }

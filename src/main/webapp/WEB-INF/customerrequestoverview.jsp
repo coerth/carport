@@ -41,10 +41,11 @@
                     <td>${item.width}</td>
                     <td>${item.roofType}</td>
                     <td>${item.roofIncline}</td>
+                    <td>
                     <c:choose>
-                    <c:when test="${item.approved} == false">
-                        <div class="alert alert-secondary" role="alert">
-                            Ikke godkendt
+                    <c:when test="${item.approved == false}">
+                        <div class="alert alert-info" role="alert">
+                            Under behandling
                         </div>
                     </c:when>
                         <c:otherwise>
@@ -52,7 +53,8 @@
                                 Godkendt
                             </div>
                         </c:otherwise>
-            </c:choose>
+                     </c:choose>
+                    </td>
                     <td>${item.approved}</td>
                     <td>${item.shedLength}</td>
                     <td>${item.shedWidth}</td>

@@ -37,6 +37,7 @@ abstract class Command
         commands.put("customerprofile", new CustomerProfile());
         commands.put("customerrequestoverview", new CustomerRequestOverview());
         commands.put("customerindex", new CustomerIndex());
+        commands.put("customermodifyredirect", new CustomerModifyRedirect());
 
     }
 

@@ -32,7 +32,6 @@
             <c:forEach var="item" items="${requestScope.orderArraylist}">
                 <tr>
                     <th scope="row">${item.orderId}</th>
-                    <td>${item.customerId}</td>
                     <td>${item.dateTime}</td>
                     <td>${item.carportType}</td>
                     <td>${item.carportRequestId}</td>
