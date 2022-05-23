@@ -32,7 +32,7 @@
 
 
                     <c:if test="${sessionScope.account.role == 1 }">
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=adminindex">Forside</a>
+                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/index.jsp">Forside</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=requestoverview">Forespørgelser</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/orderoverview?command=orderoverview">Se ordrer</a>
                     </c:if>
