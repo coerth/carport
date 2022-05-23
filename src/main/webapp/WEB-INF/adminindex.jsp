@@ -15,7 +15,7 @@
 
     <jsp:body>
 
-        <h3>Se alle ordre</h3>
+        <h3>Se alle ordrer</h3>
         <form method="get" action="fc/">
             <input type="hidden" name="command" value="orderoverview">
             <button type="submit">Vælg</button>
