@@ -32,6 +32,7 @@ abstract class Command
         commands.put("orderoverview",new OrderOverview());
         commands.put("orderview",new OrderView());
         commands.put("showsvg",new ShowSVGWithNoShed("svgpage"));
+        commands.put("adminindex", new AdminIndex());
         //commands.put("showsvg",new ShowSVGWithShed("svgpage"));
 
     }
