@@ -16,9 +16,9 @@
 
         <div class="row" style="margin: 50px">
             <div class="col">
-                <form action="fc/">
+                <form action="fc/customerprofile">
                     <div class="card" style="width: 18rem;">
-                        <input type="hidden" name="command" value="customermodify">
+                       <input type="hidden" name="command" value="customerprofile">
                         <div class="card-body">
                             <h5 class="card-title">Se kundeoplysninger</h5>
                             <button type="submit" class="btn btn-primary">Vælg</button>

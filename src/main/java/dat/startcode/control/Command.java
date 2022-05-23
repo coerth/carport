@@ -34,7 +34,7 @@ abstract class Command
         commands.put("showsvg",new ShowSVGWithNoShed("svgpage"));
         //commands.put("showsvg",new ShowSVGWithShed("svgpage"));
         commands.put("customermodify", new CustomerModify());
-        commands.put("customermodify2", new CustomerModify2());
+        commands.put("customerprofile", new CustomerProfile());
         commands.put("customerrequestoverview", new CustomerRequestOverview());
         commands.put("customerindex", new CustomerIndex());
 
