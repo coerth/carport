@@ -532,12 +532,22 @@ public class CarportCalculator {
     public int calculateCarriageBolt(int carportLength) {
 
         int carriageBolt = 2;
+        int carriageboltToHead = 2;
 
         carriageBolt = carriageBolt * calculatePostAmount(carportLength);
 
+        return carriageBolt + carriageboltToHead;
+    }
+
+
+    public int calculateCarriageBoltWithShed(int carportLength, int shedLength){
+        int carriageBolt = 2;
         int carriageboltToHead = 2;
 
+        carriageBolt = carriageBolt * (calculatePostAmountWithShed(carportLength, shedLength) -3) ;
+
         return carriageBolt + carriageboltToHead;
+
     }
 
     public int calculateSquareSpacer(int carriageBolt) {
@@ -617,6 +627,13 @@ public class CarportCalculator {
 
     public Bomline carriageBolt(Material material, int carportLength) {
         int bolt = calculateCarriageBolt(carportLength);
+
+        Bomline bomline = new Bomline(21, material, bolt);
+        return bomline;
+    }
+
+    public Bomline carriageBoltWithShed(Material material, int carportLength, int shedLength) {
+        int bolt = calculateCarriageBoltWithShed(carportLength, shedLength);
 
         Bomline bomline = new Bomline(21, material, bolt);
         return bomline;
@@ -787,10 +804,10 @@ public class CarportCalculator {
         bomlineArrayList.add(screwsForTapeAndBracket(materialArrayList.get(21), brackets, rafters));
 
         // tilføj bræddebolte til arraylist
-        bomlineArrayList.add(carriageBolt(materialArrayList.get(22), carportLength));
+        bomlineArrayList.add(carriageBoltWithShed(materialArrayList.get(22), carportLength, shedLength));
 
         // tilføj firkantskiver til arraylist
-        bomlineArrayList.add(squareSpacer(materialArrayList.get(23), calculateCarriageBolt(carportLength)));
+        bomlineArrayList.add(squareSpacer(materialArrayList.get(23), calculateCarriageBoltWithShed(carportLength, shedLength)));
 
         //tilføj træ til z og håndtag og hængsel til dør til skuret
         bomlineArrayList.addAll(addWoodForZPlusHandleAndHingeForDoor());
