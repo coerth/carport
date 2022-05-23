@@ -39,7 +39,8 @@
                     <c:if test="${sessionScope.account.role == 1 }">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/index.jsp">Forside</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=requestoverview">Forespørgelser</a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/orderoverview?command=orderoverview">Se ordrer</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/orderoverview?command=orderoverview">Ordrer</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/materialoverview?command=materialoverview">Lager</a>
                     </c:if>
 
                     <c:if test="${sessionScope.account != null }">
