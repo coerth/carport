@@ -16,12 +16,12 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0c2069;">
         <div class="container">
             <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">
-                <img src="${pageContext.request.contextPath}/images/cphbusiness.png" width="400px;" class="img-fluid"/>
+                <img src="https://www.johannesfog.dk/globalassets/header/logo.png" class="img-fluid"/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,21 +29,19 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/about?command=about">About</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc">Page 2</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/quickbuild.jsp">quickbuild</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/register.jsp">Registrer</a>
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/showsvg?command=showsvg">SVG tegning</a>
 
-                    <c:if test="${sessionScope.account == null }">
 
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
-                    </c:if>
+                    <c:if test="${sessionScope.customer != null }">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/quickbuild.jsp">Byg selv</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log ud</a>
+                        </c:if>
+
                     <c:if test="${sessionScope.account.role == 1 }">
                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=admin">Admin</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=requestoverview">Forespørgelser</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/orderoverview?command=orderoverview">Se ordrer</a>
                     </c:if>
+
                     <c:if test="${sessionScope.account != null }">
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log out</a>
                     </c:if>
@@ -59,24 +57,18 @@
 </div>
 
 <!-- Footer -->
-<div class="container mt-3">
-    <hr/>
+<footer class="mt-auto" style="background-color: #003d76; color:white">
+    <div class="container p-4">
     <div class="row mt-4">
         <div class="col">
-            Nørgaardsvej 30<br/>
-            2800 Lyngby
+            Johannes Fog A/S - Firskovvej 20 - 2800 Lyngby<br/>
         </div>
         <div class="col">
-            <jsp:invoke fragment="footer"/><br/>
-            <p>&copy; 2022 Cphbusiness</p>
-        </div>
-        <div class="col">
-            Datamatikeruddannelsen<br/>
-            2. semester forår 2022
+            Alle priser er inkl. moms - CVR-nr. 16314439<br/>
         </div>
     </div>
-
-</div>
+    </div>
+</footer>
 
 </div>
 
