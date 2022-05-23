@@ -20,10 +20,10 @@
                 <form action="fc/">
                 <div class="card" style="width: 18rem;">
                     <input type="hidden" name="command" value="orderoverview">
-                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <img class="card-img-top" src="../images/adminorder.jpg" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Se alle ordre</h5>
-                        <button type="submit" class="btn btn-primary">Go somewhere</button>
+                        <button type="submit" class="btn btn-primary">Vælg</button>
                     </div>
                 </div>
                 </form>
@@ -33,10 +33,10 @@
                 <form action="fc/">
                 <div class="card" style="width: 18rem;">
                     <input type="hidden" name="command" value="requestoverview">
-                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <img class="card-img-top" src="../images/quote.jpg" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Se alle forespørgsler</h5>
-                        <button type="submit" class="btn btn-primary">Go somewhere</button>
+                        <button type="submit" class="btn btn-primary">Vælg</button>
                     </div>
                 </div>
                 </form>
@@ -46,11 +46,10 @@
                 <form action="fc/">
                 <div class="card" style="width: 18rem;">
                     <input type="hidden" name="command" value="materialoverview">
-                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <img class="card-img-top" src="../images/lager.jpg" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Gå til lager</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <button type="submit" class="btn btn-primary">Go somewhere</button>
+                        <button type="submit" class="btn btn-primary">Vælg</button>
                     </div>
                 </div>
                 </form>
