@@ -52,7 +52,7 @@ public class Quickbuild extends Command{
 
         try {
 
-            CarportRequest newCarportRequest = CarportRequestFacade.createCarportRequest(width,length,roofType,roofIncline, shedLength,shedWidth, customerId,connectionPool);
+            CarportRequest newCarportRequest = CarportRequestFacade.createCarportRequest(width,length,roofType,roofIncline,shedWidth, shedLength, customerId,connectionPool);
             request.setAttribute("newCarportRequest", newCarportRequest);
 
 
