@@ -38,16 +38,41 @@
                 <td>${requestScope.newCarportRequest.roofType}</td>
                 <td>${requestScope.newCarportRequest.roofIncline}</td>
                 <td>${requestScope.newCarportRequest.approved}</td>
-                <td>${requestScope.newCarportRequest.shedLength}</td>
                 <td>${requestScope.newCarportRequest.shedWidth}</td>
+                <td>${requestScope.newCarportRequest.shedLength}</td>
+
             </tr>
             <br>
 
             </tbody>
         </table>
 
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Launch demo modal
+        </button>
 
-        <button id="toggle" onclick="myFunction()">Vis carport tegning</button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ${requestScope.svgdrawing}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+       <%-- <button id="toggle" onclick="myFunction()">Vis carport tegning</button>
         <div id="carportSVG" style="display: none">
                 ${requestScope.svgdrawing}
         </div>
@@ -63,7 +88,7 @@
                 }
             };
         </script>
-
+--%>
 
     </jsp:body>
 </t:pagetemplate>

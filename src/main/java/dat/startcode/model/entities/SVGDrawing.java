@@ -18,11 +18,21 @@ public class SVGDrawing {
 
         CarportCalculator carportCalculator = new CarportCalculator();
 
-        /*Ydre canvas med pile*/
-        SVG outerCanvas = new SVG(0, 0, "0 0 855 690", 600, 600);
 
         /*Carport*/
-        SVG carportSVG = new SVG(75, 10, "0 0 800 600", 500, 500);
+        SVG carportSVG = new SVG(75, 10, "0 0 855 690", 500, 500);
+
+        carportSVG.addLine(carportRequest.getLength() + 50, 0, carportRequest.getLength() + 50, carportRequest.getWidth());
+        carportSVG.addLine(carportRequest.getLength() + 40, 0, carportRequest.getLength() + 60, 0);
+        carportSVG.addLine(carportRequest.getLength() + 40, carportRequest.getWidth(), carportRequest.getLength() + 60, carportRequest.getWidth());
+
+        carportSVG.addLine(0, carportRequest.getWidth() + 50, carportRequest.getLength(), carportRequest.getWidth() + 50);
+        carportSVG.addLine(0, carportRequest.getWidth() + 40, 0, carportRequest.getWidth() + 60);
+        carportSVG.addLine(carportRequest.getLength(), carportRequest.getWidth() + 40, carportRequest.getLength(), carportRequest.getWidth() + 60);
+
+        carportSVG.addLine(0, carportRequest.getWidth() + 20, carportRequest.getLength(), carportRequest.getWidth() + 20);
+        carportSVG.addLine(0, carportRequest.getWidth() + 30, 0, carportRequest.getWidth() + 10);
+        carportSVG.addLine(carportRequest.getLength(), carportRequest.getWidth() + 30, carportRequest.getLength(), carportRequest.getWidth() + 10);
 
 
         /*Spær*/
@@ -57,14 +67,34 @@ public class SVGDrawing {
             carportSVG.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()) + carportCalculator.calculatePostDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
         }
 
- 
+
         return carportSVG;
     }
 
     public SVG drawWithShed() {
         CarportCalculator carportCalculator = new CarportCalculator();
 
-        SVG svg = new SVG(75, 10, "0 0 800 600", 500, 500);
+        SVG svg = new SVG(75, 10, "0 0 855 690", 500, 500);
+
+
+        svg.addLine(carportRequest.getLength() + 50, 0, carportRequest.getLength() + 50, carportRequest.getWidth());
+        svg.addLine(carportRequest.getLength() + 40, 0, carportRequest.getLength() + 60, 0);
+        svg.addLine(carportRequest.getLength() + 40, carportRequest.getWidth(), carportRequest.getLength() + 60, carportRequest.getWidth());
+
+        svg.addLine(0, carportRequest.getWidth() + 80, carportRequest.getLength(), carportRequest.getWidth() + 80);
+        svg.addLine(0, carportRequest.getWidth() + 70, 0, carportRequest.getWidth() + 90);
+        svg.addLine(carportRequest.getLength(), carportRequest.getWidth() + 70, carportRequest.getLength(), carportRequest.getWidth() + 90);
+
+        svg.addLine(0, carportRequest.getWidth() + 50, carportRequest.getLength(), carportRequest.getWidth() + 50);
+        svg.addLine(0, carportRequest.getWidth() + 60, 0, carportRequest.getWidth() + 40);
+        svg.addLine(carportRequest.getLength(), carportRequest.getWidth() + 60, carportRequest.getLength(), carportRequest.getWidth() + 40);
+
+        svg.addLine(carportRequest.getLength(), carportRequest.getWidth() + 20, carportRequest.getShedLength(), carportRequest.getWidth() + 20);
+        svg.addLine(carportRequest.getLength(),carportRequest.getWidth()+10,carportRequest.getLength(),carportRequest.getWidth()+20);
+
+
+
+
 
         for (int x = 0; x < carportCalculator.calculateRafters(carportRequest.getLength()); x++) {
             svg.addRect((int) (0 + carportCalculator.calculateRaftersDistance(carportRequest.getLength(), carportCalculator.calculateRafters(carportRequest.getLength())) * x), 0, carportRequest.getWidth(), 4.5f);
