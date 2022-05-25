@@ -13,7 +13,9 @@ database    Database    as Foo6
 
 Foo1 -> Foo2 : email & password
 Foo2 -> Foo3 : execute login
-Foo3 -> Foo4 : login()
+Foo3 -> Foo5 : login()
+Foo5 -> Foo7 : AccountFacade.login(email, password)
+Foo7 -> Foo4 : CustomerFacade.customerAccount(account)
 Foo4 -> Foo6 : executeQuery()
 Foo4 <- Foo6 : resultset
 Foo4 -> Foo4 : validate resultset
