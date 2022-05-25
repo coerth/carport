@@ -7,6 +7,7 @@ control     Frontcontroller     as Foo3
 collections CustomerFacade as Foo7
 collections AccountFacade as Foo5
 collections AccountMapper as Foo4
+collections CustomerMapper as Foo9
 database    Database    as Foo6
 
 
@@ -14,13 +15,20 @@ database    Database    as Foo6
 Foo1 -> Foo2 : email & password
 Foo2 -> Foo3 : execute login
 Foo3 -> Foo5 : login()
-Foo5 -> Foo7 : AccountFacade.login(email, password)
-Foo7 -> Foo4 : CustomerFacade.customerAccount(account)
+Foo5 -> Foo4 : AccountFacade.login(email, password)
 Foo4 -> Foo6 : executeQuery()
 Foo4 <- Foo6 : resultset
 Foo4 -> Foo4 : validate resultset
-Foo4 -> Foo5 : AccountFacade.login(email, password)
-Foo5 -> Foo7 : CustomerFacade.customerAccount(account)
-Foo7 -> Foo8 : return "index"
+Foo4 -> Foo5
+Foo5 -> Foo3 : AccountFacade.login(email, password)
+Foo3 -> Foo7 : CustomerFacade.customerAccount(account)
+Foo7 -> Foo9 : something
+Foo9 -> Foo6 :
+Foo9 -> Foo6 : executeQuery()
+Foo9 <- Foo6 : resultset
+Foo9 -> Foo9 : validate resultset
+Foo9 -> Foo7 :
+Foo7 -> Foo3 :
+Foo3 -> Foo8 : return "index"
 
 @enduml
