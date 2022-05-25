@@ -13,22 +13,21 @@ database    Database    as Foo6
 
 
 Foo1 -> Foo2 : email & password
-Foo2 -> Foo3 : execute login
-Foo3 -> Foo5 : login()
+Foo2 -> Foo3 : doPost
+Foo3 -> Foo5 : execute
 Foo5 -> Foo4 : AccountFacade.login(email, password)
 Foo4 -> Foo6 : executeQuery()
 Foo4 <- Foo6 : resultset
 Foo4 -> Foo4 : validate resultset
-Foo4 -> Foo5
-Foo5 -> Foo3 : AccountFacade.login(email, password)
-Foo3 -> Foo7 : CustomerFacade.customerAccount(account)
-Foo7 -> Foo9 : something
-Foo9 -> Foo6 :
+Foo4 -> Foo5 : return validated account
+Foo5 -> Foo3 : account
+Foo3 -> Foo7 : execute
+Foo7 -> Foo9 : CustomerFacade.customerAccount(account)
 Foo9 -> Foo6 : executeQuery()
 Foo9 <- Foo6 : resultset
 Foo9 -> Foo9 : validate resultset
-Foo9 -> Foo7 :
-Foo7 -> Foo3 :
+Foo9 -> Foo7 : return validated customer
+Foo7 -> Foo3 : customer
 Foo3 -> Foo8 : return "index"
 
 @enduml
