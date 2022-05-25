@@ -21,7 +21,7 @@ public class MaterialMapperTest
 {
     private final static String USER = "SQLUser";
     //private final static String PASSWORD = System.getenv("dbpassword");
-    private final static String PASSWORD = "Bananflue";
+    private final static String PASSWORD = "Hof210091_Hvorerden";
 
     private final static String URL = "jdbc:mysql://localhost:3306/carport_test";
 
