@@ -33,7 +33,7 @@ public class  FrontController extends HttpServlet {
     public void init()
     {
 
-        ArrayList<Material> materialArrayList;
+        /*ArrayList<Material> materialArrayList;
         materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
         System.out.println(materialArrayList);
 
@@ -43,7 +43,7 @@ public class  FrontController extends HttpServlet {
 
         System.out.println(bomlineArrayList);
 
-        getServletContext().setAttribute("materialArrayList", materialArrayList);
+        getServletContext().setAttribute("materialArrayList", materialArrayList);*/
     }
 
     protected void processRequest( HttpServletRequest request, HttpServletResponse response )
