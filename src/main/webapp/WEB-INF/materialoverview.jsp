@@ -16,8 +16,8 @@
         <br>
         <br>
 
-        <form action="fc/modify">
-            <input type="hidden" name="command" value="requestmodify"/>
+        <form action="modify" method="post">
+            <input type="hidden" name="command" value="materialgetbyid"/>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -34,7 +34,7 @@
                 </tr>
             </thead>
             <tbody>
-            <c:forEach var="item" items="${applicationScope.materialArrayList}">
+            <c:forEach var="item" items="${requestScope.materialArrayList}">
                 <tr>
                     <th  scope="row">${item.materialId}</th>
                     <td>${item.name}</td>
@@ -51,7 +51,7 @@
             </tbody>
         </table>
         </form>
-        <form action="fc/create">
+        <form action="fc/create" method="post">
             <input type="hidden" name="command" value="creatematerial"/>
                 <div class="form-group">
                     <label for="name">Navn</label>
@@ -82,7 +82,7 @@
                     <input type="number" class="form-control" name="height" id="height" placeholder="Højde">
                 </div>
                 <div class="form-group">
-                    <label for="typeId">Typde ID</label>
+                    <label for="typeId">Type ID</label>
                     <input type="number" class="form-control" name="typeId" id="typeId" placeholder="Type Id">
                 </div>
 

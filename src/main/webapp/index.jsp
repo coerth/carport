@@ -18,7 +18,7 @@
             <h2 style="text-align: center; margin-bottom: 50px">VELKOMMEN TIL ADMIN SIDEN</h2>
             <div class="row" style="margin: 50px">
                 <div class="col">
-                    <form action="fc/">
+                    <form action="fc/" method="post">
                         <div class="card" style="width: 18rem;">
                             <input type="hidden" name="command" value="orderoverview">
                             <img class="card-img-top" src="images/adminorder.jpg" alt="Card image cap">
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="col">
-                    <form action="fc/">
+                    <form action="fc/" method="post">
                         <div class="card" style="width: 18rem;">
                             <input type="hidden" name="command" value="requestoverview">
                             <img class="card-img-top" src="images/quote.jpg" alt="Card image cap">
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="col">
-                    <form action="fc/">
+                    <form action="fc/" method="post">
                         <div class="card" style="width: 18rem;">
                             <input type="hidden" name="command" value="materialoverview">
                             <img class="card-img-top" src="images/lager.jpg" alt="Card image cap">

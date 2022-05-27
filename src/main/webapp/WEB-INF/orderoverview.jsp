@@ -38,7 +38,7 @@
             <td>${item.carportType}</td>
             <td>${item.carportRequestId}</td>
             <td>${item.price}</td>
-            <td><form action="fc/overview"><input type="hidden" name="command" value="orderview"/><button name="orderId" value="${item.orderId}">Vis</button></form></td>
+            <td><form action="fc/overview" method="post"><input type="hidden" name="command" value="orderview"/><button name="orderId" value="${item.orderId}">Vis</button></form></td>
             </tr>
         </c:forEach>
         </tbody>
