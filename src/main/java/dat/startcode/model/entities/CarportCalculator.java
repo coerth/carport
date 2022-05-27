@@ -689,7 +689,7 @@ public class CarportCalculator {
 
     public ArrayList <Bomline> calculateHead (int carportLength, ArrayList<Material> headArrayList, int shedLength) {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
-        Material head1 = calculateMaterialLength(carportLength - shedLength, headArrayList);
+        Material head = calculateMaterialLength(carportLength - shedLength, headArrayList);
 
             Material headForShed = null;
 
@@ -703,7 +703,7 @@ public class CarportCalculator {
                 throw new ArithmeticException("Kunne ikke finde en rem som passer til dit skur");
             }
 
-            bomlineArrayList.add(new Bomline(8,head1,2));
+            bomlineArrayList.add(new Bomline(8,head,2));
             bomlineArrayList.add(new Bomline(9,headForShed,1));
 
 
