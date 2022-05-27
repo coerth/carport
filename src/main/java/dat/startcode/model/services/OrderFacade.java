@@ -2,7 +2,7 @@ package dat.startcode.model.services;
 
 import dat.startcode.model.entities.Order;
 import dat.startcode.model.persistence.ConnectionPool;
-import dat.startcode.model.persistence.OrderMapper;
+import dat.startcode.model.persistence.entityMappers.OrderMapper;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

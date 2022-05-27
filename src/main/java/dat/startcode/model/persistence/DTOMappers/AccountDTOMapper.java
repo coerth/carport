@@ -1,13 +1,15 @@
-package dat.startcode.model.persistence;
+package dat.startcode.model.persistence.DTOMappers;
 
 import dat.startcode.model.DTO.AccountDTO;
+import dat.startcode.model.persistence.ConnectionPool;
+import dat.startcode.model.persistence.interfaceMappers.IAccountDTOMapper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AccountDTOMapper implements IAccountDTOMapper{
+public class AccountDTOMapper implements IAccountDTOMapper {
         ConnectionPool connectionPool;
 
         public AccountDTOMapper (ConnectionPool connectionPool) {

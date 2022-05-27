@@ -3,7 +3,7 @@ package dat.startcode.model.services;
 import dat.startcode.model.entities.CarportRequest;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
-import dat.startcode.model.persistence.CarportRequestMapper;
+import dat.startcode.model.persistence.entityMappers.CarportRequestMapper;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

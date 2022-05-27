@@ -1,6 +1,8 @@
-package dat.startcode.model.persistence;
+package dat.startcode.model.persistence.entityMappers;
 
 import dat.startcode.model.entities.Bomline;
+import dat.startcode.model.persistence.ConnectionPool;
+import dat.startcode.model.persistence.interfaceMappers.IBomMapper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,13 +1,14 @@
-package dat.startcode.model.persistence;
+package dat.startcode.model.persistence.entityMappers;
 
-import dat.startcode.model.entities.Bomline;
 import dat.startcode.model.entities.Order;
+import dat.startcode.model.persistence.ConnectionPool;
+import dat.startcode.model.persistence.interfaceMappers.IOrderMapper;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class OrderMapper implements IOrderMapper{
+public class OrderMapper implements IOrderMapper {
 
     ConnectionPool connectionPool;
 

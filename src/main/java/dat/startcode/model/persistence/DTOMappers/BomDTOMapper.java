@@ -1,7 +1,8 @@
-package dat.startcode.model.persistence;
+package dat.startcode.model.persistence.DTOMappers;
 
 import dat.startcode.model.DTO.BomDTO;
 import dat.startcode.model.entities.Bomline;
+import dat.startcode.model.persistence.ConnectionPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

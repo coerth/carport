@@ -1,20 +1,20 @@
-package dat.startcode.model.persistence;
+package dat.startcode.model.persistence.entityMappers;
 
 import dat.startcode.model.entities.Account;
-import dat.startcode.model.entities.Customer;
 import dat.startcode.model.exceptions.DatabaseException;
+import dat.startcode.model.persistence.ConnectionPool;
+import dat.startcode.model.persistence.interfaceMappers.IAccountMapper;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AccountMapper implements IAccountMapper{
+public class AccountMapper implements IAccountMapper {
 
     ConnectionPool connectionPool;
 

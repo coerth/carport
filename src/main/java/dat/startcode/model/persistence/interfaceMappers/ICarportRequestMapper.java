@@ -1,4 +1,4 @@
-package dat.startcode.model.persistence;
+package dat.startcode.model.persistence.interfaceMappers;
 
 import dat.startcode.model.entities.CarportRequest;
 import dat.startcode.model.exceptions.DatabaseException;

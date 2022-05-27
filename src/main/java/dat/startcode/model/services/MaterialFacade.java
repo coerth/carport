@@ -2,7 +2,7 @@ package dat.startcode.model.services;
 
 import dat.startcode.model.entities.Material;
 import dat.startcode.model.persistence.ConnectionPool;
-import dat.startcode.model.persistence.MaterialMapper;
+import dat.startcode.model.persistence.entityMappers.MaterialMapper;
 
 import java.util.ArrayList;
 

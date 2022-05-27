@@ -1,4 +1,4 @@
-package dat.startcode.model.persistence;
+package dat.startcode.model.persistence.interfaceMappers;
 
 import dat.startcode.model.entities.Account;
 import dat.startcode.model.entities.Customer;

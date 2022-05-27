@@ -1,8 +1,9 @@
-package dat.startcode.model.persistence;
+package dat.startcode.model.persistence.entityMappers;
 
 import dat.startcode.model.entities.CarportRequest;
 import dat.startcode.model.entities.Customer;
 import dat.startcode.model.exceptions.DatabaseException;
+import dat.startcode.model.persistence.ConnectionPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

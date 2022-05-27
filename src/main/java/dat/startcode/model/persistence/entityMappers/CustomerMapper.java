@@ -1,12 +1,12 @@
-package dat.startcode.model.persistence;
+package dat.startcode.model.persistence.entityMappers;
 
 import dat.startcode.model.entities.Account;
 import dat.startcode.model.entities.Customer;
-import dat.startcode.model.entities.Material;
 import dat.startcode.model.exceptions.DatabaseException;
+import dat.startcode.model.persistence.ConnectionPool;
+import dat.startcode.model.persistence.interfaceMappers.ICustomerMapper;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

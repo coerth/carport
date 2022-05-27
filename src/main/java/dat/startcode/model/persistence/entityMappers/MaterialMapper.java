@@ -1,6 +1,9 @@
-package dat.startcode.model.persistence;
+package dat.startcode.model.persistence.entityMappers;
 
 import dat.startcode.model.entities.Material;
+import dat.startcode.model.persistence.ConnectionPool;
+import dat.startcode.model.persistence.interfaceMappers.IMaterialMapper;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;

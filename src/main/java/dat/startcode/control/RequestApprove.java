@@ -1,16 +1,11 @@
 package dat.startcode.control;
 
-import dat.startcode.model.DTO.BomDTO;
-import dat.startcode.model.DTO.CarportRequestDTO;
 import dat.startcode.model.DTO.OrderDTO;
 import dat.startcode.model.config.ApplicationStart;
 import dat.startcode.model.entities.Bomline;
 import dat.startcode.model.entities.CarportCalculator;
 import dat.startcode.model.entities.CarportRequest;
-import dat.startcode.model.entities.Order;
 import dat.startcode.model.exceptions.DatabaseException;
-import dat.startcode.model.persistence.ConnectionPool;
-import dat.startcode.model.persistence.OrderMapper;
 import dat.startcode.model.services.*;
 
 import javax.servlet.http.HttpServletRequest;

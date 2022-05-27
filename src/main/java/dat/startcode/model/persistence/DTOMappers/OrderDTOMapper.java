@@ -1,10 +1,7 @@
-package dat.startcode.model.persistence;
+package dat.startcode.model.persistence.DTOMappers;
 
-import dat.startcode.model.DTO.OrderDTO;
-import dat.startcode.model.entities.Order;
-
-import java.sql.*;
-import java.time.LocalDateTime;
+import dat.startcode.model.persistence.ConnectionPool;
+import dat.startcode.model.persistence.interfaceMappers.IOrderDTOMapper;
 
 public class OrderDTOMapper implements IOrderDTOMapper {
 
