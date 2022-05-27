@@ -10,28 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
-public class RequestModify extends Command
+public class MaterialGetById extends Command
 {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
-        HttpSession session = request.getSession();
         int materialId = Integer.parseInt(request.getParameter("modify"));
 
-        ArrayList<Material> materialArrayList = (ArrayList<Material>) session.getServletContext().getAttribute("materialArrayList");
-
-        Material material = null;
-
-        for (Material m : materialArrayList)
-        {
-            if(m.getMaterialId() == materialId)
-            {
-                material = m;
-            }
-        }
+        Material material = MaterialFacade.getSpecificMaterial(materialId, ApplicationStart.getConnectionPool());
 
         request.setAttribute("material", material);
 
-        return "modify";
+        return "materialmodify";
     }
 }

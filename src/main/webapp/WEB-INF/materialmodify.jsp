@@ -15,7 +15,7 @@
     <jsp:body>
 
         <form action="fc/modify">
-            <input type="hidden" name="command" value="modifymaterial"/>
+            <input type="hidden" name="command" value="materialmodify"/>
             <input type="hidden" name="materialId" value="${requestScope.material.materialId}">
             <div class="form-group">
                 <label for="name">Navn</label>
@@ -30,6 +30,10 @@
                 <input type="text" class="form-control" name="unit" id="unit" value="${requestScope.material.unit}">
             </div>
             <div class="form-group">
+                <label for="unit">Antal</label>
+                <input type="text" class="form-control" name="quantity" id="quantity" value="${requestScope.material.quantity}">
+            </div>
+            <div class="form-group">
                 <label for="length">Længde</label>
                 <input type="number" class="form-control" name="length" id="length" value="${requestScope.material.length}">
             </div>
@@ -42,11 +46,11 @@
                 <input type="number" class="form-control" name="height" id="height" value="${requestScope.material.height}">
             </div>
             <div class="form-group">
-                <label for="typeId">Typde ID</label>
+                <label for="typeId">Type ID</label>
                 <input type="number" class="form-control" name="typeId" id="typeId" value="${requestScope.material.typeId}">
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Godkend</button>
         </form>
 
 

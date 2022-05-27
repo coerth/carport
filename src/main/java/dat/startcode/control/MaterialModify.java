@@ -16,7 +16,7 @@ public class MaterialModify extends Command
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
-        HttpSession session = request.getSession();
+
 
         int materialId = Integer.parseInt(request.getParameter("materialId"));
         String name = request.getParameter("name");
@@ -33,10 +33,10 @@ public class MaterialModify extends Command
             ArrayList<Material> materialArrayList = new ArrayList<>();
 
             materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
-            request.getServletContext().setAttribute("materialArrayList", materialArrayList);
+            request.setAttribute("materialArrayList", materialArrayList);
          }
 
 
-        return "admin";
+        return "materialoverview";
     }
 }
