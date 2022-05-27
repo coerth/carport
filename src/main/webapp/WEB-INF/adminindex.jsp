@@ -16,19 +16,19 @@
     <jsp:body>
 
         <h3>Se alle ordrer</h3>
-        <form method="get" action="fc/">
+        <form method="post" action="orderoverview">
             <input type="hidden" name="command" value="orderoverview">
             <button type="submit">Vælg</button>
         </form>
 
         <h3>Se alle forespørgsler</h3>
-        <form method="get" action="fc/">
+        <form method="post" action="requestoverview">
             <input type="hidden" name="command" value="requestoverview">
             <button type="submit">Vælg</button>
         </form>
 
         <h3>Gå til lager</h3>
-        <form method="get" action="fc/">
+        <form method="post" action="materialoverview">
             <input type="hidden" name="command" value="materialoverview">
             <button type="submit">Vælg</button>
         </form>

@@ -16,7 +16,7 @@
         <br>
         <br>
 
-        <form action="fc/modify">
+        <form action="modify">
             <input type="hidden" name="command" value="materialgetbyid"/>
         <table class="table table-striped table-hover">
             <thead>
@@ -51,7 +51,7 @@
             </tbody>
         </table>
         </form>
-        <form action="fc/create">
+        <form action="fc/create" method="post">
             <input type="hidden" name="command" value="creatematerial"/>
                 <div class="form-group">
                     <label for="name">Navn</label>

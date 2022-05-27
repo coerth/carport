@@ -14,7 +14,7 @@
 
     <jsp:body>
 
-        <form action="fc/modify">
+        <form action="modify" method="post">
             <input type="hidden" name="command" value="materialmodify"/>
             <input type="hidden" name="materialId" value="${requestScope.material.materialId}">
             <div class="form-group">
