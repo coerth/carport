@@ -16,7 +16,7 @@
         <br>
         <br>
 
-        <form action="modify">
+        <form action="modify" method="post">
             <input type="hidden" name="command" value="materialgetbyid"/>
         <table class="table table-striped table-hover">
             <thead>

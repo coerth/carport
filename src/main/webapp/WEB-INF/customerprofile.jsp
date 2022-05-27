@@ -14,7 +14,7 @@
 
     <jsp:body>
 
-            <form action="fc/">
+            <form action="fc/" method="post">
                 <input type="hidden" name="command" value="customermodifyredirect"/>
                 <div class="mb-3">
                     <label for="name" class="form-label">Navn:</label>
