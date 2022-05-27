@@ -33,6 +33,6 @@ public class CreateMaterial extends Command{
         }
 
 
-        return "admin";
+        return "materialoverview";
     }
 }

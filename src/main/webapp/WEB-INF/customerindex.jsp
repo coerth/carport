@@ -16,7 +16,7 @@
 
         <div class="row" style="margin: 50px">
             <div class="col">
-                <form action="fc/customerprofile">
+                <form action="customerprofile" method="post">
                     <div class="card" style="width: 18rem;">
                        <input type="hidden" name="command" value="customerprofile">
                         <div class="card-body">
@@ -28,7 +28,7 @@
             </div>
 
             <div class="col">
-                <form action="fc/">
+                <form action="customerrequestoverview" method="post">
                     <div class="card" style="width: 18rem;">
                         <input type="hidden" name="command" value="customerrequestoverview">
                         <div class="card-body">
@@ -40,7 +40,7 @@
             </div>
 
             <div class="col">
-                <form action="fc/">
+                <form action="fc/" method="post">
                     <div class="card" style="width: 18rem;">
                         <input type="hidden" name="command" value="customerorderview">
                         <div class="card-body">

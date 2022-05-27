@@ -26,6 +26,6 @@ public class DeleteMaterial extends Command{
 
         System.out.println(materialId);
 
-        return "admin";
+        return "materialoverview";
     }
 }

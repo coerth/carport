@@ -28,7 +28,8 @@ public class MaterialOverview extends Command {
 
         materialArrayList = MaterialFacade.getAllMaterials(connectionPool);
 
-        session.getServletContext().setAttribute("materialArrayList", materialArrayList);
+        //session.getServletContext().setAttribute("materialArrayList", materialArrayList);
+        request.setAttribute("materialArrayList", materialArrayList);
 
         return "materialoverview";
     }
