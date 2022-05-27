@@ -16,14 +16,14 @@ class OrderDTO
 
 
 
+Customer "1" *--"many" Order
 Account <|-- Customer
-Customer *--"many" Order
-Customer *--"many" CarportRequest
+Customer "1" *--"many" CarportRequest
 SVGDrawing *-- CarportRequest
 Bomline *-- Material
 
+OrderDTO "1" *--"many" BomDTO
 OrderDTO *-- Order
-OrderDTO *--"many" BomDTO
 OrderDTO *-- CarportRequestDTO
 
 Account : - private String email

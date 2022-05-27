@@ -21,7 +21,7 @@ abstract class Command
         commands.put("startup", new StartUp());
         commands.put("materialoverview", new MaterialOverview());
         commands.put("requestmodify", new RequestModify());
-        commands.put("modifymaterial", new ModifyMaterial());
+        commands.put("modifymaterial", new MaterialModify());
         commands.put("deletematerial", new DeleteMaterial());
         commands.put("creatematerial", new CreateMaterial());
         commands.put("quickbuild", new Quickbuild());
