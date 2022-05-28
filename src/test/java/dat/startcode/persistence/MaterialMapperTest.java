@@ -107,5 +107,15 @@ public class MaterialMapperTest
 
     }
 
+    @Test
+    void deleteMaterialTest() throws SQLException
+    {
+        boolean testBoolean = MaterialFacade.deleteMaterial(3, connectionPool);
+        assertEquals(true, testBoolean);
+
+        ArrayList<Material> materialArrayList = MaterialFacade.getAllMaterials(connectionPool);
+        assertEquals(3, materialArrayList.size());
+        assertEquals(4, materialArrayList.get(2).getMaterialId());
+    }
 
 }
