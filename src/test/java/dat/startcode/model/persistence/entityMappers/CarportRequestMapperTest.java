@@ -1,6 +1,7 @@
 package dat.startcode.model.persistence.entityMappers;
 
 import dat.startcode.model.persistence.ConnectionPool;
+import dat.startcode.model.services.CarportRequestFacade;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,7 +43,7 @@ class CarportRequestMapperTest {
 
     @Test
     void createCarportRequest() {
-
+        CarportRequestFacade carportRequestFacade;
     }
 
     @Test
