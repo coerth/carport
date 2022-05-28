@@ -121,8 +121,6 @@ class CustomerMapperTest
         assertEquals(3000, customer.getZip());
         assertEquals(4, customer.getAccountId());
         assertEquals(3, customer.getCustomerId());
-
-
     }
 
 
