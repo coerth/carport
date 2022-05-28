@@ -19,9 +19,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class MaterialMapperTest
 {
-    private final static String USER = "SQLUser";
+    private final static String USER = "test";
     //private final static String PASSWORD = System.getenv("dbpassword");
-    private final static String PASSWORD = "Hof210091_Hvorerden";
+    private final static String PASSWORD = "nemt";
 
     private final static String URL = "jdbc:mysql://localhost:3306/carport_test";
 
@@ -41,19 +41,20 @@ public class MaterialMapperTest
             {
                 // Remove all rows from all tables
                 stmt.execute("delete from `material`");
+                stmt.execute("ALTER TABLE material AUTO_INCREMENT = 0");
                 stmt.execute("delete from `material_type`");
-                // Indsæt et par brugere
-
-                stmt.execute("INSERT INTO `material_type` (`type_id`,`name`) VALUES (1,'Træ & Tagplader'), (2,'Beslag & Skruer')");
-                stmt.execute("INSERT INTO `material` (`material_id`,`name`,`price`,`unit`,`length`,`width`,`height`,`type_id`, `quantity`)" +
-                        "VALUES (1,'25x200 mm. trykimp. Brædt', 50, 'Stk', 720,25, 200, 1, 1),(2,'45x95 mm. Reglar ub.', 25, 'Stk', 720,45, 95, 1, 1)");
-                stmt.execute("INSERT INTO `material` (`material_id`,`name`,`price`,`unit`,`type_id`, `quantity`)" +
-                        "VALUES(3,'plastmo bundskruer 200 stk.', 10, 'Pakke', 2, 200),(4,'universal 190 mm højre', 5, 'Stk', 2, 1)");
+                stmt.execute("ALTER TABLE material_type AUTO_INCREMENT = 0");
+                // Indsæt et par materialer
+                stmt.execute("INSERT INTO `material_type` (`name`) VALUES ('Træ & Tagplader'), ('Beslag & Skruer')");
+                stmt.execute("INSERT INTO `material` (`name`,`price`,`unit`,`length`,`width`,`height`,`type_id`, `quantity`)" +
+                        "VALUES ('25x200 mm. trykimp. Brædt', 50, 'Stk', 720,25, 200, 1, 1),('45x95 mm. Reglar ub.', 25, 'Stk', 720,45, 95, 1, 1)");
+                stmt.execute("INSERT INTO `material` (`name`,`price`,`unit`,`type_id`, `quantity`)" +
+                        "VALUES('plastmo bundskruer 200 stk.', 10, 'Pakke', 2, 200),('universal 190 mm højre', 5, 'Stk', 2, 1)");
 
             }
         } catch (SQLException throwables) {
-            System.out.println(throwables.getMessage());
-            fail("Database connection failed");
+            System.out.println(throwables);
+            //fail("Database connection failed");
         }
     }
 
@@ -89,6 +90,22 @@ public class MaterialMapperTest
        assertEquals(2, material.getTypeId());
     }
 
+    @Test
+    void createNewMaterialTest() throws SQLException
+    {
+        Material material;
+        boolean testBoolean = MaterialFacade.createNewMaterial("Test planker", 200, "stk", 200, 1, 20, 100, 1, connectionPool);
+
+        assertEquals(true, testBoolean);
+        material = MaterialFacade.getSpecificMaterial(5, connectionPool);
+
+
+        assertEquals(5, material.getMaterialId());
+        assertEquals(200, material.getPrice());
+
+
+
+    }
 
 
 }
