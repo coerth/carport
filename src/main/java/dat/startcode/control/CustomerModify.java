@@ -35,7 +35,8 @@ public class CustomerModify extends Command {
             AccountFacade.updateAccount(new Account(email, password, role, accountId), ApplicationStart.getConnectionPool());
         }
 
-        CustomerFacade.updateCustomerProfile(new Customer(email, password, role, customerId, name, address, city, zip, mobile, accountId), ApplicationStart.getConnectionPool());
+        customer = new Customer(email, password, role, customerId, name, address, city, zip, mobile, accountId);
+        CustomerFacade.updateCustomerProfile(customer, ApplicationStart.getConnectionPool());
 
         session.setAttribute("customer", customer);
 
