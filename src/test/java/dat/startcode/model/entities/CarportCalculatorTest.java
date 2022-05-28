@@ -14,9 +14,9 @@ class CarportCalculatorTest
 
 {
 
-    private final static String USER = "root";
+    private final static String USER = "test";
     //private final static String PASSWORD = System.getenv("dbpassword");
-    private final static String PASSWORD = "Hof210091_Hvorerden";
+    private final static String PASSWORD = "nemt";
 
     private final static String URL = "jdbc:mysql://localhost:3306/carport";
 
