@@ -2,6 +2,7 @@ package dat.startcode.persistence;
 
 import dat.startcode.model.entities.Account;
 
+import dat.startcode.model.entities.Customer;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
 import dat.startcode.model.services.AccountFacade;
@@ -115,4 +116,8 @@ class AccountMapperTest
        account = AccountFacade.login("ben@ben.dk", "12345", connectionPool);
         assertEquals("12345", account.getPassword());
     }
+
+
+
+
 }
