@@ -26,6 +26,7 @@ class CustomerMapperTest
 
     @BeforeAll
     public static void setUpClass() {
+
         connectionPool = new ConnectionPool(USER, PASSWORD, URL);
     }
 
