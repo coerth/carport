@@ -1,9 +1,8 @@
 package dat.startcode.model.persistence.entityMappers;
 
-import dat.startcode.model.entities.CarportRequest;
 import dat.startcode.model.entities.Order;
 import dat.startcode.model.persistence.ConnectionPool;
-import dat.startcode.model.services.CarportRequestFacade;
+
 import dat.startcode.model.services.OrderFacade;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,12 +35,12 @@ class OrderMapperTest {
             try(Statement stmt = testConnection.createStatement()){
                 // Remove all rows from all tables
                 stmt.execute("delete from `order`");
-                stmt.execute("ALTER TABLE `order` AUTO_INCREMENT = 0");
                 stmt.execute("delete from `carport_request`");
-                stmt.execute("ALTER TABLE `carport_request` AUTO_INCREMENT = 0");
                 stmt.execute("delete from `customer`");
-                stmt.execute("ALTER TABLE `customer` AUTO_INCREMENT = 0");
                 stmt.execute("delete from `account`");
+                stmt.execute("ALTER TABLE `order` AUTO_INCREMENT = 0");
+                stmt.execute("ALTER TABLE `carport_request` AUTO_INCREMENT = 0");
+                stmt.execute("ALTER TABLE `customer` AUTO_INCREMENT = 0");
                 stmt.execute("ALTER TABLE `account` AUTO_INCREMENT = 0");
 
 
@@ -51,6 +50,10 @@ class OrderMapperTest {
                 stmt.execute("INSERT INTO `customer` (name, address, city, zip, mobile, account_id) values ('Allan Allanson','Allansvej 1', 'Allanrød', 1111, 12121212, 1)");
                 stmt.execute("INSERT INTO `carport_request` (width, length, roof, roof_incline, shed_length, shed_width, customer_id) values (10, 10, 'ja', 2, 5, 5, 1), (20, 20, 'nej', 0, 10, 10, 1)");
                 stmt.execute("INSERT INTO `order` (customer_id, date, carport_type, price, carport_request_id) VALUES (1, '2022.10.02', 1, 100, 1), (1, '2022.10.03', 1, 200, 2)");
+                stmt.execute("ALTER TABLE `account` AUTO_INCREMENT = 0");
+                stmt.execute("ALTER TABLE `customer` AUTO_INCREMENT = 0");
+                stmt.execute("ALTER TABLE `carport_request` AUTO_INCREMENT = 0");
+                stmt.execute("ALTER TABLE `order` AUTO_INCREMENT = 0");
 
             }
         } catch (SQLException throwables) {

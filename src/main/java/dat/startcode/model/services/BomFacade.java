@@ -18,7 +18,7 @@ public class BomFacade {
         return bomMapper.getAllBomlinesWithSpecificBOMId(bomId);
     }
 
-    public int getBomIdFromOrderId(int orderId, ConnectionPool connectionPool) {
+    public static int getBomIdFromOrderId(int orderId, ConnectionPool connectionPool) {
         BomMapper bomMapper = new BomMapper(connectionPool);
         return bomMapper.getBomIdFromOrderId(orderId);
     }
