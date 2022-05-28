@@ -104,7 +104,7 @@ public class BomMapper implements IBomMapper {
     }
 
     public int getBomIdFromOrderId(int orderId) {
-        String sql = "SELECT bom_id FROM carport.bill_of_materials WHERE order_id = ?";
+        String sql = "SELECT bom_id FROM bill_of_materials WHERE order_id = ?";
 
         int bomId = 0;
         try (Connection connection = connectionPool.getConnection()){

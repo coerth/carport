@@ -11,7 +11,15 @@ public class Order {
     int carportRequestId;
     int price;
 
-    public Order(int orderId, int customerId, LocalDateTime dateTime, int carportType, int carportRequestId, int price) {
+    public Order(int orderId, int customerId, LocalDateTime dateTime, int carportType, int carportRequestId) {
+        this.orderId = orderId;
+        this.customerId = customerId;
+        this.dateTime = dateTime;
+        this.carportType = carportType;
+        this.carportRequestId = carportRequestId;
+    }
+
+    public Order(int orderId, int customerId, LocalDateTime dateTime, int carportType, int price, int carportRequestId) {
         this.orderId = orderId;
         this.customerId = customerId;
         this.dateTime = dateTime;
