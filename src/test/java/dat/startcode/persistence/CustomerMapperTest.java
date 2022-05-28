@@ -5,7 +5,6 @@ import dat.startcode.model.entities.Account;
 import dat.startcode.model.entities.Customer;
 import dat.startcode.model.exceptions.DatabaseException;
 import dat.startcode.model.persistence.ConnectionPool;
-import dat.startcode.model.services.AccountFacade;
 import dat.startcode.model.services.CustomerFacade;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,12 +13,10 @@ import org.junit.jupiter.api.Test;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CuatomerMapperTest
+class CustomerMapperTest
 {
     private final static String USER = "test";
     private final static String PASSWORD = "nemt";

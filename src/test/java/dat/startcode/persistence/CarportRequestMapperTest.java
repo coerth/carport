@@ -1,4 +1,4 @@
-package dat.startcode.model.persistence.entityMappers;
+package dat.startcode.persistence;
 
 import dat.startcode.model.entities.CarportRequest;
 import dat.startcode.model.entities.Material;
