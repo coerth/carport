@@ -41,6 +41,10 @@ class AccountMapperTest
                 // Indsæt et par brugere
                 stmt.execute("insert into account (email, password, role) " +
                         "values ('user@fog.dk','1234',2),('admin@fog.dk','1234',1), ('ben@ben.dk','1234',2)");
+                stmt.execute("ALTER TABLE account AUTO_INCREMENT = 0");
+
+
+
             }
         } catch (SQLException throwables) {
             System.out.println(throwables.getMessage());
