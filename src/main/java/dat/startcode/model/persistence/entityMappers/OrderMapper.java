@@ -36,7 +36,7 @@ public class OrderMapper implements IOrderMapper {
                     int carportType = rs.getInt("carport_type");
                     int price = rs.getInt("price");
                     int carportRequestId = rs.getInt("carport_request_id");
-                    Order newOrder = new Order(orderId, customerId, date,carportType, carportRequestId,price);
+                    Order newOrder = new Order(orderId, customerId, date,carportType, price, carportRequestId);
                     orderList.add(newOrder);
                 }
             }

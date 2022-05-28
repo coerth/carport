@@ -40,7 +40,6 @@ public class CustomerModify extends Command {
 
         session.setAttribute("customer", customer);
 
-
         return "customerprofile";
     }
 
