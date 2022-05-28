@@ -37,7 +37,7 @@ class CarportRequestMapperTest {
                 statement.execute("delete from `account`");
                 statement.execute("alter table account auto_increment=0");
 
-                statement.execute("INSERT INTO `account`(`account_id`,`email`,`password`,`role`)VALUES(1,bla@bla.dk,1234,2)");
+                statement.execute("INSERT INTO `account`(`account_id`,`email`,`password`,`role`)VALUES(1,'bla@bla.dk',1234,2)");
                 statement.execute("INSERT INTO `customer`(`customer_id`,`name`,`address`,`city`,`zip`,`mobile`,`account_id`) VALUES(1,'Poul','Poulvej 2','Aalborg',2100,12345678,2)");
                 statement.execute("INSERT INTO `carport_request`(`carport_request_id`,`width`,`length`,`roof`,`roof_incline`,`is_approved`,`shed_length`,`shed_width`,`customer_id`) VALUES(1,600,780,'Plasttrapez',null,false,280,600,2)");
             }
@@ -68,6 +68,7 @@ class CarportRequestMapperTest {
     void getSpecificRequest() {
         CarportRequest carportRequest = CarportRequestFacade.getSpecificCarportRequest(1,connectionPool);
         assertEquals(1,carportRequest.getRequestId());
+
     }
 
     @Test
@@ -76,6 +77,7 @@ class CarportRequestMapperTest {
 
     @Test
     void getAllRequests() {
+
     }
 
     @Test
