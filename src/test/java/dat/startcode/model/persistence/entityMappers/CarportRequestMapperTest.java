@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CarportRequestMapperTest {
 
-    private final static String USER = "carport_test";
+    private final static String USER = "test";
     private final static String PASSWORD = "nemt";
     private final static String URL = "jdbc:mysql://localhost:3306/carport_test";
     private static ConnectionPool connectionPool;
@@ -27,6 +27,7 @@ class CarportRequestMapperTest {
         try(Connection testConnection = connectionPool.getConnection()){
             try(Statement statement = testConnection.createStatement()){
                 statement.execute("delete from `carport_request`");
+                statement.execute("delete from `account`");
 
                 statement.execute("INSERT INTO `carport_request` (1,600,780,'Plasttrapez',null,false,280,600,2);");
             }
