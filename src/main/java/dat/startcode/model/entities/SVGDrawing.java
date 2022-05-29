@@ -1,10 +1,7 @@
 package dat.startcode.model.entities;
 
+import dat.startcode.model.entities.calculator.CarportCalculator;
 import dat.startcode.model.services.SVG;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class SVGDrawing {
 

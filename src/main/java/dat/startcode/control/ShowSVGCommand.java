@@ -1,6 +1,6 @@
 /*package dat.startcode.control;
 
-import dat.startcode.model.entities.CarportCalculator;
+import dat.startcode.model.entities.calculator.CarportCalculator;
 import dat.startcode.model.entities.CarportRequest;
 import dat.startcode.model.services.CarportRequestFacade;
 import dat.startcode.model.services.SVG;
