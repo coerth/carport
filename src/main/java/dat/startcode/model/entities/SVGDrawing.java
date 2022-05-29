@@ -1,22 +1,21 @@
 package dat.startcode.model.entities;
 
+import dat.startcode.model.entities.calculator.*;
 import dat.startcode.model.services.SVG;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class SVGDrawing {
 
     CarportRequest carportRequest = null;
+    GeneralCalculator generalCalculator = new GeneralCalculator();
+    FrameCalculator frameCalculator = new FrameCalculator();
+    BoltAndBracketCalculator boltAndBracketCalculator = new BoltAndBracketCalculator();
+    PostCalculator postCalculator = new PostCalculator();
 
     public SVGDrawing(CarportRequest newCarportRequest) {
         this.carportRequest = newCarportRequest;
     }
 
     public SVG draw() {
-
-        CarportCalculator carportCalculator = new CarportCalculator();
 
         /*Ydre canvas med pile*/
         SVG outerCanvas = new SVG(0, 0, "0 0 855 690", 600, 600);
@@ -26,8 +25,8 @@ public class SVGDrawing {
 
 
         /*Spær*/
-        for (int x = 0; x < carportCalculator.calculateRafters(carportRequest.getLength()); x++) {
-            carportSVG.addRect((int) (0 + carportCalculator.calculateRaftersDistance(carportRequest.getLength(), carportCalculator.calculateRafters(carportRequest.getLength())) * x), 0, carportRequest.getWidth(), 4.5f);
+        for (int x = 0; x < frameCalculator.calculateRafters(carportRequest.getLength()); x++) {
+            carportSVG.addRect((int) (0 + frameCalculator.calculateRaftersDistance(carportRequest.getLength(), frameCalculator.calculateRafters(carportRequest.getLength())) * x), 0, carportRequest.getWidth(), 4.5f);
 
         }
         /*Top rem*/
@@ -37,8 +36,8 @@ public class SVGDrawing {
         carportSVG.addLine(0, carportRequest.getWidth(), carportRequest.getLength(), carportRequest.getWidth());
 
         /*Hulbånd*/
-        carportSVG.addLineWithDash(55, 0, carportCalculator.calculatePerforatedTapeLength(carportRequest.getLength()), carportRequest.getWidth());
-        carportSVG.addLineWithDash(carportCalculator.calculatePerforatedTapeLength(carportRequest.getLength()), 0, 55, carportRequest.getWidth());
+        carportSVG.addLineWithDash(55, 0, boltAndBracketCalculator.calculatePerforatedTapeLength(carportRequest.getLength()), carportRequest.getWidth());
+        carportSVG.addLineWithDash(boltAndBracketCalculator.calculatePerforatedTapeLength(carportRequest.getLength()), 0, 55, carportRequest.getWidth());
 
         /*Stolper fast*/
         carportSVG.addRect(45, 0, 15, 15);
@@ -47,14 +46,14 @@ public class SVGDrawing {
         carportSVG.addRect(carportRequest.getLength() - 45, carportRequest.getWidth() - 15, 15, 15);
 
         /*Midter stolper*/
-        if (carportCalculator.calculatePostAmountNeeded(carportRequest.getLength()) == 3) {
-            carportSVG.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()), 0, 15, 15);
-            carportSVG.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
-        } else if (carportCalculator.calculatePostAmountNeeded(carportRequest.getLength()) == 4) {
-            carportSVG.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()), 0, 15, 15);
-            carportSVG.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()) + carportCalculator.calculatePostDistance(carportRequest.getLength()), 0, 15, 15);
-            carportSVG.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
-            carportSVG.addRect(45 + carportCalculator.calculateXDistance(carportRequest.getLength()) + carportCalculator.calculatePostDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
+        if (postCalculator.calculatePostAmountNeeded(carportRequest.getLength()) == 3) {
+            carportSVG.addRect(45 + generalCalculator.calculateXDistance(carportRequest.getLength()), 0, 15, 15);
+            carportSVG.addRect(45 + generalCalculator.calculateXDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
+        } else if (postCalculator.calculatePostAmountNeeded(carportRequest.getLength()) == 4) {
+            carportSVG.addRect(45 + generalCalculator.calculateXDistance(carportRequest.getLength()), 0, 15, 15);
+            carportSVG.addRect(45 + generalCalculator.calculateXDistance(carportRequest.getLength()) + postCalculator.calculatePostDistance(carportRequest.getLength()), 0, 15, 15);
+            carportSVG.addRect(45 + generalCalculator.calculateXDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
+            carportSVG.addRect(45 + generalCalculator.calculateXDistance(carportRequest.getLength()) + postCalculator.calculatePostDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
         }
 
  
@@ -66,8 +65,10 @@ public class SVGDrawing {
 
         SVG svg = new SVG(75, 10, "0 0 800 600", 500, 500);
 
-        for (int x = 0; x < carportCalculator.calculateRafters(carportRequest.getLength()); x++) {
-            svg.addRect((int) (0 + carportCalculator.calculateRaftersDistance(carportRequest.getLength(), carportCalculator.calculateRafters(carportRequest.getLength())) * x), 0, carportRequest.getWidth(), 4.5f);
+        int rafters = frameCalculator.calculateRafters(carportRequest.getLength());
+
+        for (int x = 0; x < rafters; x++) {
+            svg.addRect((int) (0 + frameCalculator.calculateRaftersDistance(carportRequest.getLength(), frameCalculator.calculateRafters(carportRequest.getLength())) * x), 0, carportRequest.getWidth(), 4.5f);
 
         }
         /*Top rem*/
@@ -77,8 +78,8 @@ public class SVGDrawing {
         svg.addLine(0, carportRequest.getWidth(), carportRequest.getLength(), carportRequest.getWidth());
 
         /*Hulbånd*/
-        svg.addLineWithDash(55, 0, carportCalculator.calculatePerforatedTapeLength(carportRequest.getLength()) - carportRequest.getShedLength() + 50, carportRequest.getWidth());
-        svg.addLineWithDash(carportCalculator.calculatePerforatedTapeLength(carportRequest.getLength()) - carportRequest.getShedLength() + 50, 0, 55, carportRequest.getWidth());
+        svg.addLineWithDash(55, 0, boltAndBracketCalculator.calculatePerforatedTapeLength(carportRequest.getLength()) - carportRequest.getShedLength() + 50, carportRequest.getWidth());
+        svg.addLineWithDash(boltAndBracketCalculator.calculatePerforatedTapeLength(carportRequest.getLength()) - carportRequest.getShedLength() + 50, 0, 55, carportRequest.getWidth());
 
         /*Stolper fast*/
         svg.addRect(45, 0, 15, 15);
