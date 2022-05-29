@@ -106,8 +106,8 @@ public class BoltAndBracketCalculator
         return bomline;
     }
 
-    public Bomline carriageBoltWithShed(Material material, int carportLength, int shedLength) {
-        int bolt = calculateCarriageBoltWithShed(carportLength, shedLength);
+    public Bomline carriageBoltWithShed(Material material, int postAmount) {
+        int bolt = calculateCarriageBoltWithShed(postAmount);
 
         Bomline bomline = new Bomline(21, material, bolt);
         return bomline;
@@ -134,10 +134,10 @@ public class BoltAndBracketCalculator
         return bomline;
     }
 
-    public Bomline screwsForTapeAndBracket(Material material, int bracket, int rafters) {
+    public Bomline screwsForTapeAndBracket(Material material, BoxCalculator boxCalculator, int bracket, int rafters) {
         int screwsForBrackets = calculateScrewForBracket(bracket);
         int screwsForTape = calculateScrewForPerforatedTape(rafters);
-        int screwBoxes = calculateQuantityOfBoxes(screwsForTape + screwsForBrackets, material);
+        int screwBoxes = boxCalculator.calculateQuantityOfBoxes(screwsForTape + screwsForBrackets, material);
 
         Bomline bomline = new Bomline(20, material, screwBoxes);
         return bomline;
@@ -171,7 +171,7 @@ public class BoltAndBracketCalculator
 
     public Bomline calculateAngleBracket (int noggingAmount, Material material) {
 
-        materialArrayList.get(29)
+        materialArrayList.get(29);
 
         Bomline bomline = new Bomline(26, material,noggingAmount*2);
         return bomline;
