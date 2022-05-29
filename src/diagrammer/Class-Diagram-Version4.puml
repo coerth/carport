@@ -16,6 +16,12 @@ class GeneralCalculator
 class PostCalculator
 class RoofCalculator
 class ShedCalculator
+class SVGDrawing
+
+class CarportRequestDTO
+class BomDTO
+class AccountDTO
+class OrderDTO
 
 Account <|-- Customer
 Customer *--"many" Order
@@ -31,7 +37,10 @@ RoofCalculator *-- BoxCalculator
 RoofCalculator *-- GeneralCalculator
 FrameCalculator *-- GeneralCalculator
 BoltAndBracketCalculator *-- BoxCalculator
-
+SVGDrawing *-- GeneralCalculator
+SVGDrawing *-- FrameCalculator
+SVGDrawing *-- BoltAndBracketCalculator
+SVGDrawing *-- PostCalculator
 
 Account : - private String email
 Account : - private String password
@@ -167,5 +176,57 @@ BoltAndBracketCalculator : + int calculateCarriageBoltWithShed(int,int)
 
 BoxCalculator : + int calculateQuantityOfBoxes(int, Material)
 
+
+CarportRequestDTO : - private int customerId
+CarportRequestDTO : - private int carportRequestId
+CarportRequestDTO : - private int width
+CarportRequestDTO : - private int length
+CarportRequestDTO : - private String roof
+CarportRequestDTO : - private int roofIncline
+CarportRequestDTO : - private Boolean isApproved
+CarportRequestDTO : - private int shedLength
+CarportRequestDTO : - private int shedWidth
+CarportRequestDTO : - private String name
+CarportRequestDTO : - private String address
+CarportRequestDTO : - private String city
+CarportRequestDTO : - private int zip
+CarportRequestDTO : - private int mobile
+CarportRequestDTO : - private int accountId
+
+BomDTO : - private int bomID
+BomDTO : - private int bomlineID
+BomDTO : - private String name
+BomDTO : - private int length
+BomDTO : - private int quantity
+BomDTO : - private String unit
+BomDTO : - private String description
+BomDTO : - private int materialId
+BomDTO : - private int price
+BomDTO : - private int typeId
+BomDTO : - private int width
+BomDTO : - private int height
+BomDTO : - private int mQuantity
+
+AccountDTO : - private int accountId
+AccountDTO : - private String email
+AccountDTO : - private String password
+AccountDTO : - private int role
+AccountDTO : - private int customerId
+AccountDTO : - private String name
+AccountDTO : - private String address
+AccountDTO : - private String city
+AccountDTO : - private int zip
+
+OrderDTO : - private Order order
+OrderDTO : - private CarportRequestDTO carportRequestDTO
+OrderDTO : - private ArrayList<bomDTO>bomDTOArrayList
+
+SVGDrawing : - GeneralCalculator generalCalculator
+SVGDrawing : - private FrameCalculator frameCalculator
+SVGDrawing : - private BoltAndBracketCalculator boltAndBracketCalculator
+SVGDrawing : - private PostCalculator postCalculator
+SVGDrawing : - private CarportRequest carportRequest
+SVGDrawing : + SVG draw()
+SVGDrawing : + SVG drawWithShed()
 
 @enduml
