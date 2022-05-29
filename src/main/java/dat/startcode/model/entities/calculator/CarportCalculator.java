@@ -119,7 +119,10 @@ public class CarportCalculator {
         bomlineArrayList.add(boltAndBracketCalculator.squareSpacer(materialArrayList.get(23), boltAndBracketCalculator.calculateCarriageBoltWithShed(postCalculator.calculatePostAmountWithShed(carportLength, shedLength))));
 
         //tilføj træ til z og håndtag og hængsel til dør til skuret
-        bomlineArrayList.addAll(boltAndBracketCalculator.addWoodForZPlusHandleAndHingeForDoor());
+        bomlineArrayList.addAll(boltAndBracketCalculator.addWoodForZPlusHandleAndHingeForDoor(materialArrayList.get(4),materialArrayList.get(27),materialArrayList.get(28)));
+
+        //tilføj vinkelbeslag til skuret
+        bomlineArrayList.add(boltAndBracketCalculator.calculateAngleBracket(materialArrayList.get(29),noggingAmount));
 
         return bomlineArrayList;
     }
