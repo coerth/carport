@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class ShedCalculator
 {
 
-    ArrayList<Material> materialArrayList = new ArrayList<>();
     BoxCalculator boxCalculator = new BoxCalculator();
 
     public ShedCalculator() {

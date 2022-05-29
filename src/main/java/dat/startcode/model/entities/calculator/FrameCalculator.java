@@ -10,6 +10,7 @@ public class FrameCalculator
     GeneralCalculator generalCalculator = new GeneralCalculator();
 
 
+
     public ArrayList<Bomline> calculateFrontUnderStern(ArrayList<Material> underSternArrayList, int rafterLength) {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
         Material frontUnderStern = generalCalculator.calculateMaterialLength(rafterLength, underSternArrayList);
@@ -192,9 +193,7 @@ public class FrameCalculator
         bomlineArrayList.add(new Bomline(6,noggingTheShortOne,4));
         bomlineArrayList.add(new Bomline(7, noggingTheLongOne,12));
 
-        bomlineArrayList.add(calculateAngleBracket(16));
-
-
+        bomlineArrayList.add(bolcalculateAngleBracket(16));
 
         return bomlineArrayList;
     }
