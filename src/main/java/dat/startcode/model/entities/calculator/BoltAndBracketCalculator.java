@@ -8,6 +8,9 @@ import java.util.ArrayList;
 public class BoltAndBracketCalculator
 {
 
+    BoxCalculator boxCalculator = new BoxCalculator();
+
+
     public int calculatePerforatedTapeLength(int carportLength) {
 
         int perforatedTapeLength = 0;
@@ -106,7 +109,7 @@ public class BoltAndBracketCalculator
         return bomline;
     }
 
-    public Bomline carriageBoltWithShed(Material material, int postAmount) {
+    public Bomline carriageBoltWithShed(Material material, int postAmount, int shedLength) {
         int bolt = calculateCarriageBoltWithShed(postAmount);
 
         Bomline bomline = new Bomline(21, material, bolt);
@@ -134,7 +137,7 @@ public class BoltAndBracketCalculator
         return bomline;
     }
 
-    public Bomline screwsForTapeAndBracket(Material material, BoxCalculator boxCalculator, int bracket, int rafters) {
+    public Bomline screwsForTapeAndBracket(Material material, int bracket, int rafters) {
         int screwsForBrackets = calculateScrewForBracket(bracket);
         int screwsForTape = calculateScrewForPerforatedTape(rafters);
         int screwBoxes = boxCalculator.calculateQuantityOfBoxes(screwsForTape + screwsForBrackets, material);
@@ -143,13 +146,13 @@ public class BoltAndBracketCalculator
         return bomline;
     }
 
-    public ArrayList<Bomline> addWoodForZPlusHandleAndHingeForDoor () {
+    public ArrayList<Bomline> addWoodForZPlusHandleAndHingeForDoor (Material zForDoor, Material doorHandle,Material tHinge) {
 
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
 
-        Bomline bomline1 = new Bomline(5, materialArrayList.get(4),1);
-        Bomline bomline2 = new Bomline(24, materialArrayList.get(27),1);
-        Bomline bomline3 = new Bomline(25, materialArrayList.get(28),2);
+        Bomline bomline1 = new Bomline(5, zForDoor,1);
+        Bomline bomline2 = new Bomline(24, doorHandle,1);
+        Bomline bomline3 = new Bomline(25, tHinge,2);
 
         bomlineArrayList.add(bomline1);
         bomlineArrayList.add(bomline2);
