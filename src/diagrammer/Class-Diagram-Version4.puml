@@ -7,7 +7,6 @@ class Material
 class Bomline
 class Customer
 class CarportRequest
-class Description
 class CarportCalculator
 class BoltAndBracketCalculator
 class BoxCalculator
@@ -20,11 +19,13 @@ class SVGDrawing
 
 class CarportRequestDTO
 class BomDTO
-class AccountDTO
 class OrderDTO
 
 Account <|-- Customer
 Customer *--"many" Order
+OrderDTO *-- Order
+OrderDTO *-- BomDTO
+OrderDTO *-- CarportRequestDTO
 Customer *--"many" CarportRequest
 Bomline *-- Material
 ShedCalculator *-- BoxCalculator
@@ -90,9 +91,6 @@ CarportRequest : - private int shedLength
 CarportRequest : - private int roofIncline
 CarportRequest : - private int customerId
 CarportRequest : - private Boolean isApproved
-
-Description : - private int descriptionId
-Description : - private int description
 
 CarportCalculator : - private ShedCalculator shedCalculator
 CarportCalculator : - private FrameCalculator frameCalculator
@@ -206,16 +204,6 @@ BomDTO : - private int typeId
 BomDTO : - private int width
 BomDTO : - private int height
 BomDTO : - private int mQuantity
-
-AccountDTO : - private int accountId
-AccountDTO : - private String email
-AccountDTO : - private String password
-AccountDTO : - private int role
-AccountDTO : - private int customerId
-AccountDTO : - private String name
-AccountDTO : - private String address
-AccountDTO : - private String city
-AccountDTO : - private int zip
 
 OrderDTO : - private Order order
 OrderDTO : - private CarportRequestDTO carportRequestDTO
