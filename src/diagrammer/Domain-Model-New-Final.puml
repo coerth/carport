@@ -4,7 +4,7 @@
 object Account
 object Order
 object Material
-object BOM_Line
+object BOM
 object Customer
 object CarportRequest
 object CarportCalculator
@@ -14,11 +14,11 @@ object SVGDrawing
 
 Account <|-- Customer
 Customer *-- CarportRequest
-Order *-- BOM_Line
+Order *-- BOM
 Customer *-- Order
 Order *-- CarportRequest
 CarportRequest *-- SVGDrawing
-BOM_Line *-- Material
+BOM *-- Material
 CarportCalculator *-- Material
 
 @enduml
