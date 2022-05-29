@@ -193,8 +193,6 @@ public class FrameCalculator
         bomlineArrayList.add(new Bomline(6,noggingTheShortOne,4));
         bomlineArrayList.add(new Bomline(7, noggingTheLongOne,12));
 
-        bomlineArrayList.add(bolcalculateAngleBracket(16));
-
         return bomlineArrayList;
     }
 

@@ -174,7 +174,6 @@ public class BoltAndBracketCalculator
 
     public Bomline calculateAngleBracket (int noggingAmount, Material material) {
 
-
         Bomline bomline = new Bomline(26, material,noggingAmount*2);
         return bomline;
     }

@@ -122,7 +122,7 @@ public class CarportCalculator {
         bomlineArrayList.addAll(boltAndBracketCalculator.addWoodForZPlusHandleAndHingeForDoor(materialArrayList.get(4),materialArrayList.get(27),materialArrayList.get(28)));
 
         //tilføj vinkelbeslag til skuret
-        bomlineArrayList.add(boltAndBracketCalculator.calculateAngleBracket(materialArrayList.get(29),noggingAmount));
+        bomlineArrayList.add(boltAndBracketCalculator.calculateAngleBracket(16, materialArrayList.get(29)));
 
         return bomlineArrayList;
     }

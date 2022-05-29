@@ -10,8 +10,6 @@ public class RoofCalculator
     GeneralCalculator generalCalculator = new GeneralCalculator();
     BoxCalculator boxCalculator = new BoxCalculator();
 
-
-
     public ArrayList<Bomline> calculateRoofPlates(int carportLength, int carportWidth, ArrayList<Material> listOfRoofPlates) {
         ArrayList<Bomline> bomLineArrayList = new ArrayList<Bomline>();
         Material primaryRoofPlate = generalCalculator.calculateMaterialLength(carportLength, listOfRoofPlates);

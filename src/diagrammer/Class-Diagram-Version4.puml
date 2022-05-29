@@ -30,6 +30,7 @@ CarportCalculator *-- BoltAndBracketCalculator
 RoofCalculator *-- BoxCalculator
 RoofCalculator *-- GeneralCalculator
 FrameCalculator *-- GeneralCalculator
+BoltAndBracketCalculator *-- BoxCalculator
 
 
 Account : - private String email
@@ -143,7 +144,7 @@ ShedCalculator : + int calculateShedPlancksNeededForFrontAndBack(float,Material)
 ShedCalculator : + int calculateShedPlancksNeededForSide(float,Material)
 ShedCalculator : + int calculateLongScrewsForShed(int)
 
-
+BoltAndBracketCalculator : - BoxCalculator boxCalculator
 BoltAndBracketCalculator : + Bomline squareSpacer(Material,int)
 BoltAndBracketCalculator : + Bomline steelBracketLeft(Material,int)
 BoltAndBracketCalculator : + Bomline steelBracketRight(Material,int)
