@@ -78,6 +78,8 @@
                             }
                         }
                     </script>
+                    <br>
+                    <br>
 
 
                     <input type="submit" value="Vælg">

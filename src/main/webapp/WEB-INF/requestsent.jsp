@@ -16,6 +16,9 @@
 
     <jsp:body>
 
+        Tak for din forespørgsel. Den vil nu blive behandlet af vores medarbejder og du vil snarest høre fra os.
+        <br>
+
         <table class="table table-striped table-hover">
             <thead>
             <tr>

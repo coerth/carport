@@ -15,10 +15,6 @@
 
     <jsp:body>
 
-<%--
-        <h3>Ordren med id ${requestScope.orderDTO.order.orderId} er nu sendt til kunden.</h3>
---%>
-
         <br>
         <h4>Husk at kigge ordren igennem for fejl og mangler. Kontakt kundeservice hvis der er fejl i ordren</h4>
 
@@ -70,9 +66,6 @@
 
         </tbody>
         </table>
-
-
-        <p><a href="../index.jsp">Til forsiden</a></p>
 
     </jsp:body>
 </t:pagetemplate>
