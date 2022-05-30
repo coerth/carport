@@ -42,6 +42,7 @@ SVGDrawing *-- GeneralCalculator
 SVGDrawing *-- FrameCalculator
 SVGDrawing *-- BoltAndBracketCalculator
 SVGDrawing *-- PostCalculator
+SVGDrawing *-- CarportRequest
 
 Account : - private String email
 Account : - private String password
@@ -209,7 +210,7 @@ OrderDTO : - private Order order
 OrderDTO : - private CarportRequestDTO carportRequestDTO
 OrderDTO : - private ArrayList<bomDTO>bomDTOArrayList
 
-SVGDrawing : - GeneralCalculator generalCalculator
+SVGDrawing : - private GeneralCalculator generalCalculator
 SVGDrawing : - private FrameCalculator frameCalculator
 SVGDrawing : - private BoltAndBracketCalculator boltAndBracketCalculator
 SVGDrawing : - private PostCalculator postCalculator
