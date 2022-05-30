@@ -7,3 +7,6 @@ https://github.com/coerth/carport
 
 hjemmeside:
 http://159.223.18.9:8080/carport/index.jsp 
+
+tænke-højt-test
+https://youtu.be/hQrJKiJmjPo
