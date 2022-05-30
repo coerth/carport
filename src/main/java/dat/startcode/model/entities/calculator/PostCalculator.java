@@ -101,7 +101,7 @@ public class PostCalculator
     {
         int postAmount = calculatePostAmountWithShed(carportLength, shedLength);
 
-        return new Bomline(10, material, postAmount);
+        return new Bomline(11, material, postAmount);
     }
 
     public int calculatePostAmount(int carportLength) {
@@ -135,7 +135,7 @@ public class PostCalculator
     public Bomline postAmount(Material material, int carportLength) {
         int post = calculatePostAmount(carportLength);
 
-        Bomline bomline = new Bomline(10, material, post);
+        Bomline bomline = new Bomline(11, material, post);
         return bomline;
     }
 }

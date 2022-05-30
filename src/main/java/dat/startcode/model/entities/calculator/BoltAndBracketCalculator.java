@@ -47,7 +47,9 @@ public class BoltAndBracketCalculator
         int carriageBolt = 2;
         int carriageboltToHead = 2;
 
-        carriageBolt = carriageBolt * (postAmountWithShed -3) ;
+        postAmountWithShed -= 3;
+
+        carriageBolt = carriageBolt * postAmountWithShed ;
 
         return carriageBolt + carriageboltToHead;
 
@@ -109,7 +111,7 @@ public class BoltAndBracketCalculator
         return bomline;
     }
 
-    public Bomline carriageBoltWithShed(Material material, int postAmount, int shedLength) {
+    public Bomline carriageBoltWithShed(Material material, int postAmount) {
         int bolt = calculateCarriageBoltWithShed(postAmount);
 
         Bomline bomline = new Bomline(21, material, bolt);
@@ -169,7 +171,7 @@ public class BoltAndBracketCalculator
 
     public Bomline perforatedTape(Material material)
     {
-        return new Bomline(16, material, 2);
+        return new Bomline(17, material, 2);
     }
 
     public Bomline calculateAngleBracket (int noggingAmount, Material material) {

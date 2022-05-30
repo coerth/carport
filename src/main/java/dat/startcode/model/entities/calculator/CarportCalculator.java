@@ -113,7 +113,7 @@ public class CarportCalculator {
         bomlineArrayList.add(boltAndBracketCalculator.screwsForTapeAndBracket(materialArrayList.get(21), brackets, rafters));
 
         // tilføj bræddebolte til arraylist
-        bomlineArrayList.add(boltAndBracketCalculator.carriageBoltWithShed(materialArrayList.get(22), carportLength, shedLength));
+        bomlineArrayList.add(boltAndBracketCalculator.carriageBoltWithShed(materialArrayList.get(22), postCalculator.calculatePostAmountWithShed(carportLength, shedLength)));
 
         // tilføj firkantskiver til arraylist
         bomlineArrayList.add(boltAndBracketCalculator.squareSpacer(materialArrayList.get(23), boltAndBracketCalculator.calculateCarriageBoltWithShed(postCalculator.calculatePostAmountWithShed(carportLength, shedLength))));
