@@ -23,7 +23,7 @@
                             <input type="hidden" name="command" value="orderoverview">
                             <img class="card-img-top" src="images/adminorder.jpg" alt="Card image cap">
                             <div class="card-body">
-                                <h5 class="card-title">Se alle ordre</h5>
+                                <h5 class="card-title">Se alle ordrer</h5>
                                 <button type="submit" class="btn btn-primary">Vælg</button>
                             </div>
                         </div>
