@@ -48,7 +48,8 @@ public class RequestApprove extends Command {
         }
 
         if (carportType == 2) {
-            bomlineArrayList = carportCalculator.createCarportWithFullShed(carportRequest.getLength(), carportRequest.getWidth(), carportRequest.getShedLength(), carportRequest.getShedWidth());
+            bomlineArrayList = carportCalculator.createCarportWithFullShed(carportRequest.getLength(), carportRequest.getWidth(), carportRequest.getShedLength(), carportRequest.getWidth());
+            System.out.println(bomlineArrayList);
         }
 
         if (BomFacade.createCompleteBillOfMaterials(bomlineArrayList, orderId, ApplicationStart.getConnectionPool())) {
