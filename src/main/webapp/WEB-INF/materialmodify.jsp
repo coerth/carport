@@ -50,7 +50,7 @@
 <%--                <input type="number" class="form-control" name="typeId" id="typeId" value="${requestScope.material.typeId}" required="required">--%>
 
                 <select name="typeId" class="form-control" id="typeId" required="required">
-                    <option value="">${requestScope.material.typeId}</option>
+                    <option value=""></option>
                     <c:forEach varStatus="loop" begin="1" end="3" step="1">
                         <option><c:out value="${loop.current}"></c:out></option>
                     </c:forEach></select>
