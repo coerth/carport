@@ -189,8 +189,22 @@ public class FrameCalculator
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
 
         Material noggingTheShortOne = generalCalculator.calculateMaterialLength(shedLength, noggingArrayList);
-        Material noggingTheLongOne = generalCalculator.calculateMaterialLength(250, noggingArrayList);
-        bomlineArrayList.add(new Bomline(6,noggingTheShortOne,4));
+
+        if(noggingTheShortOne == null)
+        {
+            ArrayList<Material> shortNoggingArraylist = generalCalculator.calculateMaterialIfMoreThanOneIsNeeded(shedLength, noggingArrayList);
+            for(Material material : shortNoggingArraylist)
+            {
+                bomlineArrayList.add(new Bomline(6, material, 4));
+            }
+        }
+        else
+        {
+            bomlineArrayList.add(new Bomline(6, noggingTheShortOne, 4));
+        }
+
+            Material noggingTheLongOne = generalCalculator.calculateMaterialLength(250, noggingArrayList);
+
         bomlineArrayList.add(new Bomline(7, noggingTheLongOne,12));
 
         return bomlineArrayList;
