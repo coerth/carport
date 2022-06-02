@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class CreateMaterial extends Command{
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
-        HttpSession session = request.getSession();
 
         String name = request.getParameter("name");
         int price = Integer.parseInt(request.getParameter("price"));
@@ -29,7 +28,7 @@ public class CreateMaterial extends Command{
             ArrayList<Material> materialArrayList = new ArrayList<>();
 
             materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
-            request.getServletContext().setAttribute("materialArrayList", materialArrayList);
+            request.setAttribute("materialArrayList", materialArrayList);
         }
 
 

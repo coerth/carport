@@ -45,7 +45,7 @@
                     <td>${item.width}</td>
                     <td>${item.height}</td>
                     <td>${item.typeId}</td>
-                    <td><button type="button" value="${item.materialId}" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Slet</button>
+                    <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Slet</button>
                         <button name="modify" value="${item.materialId}">Rediger</button></td>
                     <!-- Button trigger modal -->
 
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <form action="fc/delete"><input type="hidden" name="command" value="deletematerial"/><button type="submit" name="delete" class="btn btn-danger" value="${item.materialId}">Bekræft</button></form>
+                                    <form action="fc/delete"><input type="hidden" name="delete" value="${item.materialId}"><input type="hidden" name="command" value="deletematerial"/><button type="submit" class="btn btn-danger">Bekræft</button></form>
                                 </div>
                             </div>
                         </div>
@@ -76,45 +76,9 @@
             </tbody>
         </table>
         </form>
-        <form action="fc/create" method="post">
-            <input type="hidden" name="command" value="creatematerial"/>
-                <div class="form-group">
-                    <label for="name">Navn</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Navn">
-                </div>
-                <div class="form-group">
-                    <label for="price">Pris</label>
-                    <input type="number" class="form-control" name="price" id="price" placeholder="Pris">
-                </div>
-                <div class="form-group">
-                    <label for="unit">Enhed</label>
-                    <input type="text" class="form-control" name="unit" id="unit" placeholder="Enhed">
-                </div>
-                <div class="form-group">
-                    <label for="quantity">Antal</label>
-                    <input type="text" class="form-control" name="quantity" id="quantity" placeholder="Antal">
-                </div>
-                <div class="form-group">
-                    <label for="length">Længde</label>
-                    <input type="number" class="form-control" name="length" id="length" placeholder="Længde">
-                </div>
-                <div class="form-group">
-                    <label for="width">Bredde</label>
-                    <input type="number" class="form-control" name="width" id="width" placeholder="Bredde">
-                </div>
-                <div class="form-group">
-                    <label for="height">Højde</label>
-                    <input type="number" class="form-control" name="height" id="height" placeholder="Højde">
-                </div>
-                <div class="form-group">
-                    <label for="typeId">Type ID</label>
-                    <input type="number" class="form-control" name="typeId" id="typeId" placeholder="Type Id">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
+        <form action="create" method="post"><input type="hidden" name="command" value="materialcreate"><button type="submit" class="btn btn-primary">Opret nyt materiale</button> </form>
 
 
-        </form>
 
 
 

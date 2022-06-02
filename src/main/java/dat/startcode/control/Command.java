@@ -40,6 +40,7 @@ abstract class Command
         commands.put("customerindex", new CustomerIndex());
         commands.put("customermodifyredirect", new CustomerModifyRedirect());
         commands.put("customerorderview", new CustomerOrderView());
+        commands.put("materialcreate", new MaterialCreate());
 
     }
 
