@@ -46,6 +46,7 @@
                 <input type="number" class="form-control" name="height" id="height" value="${requestScope.material.height}" required="required">
             </div>
             <div class="form-group">
+
                 <label for="typeName">Type Name</label>
                 <select name="typeName" class="form-control" id="typeName" required="required">
                     <option>${requestScope.material.typeId}</option>
