@@ -19,6 +19,7 @@ public class PostCalculator
         }
     }
 
+
     public int calculatePostDistance(int carportLength) {
         int postDistance = 0;
         int distanceFromSternBigCarport = 100;
