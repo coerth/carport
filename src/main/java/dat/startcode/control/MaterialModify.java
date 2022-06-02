@@ -18,6 +18,7 @@ public class MaterialModify extends Command
     {
 
         String message = "";
+        boolean isTrue = false;
 
         int materialId = Integer.parseInt(request.getParameter("materialId"));
         String name = request.getParameter("name");
@@ -30,8 +31,6 @@ public class MaterialModify extends Command
         String typeName = request.getParameter("typeName");
         int typeId = 0;
 
-        boolean error = false;
-
         switch (typeName){
             case "Træ":
                 typeId = 1;
@@ -39,15 +38,13 @@ public class MaterialModify extends Command
             case "Tagplader":
                 typeId = 2;
                 break;
-            case "Beslag, Hulbånd & Diverse":
+            case "Beslag & Hulbånd & Diverse":
                 typeId = 3;
                 break;
-            case "Skruer, Skiver & Bolte":
+            case "Skruer & Skiver & Bolte":
                 typeId = 4;
                 break;
-            case "Vælg type":
-                message = "Ændring mislykkedes";
-                break;
+
         }
 
 
@@ -55,6 +52,7 @@ public class MaterialModify extends Command
          if(MaterialFacade.updateMaterial(new Material(materialId, name, price, unit, length, width, height, quantity, typeId), ApplicationStart.getConnectionPool()))
          {
              message = "Succesfyld ændring";
+             isTrue = true;
          }
 
 
@@ -64,7 +62,7 @@ public class MaterialModify extends Command
         materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
         request.setAttribute("materialArrayList", materialArrayList);
 
-        request.setAttribute("message", message);
+        request.setAttribute("isTrue", isTrue);
 
         return "materialoverview";
     }
