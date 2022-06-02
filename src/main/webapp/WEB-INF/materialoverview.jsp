@@ -13,8 +13,9 @@
     </jsp:attribute>
 
     <jsp:body>
-        <br>
-        <br>
+        <div style="display: flex ; justify-content: right ; margin-bottom: 15px ; margin-top: 15px">
+        <form action="create" method="post"><input type="hidden" name="command" value="materialcreate"><button type="submit" class="btn btn-primary">Opret nyt materiale</button> </form>
+        </div>
 
         <form action="fc/" method="post">
             <input type="hidden" name="command" value="materialgetbyid"/>
@@ -53,7 +54,6 @@
         </table>
         </form>
 
-        <form action="create" method="post"><input type="hidden" name="command" value="materialcreate"><button type="submit" class="btn btn-primary">Opret nyt materiale</button> </form>
     </jsp:body>
 
 </t:pagetemplate>
