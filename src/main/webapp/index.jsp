@@ -61,9 +61,10 @@
 
         <c:if test="${sessionScope.customer == null && sessionScope.account == null}">
             <h2 style="text-align: center; margin-bottom: 50px">VELKOMMEN TIL FOG TRÆLAST OG BYGGECENTER</h2>
+
             <div class="row">
             <div class="col-sm-6">
-                <img src="images/bygselv.jpg" >
+                <img src="images/bygselv.jpg" style="max-width: 100%; ; height: auto; display: block">
             </div>
             <div class="col-sm-6">
             <h2>Tilmeld dig eller log ind for at shoppe</h2>
