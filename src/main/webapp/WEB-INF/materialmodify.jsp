@@ -48,7 +48,7 @@
             <div class="form-group">
                 <label for="typeId">Type ID</label>
                 <select name="typeId" class="form-control" id="typeId" required="required">
-                    <option value="${requestScope.material.typeName}"></option>
+                    <></>
                     <c:forEach var="item" items="${requestScope.stringArrayList}">
                         <option><c:out value="${item}"></c:out></option>
                     </c:forEach>

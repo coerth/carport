@@ -76,10 +76,10 @@ public class MaterialMapper implements IMaterialMapper {
                     int height = rs.getInt("height");
                     int quantity = rs.getInt("quantity");
 
-                    String mtName = rs.getString("mt_name");
+                    String typeName = rs.getString("mt_name");
                     int typeID = rs.getInt("type_id");
 
-                    material = new Material(materialID, name, price, unit, length, width, height, quantity, typeID);
+                    material = new Material(materialID, name, price, unit, length, width, height, quantity, typeID, typeName);
                     return material;
 
                 }
