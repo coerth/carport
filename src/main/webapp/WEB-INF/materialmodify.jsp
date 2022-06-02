@@ -55,7 +55,34 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Godkend</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Slet
+            </button>
         </form>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="submit" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Er du sikker på du vil slette?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form action="fc/delete"><input type="hidden" name="command" value="deletematerial"/>
+                            <button id="delete" value="${requestScope.material.materialId}" name="delete" class="btn btn-danger">Bekræft</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 

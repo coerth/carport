@@ -23,7 +23,7 @@ public class DeleteMaterial extends Command{
         ArrayList<Material> materialArrayList = new ArrayList<>();
 
         materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
-        request.getServletContext().setAttribute("materialArrayList", materialArrayList);
+        request.setAttribute("materialArrayList", materialArrayList);
 
         System.out.println(materialId);
 

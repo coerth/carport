@@ -16,7 +16,7 @@
         <br>
         <br>
 
-        <form action="modify" method="post">
+        <form action="fc/" method="post">
             <input type="hidden" name="command" value="materialgetbyid"/>
         <table class="table table-striped table-hover">
             <thead>
@@ -45,44 +45,15 @@
                     <td>${item.width}</td>
                     <td>${item.height}</td>
                     <td>${item.typeId}</td>
-                    <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">Slet</button>
-                        <button name="modify" value="${item.materialId}">Rediger</button></td>
-                    <!-- Button trigger modal -->
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    Er du sikker på du vil slette?
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <form action="fc/delete"><input type="hidden" name="delete" value="${item.materialId}"><input type="hidden" name="command" value="deletematerial"/><button type="submit" class="btn btn-danger">Bekræft</button></form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <td><button name="modify" value="${item.materialId}">Slet/Rediger</button></td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
         </form>
+
         <form action="create" method="post"><input type="hidden" name="command" value="materialcreate"><button type="submit" class="btn btn-primary">Opret nyt materiale</button> </form>
-
-
-
-
-
-
     </jsp:body>
 
 </t:pagetemplate>
