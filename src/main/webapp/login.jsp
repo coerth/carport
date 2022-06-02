@@ -14,8 +14,11 @@
 
     <jsp:body>
 
-            <h3>Her kan du logge ind</h3>
+        <div class="h-100 d-flex align-items-center justify-content-center" style="margin-top: 20px">
+        <h1>Log ind</h1>
+        </div>
 
+        <div class="h-100 d-flex align-items-center justify-content-center" style="margin-top: 50px">
         <form action="fc/login" method="post">
             <input type="hidden" name="command" value="login"/>
             <label for="email">Email: </label>
@@ -24,6 +27,8 @@
             <input type="password" id="password" name="password"/>
             <input type="submit"  value="Log ind"/>
         </form>
+            </div>
+
 
 
     </jsp:body>
