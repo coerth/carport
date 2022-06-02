@@ -48,17 +48,24 @@
             <div class="form-group">
                 <label for="typeId">Type ID</label>
                 <select name="typeId" class="form-control" id="typeId" required="required">
-                    <option value=""></option>
-                    <c:forEach varStatus="loop" begin="1" end="3" step="1">
-                        <option><c:out value="${loop.current}"></c:out></option>
-                    </c:forEach></select>
+                    <option value="${requestScope.material.typeName}"></option>
+                    <c:forEach var="item" items="${requestScope.stringArrayList}">
+                        <option><c:out value="${item}"></c:out></option>
+                    </c:forEach>
+
+
+<%--                    <c:forEach varStatus="loop" begin="1" end="3" step="1">--%>
+<%--                        <option><c:out value="${loop.current}"></c:out></option>--%>
+<%--                    </c:forEach></select>--%>
             </div>
 
+            <div style="margin-top: 10px; margin-bottom: 10px">
             <button type="submit" class="btn btn-primary">Godkend</button>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Slet
             </button>
+            </div>
         </form>
 
         <!-- Modal -->

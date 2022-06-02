@@ -44,7 +44,7 @@
                     <td>${item.length}</td>
                     <td>${item.width}</td>
                     <td>${item.height}</td>
-                    <td>${item.typeId}</td>
+                    <td>${item.typeName}</td>
 
                     <td><button name="modify" value="${item.materialId}">Slet/Rediger</button></td>
                 </tr>

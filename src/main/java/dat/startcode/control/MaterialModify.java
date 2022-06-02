@@ -26,7 +26,23 @@ public class MaterialModify extends Command
         int width = Integer.parseInt(request.getParameter("width"));
         int height = Integer.parseInt(request.getParameter("height"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        int typeId = Integer.parseInt(request.getParameter("typeId"));
+        String typeName = request.getParameter("typeName");
+        int typeId = 0;
+
+        switch (typeName){
+            case "Træ":
+                typeId = 1;
+                break;
+            case "Tagplader":
+                typeId = 2;
+                break;
+            case "Beslag, Hulbånd & Diverse":
+                typeId = 3;
+                break;
+            case "Skruer, Skiver & Bolte":
+                typeId = 4;
+                break;
+        }
 
          if(MaterialFacade.updateMaterial(new Material(materialId, name, price, unit, length, width, height, quantity, typeId), ApplicationStart.getConnectionPool()))
          {
