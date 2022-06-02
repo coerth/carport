@@ -18,7 +18,7 @@
         <br>
         <h4>Husk at kigge ordren igennem for fejl og mangler. Kontakt kundeservice hvis der er fejl i ordren</h4>
 
-
+        <table class="table table-striped table-hover">
         <thead>
         <tr>
             <th scope="col">Ordre id</th>
