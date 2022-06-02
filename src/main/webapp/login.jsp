@@ -16,7 +16,7 @@
 
 
 
-            <div class="d-flex flex-column bd-highlight mb-3">
+            <div class="d-flex flex-column bd-highlight mb-3" style="justify-content: center">
             <h1>Log ind</h1>
             </div>
             <div class="d-flex flex-column bd-highlight mb-3">

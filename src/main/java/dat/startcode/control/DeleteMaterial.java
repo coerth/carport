@@ -17,6 +17,7 @@ public class DeleteMaterial extends Command{
         HttpSession session = request.getSession();
         int materialId = Integer.parseInt(request.getParameter("delete"));
 
+
         System.out.println(MaterialFacade.deleteMaterial(materialId, ApplicationStart.getConnectionPool()));
 
         ArrayList<Material> materialArrayList = new ArrayList<>();
