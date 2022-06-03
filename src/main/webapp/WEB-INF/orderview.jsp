@@ -14,13 +14,6 @@
 
     <jsp:body>
 
-
-        <!-- Html2Pdf -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.1/html2pdf.bundle.min.js"
-                integrity="sha512vDKWohFHe2vkVWXHp3tKvIxxXg0pJxeid5eo+UjdjME3DBFBn2F8yWOE0XmiFcFbXxrEOR1JriWEno5Ckpn15A=="
-                crossorigin="anonymous">
-        </script>
-
         <script>
             // Function to GeneratePdf
             function GeneratePdf() {
@@ -83,18 +76,11 @@
             <input type="button" class="btn btn-primary"
                    onclick="GeneratePdf();" value="Gem som PDF">
 
-
-        <%--<button class="button-print-or-save-document">Print eller gem PDF</button>
-
-                <script>
-                    const buttonPrintOrSaveDocument = document.querySelector(".button-print-or-save-document")
-
-                    function  printOrSave(){
-                        window.print();
-                    }
-                    buttonPrintOrSaveDocument.addEventListener("click",printOrSave)
-                </script>--%>
-
+        <!-- Html2Pdf -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.1/html2pdf.bundle.min.js"
+                integrity="sha512vDKWohFHe2vkVWXHp3tKvIxxXg0pJxeid5eo+UjdjME3DBFBn2F8yWOE0XmiFcFbXxrEOR1JriWEno5Ckpn15A=="
+                crossorigin="anonymous">
+        </script>
 
     </jsp:body>
 </t:pagetemplate>
