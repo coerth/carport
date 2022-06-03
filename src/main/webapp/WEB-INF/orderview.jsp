@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
-
 <t:pagetemplate>
     <jsp:attribute name="header">
              Ordreoversigt
@@ -15,57 +14,87 @@
 
     <jsp:body>
 
-        <br>
+
+        <!-- Html2Pdf -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.1/html2pdf.bundle.min.js"
+                integrity="sha512vDKWohFHe2vkVWXHp3tKvIxxXg0pJxeid5eo+UjdjME3DBFBn2F8yWOE0XmiFcFbXxrEOR1JriWEno5Ckpn15A=="
+                crossorigin="anonymous">
+        </script>
+
+        <script>
+            // Function to GeneratePdf
+            function GeneratePdf() {
+                var element = document.getElementById('form-print');
+                html2pdf(element);
+            }
+        </script>
+
         <h4>Husk at kigge ordren igennem for fejl og mangler. Kontakt kundeservice hvis der er fejl i ordren</h4>
+        <form id="form-print" enctype="text/plain">
+            <thead>
+            <tr>
+                <th scope="col">Ordre id</th>
+                <th scope="col">Dato og tid</th>
+                <th scope="col">Kundens id</th>
+                <th scope="col">Carport type (1 = intet skur, 2 = skur)</th>
 
 
-        <thead>
-        <tr>
-            <th scope="col">Ordre id</th>
-            <th scope="col">Dato og tid</th>
-            <th scope="col">Kundens id</th>
-            <th scope="col">Carport type (1 = intet skur, 2 = skur)</th>
+            </tr>
+            </thead>
 
 
-        </tr>
-        </thead>
-        <tbody>
+            <tr>
+                <th scope="row">${requestScope.orderDTO.order.orderId}</th>
+                <td>${requestScope.orderDTO.order.dateTime}</td>
+                <td>${requestScope.orderDTO.order.customerId}</td>
+                <td>${requestScope.orderDTO.order.carportType}</td>
 
-        <tr>
-            <th  scope="row">${requestScope.orderDTO.order.orderId}</th>
-            <td>${requestScope.orderDTO.order.dateTime}</td>
-            <td>${requestScope.orderDTO.order.customerId}</td>
-            <td>${requestScope.orderDTO.order.carportType}</td>
+            </tr>
+            <br>
+            Ordren indeholder:
+            <table class="table table-striped table-hover">
 
-        </tr>
-        <br>
-        Ordren indeholder:
-        <table class="table table-striped table-hover">
-
-        <br>
-        <thead>
-        <tr>
-            <th scope="col">Materiale:</th>
-            <th scope="col">Beskrivelse:</th>
-            <th scope="col">Antal: </th>
-            <th scope="col">Pris: </th>
+                <br>
+                <thead>
+                <tr>
+                    <th scope="col">Materiale:</th>
+                    <th scope="col">Beskrivelse:</th>
+                    <th scope="col">Antal:</th>
+                    <th scope="col">Pris:</th>
 
 
-        </tr>
-        </thead>
-        <tbody>
-    <c:forEach var="item" items="${requestScope.orderDTO.bomDTOArrayList}">
-        <tr>
-            <td>${item.name}</td>
-            <td>${item.description}</td>
-            <td>${item.quantity}</td>
-            <td>${item.price * item.quantity}</td>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="item" items="${requestScope.orderDTO.bomDTOArrayList}">
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.description}</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.price * item.quantity}</td>
 
-        </tr>
-    </c:forEach>
+                    </tr>
+                </c:forEach>
 
-        </tbody>
-        </table>
+                </tbody>
+            </table>
+        </form>
+
+            <input type="button" class="btn btn-primary"
+                   onclick="GeneratePdf();" value="Gem som PDF">
+
+
+        <%--<button class="button-print-or-save-document">Print eller gem PDF</button>
+
+                <script>
+                    const buttonPrintOrSaveDocument = document.querySelector(".button-print-or-save-document")
+
+                    function  printOrSave(){
+                        window.print();
+                    }
+                    buttonPrintOrSaveDocument.addEventListener("click",printOrSave)
+                </script>--%>
+
 
     </jsp:body>
 </t:pagetemplate>

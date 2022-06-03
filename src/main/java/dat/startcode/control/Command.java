@@ -40,6 +40,7 @@ abstract class Command
         commands.put("customerindex", new CustomerIndex());
         commands.put("customermodifyredirect", new CustomerModifyRedirect());
         commands.put("customerorderview", new CustomerOrderView());
+        commands.put("pdfgenerator",new PDFGenerator());
 
     }
 
@@ -51,7 +52,7 @@ abstract class Command
         return commands.getOrDefault(commandName, new UnknownCommand() );   // unknowncommand er default.
     }
 
-    abstract String execute( HttpServletRequest request, HttpServletResponse response )
+    abstract String execute(HttpServletRequest request, HttpServletResponse response )
             throws DatabaseException, SQLException;
 
 }

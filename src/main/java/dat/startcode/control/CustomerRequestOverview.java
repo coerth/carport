@@ -8,7 +8,6 @@ import dat.startcode.model.services.CarportRequestFacade;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 public class CustomerRequestOverview extends Command {
