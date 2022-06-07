@@ -32,8 +32,6 @@ abstract class Command
         commands.put("requestapprove", new RequestApprove());
         commands.put("orderoverview",new OrderOverview());
         commands.put("orderview",new OrderView());
-        //commands.put("showsvg",new ShowSVGWithNoShed("svgpage"));
-        //commands.put("showsvg",new ShowSVGWithShed("svgpage"));
         commands.put("customermodify", new CustomerModify());
         commands.put("customerprofile", new CustomerProfile());
         commands.put("customerrequestoverview", new CustomerRequestOverview());
