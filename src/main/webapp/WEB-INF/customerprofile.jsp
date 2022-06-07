@@ -14,12 +14,18 @@
 
     <jsp:body>
 
-        <form action="fc/" method="post">
-            <input type="hidden" name="command" value="customermodifyredirect"/>
-            <div class="mb-3">
-                <label for="name" class="form-label">Navn:</label>
-                <br>
-                <p type="text" class="form-label" id="name">${sessionScope.customer.name}</p>
+
+        <c:if test="${sessionScope.modificationDone == true}">
+            <div class="alert alert-success" role="alert">
+                    ${sessionScope.customerModified}
+            </div>
+        </c:if>
+            <form action="fc/" method="post">
+                <input type="hidden" name="command" value="customermodifyredirect"/>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Navn:</label>
+                    <br>
+                    <p type="text" class="form-label" id="name">${sessionScope.customer.name}</p>
 
             </div>
             <div class="mb-3">

@@ -58,7 +58,6 @@
             <button type="submit">Opdater</button>
         </form>
 
-
     </jsp:body>
 
 </t:pagetemplate>
