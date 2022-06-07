@@ -46,17 +46,13 @@
                 <input type="number" class="form-control" name="height" id="height" value="${requestScope.material.height}" required="required">
             </div>
             <div class="form-group">
-                <label for="typeId">Type ID</label>
-                <select name="typeId" class="form-control" id="typeId" required="required">
-                    <></>
+
+                <label for="typeName">Type navn</label>
+                <select name="typeName" class="form-control" id="typeName" required="required">
+                    <option>${requestScope.material.typeName}</option>
                     <c:forEach var="item" items="${requestScope.stringArrayList}">
                         <option><c:out value="${item}"></c:out></option>
-                    </c:forEach>
-
-
-<%--                    <c:forEach varStatus="loop" begin="1" end="3" step="1">--%>
-<%--                        <option><c:out value="${loop.current}"></c:out></option>--%>
-<%--                    </c:forEach></select>--%>
+                    </c:forEach></select>
             </div>
 
             <div style="margin-top: 10px; margin-bottom: 10px">
