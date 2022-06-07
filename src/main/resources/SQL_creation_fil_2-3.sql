@@ -365,7 +365,7 @@ INSERT INTO `carport`.`order`
 `carport_type`,
 `carport_request_id`)
 VALUES
-(2, '2022-02-20 00:00:00',3 , 1);
+(2, '2022-02-20 00:00:00',2 , 1);
 
 -- -----------------------------------------------------
 -- Table `carport`.`bill_of_materials`
