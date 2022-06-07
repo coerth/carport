@@ -42,6 +42,7 @@
                         <td>${requestScope.orderDTO.order.carportType}</td>
 
                     </tr>
+                </table>
                     <br>
                     Ordren indeholder:
                     <table class="table table-striped table-hover">
