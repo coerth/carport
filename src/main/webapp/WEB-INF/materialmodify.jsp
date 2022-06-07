@@ -48,14 +48,48 @@
             <div class="form-group">
                 <label for="typeId">Type ID</label>
                 <select name="typeId" class="form-control" id="typeId" required="required">
-                    <option value=""></option>
-                    <c:forEach varStatus="loop" begin="1" end="3" step="1">
-                        <option><c:out value="${loop.current}"></c:out></option>
-                    </c:forEach></select>
+                    <></>
+                    <c:forEach var="item" items="${requestScope.stringArrayList}">
+                        <option><c:out value="${item}"></c:out></option>
+                    </c:forEach>
+
+
+<%--                    <c:forEach varStatus="loop" begin="1" end="3" step="1">--%>
+<%--                        <option><c:out value="${loop.current}"></c:out></option>--%>
+<%--                    </c:forEach></select>--%>
             </div>
 
+            <div style="margin-top: 10px; margin-bottom: 10px">
             <button type="submit" class="btn btn-primary">Godkend</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Slet
+            </button>
+            </div>
         </form>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <button type="submit" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Er du sikker på du vil slette?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form action="fc/delete"><input type="hidden" name="command" value="deletematerial"/>
+                            <button id="delete" value="${requestScope.material.materialId}" name="delete" class="btn btn-danger">Bekræft</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 

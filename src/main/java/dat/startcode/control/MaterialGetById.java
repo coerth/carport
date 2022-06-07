@@ -21,6 +21,15 @@ public class MaterialGetById extends Command
 
         request.setAttribute("material", material);
 
+        ArrayList<String> stringArrayList = new ArrayList<>();
+
+        stringArrayList.add("Træ");
+        stringArrayList.add("Tagplader");
+        stringArrayList.add("Beslag, Hulbånd & Diverse");
+        stringArrayList.add("Skruer, Skiver & Bolte");
+
+        request.setAttribute("stringArrayList", stringArrayList);
+
         return "materialmodify";
     }
 }

@@ -14,15 +14,10 @@
 
     <jsp:body>
 
-
-        <div class="container" style="display: flex ; justify-content: center">
-            <div class="child">
-            <h1>Log ind</h1>
-            </div>
-            <div class="child">
-            <h3>Her kan du logge ind</h3>
-            </div>
-            <div class="child">
+        <div class="h-100 d-flex align-items-center justify-content-center" style="margin-top: 20px">
+        <h1>Log ind</h1>
+        </div>
+        <div class="h-100 d-flex align-items-center justify-content-center" style="margin-top: 50px">
         <form action="fc/login" method="post">
             <input type="hidden" name="command" value="login"/>
             <label for="email">Email: </label>
@@ -32,7 +27,6 @@
             <input type="submit"  value="Log ind"/>
         </form>
             </div>
-        </div>
 
     </jsp:body>
 </t:pagetemplate>

@@ -17,6 +17,7 @@ public class MaterialModify extends Command
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
     {
 
+        String message = "";
 
         int materialId = Integer.parseInt(request.getParameter("materialId"));
         String name = request.getParameter("name");
@@ -26,16 +27,44 @@ public class MaterialModify extends Command
         int width = Integer.parseInt(request.getParameter("width"));
         int height = Integer.parseInt(request.getParameter("height"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        int typeId = Integer.parseInt(request.getParameter("typeId"));
+        String typeName = request.getParameter("typeName");
+        int typeId = 0;
+
+        boolean error = false;
+
+        switch (typeName){
+            case "Træ":
+                typeId = 1;
+                break;
+            case "Tagplader":
+                typeId = 2;
+                break;
+            case "Beslag, Hulbånd & Diverse":
+                typeId = 3;
+                break;
+            case "Skruer, Skiver & Bolte":
+                typeId = 4;
+                break;
+            case "Vælg type":
+                message = "Ændring mislykkedes";
+                break;
+        }
+
+
 
          if(MaterialFacade.updateMaterial(new Material(materialId, name, price, unit, length, width, height, quantity, typeId), ApplicationStart.getConnectionPool()))
          {
-            ArrayList<Material> materialArrayList = new ArrayList<>();
-
-            materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
-            request.setAttribute("materialArrayList", materialArrayList);
+             message = "Succesfyld ændring";
          }
 
+
+
+        ArrayList<Material> materialArrayList = new ArrayList<>();
+
+        materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
+        request.setAttribute("materialArrayList", materialArrayList);
+
+        request.setAttribute("message", message);
 
         return "materialoverview";
     }

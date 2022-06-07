@@ -17,12 +17,13 @@ public class DeleteMaterial extends Command{
         HttpSession session = request.getSession();
         int materialId = Integer.parseInt(request.getParameter("delete"));
 
+
         System.out.println(MaterialFacade.deleteMaterial(materialId, ApplicationStart.getConnectionPool()));
 
         ArrayList<Material> materialArrayList = new ArrayList<>();
 
         materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
-        request.getServletContext().setAttribute("materialArrayList", materialArrayList);
+        request.setAttribute("materialArrayList", materialArrayList);
 
         System.out.println(materialId);
 
