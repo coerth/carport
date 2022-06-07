@@ -25,12 +25,6 @@
         <h4>Husk at kigge ordren igennem for fejl og mangler. Kontakt kundeservice hvis der er fejl i ordren</h4>
         <form id="form-print" enctype="text/plain">
             <thead>
-            <tr>
-                <th scope="col">Ordre id</th>
-                <th scope="col">Dato og tid</th>
-                <th scope="col">Kundens id</th>
-                <th scope="col">Carport type (1 = intet skur, 2 = skur)</th>
-
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
@@ -71,7 +65,6 @@
                                 <td>${item.description}</td>
                                 <td>${item.quantity}</td>
                                 <td>${item.price * item.quantity}</td>
-
                             </tr>
                         </c:forEach>
 
