@@ -24,7 +24,6 @@
 
         <h4>Husk at kigge ordren igennem for fejl og mangler. Kontakt kundeservice hvis der er fejl i ordren</h4>
         <form id="form-print" enctype="text/plain">
-            <thead>
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
