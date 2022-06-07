@@ -37,7 +37,7 @@
             <tbody>
             <c:forEach var="item" items="${requestScope.carportRequestArraylist}">
                 <tr>
-                    <th  scope="row">${item.requestId}</th>
+                    <th scope="row">${item.requestId}</th>
                     <td>${item.customerId}</td>
                     <td>${item.length}</td>
                     <td>${item.width}</td>
@@ -46,7 +46,12 @@
                     <td>${item.approved}</td>
                     <td>${item.shedLength}</td>
                     <td>${item.shedWidth}</td>
-                    <td><form action="fc/approveRequest" method="post"><input type="hidden" name="command" value="requestview"/><button name="requestId" value="${item.requestId}">Vis</button></form></td>
+                    <td>
+                        <form action="fc/approveRequest" method="post"><input type="hidden" name="command"
+                                                                              value="requestview"/>
+                            <button name="requestId" value="${item.requestId}">Vis</button>
+                        </form>
+                    </td>
                 </tr>
                 <br>
             </c:forEach>

@@ -9,7 +9,6 @@ public class SVG {
     private int width;
     private int height;
 
-
     private final String headerTemplate = "<svg height=\"%d\" " +
             "width=\"%d\" " +
             "viewBox=\"%s\" " +

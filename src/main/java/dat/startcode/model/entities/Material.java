@@ -1,17 +1,16 @@
 package dat.startcode.model.entities;
 
-public class Material
-{
-   private int materialId;
-   private String name;
-   private int price;
-   private String unit;
-   private int length;
-   private int width;
-   private int height;
-   private int typeId;
-   private String typeName;
-   private int quantity;
+public class Material {
+    private int materialId;
+    private String name;
+    private int price;
+    private String unit;
+    private int length;
+    private int width;
+    private int height;
+    private int typeId;
+    private String typeName;
+    private int quantity;
 
     public Material(int materialId, String name, int price, String unit, int typeId) {
         this.materialId = materialId;
@@ -98,7 +97,6 @@ public class Material
     public int getHeight() {
         return height;
     }
-
 
 
     @Override

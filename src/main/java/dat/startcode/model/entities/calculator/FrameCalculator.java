@@ -5,32 +5,29 @@ import dat.startcode.model.entities.Material;
 
 import java.util.ArrayList;
 
-public class FrameCalculator
-{
+public class FrameCalculator {
     GeneralCalculator generalCalculator = new GeneralCalculator();
-
-
 
     public ArrayList<Bomline> calculateFrontUnderStern(ArrayList<Material> underSternArrayList, int rafterLength) {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
         Material frontUnderStern = generalCalculator.calculateMaterialLength(rafterLength, underSternArrayList);
-        if(frontUnderStern == null) {
-            ArrayList<Material> frontUnderSternArrayList = generalCalculator.calculateMaterialIfMoreThanOneIsNeeded(rafterLength +5, underSternArrayList);
+        if (frontUnderStern == null) {
+            ArrayList<Material> frontUnderSternArrayList = generalCalculator.calculateMaterialIfMoreThanOneIsNeeded(rafterLength + 5, underSternArrayList);
 
 
-            if(frontUnderSternArrayList.size()==1) {
-                Bomline bomline = new Bomline(1, frontUnderSternArrayList.get(0),4);
+            if (frontUnderSternArrayList.size() == 1) {
+                Bomline bomline = new Bomline(1, frontUnderSternArrayList.get(0), 4);
                 bomlineArrayList.add(bomline);
                 return bomlineArrayList;
             }
             for (Material material : frontUnderSternArrayList) {
 
 
-                Bomline bomline = new Bomline(1,material,2);
+                Bomline bomline = new Bomline(1, material, 2);
                 bomlineArrayList.add(bomline);
             }
         } else {
-            Bomline bomline = new Bomline(1, frontUnderStern,2);
+            Bomline bomline = new Bomline(1, frontUnderStern, 2);
 
             bomlineArrayList.add(bomline);
         }
@@ -41,54 +38,57 @@ public class FrameCalculator
     public ArrayList<Bomline> calculateFrontOverStern(ArrayList<Material> overSternArrayList, int rafterLength) {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
         Material frontOverStern = generalCalculator.calculateMaterialLength(rafterLength, overSternArrayList);
-        if(frontOverStern == null) {
-            ArrayList<Material> frontOverSternArrayList = generalCalculator.calculateMaterialIfMoreThanOneIsNeeded(rafterLength +5, overSternArrayList);
+        if (frontOverStern == null) {
+            ArrayList<Material> frontOverSternArrayList = generalCalculator.calculateMaterialIfMoreThanOneIsNeeded(rafterLength + 5, overSternArrayList);
 
-            if(overSternArrayList.size()==1) {
-                Bomline bomline = new Bomline(1, frontOverSternArrayList.get(0),2);
+            if (overSternArrayList.size() == 1) {
+                Bomline bomline = new Bomline(1, frontOverSternArrayList.get(0), 2);
                 bomlineArrayList.add(bomline);
                 return bomlineArrayList;
             }
             for (Material material : frontOverSternArrayList) {
 
-                Bomline bomline = new Bomline(1,material,2);
+                Bomline bomline = new Bomline(1, material, 2);
                 bomlineArrayList.add(bomline);
             }
         } else {
-            Bomline bomline = new Bomline(1, frontOverStern,2);
+            Bomline bomline = new Bomline(1, frontOverStern, 2);
             bomlineArrayList.add(bomline);
-        } return bomlineArrayList;
+        }
+        return bomlineArrayList;
     }
 
     public ArrayList<Bomline> calculateSideOverStern(ArrayList<Material> sternArrayList, int carportLength) {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
         Material sideStern = generalCalculator.calculateMaterialLength(carportLength, sternArrayList);
-        if(sideStern == null) {
-            ArrayList<Material> sideSternArrayList = generalCalculator.calculateMaterialIfMoreThanOneIsNeeded(carportLength,sternArrayList);
-            for(Material material : sideSternArrayList) {
-                Bomline bomline = new Bomline(4, material,2);
+        if (sideStern == null) {
+            ArrayList<Material> sideSternArrayList = generalCalculator.calculateMaterialIfMoreThanOneIsNeeded(carportLength, sternArrayList);
+            for (Material material : sideSternArrayList) {
+                Bomline bomline = new Bomline(4, material, 2);
                 bomlineArrayList.add(bomline);
             }
-        }else {
-            Bomline bomline = new Bomline(4, sideStern,2);
+        } else {
+            Bomline bomline = new Bomline(4, sideStern, 2);
             bomlineArrayList.add(bomline);
-        }return bomlineArrayList;
+        }
+        return bomlineArrayList;
     }
 
 
     public ArrayList<Bomline> calculateSideUnderStern(ArrayList<Material> sternArrayList, int carportLength) {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
         Material sideStern = generalCalculator.calculateMaterialLength(carportLength, sternArrayList);
-        if(sideStern == null) {
-            ArrayList<Material> sideSternArrayList = generalCalculator.calculateMaterialIfMoreThanOneIsNeeded(carportLength,sternArrayList);
-            for(Material material : sideSternArrayList) {
-                Bomline bomline = new Bomline(2, material,2);
+        if (sideStern == null) {
+            ArrayList<Material> sideSternArrayList = generalCalculator.calculateMaterialIfMoreThanOneIsNeeded(carportLength, sternArrayList);
+            for (Material material : sideSternArrayList) {
+                Bomline bomline = new Bomline(2, material, 2);
                 bomlineArrayList.add(bomline);
             }
-        }else {
-            Bomline bomline = new Bomline(2, sideStern,2);
+        } else {
+            Bomline bomline = new Bomline(2, sideStern, 2);
             bomlineArrayList.add(bomline);
-        }return bomlineArrayList;
+        }
+        return bomlineArrayList;
     }
 
     public ArrayList<Bomline> calculateWeatherBoardForSide(ArrayList<Material> weatherBoardArrayList, int carportLength) {
@@ -133,8 +133,7 @@ public class FrameCalculator
         return bomlineArrayList;
     }
 
-    public float calculateRaftersDistance(float carportLength, int rafters)
-    {
+    public float calculateRaftersDistance(float carportLength, int rafters) {
 
         float newDistance = 0;
         float rafterWidth = 4.5f;
@@ -161,7 +160,7 @@ public class FrameCalculator
         return bomline;
     }
 
-    public ArrayList <Bomline> calculateHead (int carportLength, ArrayList<Material> headArrayList, int shedLength) {
+    public ArrayList<Bomline> calculateHead(int carportLength, ArrayList<Material> headArrayList, int shedLength) {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
         Material head = generalCalculator.calculateMaterialLength(carportLength - shedLength, headArrayList);
 
@@ -177,35 +176,30 @@ public class FrameCalculator
             throw new ArithmeticException("Kunne ikke finde en rem som passer til dit skur");
         }
 
-        bomlineArrayList.add(new Bomline(8,head,2));
-        bomlineArrayList.add(new Bomline(9,headForShed,1));
+        bomlineArrayList.add(new Bomline(8, head, 2));
+        bomlineArrayList.add(new Bomline(9, headForShed, 1));
 
 
         return bomlineArrayList;
     }
 
-    public ArrayList<Bomline> calculateNoggingAndBracket(int shedLength, ArrayList<Material> noggingArrayList)
-    {
+    public ArrayList<Bomline> calculateNoggingAndBracket(int shedLength, ArrayList<Material> noggingArrayList) {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
 
         Material noggingTheShortOne = generalCalculator.calculateMaterialLength(shedLength, noggingArrayList);
 
-        if(noggingTheShortOne == null)
-        {
+        if (noggingTheShortOne == null) {
             ArrayList<Material> shortNoggingArraylist = generalCalculator.calculateMaterialIfMoreThanOneIsNeeded(shedLength, noggingArrayList);
-            for(Material material : shortNoggingArraylist)
-            {
+            for (Material material : shortNoggingArraylist) {
                 bomlineArrayList.add(new Bomline(6, material, 4));
             }
-        }
-        else
-        {
+        } else {
             bomlineArrayList.add(new Bomline(6, noggingTheShortOne, 4));
         }
 
-            Material noggingTheLongOne = generalCalculator.calculateMaterialLength(250, noggingArrayList);
+        Material noggingTheLongOne = generalCalculator.calculateMaterialLength(250, noggingArrayList);
 
-        bomlineArrayList.add(new Bomline(7, noggingTheLongOne,12));
+        bomlineArrayList.add(new Bomline(7, noggingTheLongOne, 12));
 
         return bomlineArrayList;
     }

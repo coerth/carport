@@ -7,11 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CustomerProfile extends Command {
 
-
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
         return "customerprofile";
     }
-
 }

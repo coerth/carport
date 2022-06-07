@@ -10,18 +10,15 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CustomerMapper implements ICustomerMapper
-{
+public class CustomerMapper implements ICustomerMapper {
     ConnectionPool connectionPool;
 
-    public CustomerMapper(ConnectionPool connectionPool)
-    {
+    public CustomerMapper(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
     }
 
     @Override
-    public Customer createCustomer(String name, String address, String city, int zip, int mobile, String email, String password) throws DatabaseException
-    {
+    public Customer createCustomer(String name, String address, String city, int zip, int mobile, String email, String password) throws DatabaseException {
         AccountMapper accountMapper = new AccountMapper(connectionPool);
 
         int accountId = accountMapper.createAccount(email, password, 2);
@@ -31,10 +28,8 @@ public class CustomerMapper implements ICustomerMapper
         Logger.getLogger("web").log(Level.INFO, "");
         Customer customer;
         String sql = "insert into customer (name, address, city, zip, mobile, account_id) values (?,?,?,?,?,?)";
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS))
-            {
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, name);
                 ps.setString(2, address);
                 ps.setString(3, city);
@@ -43,26 +38,22 @@ public class CustomerMapper implements ICustomerMapper
                 ps.setInt(6, accountId);
                 int rowsAffected = ps.executeUpdate();
                 ResultSet rs = ps.getGeneratedKeys();
-                if (rowsAffected == 1)
-                {
+                if (rowsAffected == 1) {
                     rs.next();
                     customerId = rs.getInt(1);
                     customer = new Customer(email, password, 2, customerId, name, address, city, zip, mobile, accountId);
-                } else
-                {
+                } else {
                     throw new DatabaseException("The customer with name = " + name + " could not be inserted into the database");
                 }
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             throw new DatabaseException(ex, "Could not insert username into database");
         }
         return customer;
     }
 
     @Override
-    public int getCustomerId(int mobile) throws DatabaseException{
+    public int getCustomerId(int mobile) throws DatabaseException {
 
         Logger.getLogger("web").log(Level.INFO, "");
         String sql = "SELECT * FROM customer WHERE mobile = ?";
@@ -73,14 +64,14 @@ public class CustomerMapper implements ICustomerMapper
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, mobile);
                 ResultSet rs = ps.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     customerId = rs.getInt("customer_id");
                 }
-                if(customerId==0){
+                if (customerId == 0) {
                     throw new DatabaseException("Kunne ikke finde customer_id");
                 }
             }
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             throw new DatabaseException(ex, "Kunne ikke finde customer:id");
         }
 
@@ -94,16 +85,13 @@ public class CustomerMapper implements ICustomerMapper
         Customer customer = null;
 
 
-        try (Connection connection = connectionPool.getConnection())
-        {
+        try (Connection connection = connectionPool.getConnection()) {
 
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, customerId);
 
                 ResultSet rs = ps.executeQuery();
-                if (rs.next())
-                {
+                if (rs.next()) {
                     String name = rs.getString("name");
                     String address = rs.getString("address");
                     String city = rs.getString("city");
@@ -132,8 +120,8 @@ public class CustomerMapper implements ICustomerMapper
         String sql = "UPDATE `customer` SET `name` = ?, `address` = ?, `city` = ?, `zip` = ?, `mobile` = ?  WHERE `customer_id` = ?";
 
 
-        try(Connection connection = connectionPool.getConnection()){
-            try(PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, customer.getName());
                 ps.setString(2, customer.getAddress());
                 ps.setString(3, customer.getCity());
@@ -143,7 +131,7 @@ public class CustomerMapper implements ICustomerMapper
 
                 int rowsAffected = ps.executeUpdate();
 
-                if(rowsAffected == 1){
+                if (rowsAffected == 1) {
                     return true;
                 }
             }
@@ -155,7 +143,7 @@ public class CustomerMapper implements ICustomerMapper
     }
 
     @Override
-    public Customer customerAccount(Account account) throws DatabaseException{
+    public Customer customerAccount(Account account) throws DatabaseException {
 
         Logger.getLogger("web").log(Level.INFO, "");
         String sql = "SELECT * FROM customer WHERE account_id = ?";
@@ -167,7 +155,7 @@ public class CustomerMapper implements ICustomerMapper
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, account.getAccountId());
                 ResultSet rs = ps.executeQuery();
-                if(rs.next()){
+                if (rs.next()) {
                     int customerId = rs.getInt("customer_id");
                     String name = rs.getString("name");
                     String address = rs.getString("address");
@@ -175,19 +163,17 @@ public class CustomerMapper implements ICustomerMapper
                     int zip = rs.getInt("zip");
                     int mobile = rs.getInt("mobile");
 
-                    customer = new Customer(account.getEmail(), account.getPassword(),account.getRole(), customerId, name, address, city, zip, mobile, account.getAccountId());
+                    customer = new Customer(account.getEmail(), account.getPassword(), account.getRole(), customerId, name, address, city, zip, mobile, account.getAccountId());
                     return customer;
                 }
 
             }
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             throw new DatabaseException(ex, "Kunne ikke finde customer:id");
         }
 
         return customer;
     }
-
-
 
 
 }

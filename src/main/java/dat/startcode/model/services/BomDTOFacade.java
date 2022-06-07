@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class BomDTOFacade {
 
-    public static ArrayList<BomDTO> getBomlineWithInfo (int bomId, ConnectionPool connectionPool) {
+    public static ArrayList<BomDTO> getBomlineWithInfo(int bomId, ConnectionPool connectionPool) {
 
         BomDTOMapper bomDTOMapper = new BomDTOMapper(connectionPool);
 

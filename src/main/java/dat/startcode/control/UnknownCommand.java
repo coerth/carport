@@ -8,12 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 public class UnknownCommand extends Command {
 
     @Override
-    String execute( HttpServletRequest request, HttpServletResponse response ) throws DatabaseException
-    {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
         String command = request.getParameter("command");
         String msg = "Unknown command. Contact IT";
-        throw new DatabaseException( msg + " " + command);
+        throw new DatabaseException(msg + " " + command);
     }
 
 }

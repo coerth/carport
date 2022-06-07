@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 public class OrderFacade {
 
-    public static int createOrder (int customerId, LocalDateTime date, int carportType, int carportRequestId, ConnectionPool connectionPool) {
+    public static int createOrder(int customerId, LocalDateTime date, int carportType, int carportRequestId, ConnectionPool connectionPool) {
         OrderMapper orderMapper = new OrderMapper(connectionPool);
-        return orderMapper.createOrder(customerId,date, carportType, carportRequestId);
+        return orderMapper.createOrder(customerId, date, carportType, carportRequestId);
     }
 
     public static ArrayList<Order> getAllOrders(ConnectionPool connectionPool) {
@@ -24,7 +24,7 @@ public class OrderFacade {
         return orderMapper.getAllOrdersFromSpecificCustomer(customerId);
     }
 
-    public static Order getSpecificOrder (int orderId, ConnectionPool connectionPool) {
+    public static Order getSpecificOrder(int orderId, ConnectionPool connectionPool) {
         OrderMapper orderMapper = new OrderMapper(connectionPool);
         return orderMapper.getSpecificOrder(orderId);
     }

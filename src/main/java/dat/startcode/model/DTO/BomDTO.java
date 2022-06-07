@@ -16,9 +16,9 @@ public class BomDTO {
     int height;
     int mQuantity;
 
-
     public BomDTO(int bomId, int bomlineId, String name, int length, int quantity, String unit, String description, int materialId, int price, int typeId, int width, int height, int mQuantity) {
         this.bomId = bomId;
+        this.bomlineId = bomlineId;
         this.name = name;
         this.length = length;
         this.quantity = quantity;
@@ -43,6 +43,7 @@ public class BomDTO {
     public int getBomlineId() {
         return bomlineId;
     }
+
     public int getLength() {
         return length;
     }

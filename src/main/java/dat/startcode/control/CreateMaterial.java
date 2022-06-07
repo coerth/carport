@@ -7,10 +7,10 @@ import dat.startcode.model.services.MaterialFacade;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
-public class CreateMaterial extends Command{
+public class CreateMaterial extends Command {
+
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
@@ -23,8 +23,7 @@ public class CreateMaterial extends Command{
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         int typeId = Integer.parseInt(request.getParameter("typeId"));
 
-        if(MaterialFacade.createNewMaterial(name, price, unit, length, typeId, width, height, quantity, ApplicationStart.getConnectionPool()))
-        {
+        if (MaterialFacade.createNewMaterial(name, price, unit, length, typeId, width, height, quantity, ApplicationStart.getConnectionPool())) {
             boolean creationSuccess = true;
             String creationMessage = "Materiale oprettet";
 

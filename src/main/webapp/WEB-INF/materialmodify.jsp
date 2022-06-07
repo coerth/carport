@@ -19,31 +19,38 @@
             <input type="hidden" name="materialId" value="${requestScope.material.materialId}">
             <div class="form-group">
                 <label for="name">Navn</label>
-                <input type="text" class="form-control" name="name" id="name" value="${requestScope.material.name}" required="required">
+                <input type="text" class="form-control" name="name" id="name" value="${requestScope.material.name}"
+                       required="required">
             </div>
             <div class="form-group">
                 <label for="price">Pris</label>
-                <input type="number" class="form-control" name="price" id="price" value="${requestScope.material.price}" required="required">
+                <input type="number" class="form-control" name="price" id="price" value="${requestScope.material.price}"
+                       required="required">
             </div>
             <div class="form-group">
                 <label for="unit">Enhed</label>
-                <input type="text" class="form-control" name="unit" id="unit" value="${requestScope.material.unit}" required="required">
+                <input type="text" class="form-control" name="unit" id="unit" value="${requestScope.material.unit}"
+                       required="required">
             </div>
             <div class="form-group">
                 <label for="unit">Antal</label>
-                <input type="text" class="form-control" name="quantity" id="quantity" value="${requestScope.material.quantity}" required="required">
+                <input type="text" class="form-control" name="quantity" id="quantity"
+                       value="${requestScope.material.quantity}" required="required">
             </div>
             <div class="form-group">
                 <label for="length">Længde</label>
-                <input type="number" class="form-control" name="length" id="length" value="${requestScope.material.length}" required="required">
+                <input type="number" class="form-control" name="length" id="length"
+                       value="${requestScope.material.length}" required="required">
             </div>
             <div class="form-group">
                 <label for="width">Bredde</label>
-                <input type="number" class="form-control" name="width" id="width" value="${requestScope.material.width}" required="required">
+                <input type="number" class="form-control" name="width" id="width" value="${requestScope.material.width}"
+                       required="required">
             </div>
             <div class="form-group">
                 <label for="height">Højde</label>
-                <input type="number" class="form-control" name="height" id="height" value="${requestScope.material.height}" required="required">
+                <input type="number" class="form-control" name="height" id="height"
+                       value="${requestScope.material.height}" required="required">
             </div>
             <div class="form-group">
 
@@ -56,16 +63,17 @@
             </div>
 
             <div style="margin-top: 10px; margin-bottom: 10px">
-            <button type="submit" class="btn btn-primary">Godkend</button>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Slet
-            </button>
+                <button type="submit" class="btn btn-primary">Godkend</button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Slet
+                </button>
             </div>
         </form>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal"
+             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -80,13 +88,14 @@
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <form action="fc/delete"><input type="hidden" name="command" value="deletematerial"/>
-                            <button id="delete" value="${requestScope.material.materialId}" name="delete" class="btn btn-danger">Bekræft</button>
+                            <button id="delete" value="${requestScope.material.materialId}" name="delete"
+                                    class="btn btn-danger">Bekræft
+                            </button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
 
 
     </jsp:body>

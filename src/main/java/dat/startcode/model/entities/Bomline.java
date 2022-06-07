@@ -99,6 +99,6 @@ public class Bomline {
                 ", bomId=" + bomId +
                 ", bomlineId=" + bomlineId +
                 ", materialId=" + materialId +
-                '}'+"\n";
+                '}' + "\n";
     }
 }

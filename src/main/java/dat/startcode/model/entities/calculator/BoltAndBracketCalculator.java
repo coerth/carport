@@ -5,8 +5,7 @@ import dat.startcode.model.entities.Material;
 
 import java.util.ArrayList;
 
-public class BoltAndBracketCalculator
-{
+public class BoltAndBracketCalculator {
 
     BoxCalculator boxCalculator = new BoxCalculator();
 
@@ -43,13 +42,13 @@ public class BoltAndBracketCalculator
     }
 
 
-    public int calculateCarriageBoltWithShed(int postAmountWithShed){
+    public int calculateCarriageBoltWithShed(int postAmountWithShed) {
         int carriageBolt = 2;
         int carriageboltToHead = 2;
 
         postAmountWithShed -= 3;
 
-        carriageBolt = carriageBolt * postAmountWithShed ;
+        carriageBolt = carriageBolt * postAmountWithShed;
 
         return carriageBolt + carriageboltToHead;
 
@@ -103,8 +102,7 @@ public class BoltAndBracketCalculator
 
     }
 
-    public Bomline carriageBolt(Material material, int postAmount)
-    {
+    public Bomline carriageBolt(Material material, int postAmount) {
         int bolt = calculateCarriageBolt(postAmount);
 
         Bomline bomline = new Bomline(21, material, bolt);
@@ -148,13 +146,13 @@ public class BoltAndBracketCalculator
         return bomline;
     }
 
-    public ArrayList<Bomline> addWoodForZPlusHandleAndHingeForDoor (Material zForDoor, Material doorHandle,Material tHinge) {
+    public ArrayList<Bomline> addWoodForZPlusHandleAndHingeForDoor(Material zForDoor, Material doorHandle, Material tHinge) {
 
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
 
-        Bomline bomline1 = new Bomline(5, zForDoor,1);
-        Bomline bomline2 = new Bomline(24, doorHandle,1);
-        Bomline bomline3 = new Bomline(25, tHinge,2);
+        Bomline bomline1 = new Bomline(5, zForDoor, 1);
+        Bomline bomline2 = new Bomline(24, doorHandle, 1);
+        Bomline bomline3 = new Bomline(25, tHinge, 2);
 
         bomlineArrayList.add(bomline1);
         bomlineArrayList.add(bomline2);
@@ -164,19 +162,17 @@ public class BoltAndBracketCalculator
 
     }
 
-    public Bomline screwsForSternAndWeatherBoard(Material material)
-    {
+    public Bomline screwsForSternAndWeatherBoard(Material material) {
         return new Bomline(18, material, 1);
     }
 
-    public Bomline perforatedTape(Material material)
-    {
+    public Bomline perforatedTape(Material material) {
         return new Bomline(17, material, 2);
     }
 
-    public Bomline calculateAngleBracket (int noggingAmount, Material material) {
+    public Bomline calculateAngleBracket(int noggingAmount, Material material) {
 
-        Bomline bomline = new Bomline(26, material,noggingAmount*2);
+        Bomline bomline = new Bomline(26, material, noggingAmount * 2);
         return bomline;
     }
 

@@ -1,8 +1,6 @@
 package dat.startcode.model.DTO;
 
-import dat.startcode.model.entities.Bomline;
 import dat.startcode.model.entities.Order;
-
 
 import java.util.ArrayList;
 

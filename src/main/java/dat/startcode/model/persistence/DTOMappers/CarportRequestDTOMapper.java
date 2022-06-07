@@ -23,12 +23,12 @@ public class CarportRequestDTOMapper implements ICarportRequestDTOMapper {
 
         CarportRequestDTO carportRequestDTO = null;
 
-        try(Connection connection = connectionPool.getConnection()) {
-            try(PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, carportRequestId);
 
                 ResultSet rs = ps.executeQuery();
-                if(rs.next()) {
+                if (rs.next()) {
                     int customerId = rs.getInt("customer_id");
                     int width = rs.getInt("width");
                     int length = rs.getInt("length");
@@ -44,7 +44,7 @@ public class CarportRequestDTOMapper implements ICarportRequestDTOMapper {
                     int mobile = rs.getInt("mobile");
                     int accountId = rs.getInt("account_id");
 
-                    carportRequestDTO = new CarportRequestDTO(customerId,carportRequestId,width,length,roof,roofIncline,isApproved,shedLength,shedWidth,name,address,city,zip,mobile,accountId);
+                    carportRequestDTO = new CarportRequestDTO(customerId, carportRequestId, width, length, roof, roofIncline, isApproved, shedLength, shedWidth, name, address, city, zip, mobile, accountId);
                     return carportRequestDTO;
                 }
             }

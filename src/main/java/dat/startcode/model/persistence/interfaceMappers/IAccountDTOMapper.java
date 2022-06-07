@@ -4,6 +4,6 @@ import dat.startcode.model.DTO.AccountDTO;
 
 public interface IAccountDTOMapper {
 
-    AccountDTO getAccountAndCustomerDTO (int customerId);
+    AccountDTO getAccountAndCustomerDTO(int customerId);
 
 }

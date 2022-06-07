@@ -33,17 +33,17 @@
             </thead>
             <tbody>
 
-                <tr>
-                    <th  scope="row">${requestScope.carportRequestDTO.carportRequestId}</th>
-                    <td>${requestScope.carportRequestDTO.length}</td>
-                    <td>${requestScope.carportRequestDTO.width}</td>
-                    <td>${requestScope.carportRequestDTO.roof}</td>
-                    <td>${requestScope.carportRequestDTO.roofIncline}</td>
-                    <td>${requestScope.carportRequestDTO.approved}</td>
-                    <td>${requestScope.carportRequestDTO.shedLength}</td>
-                    <td>${requestScope.carportRequestDTO.shedWidth}</td>
-                </tr>
-                <br>
+            <tr>
+                <th scope="row">${requestScope.carportRequestDTO.carportRequestId}</th>
+                <td>${requestScope.carportRequestDTO.length}</td>
+                <td>${requestScope.carportRequestDTO.width}</td>
+                <td>${requestScope.carportRequestDTO.roof}</td>
+                <td>${requestScope.carportRequestDTO.roofIncline}</td>
+                <td>${requestScope.carportRequestDTO.approved}</td>
+                <td>${requestScope.carportRequestDTO.shedLength}</td>
+                <td>${requestScope.carportRequestDTO.shedWidth}</td>
+            </tr>
+            <br>
             </tbody>
         </table>
 
@@ -59,18 +59,26 @@
             </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th  scope="row">${requestScope.carportRequestDTO.customerId}</th>
-                    <td>${requestScope.carportRequestDTO.name}</td>
-                    <td>${requestScope.carportRequestDTO.address}</td>
-                    <td>${requestScope.carportRequestDTO.mobile}</td>
-                </tr>
-                <br>
+            <tr>
+                <th scope="row">${requestScope.carportRequestDTO.customerId}</th>
+                <td>${requestScope.carportRequestDTO.name}</td>
+                <td>${requestScope.carportRequestDTO.address}</td>
+                <td>${requestScope.carportRequestDTO.mobile}</td>
+            </tr>
+            <br>
             </tbody>
         </table>
 
-        <form action="fc/approveRequest" method="post"><input type="hidden" name="command" value="requestapprove"/><button name="requestId" class="btn btn-success" value="${requestScope.carportRequestDTO.carportRequestId}">Godkend</button></form>
-        <form action="fc/denyRequest" method="post"><input type="hidden" name="command" value="requestdeny"/><button name="requestId" class="btn btn-outline-danger" value="${requestScope.carportRequestDTO.carportRequestId}">Afvis</button></form>
+        <form action="fc/approveRequest" method="post"><input type="hidden" name="command" value="requestapprove"/>
+            <button name="requestId" class="btn btn-success" value="${requestScope.carportRequestDTO.carportRequestId}">
+                Godkend
+            </button>
+        </form>
+        <form action="fc/denyRequest" method="post"><input type="hidden" name="command" value="requestdeny"/>
+            <button name="requestId" class="btn btn-outline-danger"
+                    value="${requestScope.carportRequestDTO.carportRequestId}">Afvis
+            </button>
+        </form>
 
 
     </jsp:body>

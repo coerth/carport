@@ -12,20 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-public class Login extends Command
-{
+public class Login extends Command {
     private ConnectionPool connectionPool;
 
-    public Login()
-    {
+    public Login() {
 
         this.connectionPool = ApplicationStart.getConnectionPool();
     }
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
-    {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
         HttpSession session = request.getSession();
         session.setAttribute("account", null); // adding empty user object to session scope
 
@@ -36,18 +32,15 @@ public class Login extends Command
 
         System.out.println(account);
 
-        Customer customer = CustomerFacade.customerAccount(account,connectionPool);
+        Customer customer = CustomerFacade.customerAccount(account, connectionPool);
 
         System.out.println(customer);
 
 
-        if(customer != null)
-        {
+        if (customer != null) {
             session.setAttribute("customer", customer);
             return "index";
-        }
-        else
-        {
+        } else {
             session.setAttribute("account", account); // adding user object to session scope
             return "index";
         }

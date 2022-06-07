@@ -31,7 +31,7 @@ public class CustomerModify extends Command {
         int zip = Integer.parseInt(request.getParameter("zip"));
         int mobile = Integer.parseInt(request.getParameter("mobile"));
 
-        if(!customer.getEmail().equals(email) || !customer.getPassword().equals(password)){
+        if (!customer.getEmail().equals(email) || !customer.getPassword().equals(password)) {
             AccountFacade.updateAccount(new Account(email, password, role, accountId), ApplicationStart.getConnectionPool());
         }
 

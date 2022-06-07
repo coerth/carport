@@ -9,13 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
-public class OrderOverview extends Command{
+public class OrderOverview extends Command {
+
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
         ArrayList<Order> orderArraylist = OrderFacade.getAllOrders(ApplicationStart.getConnectionPool());
 
-        request.setAttribute("orderArraylist",orderArraylist);
+        request.setAttribute("orderArraylist", orderArraylist);
         return "orderoverview";
     }
 }

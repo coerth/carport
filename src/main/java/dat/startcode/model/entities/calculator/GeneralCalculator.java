@@ -4,9 +4,10 @@ import dat.startcode.model.entities.Material;
 
 import java.util.ArrayList;
 
-public class GeneralCalculator
-{
+public class GeneralCalculator {
+
     public int calculateXDistance(int carportLength) {
+
         int minDistanceFromStern = 45;
         int distanceBetweenPost = carportLength - minDistanceFromStern * 2;
         int post1 = minDistanceFromStern;
@@ -60,7 +61,7 @@ public class GeneralCalculator
                 break;
             }
         }
-        if(material1 == material2) {
+        if (material1 == material2) {
             materialArrayList.add(material1);
             return materialArrayList;
         }
@@ -68,7 +69,6 @@ public class GeneralCalculator
         materialArrayList.add(material2);
         return materialArrayList;
     }
-
 
 
 }

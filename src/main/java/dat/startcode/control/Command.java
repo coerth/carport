@@ -7,8 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-abstract class Command
-{
+abstract class Command {
 
     private static HashMap<String, Command> commands;
 
@@ -16,7 +15,6 @@ abstract class Command
         commands = new HashMap<>();
         commands.put("login", new Login());
         commands.put("logout", new Logout());
-        commands.put("about", new About());
         commands.put("register", new Register());
         commands.put("startup", new StartUp());
         commands.put("materialoverview", new MaterialOverview());
@@ -30,8 +28,8 @@ abstract class Command
         commands.put("requestview", new RequestView());
         commands.put("requestdeny", new RequestDeny());
         commands.put("requestapprove", new RequestApprove());
-        commands.put("orderoverview",new OrderOverview());
-        commands.put("orderview",new OrderView());
+        commands.put("orderoverview", new OrderOverview());
+        commands.put("orderview", new OrderView());
         commands.put("customermodify", new CustomerModify());
         commands.put("customerprofile", new CustomerProfile());
         commands.put("customerrequestoverview", new CustomerRequestOverview());
@@ -42,15 +40,15 @@ abstract class Command
 
     }
 
-    static Command from( HttpServletRequest request ) {
-        String commandName = request.getParameter( "command" );
-        if ( commands == null ) {
+    static Command from(HttpServletRequest request) {
+        String commandName = request.getParameter("command");
+        if (commands == null) {
             initCommands();
         }
-        return commands.getOrDefault(commandName, new UnknownCommand() );   // unknowncommand er default.
+        return commands.getOrDefault(commandName, new UnknownCommand());   // unknowncommand er default.
     }
 
-    abstract String execute(HttpServletRequest request, HttpServletResponse response )
+    abstract String execute(HttpServletRequest request, HttpServletResponse response)
             throws DatabaseException, SQLException;
 
 }

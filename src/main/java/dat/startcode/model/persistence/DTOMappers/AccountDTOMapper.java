@@ -10,11 +10,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AccountDTOMapper implements IAccountDTOMapper {
-        ConnectionPool connectionPool;
+    ConnectionPool connectionPool;
 
-        public AccountDTOMapper (ConnectionPool connectionPool) {
-            this.connectionPool = connectionPool;
-        }
+    public AccountDTOMapper(ConnectionPool connectionPool) {
+        this.connectionPool = connectionPool;
+    }
 
     @Override
     public AccountDTO getAccountAndCustomerDTO(int customerId) {
@@ -23,12 +23,12 @@ public class AccountDTOMapper implements IAccountDTOMapper {
 
         AccountDTO accountDTO = null;
 
-        try(Connection connection = connectionPool.getConnection()) {
-            try(PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1,customerId);
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, customerId);
 
                 ResultSet rs = ps.executeQuery();
-                if(rs.next()) {
+                if (rs.next()) {
                     int accountId = rs.getInt("account_id");
                     String email = rs.getString("email");
                     String password = rs.getString("password");
@@ -38,7 +38,7 @@ public class AccountDTOMapper implements IAccountDTOMapper {
                     String city = rs.getString("city");
                     int zip = rs.getInt("zip");
 
-                    accountDTO = new AccountDTO(accountId,email,password,role,customerId,name,address,city,zip);
+                    accountDTO = new AccountDTO(accountId, email, password, role, customerId, name, address, city, zip);
                     return accountDTO;
                 }
             }

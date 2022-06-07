@@ -2,7 +2,6 @@ package dat.startcode.model.entities;
 
 public class CarportRequest {
 
-
     @Override
     public String toString() {
         return "CarportRequest{" +
@@ -25,7 +24,7 @@ public class CarportRequest {
     int customerId;
     boolean isApproved;
 
-    public CarportRequest(int requestId, int width, int length, String roofType,int roofIncline, boolean isApproved, int shedLength, int shedWidth, int customerId) {
+    public CarportRequest(int requestId, int width, int length, String roofType, int roofIncline, boolean isApproved, int shedLength, int shedWidth, int customerId) {
         this.width = width;
         this.length = length;
         this.roofType = roofType;
@@ -38,15 +37,15 @@ public class CarportRequest {
     }
 
 
-
     public CarportRequest(int width, int length, String roofType, int shedLength, int shedWidth, int customerId) {
         this.width = width;
         this.length = length;
-        this.roofType  = roofType;
+        this.roofType = roofType;
         this.shedLength = shedLength;
         this.shedWidth = shedWidth;
         this.customerId = customerId;
     }
+
     public int getWidth() {
         return width;
     }

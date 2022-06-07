@@ -35,25 +35,25 @@
             <tbody>
             <c:forEach var="item" items="${requestScope.carportRequestArraylist}">
                 <tr>
-                    <th  scope="row">${item.requestId}</th>
+                    <th scope="row">${item.requestId}</th>
                     <td>${item.customerId}</td>
                     <td>${item.length}</td>
                     <td>${item.width}</td>
                     <td>${item.roofType}</td>
                     <td>${item.roofIncline}</td>
                     <td>
-                    <c:choose>
-                    <c:when test="${item.approved == false}">
-                        <div class="alert alert-info" role="alert">
-                            Under behandling
-                        </div>
-                    </c:when>
-                        <c:otherwise>
-                            <div class="alert alert-success" role="alert">
-                                Godkendt
-                            </div>
-                        </c:otherwise>
-                     </c:choose>
+                        <c:choose>
+                            <c:when test="${item.approved == false}">
+                                <div class="alert alert-info" role="alert">
+                                    Under behandling
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="alert alert-success" role="alert">
+                                    Godkendt
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
                     </td>
                     <td>${item.approved}</td>
                     <td>${item.shedLength}</td>

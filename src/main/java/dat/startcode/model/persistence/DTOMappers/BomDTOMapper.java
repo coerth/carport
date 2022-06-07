@@ -1,7 +1,6 @@
 package dat.startcode.model.persistence.DTOMappers;
 
 import dat.startcode.model.DTO.BomDTO;
-import dat.startcode.model.entities.Bomline;
 import dat.startcode.model.persistence.ConnectionPool;
 
 import java.sql.Connection;
@@ -21,13 +20,13 @@ public class BomDTOMapper {
     public ArrayList<BomDTO> getBomlineWithInfo(int bomId) {
         ArrayList<BomDTO> bomDTOArrayList = new ArrayList<>();
 
-        BomDTO bomDTO = null;
+        BomDTO bomDTO;
 
         String sql = "SELECT * FROM carport.bomlines_with_materialname_and_description WHERE bom_id = ?";
 
-        try (Connection connection = connectionPool.getConnection()){
-            try (PreparedStatement ps = connection.prepareStatement(sql)){
-                ps.setInt(1,bomId);
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, bomId);
 
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
@@ -45,14 +44,15 @@ public class BomDTOMapper {
                     int mQuantity = rs.getInt("m_quantity");
 
 
-                    bomDTO = new BomDTO(bomId,bomlineId,name, length,quantity,unit,description,materialId,price,typeId,width,height,mQuantity);
+                    bomDTO = new BomDTO(bomId, bomlineId, name, length, quantity, unit, description, materialId, price, typeId, width, height, mQuantity);
                     bomDTOArrayList.add(bomDTO);
                 }
 
             }
 
-        }catch (SQLException exception) {
+        } catch (SQLException exception) {
 
-        }return bomDTOArrayList;
+        }
+        return bomDTOArrayList;
     }
 }

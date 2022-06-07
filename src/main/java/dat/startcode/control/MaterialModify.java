@@ -9,13 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
-public class MaterialModify extends Command
-{
-    @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
-    {
+public class MaterialModify extends Command {
 
-        String message = "";
+    @Override
+    String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
+
         boolean isTrue = false;
 
         int materialId = Integer.parseInt(request.getParameter("materialId"));
@@ -29,7 +27,7 @@ public class MaterialModify extends Command
         String typeName = request.getParameter("typeName");
         int typeId = 0;
 
-        switch (typeName){
+        switch (typeName) {
             case "Træ":
                 typeId = 1;
                 break;
@@ -46,16 +44,12 @@ public class MaterialModify extends Command
         }
 
 
-
-         if(MaterialFacade.updateMaterial(new Material(materialId, name, price, unit, length, width, height, quantity, typeId), ApplicationStart.getConnectionPool()))
-         {
-             message = "Succesfyld ændring";
-             isTrue = true;
-         }
+        if (MaterialFacade.updateMaterial(new Material(materialId, name, price, unit, length, width, height, quantity, typeId), ApplicationStart.getConnectionPool())) {
+            isTrue = true;
+        }
 
 
-
-        ArrayList<Material> materialArrayList = new ArrayList<>();
+        ArrayList<Material> materialArrayList;
 
         materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
         request.setAttribute("materialArrayList", materialArrayList);

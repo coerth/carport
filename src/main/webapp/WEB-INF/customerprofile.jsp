@@ -14,36 +14,36 @@
 
     <jsp:body>
 
-            <form action="fc/" method="post">
-                <input type="hidden" name="command" value="customermodifyredirect"/>
-                <div class="mb-3">
-                    <label for="name" class="form-label">Navn:</label>
-                    <br>
-                    <p type="text" class="form-label" id="name">${sessionScope.customer.name}</p>
+        <form action="fc/" method="post">
+            <input type="hidden" name="command" value="customermodifyredirect"/>
+            <div class="mb-3">
+                <label for="name" class="form-label">Navn:</label>
+                <br>
+                <p type="text" class="form-label" id="name">${sessionScope.customer.name}</p>
 
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email:</label>
-                    <br>
-                    <p type="text" class="form-label" id="email">${sessionScope.customer.getEmail()}</p>
-                </div>
-                <div class="mb-3">
-                    <label for="city" class="form-label">By:</label>
-                    <br>
-                    <p type="text" class="form-label" id="city">${sessionScope.customer.city}</p>
-                </div>
-                <div class="mb-3">
-                    <label for="zip" class="form-label">Postnummer:</label>
-                    <br>
-                    <p type="text" class="form-label" id="zip">${sessionScope.customer.zip}</p>
-                </div>
-                <div class="mb-3">
-                    <label for="mobile" class="form-label">Telefon nr.:</label>
-                    <br>
-                    <p type="text" class="form-label" id="mobile">${sessionScope.customer.mobile}</p>
-                </div>
-                <button name="modify" >Rediger oplysninger</button>
-                </form>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <br>
+                <p type="text" class="form-label" id="email">${sessionScope.customer.getEmail()}</p>
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">By:</label>
+                <br>
+                <p type="text" class="form-label" id="city">${sessionScope.customer.city}</p>
+            </div>
+            <div class="mb-3">
+                <label for="zip" class="form-label">Postnummer:</label>
+                <br>
+                <p type="text" class="form-label" id="zip">${sessionScope.customer.zip}</p>
+            </div>
+            <div class="mb-3">
+                <label for="mobile" class="form-label">Telefon nr.:</label>
+                <br>
+                <p type="text" class="form-label" id="mobile">${sessionScope.customer.mobile}</p>
+            </div>
+            <button name="modify">Rediger oplysninger</button>
+        </form>
 
     </jsp:body>
 

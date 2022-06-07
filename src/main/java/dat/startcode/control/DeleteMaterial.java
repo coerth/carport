@@ -7,17 +7,16 @@ import dat.startcode.model.services.MaterialFacade;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
-public class DeleteMaterial extends Command{
+public class DeleteMaterial extends Command {
+
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
         int materialId = Integer.parseInt(request.getParameter("delete"));
 
-        if(MaterialFacade.deleteMaterial(materialId, ApplicationStart.getConnectionPool()))
-        {
+        if (MaterialFacade.deleteMaterial(materialId, ApplicationStart.getConnectionPool())) {
             boolean deletionSuccess = true;
             String deletionMessage = "Materialet med id: " + materialId + " er blevet slettet";
             request.setAttribute("deletionSuccess", deletionSuccess);

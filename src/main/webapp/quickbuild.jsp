@@ -50,8 +50,9 @@
                     <input type="checkbox" id="shed" onclick="myFunction()"><br><br>
 
                     <div id="shedMeasurements" style="display:none">
-                            <p id="shedWidth" name="shedWidth" style="display: none">* Bemærk at skurbredden er samme størrelse som carportbredden</p>
-                    <br>
+                        <p id="shedWidth" name="shedWidth" style="display: none">* Bemærk at skurbredden er samme
+                            størrelse som carportbredden</p>
+                        <br>
                         <label for="shedLength">Vælg længde</label>
                         <select name="shedLength" id="shedLength" style="display:none">
                             <option value="">Vælg længde</option>
@@ -87,20 +88,20 @@
             </div>
 
 
-        <div class="col-xl-6">
-            <div class="card mb-3">
-                <img class="card-img-top" src="./images/construction-worker.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">Velkommen til Fog's byg selv side. Her kan du indtaste dine ønskede
-                        mål til din
-                        drømme carport! Husk du også
-                        kan bestille carporte med skur. Er du i tvivl om noget, så kontakt vores
-                        kundeservice for
-                        hjælp</p>
+            <div class="col-xl-6">
+                <div class="card mb-3">
+                    <img class="card-img-top" src="./images/construction-worker.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <p class="card-text">Velkommen til Fog's byg selv side. Her kan du indtaste dine ønskede
+                            mål til din
+                            drømme carport! Husk du også
+                            kan bestille carporte med skur. Er du i tvivl om noget, så kontakt vores
+                            kundeservice for
+                            hjælp</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     </jsp:body>
 </t:pagetemplate>

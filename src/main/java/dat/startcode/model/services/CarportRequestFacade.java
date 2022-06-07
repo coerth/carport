@@ -10,35 +10,35 @@ import java.util.ArrayList;
 
 public class CarportRequestFacade {
 
-    public static CarportRequest createCarportRequest(int width, int length, String roofType, int roofIncline, int shedWidth, int shedLength, int customerId, ConnectionPool connectionPool ) throws DatabaseException, SQLException {
+    public static CarportRequest createCarportRequest(int width, int length, String roofType, int roofIncline, int shedWidth, int shedLength, int customerId, ConnectionPool connectionPool) throws DatabaseException, SQLException {
 
         CarportRequestMapper carportRequestMapper = new CarportRequestMapper(connectionPool);
-        return carportRequestMapper.createCarportRequest(width,length,roofType,roofIncline, shedWidth,shedLength, customerId);
+        return carportRequestMapper.createCarportRequest(width, length, roofType, roofIncline, shedWidth, shedLength, customerId);
 
     }
 
-    public static ArrayList<CarportRequest> getAllCarportRequests(ConnectionPool connectionPool){
+    public static ArrayList<CarportRequest> getAllCarportRequests(ConnectionPool connectionPool) {
         CarportRequestMapper carportRequestMapper = new CarportRequestMapper(connectionPool);
         return carportRequestMapper.getAllRequests();
     }
 
-    public static ArrayList<CarportRequest> getAllCarportRequestsFromCustomer(int customerId, ConnectionPool connectionPool){
+    public static ArrayList<CarportRequest> getAllCarportRequestsFromCustomer(int customerId, ConnectionPool connectionPool) {
         CarportRequestMapper carportRequestMapper = new CarportRequestMapper(connectionPool);
         return carportRequestMapper.getAllRequestFromCustomer(customerId);
     }
 
-    public static ArrayList<CarportRequest> getAllOpenCarportRequests(ConnectionPool connectionPool){
+    public static ArrayList<CarportRequest> getAllOpenCarportRequests(ConnectionPool connectionPool) {
         CarportRequestMapper carportRequestMapper = new CarportRequestMapper(connectionPool);
         return carportRequestMapper.getAllOpenRequests();
     }
 
-    public static CarportRequest getSpecificCarportRequest(int requestId, ConnectionPool connectionPool){
+    public static CarportRequest getSpecificCarportRequest(int requestId, ConnectionPool connectionPool) {
         CarportRequestMapper carportRequestMapper = new CarportRequestMapper(connectionPool);
 
         return carportRequestMapper.getSpecificRequest(requestId);
     }
 
-    public static boolean approveSpecificCarportRequest(int requestId, ConnectionPool connectionPool){
+    public static boolean approveSpecificCarportRequest(int requestId, ConnectionPool connectionPool) {
         CarportRequestMapper carportRequestMapper = new CarportRequestMapper(connectionPool);
 
         return carportRequestMapper.approveSpecificRequest(requestId);
@@ -48,7 +48,4 @@ public class CarportRequestFacade {
         CarportRequestMapper carportRequestMapper = new CarportRequestMapper(connectionPool);
         return carportRequestMapper.deleteCarportRequest(carportRequestId);
     }
-
-
-
 }

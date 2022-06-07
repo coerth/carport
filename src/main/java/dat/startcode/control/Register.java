@@ -8,12 +8,11 @@ import dat.startcode.model.services.CustomerFacade;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
-public class Register extends Command{
+public class Register extends Command {
 
- private ConnectionPool connectionPool;
+    private ConnectionPool connectionPool;
 
     public Register() {
         this.connectionPool = ApplicationStart.getConnectionPool();
@@ -22,7 +21,6 @@ public class Register extends Command{
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException, SQLException {
 
-        HttpSession session = request.getSession();
         String name = request.getParameter("name");
         String address = request.getParameter("adr");
         String city = request.getParameter("city");
@@ -33,7 +31,7 @@ public class Register extends Command{
 
         AccountMapper accountMapper = new AccountMapper(connectionPool);
 
-        if(accountMapper.getAllEmails().contains(email)) {
+        if (accountMapper.getAllEmails().contains(email)) {
             return "errorpage";
 
         } else {
@@ -46,9 +44,6 @@ public class Register extends Command{
             }
         }
 
-
         return "index";
-
     }
-
 }

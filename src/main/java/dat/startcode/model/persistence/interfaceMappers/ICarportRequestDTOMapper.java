@@ -4,6 +4,6 @@ import dat.startcode.model.DTO.CarportRequestDTO;
 
 public interface ICarportRequestDTOMapper {
 
-    CarportRequestDTO getSpecificCarportRequestDTO (int carportRequestId);
+    CarportRequestDTO getSpecificCarportRequestDTO(int carportRequestId);
 
 }

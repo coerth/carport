@@ -3,9 +3,10 @@ package dat.startcode.model.entities.calculator;
 import dat.startcode.model.entities.Bomline;
 import dat.startcode.model.entities.Material;
 
-public class PostCalculator
-{
+public class PostCalculator {
+
     public int calculatePostAmountNeeded(int carportLength) {
+
         int minDistanceFromStern = 45;
         int distanceBetweenPost = carportLength - minDistanceFromStern * 2;
         int post = 0;
@@ -74,8 +75,7 @@ public class PostCalculator
         return postDistance;
     }
 
-    public int calculatePostAmountWithShed(int carportLength, int shedLength)
-    {
+    public int calculatePostAmountWithShed(int carportLength, int shedLength) {
         int posts = 0;
         int sidePosts = 2;
         int shedPosts = 4;
@@ -83,23 +83,18 @@ public class PostCalculator
         int minDistanceBetweenPost = 250;
         int maxDistanceBetweenPost = 310;
 
-        if (carportLength - shedLength < maxDistanceBetweenPost)
-        {
+        if (carportLength - shedLength < maxDistanceBetweenPost) {
             posts = 2;
-        }
-
-        else
-        {
-            posts = 4 ;
+        } else {
+            posts = 4;
         }
 
         int totalPosts = posts + shedPosts + sidePosts + sparePost;
 
-        return  totalPosts;
+        return totalPosts;
     }
 
-    public Bomline postAmountWithShed(int carportLength, int shedLength, Material material)
-    {
+    public Bomline postAmountWithShed(int carportLength, int shedLength, Material material) {
         int postAmount = calculatePostAmountWithShed(carportLength, shedLength);
 
         return new Bomline(11, material, postAmount);

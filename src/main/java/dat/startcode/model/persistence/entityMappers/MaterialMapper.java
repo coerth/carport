@@ -8,7 +8,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 public class MaterialMapper implements IMaterialMapper {
     ConnectionPool connectionPool;
 
@@ -52,22 +51,18 @@ public class MaterialMapper implements IMaterialMapper {
 
 
     @Override
-    public Material getSpecificMaterial(int materialID)
-    {
+    public Material getSpecificMaterial(int materialID) {
         String sql = "Select * FROM `material_view` WHERE material_id = ?";
         Material material = null;
 
 
-        try (Connection connection = connectionPool.getConnection())
-        {
+        try (Connection connection = connectionPool.getConnection()) {
 
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, materialID);
 
                 ResultSet rs = ps.executeQuery();
-                if (rs.next())
-                {
+                if (rs.next()) {
                     String name = rs.getString("material_name");
                     int price = rs.getInt("price");
                     String unit = rs.getString("unit");
@@ -122,19 +117,16 @@ public class MaterialMapper implements IMaterialMapper {
         return false;
     }
 
-        @Override
-    public boolean updateMaterial(Material material)
-    {
+    @Override
+    public boolean updateMaterial(Material material) {
         Material newMaterial = null;
 
         String sql = "UPDATE `material` SET `name` = ?, `price` = ?, `unit` = ?, `length` = ?, `type_id` = ?, `width` = ?, `height` = ?, `quantity` = ? WHERE `material_id` = ?";
 
 
-        try (Connection connection = connectionPool.getConnection())
-        {
+        try (Connection connection = connectionPool.getConnection()) {
 
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, material.getName());
                 ps.setInt(2, material.getPrice());
                 ps.setString(3, material.getUnit());
@@ -147,8 +139,7 @@ public class MaterialMapper implements IMaterialMapper {
 
                 int rowsAffected = ps.executeUpdate();
 
-                if (rowsAffected == 1)
-                {
+                if (rowsAffected == 1) {
                     return true;
                     //newMaterial = new Material(material.getMaterialId(), material.getName(), material.getPrice(), material.getUnit(), material.getLength(), material.getWidth(), material.getHeight(), material.getTypeId());
                 }
@@ -163,26 +154,21 @@ public class MaterialMapper implements IMaterialMapper {
     }
 
     @Override
-    public boolean deleteMaterial(int materialId)
-    {
+    public boolean deleteMaterial(int materialId) {
         String sql = "DELETE FROM `material` WHERE `material_id` = ?";
 
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, materialId);
 
                 int rowsAffected = ps.executeUpdate();
 
-                if (rowsAffected == 1)
-                {
+                if (rowsAffected == 1) {
                     return true;
                 }
             }
 
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -190,8 +176,7 @@ public class MaterialMapper implements IMaterialMapper {
     }
 
     @Override
-    public HashMap<String, ArrayList<Material>> getMaterialHashmaps()
-    {
+    public HashMap<String, ArrayList<Material>> getMaterialHashmaps() {
         HashMap<String, ArrayList<Material>> materialHashmap = new HashMap<>();
 
         ArrayList<Material> materialArrayList = new ArrayList<>();
@@ -213,9 +198,6 @@ public class MaterialMapper implements IMaterialMapper {
         materialHashmap.put("Understern", materialArrayList);
 
         //Tagplader
-
-
-
 
 
         return null;

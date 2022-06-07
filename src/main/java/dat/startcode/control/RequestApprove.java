@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class RequestApprove extends Command {
+
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
@@ -33,7 +34,6 @@ public class RequestApprove extends Command {
             carportType = 2; //type 2 er FULLSHED! SKUR I FULD LÆNGDE!
         }
 
-
         int orderId = OrderFacade.createOrder(carportRequest.getCustomerId(), date, carportType, requestId, ApplicationStart.getConnectionPool());
 
         CarportCalculator carportCalculator = new CarportCalculator(MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool()));
@@ -41,7 +41,6 @@ public class RequestApprove extends Command {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
 
         if (carportType == 1) {
-
 
             bomlineArrayList = carportCalculator.createCarportNoShed(carportRequest.getLength(), carportRequest.getWidth());
 
@@ -54,16 +53,14 @@ public class RequestApprove extends Command {
 
         if (BomFacade.createCompleteBillOfMaterials(bomlineArrayList, orderId, ApplicationStart.getConnectionPool())) {
 
-            OrderDTO orderDTO = OrderDTOFacade.getOrderWithAllInfo(orderId,ApplicationStart.getConnectionPool());
-
+            OrderDTO orderDTO = OrderDTOFacade.getOrderWithAllInfo(orderId, ApplicationStart.getConnectionPool());
 
             request.setAttribute("orderDTO", orderDTO);
             return "orderview";
 
         } else {
+
             return "error";
-
-
         }
     }
 }

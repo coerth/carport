@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
 public class CustomerRequestOverview extends Command {
+
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
         Customer customer = (Customer) request.getSession().getAttribute("customer");

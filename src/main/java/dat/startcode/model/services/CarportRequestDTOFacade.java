@@ -8,7 +8,7 @@ public class CarportRequestDTOFacade {
 
     public static CarportRequestDTO getSpecificCarportRequestDTO(int carportRequestId, ConnectionPool connectionPool) {
 
-        CarportRequestDTOMapper carportRequestDTOMapper= new CarportRequestDTOMapper(connectionPool);
+        CarportRequestDTOMapper carportRequestDTOMapper = new CarportRequestDTOMapper(connectionPool);
 
         return carportRequestDTOMapper.getSpecificCarportRequestDTO(carportRequestId);
 

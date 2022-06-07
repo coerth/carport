@@ -9,7 +9,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><jsp:invoke fragment="header"/></title>
+    <title>
+        <jsp:invoke fragment="header"/>
+    </title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/square.css">
     <!-- Bootstrap CSS -->
@@ -33,19 +35,26 @@
 
 
                     <c:if test="${sessionScope.account.role == 1 }">
-                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/index.jsp">Forside</a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/admin?command=requestoverview">Forespørgelser</a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/orderoverview?command=orderoverview">Ordrer</a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/materialoverview?command=materialoverview">Lager</a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log ud</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/index.jsp">Forside</a>
+                        <a class="nav-item nav-link"
+                           href="${pageContext.request.contextPath}/fc/admin?command=requestoverview">Forespørgelser</a>
+                        <a class="nav-item nav-link"
+                           href="${pageContext.request.contextPath}/fc/orderoverview?command=orderoverview">Ordrer</a>
+                        <a class="nav-item nav-link"
+                           href="${pageContext.request.contextPath}/fc/materialoverview?command=materialoverview">Lager</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log
+                            ud</a>
                     </c:if>
 
 
                     <c:if test="${sessionScope.customer != null }">
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/quickbuild.jsp">Byg selv</a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/customerindex?command=customerindex">Kundeprofil</a>
-                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log ud</a>
-                        </c:if>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/quickbuild.jsp">Byg
+                            selv</a>
+                        <a class="nav-item nav-link"
+                           href="${pageContext.request.contextPath}/fc/customerindex?command=customerindex">Kundeprofil</a>
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/fc/logout?command=logout">Log
+                            ud</a>
+                    </c:if>
 
                 </div>
             </div>
@@ -54,21 +63,23 @@
 </header>
 
 <div id="body" class="container mt-4" style="min-height: 400px;">
-    <h1><jsp:invoke fragment="header"/></h1>
+    <h1>
+        <jsp:invoke fragment="header"/>
+    </h1>
     <jsp:doBody/>
 </div>
 
 <!-- Footer -->
 <footer class="mt-auto" style="background-color: #003d76; color:white">
     <div class="container p-4">
-    <div class="row mt-4">
-        <div class="col">
-            Johannes Fog A/S - Firskovvej 20 - 2800 Lyngby<br/>
+        <div class="row mt-4">
+            <div class="col">
+                Johannes Fog A/S - Firskovvej 20 - 2800 Lyngby<br/>
+            </div>
+            <div class="col">
+                Alle priser er inkl. moms - CVR-nr. 16314439<br/>
+            </div>
         </div>
-        <div class="col">
-            Alle priser er inkl. moms - CVR-nr. 16314439<br/>
-        </div>
-    </div>
     </div>
 </footer>
 

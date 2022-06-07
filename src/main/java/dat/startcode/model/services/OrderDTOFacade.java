@@ -27,11 +27,9 @@ public class OrderDTOFacade {
         int bomId = bomMapper.getBomIdFromOrderId(orderId);
         ArrayList<BomDTO> bomDTOArrayList = bomDTOMapper.getBomlineWithInfo(bomId);
 
-        OrderDTO orderDTO = new OrderDTO(order,carportRequestDTO,bomDTOArrayList);
-
+        OrderDTO orderDTO = new OrderDTO(order, carportRequestDTO, bomDTOArrayList);
 
 
         return orderDTO;
-
     }
 }

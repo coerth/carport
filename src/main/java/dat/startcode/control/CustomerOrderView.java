@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
-public class CustomerOrderView extends Command{
+public class CustomerOrderView extends Command {
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
@@ -18,7 +18,7 @@ public class CustomerOrderView extends Command{
 
         ArrayList<Order> orderArraylist = OrderFacade.getAllOrdersFromSpecificCustomer(customer.getCustomerId(), ApplicationStart.getConnectionPool());
 
-        request.setAttribute("orderArraylist",orderArraylist);
+        request.setAttribute("orderArraylist", orderArraylist);
         return "customerorderview";
     }
 }

@@ -14,7 +14,7 @@ public class BomMapper implements IBomMapper {
 
     ConnectionPool connectionPool;
 
-    public BomMapper(ConnectionPool connectionPool){
+    public BomMapper(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
     }
 
@@ -25,7 +25,7 @@ public class BomMapper implements IBomMapper {
 
         String sql = "SELECT * FROM bomline";
 
-        try (Connection connection = connectionPool.getConnection()){
+        try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
@@ -53,9 +53,8 @@ public class BomMapper implements IBomMapper {
         String sql = "SELECT * FROM bomline WHERE bom_id = ?";
         Bomline bomline = null;
 
-        try (Connection connection = connectionPool.getConnection()){
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, bomId);
 
                 ResultSet rs = ps.executeQuery();
@@ -81,20 +80,19 @@ public class BomMapper implements IBomMapper {
         String sql = "SELECT * FROM bomline WHERE bomline_id = ?";
         Bomline bomline = null;
 
-        try (Connection connection = connectionPool.getConnection()){
-            try ( PreparedStatement ps = connection.prepareStatement(sql))
-            {
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, bomlineId);
 
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()){
+                if (rs.next()) {
                     int bomId = rs.getInt("bom_id");
                     int quantity = rs.getInt("quantity");
                     int descriptionId = rs.getInt("description_id");
                     int materialId = rs.getInt("material_id");
 
                     bomline = new Bomline(bomlineId, bomId, quantity, descriptionId, materialId);
-                    return  bomline;
+                    return bomline;
                 }
             }
         } catch (SQLException throwables) {
@@ -107,13 +105,12 @@ public class BomMapper implements IBomMapper {
         String sql = "SELECT bom_id FROM bill_of_materials WHERE order_id = ?";
 
         int bomId = 0;
-        try (Connection connection = connectionPool.getConnection()){
-            try ( PreparedStatement ps = connection.prepareStatement(sql))
-            {
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, orderId);
 
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()){
+                if (rs.next()) {
                     bomId = rs.getInt("bom_id");
 
                 }
@@ -166,10 +163,9 @@ public class BomMapper implements IBomMapper {
 
                 ResultSet rs = ps.getGeneratedKeys();
 
-                if (rowsAffected == 1)
-                {
+                if (rowsAffected == 1) {
                     rs.next();
-                    returnedBomId = rs.getInt(  1);
+                    returnedBomId = rs.getInt(1);
                 }
             }
 
@@ -185,11 +181,9 @@ public class BomMapper implements IBomMapper {
         boolean returnedBoolean = false;
 
 
-        for(Bomline bomline : bomlineArrayList)
-        {
+        for (Bomline bomline : bomlineArrayList) {
             returnedBoolean = createBomline(bomId, bomline.getQuantity(), bomline.getDescriptionId(), bomline.getMaterial().getMaterialId());
-            if(!returnedBoolean)
-            {
+            if (!returnedBoolean) {
                 break;
             }
         }

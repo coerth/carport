@@ -5,7 +5,7 @@ import dat.startcode.model.services.SVG;
 
 public class SVGDrawing {
 
-    CarportRequest carportRequest = null;
+    CarportRequest carportRequest;
     GeneralCalculator generalCalculator = new GeneralCalculator();
     FrameCalculator frameCalculator = new FrameCalculator();
     BoltAndBracketCalculator boltAndBracketCalculator = new BoltAndBracketCalculator();
@@ -56,7 +56,7 @@ public class SVGDrawing {
             carportSVG.addRect(45 + generalCalculator.calculateXDistance(carportRequest.getLength()) + postCalculator.calculatePostDistance(carportRequest.getLength()), carportRequest.getWidth() - 15, 15, 15);
         }
 
- 
+
         return carportSVG;
     }
 

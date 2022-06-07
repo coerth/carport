@@ -5,12 +5,13 @@ import dat.startcode.model.entities.Material;
 
 import java.util.ArrayList;
 
-public class RoofCalculator
-{
+public class RoofCalculator {
+
     GeneralCalculator generalCalculator = new GeneralCalculator();
     BoxCalculator boxCalculator = new BoxCalculator();
 
     public ArrayList<Bomline> calculateRoofPlates(int carportLength, int carportWidth, ArrayList<Material> listOfRoofPlates) {
+
         ArrayList<Bomline> bomLineArrayList = new ArrayList<Bomline>();
         Material primaryRoofPlate = generalCalculator.calculateMaterialLength(carportLength, listOfRoofPlates);
 
@@ -47,6 +48,7 @@ public class RoofCalculator
 
 
     public int calculateAmountOfRoofPlatesForWidth(Material material, int carportWidth) {
+
         if (material.getWidth() > carportWidth) {
             return 1;
         } else {

@@ -23,8 +23,7 @@ public class CarportCalculator {
 
     //private HashMap<String, ArrayList<Material>> materialHashMap = new HashMap<>();
 
-    public CarportCalculator(ArrayList<Material> materialArrayList)
-    {
+    public CarportCalculator(ArrayList<Material> materialArrayList) {
         this.materialArrayList = materialArrayList;
         //this.materialHashMap = materialHashMap;
 
@@ -55,12 +54,10 @@ public class CarportCalculator {
 
     }
 
-    public CarportCalculator()
-    {
+    public CarportCalculator() {
     }
 
-    public ArrayList<Bomline> createCarportWithFullShed(int carportLength, int carportWidth, int shedLength, int shedWidth)
-    {
+    public ArrayList<Bomline> createCarportWithFullShed(int carportLength, int carportWidth, int shedLength, int shedWidth) {
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
         int rafters = frameCalculator.calculateRafters(carportLength);
         int brackets = boltAndBracketCalculator.calculateSteelBracketLeft(rafters) * 2;
@@ -119,7 +116,7 @@ public class CarportCalculator {
         bomlineArrayList.add(boltAndBracketCalculator.squareSpacer(materialArrayList.get(23), boltAndBracketCalculator.calculateCarriageBoltWithShed(postCalculator.calculatePostAmountWithShed(carportLength, shedLength))));
 
         //tilføj træ til z og håndtag og hængsel til dør til skuret
-        bomlineArrayList.addAll(boltAndBracketCalculator.addWoodForZPlusHandleAndHingeForDoor(materialArrayList.get(4),materialArrayList.get(27),materialArrayList.get(28)));
+        bomlineArrayList.addAll(boltAndBracketCalculator.addWoodForZPlusHandleAndHingeForDoor(materialArrayList.get(4), materialArrayList.get(27), materialArrayList.get(28)));
 
         //tilføj vinkelbeslag til skuret
         bomlineArrayList.add(boltAndBracketCalculator.calculateAngleBracket(16, materialArrayList.get(29)));
@@ -127,8 +124,7 @@ public class CarportCalculator {
         return bomlineArrayList;
     }
 
-    public ArrayList<Bomline> createCarportNoShed(int carportLength, int carportWidth)
-    {
+    public ArrayList<Bomline> createCarportNoShed(int carportLength, int carportWidth) {
 
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
         int rafters = frameCalculator.calculateRafters(carportLength);

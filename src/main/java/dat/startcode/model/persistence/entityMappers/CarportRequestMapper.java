@@ -93,8 +93,8 @@ public class CarportRequestMapper implements ICarportRequestMapper {
                 int rowsAffected = ps.executeUpdate();
                 if (rowsAffected == 1) {
 
-                returnedBoolean = true;
-                    return  returnedBoolean;
+                    returnedBoolean = true;
+                    return returnedBoolean;
                 }
             }
         } catch (SQLException e) {
@@ -132,7 +132,8 @@ public class CarportRequestMapper implements ICarportRequestMapper {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }            return requestArrayList;
+        }
+        return requestArrayList;
 
     }
 
@@ -165,7 +166,8 @@ public class CarportRequestMapper implements ICarportRequestMapper {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }            return requestArrayList;
+        }
+        return requestArrayList;
 
     }
 
@@ -197,29 +199,26 @@ public class CarportRequestMapper implements ICarportRequestMapper {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }            return requestArrayList;
+        }
+        return requestArrayList;
 
     }
 
     @Override
     public boolean deleteCarportRequest(int carportRequestId) {
         String sql = "DELETE FROM `carport_request` WHERE `carport_request_id` = ?";
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql))
-            {
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, carportRequestId);
 
                 int rowsAffected = ps.executeUpdate();
 
-                if (rowsAffected == 1)
-                {
+                if (rowsAffected == 1) {
                     return true;
                 }
             }
 
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

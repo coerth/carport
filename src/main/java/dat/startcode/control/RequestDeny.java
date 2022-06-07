@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
 public class RequestDeny extends Command {
+
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
         int requestId = Integer.parseInt(request.getParameter("requestId"));
 
-        if (CarportRequestFacade.deleteRequest(requestId, ApplicationStart.getConnectionPool()))
-        {
-          String requestDeleted = "Forespørgsel med id nummer " + requestId + " blev slettet";
-          request.setAttribute("requestDeleted", requestDeleted);
+        if (CarportRequestFacade.deleteRequest(requestId, ApplicationStart.getConnectionPool())) {
+            String requestDeleted = "Forespørgsel med id nummer " + requestId + " blev slettet";
+            request.setAttribute("requestDeleted", requestDeleted);
         }
 
         ArrayList<CarportRequest> carportRequestArraylist = CarportRequestFacade.getAllOpenCarportRequests(ApplicationStart.getConnectionPool());

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 
-public class Quickbuild extends Command{
+public class Quickbuild extends Command {
 
     private ConnectionPool connectionPool;
 
@@ -25,10 +25,9 @@ public class Quickbuild extends Command{
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
-
         HttpSession session = request.getSession();
         Customer customer = (Customer) session.getAttribute("customer");
-        if (customer == null){
+        if (customer == null) {
             return "login";
         }
         int customerId = customer.getCustomerId();
@@ -39,7 +38,7 @@ public class Quickbuild extends Command{
         int shedLength;
         int shedWidth;
 
-        if(request.getParameter("shedLength").equals("") ) {
+        if (request.getParameter("shedLength").equals("")) {
             shedLength = 0;
             shedWidth = 0;
         } else {
@@ -47,20 +46,14 @@ public class Quickbuild extends Command{
             shedLength = Integer.parseInt(request.getParameter("shedLength"));
             shedWidth = width;
         }
-        /*if(request.getParameter("shedWidth").equals("")) {
-            shedWidth = 0;
-        } else {
-
-            shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
-        }*/
 
         try {
 
-            CarportRequest newCarportRequest = CarportRequestFacade.createCarportRequest(width,length,roofType,roofIncline,shedWidth, shedLength, customerId,connectionPool);
+            CarportRequest newCarportRequest = CarportRequestFacade.createCarportRequest(width, length, roofType, roofIncline, shedWidth, shedLength, customerId, connectionPool);
             request.setAttribute("newCarportRequest", newCarportRequest);
 
 
-            if(newCarportRequest.getShedLength()==0) {
+            if (newCarportRequest.getShedLength() == 0) {
                 SVGDrawing drawer = new SVGDrawing(newCarportRequest);
                 SVG drawing = drawer.draw();
                 request.setAttribute("svgdrawing", drawing);
@@ -76,8 +69,6 @@ public class Quickbuild extends Command{
         }
 
         return "requestsent";
-
     }
-
 }
 

@@ -16,8 +16,6 @@ public class OrderMapper implements IOrderMapper {
         this.connectionPool = connectionPool;
     }
 
-
-
     @Override
     public ArrayList<Order> getAllOrders() {
 
@@ -25,7 +23,7 @@ public class OrderMapper implements IOrderMapper {
 
         String sql = "SELECT * FROM `order`";
 
-        try (Connection connection = connectionPool.getConnection()){
+        try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
@@ -36,7 +34,7 @@ public class OrderMapper implements IOrderMapper {
                     int carportType = rs.getInt("carport_type");
                     int price = rs.getInt("price");
                     int carportRequestId = rs.getInt("carport_request_id");
-                    Order newOrder = new Order(orderId, customerId, date,carportType, price, carportRequestId);
+                    Order newOrder = new Order(orderId, customerId, date, carportType, price, carportRequestId);
                     orderList.add(newOrder);
                 }
             }
@@ -54,9 +52,9 @@ public class OrderMapper implements IOrderMapper {
 
         String sql = "SELECT * FROM `order` WHERE customer_id = ?";
 
-        try (Connection connection = connectionPool.getConnection()){
+        try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1,customerId);
+                ps.setInt(1, customerId);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     int orderId = rs.getInt("order_id");
@@ -65,7 +63,7 @@ public class OrderMapper implements IOrderMapper {
                     int carportType = rs.getInt("carport_type");
                     int price = rs.getInt("price");
                     int carportRequestId = rs.getInt("carport_request_id");
-                    Order newOrder = new Order(orderId, customerId, date,carportType, price, carportRequestId);
+                    Order newOrder = new Order(orderId, customerId, date, carportType, price, carportRequestId);
                     orderList.add(newOrder);
                 }
             }
@@ -82,12 +80,12 @@ public class OrderMapper implements IOrderMapper {
         String sql = "SELECT * FROM `order` WHERE order_id = ?";
         Order order = null;
 
-        try (Connection connection = connectionPool.getConnection()){
-            try ( PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setInt(1, orderId);
 
                 ResultSet rs = ps.executeQuery();
-                if (rs.next()){
+                if (rs.next()) {
                     int customerId = rs.getInt("customer_id");
                     Timestamp timeStamp = rs.getTimestamp("date");
                     LocalDateTime date = timeStamp.toLocalDateTime();
@@ -95,9 +93,9 @@ public class OrderMapper implements IOrderMapper {
                     int price = rs.getInt("price");
                     int carportRequestId = rs.getInt("carport_request_id");
 
-                    order = new Order(orderId, customerId, date,carportType, price, carportRequestId);
+                    order = new Order(orderId, customerId, date, carportType, price, carportRequestId);
 
-                    return  order;
+                    return order;
                 }
             }
         } catch (SQLException throwables) {

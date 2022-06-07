@@ -6,7 +6,7 @@ import dat.startcode.model.persistence.ConnectionPool;
 
 public class AccountDTOFacade {
 
-    public static AccountDTO getAccountAndCustomerInfo (int customerId, ConnectionPool connectionPool) {
+    public static AccountDTO getAccountAndCustomerInfo(int customerId, ConnectionPool connectionPool) {
         AccountDTOMapper accountDTOMapper = new AccountDTOMapper(connectionPool);
 
         return accountDTOMapper.getAccountAndCustomerDTO(customerId);

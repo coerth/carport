@@ -2,11 +2,9 @@ package dat.startcode.model.entities.calculator;
 
 import dat.startcode.model.entities.Material;
 
-public class BoxCalculator
-{
+public class BoxCalculator {
 
-    public BoxCalculator()
-    {
+    public BoxCalculator() {
     }
 
     public int calculateQuantityOfBoxes(int amountNeeded, Material material) {

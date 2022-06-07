@@ -18,44 +18,38 @@ public class AccountMapper implements IAccountMapper {
 
     ConnectionPool connectionPool;
 
-    public AccountMapper(ConnectionPool connectionPool)
-    {
+    public AccountMapper(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
     }
 
     @Override
     public Account login(String email, String password) throws DatabaseException {
 
-            Logger.getLogger("web").log(Level.INFO, "");
+        Logger.getLogger("web").log(Level.INFO, "");
 
-            Account account = null;
+        Account account;
 
-            String sql = "SELECT * FROM account WHERE email = ? AND password = ?";
+        String sql = "SELECT * FROM account WHERE email = ? AND password = ?";
 
-            try (Connection connection = connectionPool.getConnection())
-            {
-                try (PreparedStatement ps = connection.prepareStatement(sql))
-                {
-                    ps.setString(1, email);
-                    ps.setString(2, password);
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, email);
+                ps.setString(2, password);
 
-                    ResultSet rs = ps.executeQuery();
-                    if (rs.next())
-                    {
-                        int role = rs.getInt("role");
-                        int accountId = rs.getInt("account_id");
-                        account = new Account(email, password, role, accountId);
-                    } else
-                    {
-                        throw new DatabaseException("Wrong username or password");
-                    }
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    int role = rs.getInt("role");
+                    int accountId = rs.getInt("account_id");
+                    account = new Account(email, password, role, accountId);
+                } else {
+                    throw new DatabaseException("Wrong username or password");
                 }
-            } catch (SQLException ex)
-            {
-                throw new DatabaseException(ex, "Error logging in. Something went wrong with the database");
             }
-            return account;
+        } catch (SQLException ex) {
+            throw new DatabaseException(ex, "Error logging in. Something went wrong with the database");
         }
+        return account;
+    }
 
     public Set<String> getAllEmails() throws SQLException {
         Set<String> emailSet = new HashSet<>();
@@ -77,6 +71,7 @@ public class AccountMapper implements IAccountMapper {
             return emailSet;
         }
     }
+
     @Override
     public int createAccount(String email, String password, int role) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
@@ -84,28 +79,22 @@ public class AccountMapper implements IAccountMapper {
         int accountId = 0;
 
         String sql = "insert into account (email, password, role) values (?,?,?)";
-        try (Connection connection = connectionPool.getConnection())
-        {
-            try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS))
-            {
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, email);
                 ps.setString(2, password);
                 ps.setInt(3, 2);
                 int rowsAffected = ps.executeUpdate();
                 ResultSet rs = ps.getGeneratedKeys();
-                if (rowsAffected == 1)
-                {
+                if (rowsAffected == 1) {
                     rs.next();
                     accountId = rs.getInt(1);
 
-                } else
-                {
+                } else {
                     throw new DatabaseException("Kunne ikke oprette account med følgende email: " + email);
                 }
             }
-        }
-        catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             System.out.println(ex);
             //throw new DatabaseException(ex, "Could not insert account into database");
         }
@@ -127,14 +116,14 @@ public class AccountMapper implements IAccountMapper {
                 ps.setString(1, email);
                 ps.setString(2, password);
                 ResultSet rs = ps.executeQuery();
-                while(rs.next()){
+                while (rs.next()) {
                     accountId = rs.getInt("account_id");
                 }
-                if(accountId==0){
+                if (accountId == 0) {
                     throw new DatabaseException("Kunne ikke finde account_id");
                 }
             }
-        } catch (SQLException ex){
+        } catch (SQLException ex) {
             throw new DatabaseException(ex, "Kunne ikke finde account:id");
         }
 
@@ -147,15 +136,15 @@ public class AccountMapper implements IAccountMapper {
 
         String sql = "UPDATE account SET email = ?, password = ? WHERE account_id = ?";
 
-        try(Connection connection = connectionPool.getConnection()){
-            try(PreparedStatement ps = connection.prepareStatement(sql)){
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, account.getEmail());
                 ps.setString(2, account.getPassword());
                 ps.setInt(3, account.getAccountId());
 
                 int rowsAffected = ps.executeUpdate();
 
-                if(rowsAffected == 1){
+                if (rowsAffected == 1) {
                     return true;
                 }
             }

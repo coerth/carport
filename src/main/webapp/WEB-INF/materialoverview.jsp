@@ -26,13 +26,15 @@
         </c:if>
 
         <div style="display: flex ; justify-content: right ; margin-bottom: 15px ; margin-top: 15px">
-        <form action="create" method="post"><input type="hidden" name="command" value="materialcreate"><button type="submit" class="btn btn-primary">Opret nyt materiale</button> </form>
+            <form action="create" method="post"><input type="hidden" name="command" value="materialcreate">
+                <button type="submit" class="btn btn-primary">Opret nyt materiale</button>
+            </form>
         </div>
 
         <form action="fc/" method="post">
             <input type="hidden" name="command" value="materialgetbyid"/>
-        <table class="table table-striped table-hover">
-            <thead>
+            <table class="table table-striped table-hover">
+                <thead>
                 <tr>
                     <th scope="col">Materiale ID</th>
                     <th scope="col">Navn</th>
@@ -45,25 +47,27 @@
                     <th scope="col">Type ID</th>
                     <th></th>
                 </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="item" items="${requestScope.materialArrayList}">
-                <tr>
-                    <th  scope="row">${item.materialId}</th>
-                    <td>${item.name}</td>
-                    <td>${item.price}</td>
-                    <td>${item.unit}</td>
-                    <td>${item.quantity}</td>
-                    <td>${item.length}</td>
-                    <td>${item.width}</td>
-                    <td>${item.height}</td>
-                    <td>${item.typeName}</td>
+                </thead>
+                <tbody>
+                <c:forEach var="item" items="${requestScope.materialArrayList}">
+                    <tr>
+                        <th scope="row">${item.materialId}</th>
+                        <td>${item.name}</td>
+                        <td>${item.price}</td>
+                        <td>${item.unit}</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.length}</td>
+                        <td>${item.width}</td>
+                        <td>${item.height}</td>
+                        <td>${item.typeName}</td>
 
-                    <td><button name="modify" value="${item.materialId}">Slet/Rediger</button></td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+                        <td>
+                            <button name="modify" value="${item.materialId}">Slet/Rediger</button>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
         </form>
 
     </jsp:body>
