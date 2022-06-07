@@ -14,18 +14,20 @@ public class DeleteMaterial extends Command{
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
-        HttpSession session = request.getSession();
         int materialId = Integer.parseInt(request.getParameter("delete"));
 
-
-        System.out.println(MaterialFacade.deleteMaterial(materialId, ApplicationStart.getConnectionPool()));
+        if(MaterialFacade.deleteMaterial(materialId, ApplicationStart.getConnectionPool()))
+        {
+            boolean deletionSuccess = true;
+            String deletionMessage = "Materialet med id: " + materialId + " er blevet slettet";
+            request.setAttribute("deletionSuccess", deletionSuccess);
+            request.setAttribute("deletionMessage", deletionMessage);
+        }
 
         ArrayList<Material> materialArrayList = new ArrayList<>();
 
         materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
         request.setAttribute("materialArrayList", materialArrayList);
-
-        System.out.println(materialId);
 
         return "materialoverview";
     }

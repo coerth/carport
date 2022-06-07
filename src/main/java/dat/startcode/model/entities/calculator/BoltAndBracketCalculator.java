@@ -103,9 +103,9 @@ public class BoltAndBracketCalculator
 
     }
 
-    public Bomline carriageBolt(Material material, int carportLength)
+    public Bomline carriageBolt(Material material, int postAmount)
     {
-        int bolt = calculateCarriageBolt(carportLength);
+        int bolt = calculateCarriageBolt(postAmount);
 
         Bomline bomline = new Bomline(21, material, bolt);
         return bomline;

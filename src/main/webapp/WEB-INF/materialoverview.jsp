@@ -14,10 +14,15 @@
 
     <jsp:body>
 
-        <c:if test="${requestScope.isTrue == true }">
-        <div class="alert alert-success" role="alert">
-            Ændring succesfyldt
-        </div>
+        <c:if test="${requestScope.deletionSuccess == true}">
+            <div class="alert alert-danger" role="alert">
+                    ${requestScope.deletionMessage}
+            </div>
+        </c:if>
+        <c:if test="${requestScope.creationSuccess == true}">
+            <div class="alert alert-success" role="alert">
+                    ${requestScope.creationMessage}
+            </div>
         </c:if>
 
         <div style="display: flex ; justify-content: right ; margin-bottom: 15px ; margin-top: 15px">

@@ -25,12 +25,18 @@ public class CreateMaterial extends Command{
 
         if(MaterialFacade.createNewMaterial(name, price, unit, length, typeId, width, height, quantity, ApplicationStart.getConnectionPool()))
         {
-            ArrayList<Material> materialArrayList = new ArrayList<>();
+            boolean creationSuccess = true;
+            String creationMessage = "Materiale oprettet";
 
-            materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
-            request.setAttribute("materialArrayList", materialArrayList);
+            request.setAttribute("creationSuccess", creationSuccess);
+            request.setAttribute("creationMessage", creationMessage);
+
         }
 
+        ArrayList<Material> materialArrayList = new ArrayList<>();
+
+        materialArrayList = MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool());
+        request.setAttribute("materialArrayList", materialArrayList);
 
         return "materialoverview";
     }
