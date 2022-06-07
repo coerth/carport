@@ -14,6 +14,11 @@
 
     <jsp:body>
 
+        <c:if test="${sessionScope.modificationDone == true}">
+            <div class="alert alert-success" role="alert">
+                    ${sessionScope.customerModified}
+            </div>
+        </c:if>
             <form action="fc/" method="post">
                 <input type="hidden" name="command" value="customermodifyredirect"/>
                 <div class="mb-3">

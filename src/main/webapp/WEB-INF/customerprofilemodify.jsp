@@ -12,7 +12,6 @@
         Rediger kundeoplysninger
     </jsp:attribute>
 
-  <jsp:body>
 
     <form action="fc/" method="post">
       <input type="hidden" name="command" value="customermodify"/>

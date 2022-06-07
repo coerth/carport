@@ -38,6 +38,11 @@ public class CustomerModify extends Command {
         customer = new Customer(email, password, role, customerId, name, address, city, zip, mobile, accountId);
         CustomerFacade.updateCustomerProfile(customer, ApplicationStart.getConnectionPool());
 
+        boolean modificationDone = true;
+        String customerModified = "Dine ændringer er gemt!";
+
+        session.setAttribute("customerModified", customerModified);
+        session.setAttribute("modificationDone", modificationDone);
         session.setAttribute("customer", customer);
 
         return "customerprofile";
