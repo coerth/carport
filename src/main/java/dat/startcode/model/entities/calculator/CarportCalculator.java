@@ -175,7 +175,7 @@ public class CarportCalculator {
         bomlineArrayList.add(boltAndBracketCalculator.carriageBolt(materialArrayList.get(22), postCalculator.calculatePostAmount(carportLength)));
 
         // tilføj firkantskiver til arraylist
-        bomlineArrayList.add(boltAndBracketCalculator.squareSpacer(materialArrayList.get(23), boltAndBracketCalculator.calculateCarriageBolt(carportLength)));
+        bomlineArrayList.add(boltAndBracketCalculator.squareSpacer(materialArrayList.get(23), boltAndBracketCalculator.calculateCarriageBolt(postCalculator.calculatePostAmount(carportLength))));
 
         return bomlineArrayList;
     }
