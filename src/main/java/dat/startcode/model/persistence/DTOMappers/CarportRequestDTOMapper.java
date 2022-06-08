@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CarportRequestDTOMapper implements ICarportRequestDTOMapper {
 
@@ -19,6 +21,9 @@ public class CarportRequestDTOMapper implements ICarportRequestDTOMapper {
 
     @Override
     public CarportRequestDTO getSpecificCarportRequestDTO(int carportRequestId) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
         String sql = "SELECT * FROM carport.carport_request_with_customer_info WHERE carport_request_id = ?";
 
         CarportRequestDTO carportRequestDTO = null;

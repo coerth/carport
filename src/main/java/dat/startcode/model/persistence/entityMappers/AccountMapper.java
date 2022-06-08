@@ -52,6 +52,8 @@ public class AccountMapper implements IAccountMapper {
     }
 
     public Set<String> getAllEmails() throws SQLException {
+        Logger.getLogger("web").log(Level.INFO, "");
+
         Set<String> emailSet = new HashSet<>();
 
         String sql = "SELECT * FROM carport.account";
@@ -134,6 +136,8 @@ public class AccountMapper implements IAccountMapper {
     @Override
     public boolean updateAccount(Account account) {
 
+        Logger.getLogger("web").log(Level.INFO, "");
+
         String sql = "UPDATE account SET email = ?, password = ? WHERE account_id = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -154,6 +158,4 @@ public class AccountMapper implements IAccountMapper {
 
         return false;
     }
-
-
 }
