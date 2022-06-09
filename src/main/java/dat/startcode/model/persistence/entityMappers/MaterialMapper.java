@@ -7,6 +7,8 @@ import dat.startcode.model.persistence.interfaceMappers.IMaterialMapper;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MaterialMapper implements IMaterialMapper {
     ConnectionPool connectionPool;
@@ -18,6 +20,8 @@ public class MaterialMapper implements IMaterialMapper {
     @Override
 
     public ArrayList<Material> getAllMaterials() {
+
+        Logger.getLogger("web").log(Level.INFO, "");
 
         ArrayList<Material> materialList = new ArrayList<>();
 
@@ -52,6 +56,9 @@ public class MaterialMapper implements IMaterialMapper {
 
     @Override
     public Material getSpecificMaterial(int materialID) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
         String sql = "Select * FROM `material_view` WHERE material_id = ?";
         Material material = null;
 
@@ -90,6 +97,8 @@ public class MaterialMapper implements IMaterialMapper {
 
     public boolean createNewMaterial(String name, int price, String unit, int length, int typeId, int width, int height, int quantity) {
 
+        Logger.getLogger("web").log(Level.INFO, "");
+
         String sql = "INSERT INTO `material` (`name`, `price`, `unit`, `length`, `type_id`, `width`, `height`, `quantity`) VALUES (?,?,?,?,?,?,?,?)";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -119,7 +128,8 @@ public class MaterialMapper implements IMaterialMapper {
 
     @Override
     public boolean updateMaterial(Material material) {
-        Material newMaterial = null;
+
+        Logger.getLogger("web").log(Level.INFO, "");
 
         String sql = "UPDATE `material` SET `name` = ?, `price` = ?, `unit` = ?, `length` = ?, `type_id` = ?, `width` = ?, `height` = ?, `quantity` = ? WHERE `material_id` = ?";
 
@@ -141,7 +151,6 @@ public class MaterialMapper implements IMaterialMapper {
 
                 if (rowsAffected == 1) {
                     return true;
-                    //newMaterial = new Material(material.getMaterialId(), material.getName(), material.getPrice(), material.getUnit(), material.getLength(), material.getWidth(), material.getHeight(), material.getTypeId());
                 }
             }
 
@@ -150,11 +159,13 @@ public class MaterialMapper implements IMaterialMapper {
         }
 
         return false;
-        //return newMaterial;
     }
 
     @Override
     public boolean deleteMaterial(int materialId) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
         String sql = "DELETE FROM `material` WHERE `material_id` = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -177,6 +188,9 @@ public class MaterialMapper implements IMaterialMapper {
 
     @Override
     public HashMap<String, ArrayList<Material>> getMaterialHashmaps() {
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
         HashMap<String, ArrayList<Material>> materialHashmap = new HashMap<>();
 
         ArrayList<Material> materialArrayList = new ArrayList<>();
@@ -196,9 +210,6 @@ public class MaterialMapper implements IMaterialMapper {
         materialArrayList.add(getSpecificMaterial(1));
         materialArrayList.add(getSpecificMaterial(2));
         materialHashmap.put("Understern", materialArrayList);
-
-        //Tagplader
-
 
         return null;
     }

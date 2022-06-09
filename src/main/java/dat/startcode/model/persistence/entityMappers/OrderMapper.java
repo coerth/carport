@@ -7,6 +7,8 @@ import dat.startcode.model.persistence.interfaceMappers.IOrderMapper;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OrderMapper implements IOrderMapper {
 
@@ -18,6 +20,8 @@ public class OrderMapper implements IOrderMapper {
 
     @Override
     public ArrayList<Order> getAllOrders() {
+
+        Logger.getLogger("web").log(Level.INFO, "");
 
         ArrayList<Order> orderList = new ArrayList<>();
 
@@ -48,6 +52,8 @@ public class OrderMapper implements IOrderMapper {
     @Override
     public ArrayList<Order> getAllOrdersFromSpecificCustomer(int customerId) {
 
+        Logger.getLogger("web").log(Level.INFO, "");
+
         ArrayList<Order> orderList = new ArrayList<>();
 
         String sql = "SELECT * FROM `order` WHERE customer_id = ?";
@@ -76,6 +82,8 @@ public class OrderMapper implements IOrderMapper {
 
     @Override
     public Order getSpecificOrder(int orderId) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
 
         String sql = "SELECT * FROM `order` WHERE order_id = ?";
         Order order = null;
@@ -106,6 +114,8 @@ public class OrderMapper implements IOrderMapper {
 
     @Override
     public int createOrder(int customerId, LocalDateTime dateTime, int carportType, int carportRequestId) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
 
         String sql = "INSERT INTO `order` (customer_id, date, carport_type, carport_request_id) VALUES (?,?,?,?)";
 

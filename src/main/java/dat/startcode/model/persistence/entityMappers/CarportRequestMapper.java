@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CarportRequestMapper implements ICarportRequestMapper {
 
@@ -20,6 +22,8 @@ public class CarportRequestMapper implements ICarportRequestMapper {
     }
 
     public CarportRequest createCarportRequest(int width, int length, String roofType, int roofIncline, int shedWidth, int shedLength, int customerId) throws DatabaseException, SQLException {
+
+        Logger.getLogger("web").log(Level.INFO, "");
 
         CarportRequest carportRequest;
 
@@ -50,6 +54,8 @@ public class CarportRequestMapper implements ICarportRequestMapper {
 
     @Override
     public CarportRequest getSpecificRequest(int carportRequestId) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
 
         String sql = "SELECT * FROM carport_request WHERE carport_request_id = ?";
         CarportRequest carportRequest = null;
@@ -82,6 +88,9 @@ public class CarportRequestMapper implements ICarportRequestMapper {
 
     @Override
     public boolean approveSpecificRequest(int carportRequestId) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
         String sql = "UPDATE `carport_request` SET `is_approved` = ? WHERE `carport_request_id` = ?;";
         boolean returnedBoolean = false;
 
@@ -106,6 +115,9 @@ public class CarportRequestMapper implements ICarportRequestMapper {
 
     @Override
     public ArrayList<CarportRequest> getAllRequests() {
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
         ArrayList<CarportRequest> requestArrayList = new ArrayList<>();
         String sql = "SELECT * FROM carport_request";
 
@@ -139,6 +151,9 @@ public class CarportRequestMapper implements ICarportRequestMapper {
 
     @Override
     public ArrayList<CarportRequest> getAllRequestFromCustomer(int customerId) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
         ArrayList<CarportRequest> requestArrayList = new ArrayList<>();
         String sql = "SELECT * FROM carport_request WHERE customer_id = ?";
 
@@ -173,6 +188,9 @@ public class CarportRequestMapper implements ICarportRequestMapper {
 
     @Override
     public ArrayList<CarportRequest> getAllOpenRequests() {
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
         ArrayList<CarportRequest> requestArrayList = new ArrayList<>();
         String sql = "SELECT * FROM carport_request WHERE is_approved = 0";
 
@@ -206,6 +224,9 @@ public class CarportRequestMapper implements ICarportRequestMapper {
 
     @Override
     public boolean deleteCarportRequest(int carportRequestId) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
         String sql = "DELETE FROM `carport_request` WHERE `carport_request_id` = ?";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {

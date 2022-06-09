@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AccountDTOMapper implements IAccountDTOMapper {
     ConnectionPool connectionPool;
@@ -18,6 +20,8 @@ public class AccountDTOMapper implements IAccountDTOMapper {
 
     @Override
     public AccountDTO getAccountAndCustomerDTO(int customerId) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
 
         String sql = "SELECT * FROM carport.customer_and_account_overview WHERE customer_id = ?";
 

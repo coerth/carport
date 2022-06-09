@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BomMapper implements IBomMapper {
 
@@ -20,6 +22,8 @@ public class BomMapper implements IBomMapper {
 
     @Override
     public ArrayList<Bomline> getAllBomlines() {
+
+        Logger.getLogger("web").log(Level.INFO, "");
 
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
 
@@ -48,10 +52,11 @@ public class BomMapper implements IBomMapper {
     @Override
     public ArrayList<Bomline> getAllBomlinesWithSpecificBOMId(int bomId) {
 
+        Logger.getLogger("web").log(Level.INFO, "");
+
         ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
 
         String sql = "SELECT * FROM bomline WHERE bom_id = ?";
-        Bomline bomline = null;
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -76,6 +81,8 @@ public class BomMapper implements IBomMapper {
 
     @Override
     public Bomline getSpecificBomline(int bomlineId) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
 
         String sql = "SELECT * FROM bomline WHERE bomline_id = ?";
         Bomline bomline = null;
@@ -102,6 +109,9 @@ public class BomMapper implements IBomMapper {
     }
 
     public int getBomIdFromOrderId(int orderId) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
         String sql = "SELECT bom_id FROM bill_of_materials WHERE order_id = ?";
 
         int bomId = 0;
@@ -125,6 +135,8 @@ public class BomMapper implements IBomMapper {
 
     @Override
     public boolean createBomline(int bomId, int quantity, int descriptionId, int materialId) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
 
         String sql = "INSERT INTO bomline (bom_id, quantity, description_id, material_id) VALUES (?,?,?,?)";
 
@@ -150,6 +162,9 @@ public class BomMapper implements IBomMapper {
 
     @Override
     public int createBom(int orderId) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
         String sql = "INSERT INTO bill_of_materials (order_id) VALUES (?)";
 
         int returnedBomId = -1;
@@ -177,6 +192,9 @@ public class BomMapper implements IBomMapper {
 
     @Override
     public boolean createCompleteBillOfMaterials(ArrayList<Bomline> bomlineArrayList, int orderId) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
         int bomId = createBom(orderId);
         boolean returnedBoolean = false;
 

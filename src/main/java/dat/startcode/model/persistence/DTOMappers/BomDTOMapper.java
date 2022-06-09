@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class BomDTOMapper {
 
@@ -18,6 +20,9 @@ public class BomDTOMapper {
     }
 
     public ArrayList<BomDTO> getBomlineWithInfo(int bomId) {
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
         ArrayList<BomDTO> bomDTOArrayList = new ArrayList<>();
 
         BomDTO bomDTO;
@@ -42,7 +47,6 @@ public class BomDTOMapper {
                     int width = rs.getInt("width");
                     int height = rs.getInt("height");
                     int mQuantity = rs.getInt("m_quantity");
-
 
                     bomDTO = new BomDTO(bomId, bomlineId, name, length, quantity, unit, description, materialId, price, typeId, width, height, mQuantity);
                     bomDTOArrayList.add(bomDTO);

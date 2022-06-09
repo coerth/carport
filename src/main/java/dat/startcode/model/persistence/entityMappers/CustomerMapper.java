@@ -19,6 +19,9 @@ public class CustomerMapper implements ICustomerMapper {
 
     @Override
     public Customer createCustomer(String name, String address, String city, int zip, int mobile, String email, String password) throws DatabaseException {
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
         AccountMapper accountMapper = new AccountMapper(connectionPool);
 
         int accountId = accountMapper.createAccount(email, password, 2);
@@ -56,6 +59,7 @@ public class CustomerMapper implements ICustomerMapper {
     public int getCustomerId(int mobile) throws DatabaseException {
 
         Logger.getLogger("web").log(Level.INFO, "");
+
         String sql = "SELECT * FROM customer WHERE mobile = ?";
         int customerId = 0;
 
@@ -81,6 +85,9 @@ public class CustomerMapper implements ICustomerMapper {
 
     @Override
     public Customer getSpecificCustomer(int customerId) throws DatabaseException {
+
+        Logger.getLogger("web").log(Level.INFO, "");
+
         String sql = "Select * FROM `customer_and_account_overview` WHERE customer_id = ?";
         Customer customer = null;
 
@@ -117,6 +124,8 @@ public class CustomerMapper implements ICustomerMapper {
     @Override
     public boolean updateCustomerProfile(Customer customer) {
 
+        Logger.getLogger("web").log(Level.INFO, "");
+
         String sql = "UPDATE `customer` SET `name` = ?, `address` = ?, `city` = ?, `zip` = ?, `mobile` = ?  WHERE `customer_id` = ?";
 
 
@@ -146,6 +155,7 @@ public class CustomerMapper implements ICustomerMapper {
     public Customer customerAccount(Account account) throws DatabaseException {
 
         Logger.getLogger("web").log(Level.INFO, "");
+
         String sql = "SELECT * FROM customer WHERE account_id = ?";
 
         Customer customer = null;
