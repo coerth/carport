@@ -17,25 +17,12 @@ class CarportCalculatorTest
 
 {
 
-    private final static String USER = "test";
-    //private final static String PASSWORD = System.getenv("dbpassword");
-    private final static String PASSWORD = "nemt";
-
-    private final static String URL = "jdbc:mysql://localhost:3306/carport";
-
-    private static ConnectionPool connectionPool;
-
-
-
     Material material = new Material(1,"Tagplade", 5,"styk",600,109,1,1,2);
-    ArrayList<Material> materialArrayList = MaterialFacade.getAllMaterials(connectionPool);
-    CarportCalculator carportCalculator = new CarportCalculator(MaterialFacade.getAllMaterials(connectionPool));
+    ArrayList<Material> materialArrayList = new ArrayList<>();
+    CarportCalculator carportCalculator = new CarportCalculator();
 
     @BeforeAll
     public static void setUpClass() {
-
-        connectionPool = new ConnectionPool(USER, PASSWORD, URL);
-
     }
 
 
@@ -54,18 +41,13 @@ class CarportCalculatorTest
     void calculateShed2on1Test()
     {
 
-        int planks = carportCalculator.getShedCalculator().calculateShed2on1(210, 600, materialArrayList.get(10));
+        Material material = new Material(11,"tryimp. Bræt", 45,"styk",210,19,100,1,1);
+
+
+        int planks = carportCalculator.getShedCalculator().calculateShed2on1(210, 600, material);
 
         assertEquals(187, planks);
 
-    }
-
-    @Test
-    void createCarportNoShed()
-    {
-        ArrayList<Bomline> bomlineArrayList = carportCalculator.createCarportNoShed(780, 600);
-
-        System.out.println(bomlineArrayList);
     }
 
 
@@ -103,7 +85,7 @@ class CarportCalculatorTest
 
     @Test
     void calculateCarriageBolt() {
-        int carriageBolt = carportCalculator.getBoltAndBracketCalculator().calculateCarriageBolt(780);
+        int carriageBolt = carportCalculator.getBoltAndBracketCalculator().calculateCarriageBolt(6);
         assertEquals(14, carriageBolt);
     }
 
@@ -142,7 +124,7 @@ class CarportCalculatorTest
     {
 
         GeneralCalculator generalCalculator  = new GeneralCalculator();
-
+        materialArrayList.clear();
         materialArrayList.add(new Material(1,"Tagplade", 5,"styk",240,109,1,1,2));
         materialArrayList.add(new Material(1,"Tagplade", 5,"styk",360,109,1,1,2));
         materialArrayList.add(material);
@@ -182,8 +164,8 @@ class CarportCalculatorTest
     {
         Material material = new Material(1, "Bundskrue", 5, "Pakke", 2, 200);
 
-        Bomline bomline =   carportCalculator.getRoofCalculator().calculateAmountOfBoxesOfBottomScrews(material, 5, 5);
-        assertEquals(2, bomline.getQuantity());
+        Bomline bomline =   carportCalculator.getRoofCalculator().calculateAmountOfBoxesOfBottomScrews(material, 7, 7);
+        assertEquals(1, bomline.getQuantity());
 
         bomline = carportCalculator.getRoofCalculator().calculateAmountOfBoxesOfBottomScrews(material, 1, 2);
         assertEquals(1, bomline.getQuantity());
@@ -260,7 +242,7 @@ class CarportCalculatorTest
 
     @Test
     void calculateSteelBracketRight() {
-        int steelBracket = carportCalculator.getBoltAndBracketCalculator().calculateScrewForBracket(12);
+        int steelBracket = carportCalculator.getBoltAndBracketCalculator().calculateSteelBracketRight(12);
         assertEquals(12, steelBracket);
     }
 
@@ -301,7 +283,7 @@ class CarportCalculatorTest
     void carriageBolt() {
         Material material = new Material(1, "Breddebolte", 5, "stk", 2);
 
-        Bomline bomline = carportCalculator.getBoltAndBracketCalculator().carriageBolt(material, 780);
+        Bomline bomline = carportCalculator.getBoltAndBracketCalculator().carriageBolt(material, 6);
         assertEquals(14, bomline.getQuantity());
     }
 
