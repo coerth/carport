@@ -16,13 +16,13 @@ import java.util.ArrayList;
 public class RequestApprove extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException
+    {
 
         int requestId = Integer.parseInt(request.getParameter("requestId"));
         CarportRequest carportRequest;
 
-        if(CarportRequestFacade.approveSpecificCarportRequest(requestId, ApplicationStart.getConnectionPool()))
-        {
+        if (CarportRequestFacade.approveSpecificCarportRequest(requestId, ApplicationStart.getConnectionPool())) {
 
             String requestApproved = "Forespørgsel med id-nummer " + requestId + " er accepteret";
             request.setAttribute("requestApproved", requestApproved);
@@ -45,9 +45,7 @@ public class RequestApprove extends Command {
 
             if (carportType == 1) {
                 bomlineArrayList = carportCalculator.createCarportNoShed(carportRequest.getLength(), carportRequest.getWidth());
-            }
-
-            else {
+            } else {
                 bomlineArrayList = carportCalculator.createCarportWithFullShed(carportRequest.getLength(), carportRequest.getWidth(), carportRequest.getShedLength(), carportRequest.getWidth());
             }
 
@@ -59,9 +57,7 @@ public class RequestApprove extends Command {
                 return "orderview";
 
             }
-        }else {
-
-            return "error";
         }
+        return "error";
     }
 }
