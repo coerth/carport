@@ -41,7 +41,7 @@ public class RequestApprove extends Command {
 
             CarportCalculator carportCalculator = new CarportCalculator(MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool()));
 
-            ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
+            ArrayList<Bomline> bomlineArrayList;
 
             if (carportType == 1) {
                 bomlineArrayList = carportCalculator.createCarportNoShed(carportRequest.getLength(), carportRequest.getWidth());

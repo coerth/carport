@@ -29,7 +29,6 @@ public class OrderDTOFacade {
 
         OrderDTO orderDTO = new OrderDTO(order, carportRequestDTO, bomDTOArrayList);
 
-
         return orderDTO;
     }
 }
