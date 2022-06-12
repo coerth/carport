@@ -19,43 +19,47 @@ public class RequestApprove extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws DatabaseException {
 
         int requestId = Integer.parseInt(request.getParameter("requestId"));
+        CarportRequest carportRequest;
 
-        String requestApproved = "Forespørgsel med id-nummer " + requestId + " er accepteret";
-        request.setAttribute("requestApproved", requestApproved);
+        if(CarportRequestFacade.approveSpecificCarportRequest(requestId, ApplicationStart.getConnectionPool()))
+        {
 
-        CarportRequestFacade.approveSpecificCarportRequest(requestId, ApplicationStart.getConnectionPool());
-        CarportRequest carportRequest = CarportRequestFacade.getSpecificCarportRequest(requestId, ApplicationStart.getConnectionPool());
-        LocalDateTime date = LocalDateTime.now();
+            String requestApproved = "Forespørgsel med id-nummer " + requestId + " er accepteret";
+            request.setAttribute("requestApproved", requestApproved);
+            carportRequest = CarportRequestFacade.getSpecificCarportRequest(requestId, ApplicationStart.getConnectionPool());
 
-        int carportType;
-        if (carportRequest.getShedLength() == 0) {
-            carportType = 1; //type 1 er NO SHED! IKKE NOGET SKUR!
-        } else {
-            carportType = 2; //type 2 er FULLSHED! SKUR I FULD LÆNGDE!
-        }
+            LocalDateTime date = LocalDateTime.now();
 
-        int orderId = OrderFacade.createOrder(carportRequest.getCustomerId(), date, carportType, requestId, ApplicationStart.getConnectionPool());
+            int carportType;
+            if (carportRequest.getShedLength() == 0) {
+                carportType = 1; //type 1 er NO SHED! IKKE NOGET SKUR!
+            } else {
+                carportType = 2; //type 2 er FULLSHED! SKUR I FULD LÆNGDE!
+            }
 
-        CarportCalculator carportCalculator = new CarportCalculator(MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool()));
+            int orderId = OrderFacade.createOrder(carportRequest.getCustomerId(), date, carportType, requestId, ApplicationStart.getConnectionPool());
 
-        ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
+            CarportCalculator carportCalculator = new CarportCalculator(MaterialFacade.getAllMaterials(ApplicationStart.getConnectionPool()));
 
-        if (carportType == 1) {
-            bomlineArrayList = carportCalculator.createCarportNoShed(carportRequest.getLength(), carportRequest.getWidth());
-        }
+            ArrayList<Bomline> bomlineArrayList = new ArrayList<>();
 
-        if (carportType == 2) {
-            bomlineArrayList = carportCalculator.createCarportWithFullShed(carportRequest.getLength(), carportRequest.getWidth(), carportRequest.getShedLength(), carportRequest.getWidth());
-        }
+            if (carportType == 1) {
+                bomlineArrayList = carportCalculator.createCarportNoShed(carportRequest.getLength(), carportRequest.getWidth());
+            }
 
-        if (BomFacade.createCompleteBillOfMaterials(bomlineArrayList, orderId, ApplicationStart.getConnectionPool())) {
+            else {
+                bomlineArrayList = carportCalculator.createCarportWithFullShed(carportRequest.getLength(), carportRequest.getWidth(), carportRequest.getShedLength(), carportRequest.getWidth());
+            }
 
-            OrderDTO orderDTO = OrderDTOFacade.getOrderWithAllInfo(orderId, ApplicationStart.getConnectionPool());
+            if (BomFacade.createCompleteBillOfMaterials(bomlineArrayList, orderId, ApplicationStart.getConnectionPool())) {
 
-            request.setAttribute("orderDTO", orderDTO);
-            return "orderview";
+                OrderDTO orderDTO = OrderDTOFacade.getOrderWithAllInfo(orderId, ApplicationStart.getConnectionPool());
 
-        } else {
+                request.setAttribute("orderDTO", orderDTO);
+                return "orderview";
+
+            }
+        }else {
 
             return "error";
         }
