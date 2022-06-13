@@ -53,7 +53,6 @@
                         </form>
                     </td>
                 </tr>
-                <br>
             </c:forEach>
             </tbody>
         </table>
